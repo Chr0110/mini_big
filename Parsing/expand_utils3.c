@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:51:02 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/03 12:00:35 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/03 12:08:52 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,23 +29,6 @@ void	send_by_type(t_b_l *t_b, char **env, t_p_l *expand_list)
 	}
 }
 
-void	make_list0(t_p_l **t_a, t_p_l *x_l, t_b_l **t_b, t_p_l *nxt)
-{
-	t_p_l	*temp_ar;
-
-	temp_ar = *t_a;
-	if (temp_ar->next)
-		nxt = temp_ar->next;
-	else
-		nxt = NULL;
-	temp_ar = x_l;
-	while (x_l->next)
-		x_l = x_l->next;
-	x_l->next = nxt;
-	(*t_b)->arg = temp_ar;
-	(*t_a) = temp_ar;
-}
-
 t_p_l	*get_last_node(t_p_l *list)
 {
 	if (!list)	return NULL;
@@ -56,16 +39,11 @@ t_p_l	*get_last_node(t_p_l *list)
 
 void	make_list(t_p_l **curr, t_p_l *t_a_prev, t_p_l *x_ls)
 {
-	int		j;
 	t_p_l	*nexty;
 	t_p_l	*temp_ar;
 
 	temp_ar = *curr;
-	j = 0;
-	
-	
-	get_last_node(x_ls)->next = (*curr)->next;
-		
+	get_last_node(x_ls)->next = (*curr)->next;		
 	if (t_a_prev != NULL)
 		t_a_prev->next = x_ls;
 	else
@@ -75,9 +53,6 @@ void	make_list(t_p_l **curr, t_p_l *t_a_prev, t_p_l *x_ls)
 void	exp_creat_list(t_b_l *t_big, char **env)
 {
 	t_p_l	*expand_list;
-
-
-
 	t_b_l *tmp_big = t_big;
 	
 	while (tmp_big)

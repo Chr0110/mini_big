@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:51:02 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/03 08:20:58 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/03 12:00:35 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,17 +14,18 @@
 
 void	send_by_type(t_b_l *t_b, char **env, t_p_l *expand_list)
 {
-	while (t_b->red)
+	t_r *current_red = t_b->red;
+	while (current_red)
 	{
-		if (t_b->red->content.e_type == 4)
-			expand_dollar(&t_b->red->content, env, 4, &expand_list);
-		else if (t_b->red->content.e_type == 2)
-			expand_dollar(&t_b->red->content, env, 2, &expand_list);
-		else if (t_b->red->content.e_type == 3)
-			expand_dollar(&t_b->red->content, env, 3, &expand_list);
-		else if (t_b->red->content.e_type == 5)
-			expand_dollar(&t_b->red->content, env, 5, &expand_list);
-		t_b->red = t_b->red->next;
+		if (current_red->content.e_type == 4)
+			expand_dollar(&current_red->content, env, 4, &expand_list);
+		else if (current_red->content.e_type == 2)
+			expand_dollar(&current_red->content, env, 2, &expand_list);
+		else if (current_red->content.e_type == 3)
+			expand_dollar(&current_red->content, env, 3, &expand_list);
+		else if (current_red->content.e_type == 5)
+			expand_dollar(&current_red->content, env, 5, &expand_list);
+		current_red = current_red->next;
 	}
 }
 
@@ -45,53 +46,66 @@ void	make_list0(t_p_l **t_a, t_p_l *x_l, t_b_l **t_b, t_p_l *nxt)
 	(*t_a) = temp_ar;
 }
 
-void	make_list(t_p_l **t_a, t_p_l *x_ls, int i, t_b_l **t_b)
+t_p_l	*get_last_node(t_p_l *list)
+{
+	if (!list)	return NULL;
+	while (list->next)
+		list = list->next;
+	return list;
+}
+
+void	make_list(t_p_l **curr, t_p_l *t_a_prev, t_p_l *x_ls)
 {
 	int		j;
 	t_p_l	*nexty;
 	t_p_l	*temp_ar;
 
-	temp_ar = *t_a;
+	temp_ar = *curr;
 	j = 0;
-	if (i != 0)
-	{
-		while (j++ < i - 1)
-			temp_ar = temp_ar->next;
-		if (temp_ar->next)
-			nexty = temp_ar->next->next;
-		else
-			nexty = NULL;
-		temp_ar->next = x_ls;
-		while (x_ls->next)
-			x_ls = x_ls->next;
-		x_ls->next = nexty;
-		temp_ar = temp_ar->next;
-		(*t_b)->arg = temp_ar;
-	}
+	
+	
+	get_last_node(x_ls)->next = (*curr)->next;
+		
+	if (t_a_prev != NULL)
+		t_a_prev->next = x_ls;
 	else
-		make_list0(t_a, x_ls, t_b, nexty);
+		*curr = x_ls;
 }
 
-void	exp_creat_list(t_b_l *t_big, t_p_l *t_arg, char **env, t_r *t_r)
+void	exp_creat_list(t_b_l *t_big, char **env)
 {
 	t_p_l	*expand_list;
-	int		i;
 
-	i = 0;
-	while (t_big)
+
+
+	t_b_l *tmp_big = t_big;
+	
+	while (tmp_big)
 	{
-		while (t_big->arg)
+		t_p_l *current_arg = tmp_big->arg;
+		t_p_l *prev_arg = NULL;
+		while (current_arg)
 		{
-			expand_dollar(&t_arg->content, env, 0, &expand_list);
+			expand_dollar(&current_arg->content, env, 0, &expand_list);
 			if (ft_lstsize(expand_list) != 0)
-				make_list(&t_arg, expand_list, i, &t_big);
-			t_big->arg = t_big->arg->next;
-			i++;
+			{
+				t_p_l *current_arg_next = current_arg->next;
+				t_p_l *tmp_expand_list_last = get_last_node(expand_list);
+				make_list(&current_arg, prev_arg, expand_list);
+				if (prev_arg == NULL)
+					tmp_big->arg = current_arg;
+				// free node current_arg here	
+				prev_arg = tmp_expand_list_last;
+				current_arg = current_arg_next;
+			}
+			else
+			{
+				prev_arg = current_arg;
+				current_arg = current_arg->next;
+			}
 		}
-		t_big->arg = t_arg;
-		while (t_big->red)
-			send_by_type(t_big, env, expand_list);
-		t_big->red = t_r;
-		t_big = t_big->next;
+		if (tmp_big->red)
+			send_by_type(tmp_big, env, expand_list);
+		tmp_big = tmp_big->next;
 	}
 }

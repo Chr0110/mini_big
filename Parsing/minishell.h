@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 21:30:23 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/03 11:57:09 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,9 +136,9 @@ int		still_a_quote(t_lx *lexer, int i);
 char	*ft_strjoin(char *s, char c);
 int		number_of_s_quotes(t_lx *lexer);
 int		number_of_quotes(t_lx *lexer);
-void	make_list0(t_p_l **t_a, t_p_l *x_l, t_b_l **t_b, t_p_l *nxt);
-void	make_list(t_p_l **t_ar, t_p_l *ex_ls, int i, t_b_l **t_b);
-void	exp_creat_list(t_b_l *t_b, t_p_l *t_ar, char **env, t_r *t_r);
+void	make_list0(t_p_l **t_a, t_p_l *x_l, t_b_l **t_b, t_p_l *nxt); // TODO: remove
+void	make_list(t_p_l **curr, t_p_l *t_a_prev, t_p_l *x_ls);
+void	exp_creat_list(t_b_l *t_b, char **env);
 void	remove_s_a(char **res, int *i, char *s);
 void	remove_d_a(char **res, int *i, char *s);
 void	remove_quotes(t_token *node);

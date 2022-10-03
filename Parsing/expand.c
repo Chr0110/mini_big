@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:00:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/03 08:46:33 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/03 12:01:18 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,8 @@ void	expand(t_b_l **big_list, char **env)
 	temp_big = *big_list;
 	temp_arg = (*big_list)->arg;
 	temp_red = (*big_list)->red;
-	exp_creat_list(temp_big, temp_arg, env, temp_red);
-	remove_f_quotes(temp_big, temp_big->arg, temp_big->red, *big_list);
+	exp_creat_list(temp_big, env);
+	// remove_f_quotes(temp_big, temp_big->arg, temp_big->red, *big_list);
 	while (temp_big)
 	{
 		while (temp_big->arg)
@@ -34,7 +34,7 @@ void	expand(t_b_l **big_list, char **env)
 		}
 		while (temp_big->red)
 		{
-			printf("->%s\n", temp_big->red->content.value);
+			printf("-->%s\n", temp_big->red->content.value);
 			temp_big->red = temp_big->red->next;
 		}
 		temp_big = temp_big->next;

@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:57:39 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 21:17:56 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/04 17:12:53 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,28 @@ int	ft_strncmp(const char *src1, const char *src2, size_t n)
 		n--;
 	}
 	return (0);
+}
+
+int	not_between_sd_quotes(char *s, int i)
+{
+	int j = 0;
+	int n = 1;
+	while(s[j])
+	{
+		if (s[j] == '\'')
+		{
+			n = not_between_s_quotes(s, i);
+			return (n);
+		}
+		else if (s[j] == '\"')
+		{
+			n = not_between_quotes(s, i);
+			return (n);
+		}
+		else
+			j++;
+	}
+	return (n);
 }
 
 int	not_between_s_quotes(char *s, int i)

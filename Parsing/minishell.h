@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/03 11:57:09 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/04 16:40:07 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -142,7 +142,7 @@ void	exp_creat_list(t_b_l *t_b, char **env);
 void	remove_s_a(char **res, int *i, char *s);
 void	remove_d_a(char **res, int *i, char *s);
 void	remove_quotes(t_token *node);
-void	remove_f_quotes(t_b_l *t_b2, t_p_l *ar, t_r *red, t_b_l *b_l);
+void	remove_f_quotes(t_b_l *t_b2);
 t_list	*ft_lstlast(t_list *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_creatlst(t_list **small_branch, t_token *token);
@@ -187,4 +187,5 @@ void	creat_arg(t_list **s_b, t_token *token, t_p_l **parse_branch);
 char	*s_q_r(char **res, char *s, int *i, int *type);
 char	*d_q_r(t_exp_list *ex_ls, char **env, int type);
 char	*n_q_r(t_exp_list *ex_l, char **env, int type);
+int		not_between_sd_quotes(char *s, int i);
 #endif

@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:10:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 21:31:15 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/04 12:51:39 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 		else
 			ex_ls->res = n_q_r(ex_ls, env, type);
 	}
-	if (there_is_a_space(ex_ls->res) && type != 1)
+	if (there_is_a_space(ex_ls->res))
 	{
 		if (type == 3 || type == 2 || type == 5)
 			go_print_error(env);

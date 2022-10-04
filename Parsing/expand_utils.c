@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:14:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 21:05:01 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/04 17:10:06 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,7 +50,7 @@ void	add_to_parse_list(char *s, t_p_l **expand_list)
 	expand = strdup("");
 	token = malloc(1 * sizeof(t_token));
 	i = 0;
-	while (s[i])
+	while(s[i])
 	{
 		if (s[i] == ' ')
 		{
@@ -58,11 +58,16 @@ void	add_to_parse_list(char *s, t_p_l **expand_list)
 			while (s[i] == ' ')
 				i++;
 		}
-		else
+		while(s[i] != ' ' && s[i] != '\0')
+			expand = ft_strjoin_one(expand, s[i++]);
+		if (s[i] == ' ' || s[i] == '\0')
 		{
-			while (s[i] != ' ' && s[i] != '\0')
-				expand = ft_strjoin_one(expand, s[i++]);
-			p_l_n_q_case(&expand, &i, expand_list, s);
+			if (s[i] == '\0')
+				p_l_n_q_case(&expand, &i, expand_list, s);
+			else if (not_between_sd_quotes(s, i))
+				p_l_n_q_case(&expand, &i, expand_list, s);
 		}
+		while(s[i] == ' ' && not_between_sd_quotes(s, i) == 0)
+			expand = ft_strjoin_one(expand, s[i++]);
 	}
 }

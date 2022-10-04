@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:48:12 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/03 08:49:46 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/04 17:15:28 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,23 +58,25 @@ void	remove_quotes(t_token *node)
 	node->value = res;
 }
 
-void	remove_f_quotes(t_b_l *temp_big, t_p_l *arg, t_r *red, t_b_l *big_list)
+void	remove_f_quotes(t_b_l *temp_big)
 {
-	while (temp_big)
+	t_b_l *big;
+
+	big = temp_big;
+	while (big)
 	{
-		while (temp_big->arg)
+		t_p_l *arg = big->arg;
+		t_r *red = big->red;
+		while (arg)
 		{
-			remove_quotes(&temp_big->arg->content);
-			temp_big->arg = temp_big->arg->next;
+			remove_quotes(&arg->content);
+			arg = arg->next;
 		}
-		temp_big->arg = arg;
-		while (temp_big->red)
+		while (red)
 		{
-			remove_quotes(&temp_big->red->content);
-			temp_big->red = temp_big->red->next;
+			remove_quotes(&red->content);
+			red = red->next;
 		}
-		temp_big->red = red;
-		temp_big = temp_big->next;
+		big = big->next;
 	}
-	temp_big = big_list;
 }

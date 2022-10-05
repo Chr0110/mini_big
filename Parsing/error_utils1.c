@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:09:38 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 17:09:20 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/05 14:36:03 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ int	red_in_error(t_list *temp, int *error)
 {
 	if (temp->next == NULL)
 	{
-		printf("syntax error near unexpected token `newline'\n");
+		panic("syntax error", "newline", "error in redirection in", 258);
 		(*error)++;
 		return (1);
 	}
@@ -30,7 +30,7 @@ int	red_out_error(t_list *temp, int *error)
 {
 	if (temp->next == NULL)
 	{
-		printf("syntax error near unexpected token `newline'\n");
+		panic("syntax error", "newline", "error in redirection out", 258);
 		(*error)++;
 		return (1);
 	}
@@ -44,7 +44,7 @@ int	here_error(t_list *temp, int *error)
 {
 	if (temp->next == NULL)
 	{
-		printf("syntax error near unexpected token `newline'\n");
+		panic("syntax error", "newline", "error in heredoc", 258);
 		(*error)++;
 		return (1);
 	}
@@ -58,7 +58,7 @@ int	app_error(t_list *temp, int *error)
 {
 	if (temp->next == NULL)
 	{
-		printf("syntax error near unexpected token `newline'\n");
+		panic("syntax error", "newline", "error in redirection append", 258);
 		(*error)++;
 		return (1);
 	}

@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/04 16:40:07 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/05 23:47:56 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,7 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
+int	g_status;
 typedef struct s_token
 {
 	char	*value;
@@ -125,6 +126,8 @@ void	add_to_parse_list(char *str, t_p_l **expand_list);
 void	expand_quotes(t_token *ar_cnt, char **env, int type, t_p_l **ex_ls);
 void	expand_dollar(t_token *cnt, char **env, int type, t_p_l **ex_ls);
 int		is_alpha(char c);
+int 	panic(char *name, char *arg, char *msg, int error);
+void	ft_putstr_fd(char *s, int fd);
 int		not_between_quotes(char *s, int i);
 char	*make_s_q_res(char **res, char *s, int *i, int *type);
 char	*make_d_q_res(t_exp_list *ex_ls, char **env, int type);

@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:35:56 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 17:08:26 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/05 16:17:51 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,7 +85,7 @@ int	d_q_with_error(t_lx *lx, int *j, t_token *token)
 			(*j)++;
 		}
 		lx->error++;
-		printf("close the quotes\n");
+		panic("syntax error", "quotes", "close the quotes", 1);
 		return (1);
 	}
 	return (0);

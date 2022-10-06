@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/05 23:47:56 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/06 22:27:38 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,12 @@ typedef struct s_token
 
 typedef struct s_lx
 {
+	int		tx;
+	int		red_i;
+	int		red_o;
+	int		pi;
+	int		her;
+	int		app;
 	char	c;
 	int		t_sz;
 	char	*str;
@@ -101,13 +107,13 @@ typedef struct s_exp_list
 	char	*res;
 }	t_exp_list;
 
-void	init_lexer(char *src, char **env);
+void	init_lexer(char *src, char **env, t_b_l **big_list);
 t_list	*ft_lstlast(t_list *lst);
 int		ft_lstsize(t_p_l *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_creatlst(t_list **stack, t_token *token);
-void	parsing(t_list *small_branch, t_token *token, char **env);
-void	check_errors(t_list *small_branch, t_token *token, char **env);
+void	parsing(t_list *small_branch, t_token *token, char **env, t_b_l **big_list);
+void	check_errors(t_list *small_branch, t_token *token, char **env, t_b_l **big_list);
 void	expand(t_b_l **big_list, char **env);
 void	ft_creat_parse_lst(t_p_l **parse_branch, t_token *token);
 void	ft_creat_red_lst(t_r **red_branch, t_token *token);

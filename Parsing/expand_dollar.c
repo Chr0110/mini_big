@@ -6,27 +6,27 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:10:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/06 00:09:20 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/06 22:12:35 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	go_print_error(char **env)
-{
-	char	*ptr;
+// void	go_print_error(char **env)
+// {
+// 	char	*ptr;
 
-	printf("ambiguous redirect\n");
-	while (1)
-	{
-		ptr = readline(GREEN"minishell$> "NOR);
-		if (ptr == 0)
-			exit(EXIT_SUCCESS);
-		add_history(ptr);
-		init_lexer(ptr, env);
-		free(ptr);
-	}
-}
+// 	printf("ambiguous redirect\n");
+// 	while (1)
+// 	{
+// 		ptr = readline(GREEN"minishell$> "NOR);
+// 		if (ptr == 0)
+// 			exit(EXIT_SUCCESS);
+// 		add_history(ptr);
+// 		init_lexer(ptr, env);
+// 		free(ptr);
+// 	}
+// }
 
 void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 {

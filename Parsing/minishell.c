@@ -3,16 +3,13 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 20:17:34 by eradi-            #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/05 13:00:02 by sriyani          ###   ########.fr       */
-=======
-/*   Updated: 2022/10/05 23:46:36 by eradi-           ###   ########.fr       */
->>>>>>> 16c3716e02b12a32be591a2e3859fd1e980eca2d
+/*   Created: 2022/10/06 18:39:28 by eradi-            #+#    #+#             */
+/*   Updated: 2022/10/06 23:33:52 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
+
 
 #include "minishell.h"
 #include <stdio.h>
@@ -37,10 +34,10 @@ int main (int ac, char **av,char **env)
 {
 	char *buffer;
 	char *ptr;
-	t_b_l	**big_list;
+	t_b_l	*big_list;
 	t_b_l	*temp;
 
-	big_list = NULL;
+	//*big_list = NULL;
 	temp = NULL;
 	while(1)
 	{
@@ -52,7 +49,16 @@ int main (int ac, char **av,char **env)
 		if (ptr == 0x0)
 			exit(EXIT_SUCCESS);
 		add_history(ptr);
-		init_lexer(ptr, env);
+		init_lexer(ptr, env, &big_list);
+		while(big_list)
+		{
+			while (big_list->arg)
+			{
+				printf("%s\n", big_list->arg->content.value);
+				big_list->arg = big_list->arg->next;
+			}
+			big_list = big_list->next;
+		}
 	}
 	return (0);
 }

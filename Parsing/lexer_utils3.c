@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:50:01 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/05 16:17:11 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/06 23:31:40 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,8 +52,8 @@ void	pip_lexer(t_lx *lx, int *j, t_token *tkn, t_list **small_b)
 	lx->pip[lx->p][1] = '\0';
 	tkn->value = lx->pip[lx->p];
 	tkn->e_type = TOKEN_PIP;
-	free(lx->pip[lx->p]);
-	lx->pip[lx->p + 1] = ft_strdup("");
+	lx->p = lx->p + 1;
+	//lx->pip[lx->p + 1] = ft_strdup("");
 	lx->j++;
 	(*j)++;
 	ft_creatlst(small_b, tkn);
@@ -72,7 +72,6 @@ void	append_lexer(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 	lx->append[lx->a][2] = '\0';
 	tkn->value = lx->append[lx->a];
 	tkn->e_type = TOKEN_APPEND;
-	free(lx->append[lx->a]);
 	lx->append[lx->a + 1] = ft_strdup("");
 	lx->j += 2;
 	(*j) += 2;

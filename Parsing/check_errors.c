@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:25:30 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/05 23:47:07 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/06 22:26:33 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int	global_error(t_list *temp, int *error, int *i)
 	return (0);
 }
 
-void	check_errors(t_list *small_branch, t_token *token, char **env)
+void	check_errors(t_list *small_branch, t_token *token, char **env, t_b_l **big_branch)
 {
 	int		i;
 	int		error;
@@ -47,5 +47,5 @@ void	check_errors(t_list *small_branch, t_token *token, char **env)
 		temp = temp->next;
 	}
 	if (error == 0)
-		parsing(small_branch, token, env);
+		parsing(small_branch, token, env, big_branch);
 }

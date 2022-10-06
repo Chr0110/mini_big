@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/01 11:41:07 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/06 22:05:18 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ char	*skip_white_spaces(char *src, char *str)
 		i++;
 		j++;
 	}
-	while (str[j - 1] == ' ' || str[j - 1] == '\t')
-		j--;
+	// while (str[j - 1] == ' ' || str[j - 1] == '\t')
+	// 	j--;
 	str[j] = '\0';
 	return (str);
 }
@@ -101,18 +101,18 @@ int	ft_strlen(char *s)
 void	lexer_init(t_lx	*lexer)
 {
 	lexer->error = 0;
-	lexer->t = 0;
-	lexer->r_i = 0;
-	lexer->r_o = 0;
-	lexer->p = 0;
-	lexer->h = 0;
-	lexer->a = 0;
 	lexer->text = (char **)malloc(1000 * sizeof(char *));
 	lexer->redirection_in = (char **)malloc(1000 * sizeof(char *));
 	lexer->redirection_out = (char **)malloc(1000 * sizeof(char *));
 	lexer->pip = (char **)malloc(1000 * sizeof(char *));
 	lexer->heredoc = (char **)malloc(1000 * sizeof(char *));
 	lexer->append = (char **)malloc(1000 * sizeof(char *));
+	lexer->t = 0;
+	lexer->r_i = 0;
+	lexer->r_o = 0;
+	lexer->p = 0;
+	lexer->h = 0;
+	lexer->a = 0;
 	lexer->t_sz = ft_strlen(lexer->str);
 	lexer->text[lexer->t] = ft_strdup("");
 	lexer->redirection_in[lexer->r_i] = ft_strdup("");

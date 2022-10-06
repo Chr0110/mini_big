@@ -2,7 +2,7 @@ NAME = minishell
 
 LIB = minishell.h
 
-SRC = minishell.c\
+SRC = 	minishell.c\
 		lexer.c\
 		lexer_utils.c\
 		lexer_utils2.c\
@@ -31,7 +31,7 @@ SRC = minishell.c\
 		remove_quotes.c\
 		parsing_utils.c\
 
-CC = gcc -fsanitize=address 
+CC = gcc #-fsanitize=address 
 
 CFLAGS =  -g 
 OBJ = $(SRC:.c=.o)

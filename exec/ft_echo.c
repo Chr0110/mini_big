@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:13:01 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/02 20:11:06 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/05 09:34:34 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,6 +27,16 @@ int ft_check_echo(char *str)
 	return 2;
 }
 
+char **copie_echo(char *ptr)
+{
+	int i;
+	char **cmd;
+	i = 0;
+	cmd = ft_split(ptr,' ');
+	return(cmd + 1);	
+}
+
+
 void ft_echo(char *ptr, t_vars *vars)
 {
 	int i = -1;
@@ -35,8 +45,9 @@ void ft_echo(char *ptr, t_vars *vars)
 	int o = 0;
 	int k = 0;
 	int y=0;
-	
-	car  = ft_split(ptr + 4, ' ');
+	char *str;
+
+	car = copie_echo(ptr);
 	while(car[++i])
 		j++;
 	while(o < j)
@@ -56,9 +67,9 @@ void ft_echo(char *ptr, t_vars *vars)
 		o = k;
 		while(o < j)
 		{
-			ft_putstr_fd(car[o], vars->infile[1]);
+			ft_putstr_fd(car[o], vars->outfile[vars->index]);
 			if(o < j - 1)
-				ft_putstr_fd(" ", vars->infile[1]);
+				ft_putstr_fd(" ", vars->outfile[vars->index]);
 			o++;
 		}	
 	}
@@ -67,11 +78,11 @@ void ft_echo(char *ptr, t_vars *vars)
 	 {
 		while(i < j)
 		{
-			ft_putstr_fd(car[i], vars->infile[1]);
+			ft_putstr_fd(car[i], vars->outfile[vars->index]);
 			if(i < j - 1)
-				ft_putstr_fd(" ", vars->infile[1]);
+				ft_putstr_fd(" ", vars->outfile[vars->index]);
 			if(i == j - 1)
-				ft_putstr_fd("\n", vars->infile[1]);
+				ft_putstr_fd("\n", vars->outfile[vars->index]);
 			i++;
 		}
 	 }

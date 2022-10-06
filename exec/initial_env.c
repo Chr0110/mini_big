@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/02 14:07:37 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/06 09:38:49 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,7 @@ void initial_exp(t_vars *vars, char **env)
 		vars->exp[i] = ft_strdup(env[i]);
 		i++;
 	}
+	vars->exp[i] = NULL;
 }
 
 int size_env(t_vars *vars)
@@ -53,6 +54,7 @@ int size_exp(t_vars *vars)
 	while(vars->exp[++len]);
 	return (len);
 }
+
 char **ft_remove(char **str, char *ptr, int len)
 {
 	int  i = 0;
@@ -72,21 +74,21 @@ void ft_replace(t_vars *vars)
 {
 	int  i;
 	int  j;
-	int a;
 	int  len;
 	int size;
-	char **str;
 	char *pwd;
+	pwd = ft_getcwd();
 	
 	j = 0 ;
 	i = 0;
-	
+	len = 35;
  	len = size_env(vars);
 	while(i < len)
 	{
 		if(ft_strncmp(vars->env[i], "PWD=", 4) == 0 )
 		{
-			vars->env[i] = ft_strjoin("PWD=", getcwd(NULL, 0));
+			free(vars->env[i]);
+			vars->env[i] = ft_strjoin("PWD=", pwd);
 		}
 		i++;
 	}
@@ -98,31 +100,56 @@ void ft_replace(t_vars *vars)
 	}
 	env_to_exp(vars);
 	size = size_exp(vars);
-	vars->pwd = getcwd(NULL, 0);
-	
+	free(vars->pwd);
+	vars->pwd = pwd;
 }
 
 void ft_replace_shlvl(t_vars *vars)
 {
 	int i;
-	int  len;
+	int len;
 	int a;
-	char **str;
+	char *str;
+	char *n;
 	i = 0;
 	len = size_env(vars);
 	while(i < len)
 	{
 		if(ft_strncmp(vars->env[i], "SHLVL", 5) == 0)
 		{
-			str = ft_split(vars->env[i], '=');
-			a = atoi(str[1]) + 1;
-			vars->env[i] = ft_strjoin("SHLVL=",ft_itoa(a));
+			str = ft_copie_shlvl(vars->env[i]);
+			free(vars->env[i]);
+			a = atoi(str) + 1;
+			n = ft_itoa(a);
+			vars->env[i] = ft_strjoin("SHLVL=", n);
+			free(n);
+			free(str);
 		}
 		i++;
 	}
+	// vars->env[i] = NULL;
 	env_to_exp(vars);
-	vars->env[i] = NULL;
 }
+char *ft_copie_shlvl(char *str)
+{
+	int i;
+	int j;
+	char *ptr;
+	
+	i = 0;
+	j = 0;
+	ptr = ft_strdup("");
+	while(str[i] != '=')
+		i++;
+	while(str[++i])
+	{
+		ptr[j] = str[i];
+		j++;
+	}
+	ptr[i] = '\0';
+	return (ptr);
+}
+
 
 void ft_replace_oldpwd(t_vars *vars)
 {
@@ -136,19 +163,26 @@ void ft_replace_oldpwd(t_vars *vars)
 	while (i < len)
 	{
 		if (ft_strncmp(vars->env[i], "OLDPWD", 6) == 0)
+		{
+			free(vars->env[i]);
 			i++;
+		}
 		vars->env[j] = vars->env[i];
 		j++;
 		i++;
 	}
-	vars->env[j]= NULL;
+	vars->env[j] = NULL;
 }
 
 void ft_append(t_vars *vars)
 {
-	int  i = 0;
+	int  i;
+	char *pwd;
+	
+	i  = 0;
+	pwd = ft_strdup("OLDPWD");
 	while(vars->exp[i])
 		i++;
-	vars->exp[i] = ft_strdup("OLDPWD");
-	vars->exp[i+1] = NULL;
+	vars->exp[i] = pwd;
+	vars->exp[i + 1] = NULL;
 }

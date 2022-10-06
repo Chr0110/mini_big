@@ -16,10 +16,9 @@ SRC = minishell.c\
 		ft_pipe.c\
 		ft_path.c\
 		ft_rediraction.c\
+		test.c\
 		# pipex_utils2.c\
 		# multiple_pipe.c\
-		#multiple_rediraction.c\
-		herdoc.c
 		
 CC = cc 
 

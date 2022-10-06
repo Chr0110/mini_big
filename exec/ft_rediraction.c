@@ -6,173 +6,109 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:47:53 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/02 17:55:04 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/05 13:14:22 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	ft_red_in(int *fd, int len, char **cmd, char **env)
-{
-	int i = len - 1;
-	int j = 0;
-	char **comd;
-	int  flag = 0;
-	int flag_app = 0;
+// void	ft_red_out(int len,t_vars *vars)
+// {
+// 	int i = len - 1;
+// 	int j = 0;
 	
-	while(i >= 0)
-	{
-		if(ft_strcmp(cmd[i], ">") == 0 && ft_strcmp(cmd[i + 1], ">") != 0)
-		{
-			fd[j] = open(cmd[i + 1], O_CREAT | O_TRUNC, 0644);
-			if(fd[j] < 0)
-			{
-				perror("error");
-				exit(1);
-			}
-		}
-		if(ft_strcmp(cmd[i], ">>") == 0 && ft_strcmp(cmd[i + 1], ">>") != 0)
-		{
-			fd[j] = open(cmd[i + 1], O_CREAT, 0666);
-			if(fd[j] < 0)
-			{
-				perror("error");
-				exit(1);
-			}
-		}
-		i--;
-		j++;
-	}
-	i = len - 1;
-	while(i >= 0)
-	{			
-				
-		if(ft_strcmp(cmd[i], ">") == 0 && ft_strcmp(cmd[i + 1], ">") != 0)
-		{
-				
-			if( i <= len - 1)
-			{
-				printf("%s\n",cmd[i]);
-				fd[j] = open(cmd[i + 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
-				if(fd[j] < 0)
-					perror("error");
-				dup2(fd[j], STDOUT_FILENO);
-				//close(fd[j]);
-				// comd = ft_split(cmd[0], ' ');
-				// execve(ft_path(comd[0], env), comd, env);
-				// perror("error execve");
-				// exit(1);
-			}
-		}
-		if(ft_strcmp(cmd[i], ">>") == 0 && ft_strcmp(cmd[i + 1], ">>") != 0)
-		{
-			fd[j] = open(cmd[i + 1], O_CREAT | O_WRONLY | O_APPEND, 0644);
-			if(fd[j] < 0)
-				perror("error");
-			dup2(fd[j], STDOUT_FILENO);
-			//close(fd[j]);
-			// comd = ft_split(cmd[0], ' ');
-			// if(access(cmd[0], F_OK) == 0)
-			// 	execve(cmd[0], comd, env);
-			// else
-			// {
-			// 	execve(ft_path(comd[0], env), comd, env);
-			// 	perror("error execve");
-			// 	exit(1);
-			// }
-		}
-		i--;
-		j++;
-	}
-}
+// 	while(i >= 0)
+// 	{					
+// 		if(ft_strcmp(vars->cmd[i], ">") == 0 && ft_strcmp(vars->cmd[i + 1], ">") != 0)
+// 		{		
+// 			vars->outfile[i]= open(vars->cmd[i + 1], O_CREAT | O_WRONLY | O_TRUNC, 0644);
+// 			if(vars->outfile[i] < 0)
+// 				perror("error");
+// 			dup2(vars->outfile[i], STDOUT_FILENO);
+// 			close(vars->outfile[i]);
+// 		}
+// 		if(ft_strcmp(vars->cmd[i], ">>") == 0 && ft_strcmp(vars->cmd[i + 1], ">>") != 0)
+// 		{
+// 			// if (vars->outfile[i] != 1 && vars->outfile[i] != -1)
+// 			// 	close (vars->outfile[i]);
+// 			vars->outfile[i] = open(vars->cmd[i + 1], O_CREAT | O_WRONLY | O_APPEND, 0644);
+// 			if(vars->outfile[i] < 0)
+// 				perror("error");
+// 			dup2(vars->outfile[i], STDOUT_FILENO);
+// 			close(vars->outfile[i]);
+// 		}
+// 		i--;
+// 		j++;
+// 	}
+// }
 
-void	ft_red_out(int *fd, int len, char ** cmd, char **env)
-{
-	int  i = len - 1;
-	char **comd;
-	int j=0;
-	int flag = 0;
-	
-	while(i >= 0)
-	{
-		if(ft_strcmp(cmd[i], ">") == 0)
-		{
-			fd[j] = open(cmd[i + 1], O_CREAT | O_WRONLY ,0644);
-			if(fd[j] < 0)
-			{
-				perror("error fd out");
-				exit(1);
-			}
-		}
-		if(ft_strcmp(cmd[i], "<") == 0)
-		{
+// void	ft_red_in(int len, t_vars *vars)
+// {
+// 	int  i = len - 1;
+// 	int j = 0;
+// 	while(i >= 0)
+// 	{
+// 		if(ft_strcmp(vars->cmd[i], "<") == 0)
+// 		{
 			
-			fd[j] = open(cmd[i + 1], O_RDONLY, 0644);
-			if(fd[j] < 0)
-			{
-				perror("error fd out");
-				//exit(1);
-			}
-			
-			if(flag > 0)
-			{
-				dup2(fd[j], STDIN_FILENO);
-				//close(fd[j]);
-			}
-			dup2(fd[j], STDIN_FILENO);
-			//close(fd[j]);
-			// comd = ft_split(cmd[0], ' ');
-			// execve(ft_path(comd[0], env), comd, env);
-			// perror("error execve");
-			// exit(1);
-		}
-		i--;
-		j++;
-	}
-}
+// 			vars->infile[i] = open(vars->cmd[i + 1], O_RDONLY, 0644);
+// 			if(vars->infile[i] < 0)
+// 			{
+// 				perror("error fd out");
+// 				exit(1);
+// 			}  
+// 			dup2(vars->infile[i], STDIN_FILENO);
+// 			close(vars->infile[i]);
+// 		}
+// 		i--;
+// 		j++;
+// 	}
+// }
 
-void ft_rediraction(char *ptr, char **env)
-{
-	int  i = 0;
-	int len = 0;
-	int count_in = 0;
-	int count_out = 0;
-	int *fd;
-	int count =0;
-	char **cmd = ft_split(ptr, ' ');
-	while(cmd[++len]);
-	while(i < len)
-	{
-		if(ft_strcmp(cmd[i], ">") == 0 || ft_strcmp(cmd[i], ">>") == 0)
-			count_in++;
-		if(ft_strcmp(cmd[i], "<") == 0)
-			count_out++;
-		i++;
-	}
+// int ft_rediraction(char *ptr, t_vars *vars, t_data *data)
+// {
+// 	int  i = 0;
+// 	int len = 0;
+
+
+// 	if(data->id == 2)
+// 	{
+// 		vars->infile[i] = open(data->type, O_RDONLY, 0644);
+// 		if(vars->infile[i] < 0)
+// 			ft_putstr_fd("No such file or directory\n", 2);
+// 		dup2(vars->infile[i], STDIN_FILENO);
+// 		close(vars->infile[i]);
+// 	}
 	
-	fd = malloc(sizeof(int *) * count + 1);
-	i = 0;
-	while(i < len)
-	{
-		if((ft_strcmp(cmd[i], ">") == 0 && ft_strcmp(cmd[i + 1],">")== 0) || ft_strcmp(cmd[len - 1], ">") == 0)
-		{
-			printf(" syntax error near unexpected token `>'\n");
-			exit(1);
-		}
-		if((ft_strcmp(cmd[i], ">>")==0 && ft_strcmp(cmd[i + 1], ">>")==0) || ft_strcmp(cmd[len - 1], ">>")== 0)
-		{
-			printf(" syntax error near unexpected token `>'\n");
-			exit(1);
-		}
-		if(ft_strcmp(cmd[len -1], "<")== 0)
-		{
-			printf(" syntax error near unexpected token `>'\n");
-			exit(1);
-		}
-		i++;
-	}
-	if(count_in >= 1)
-		ft_red_in(fd, len, cmd, env);
-	if(count_out >= 1)
-		ft_red_out(fd, len, cmd, env);
-}
+// 	if(data->id == 3)
+// 	{		
+// 		vars->outfile[i]= open(data->type, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+// 		if(vars->outfile[i] < 0)
+// 			ft_putstr_fd("error from output_redirect\n", 2);
+// 		dup2(vars->outfile[i], STDOUT_FILENO);
+// 		close(vars->outfile[i]);
+// 	}
+	
+// 	if(data->id == 5)
+// 	{
+// 		// if (vars->outfile[i] != 1 && vars->outfile[i] != -1)
+// 		// 	close (vars->outfile[i]);
+// 		vars->outfile[i] = open(data->type, O_CREAT | O_WRONLY | O_APPEND, 0644);
+// 		if(vars->outfile[i] < 0)
+// 			ft_putstr_fd("error from appenduk , \n", 2);
+// 		dup2(vars->outfile[i], STDOUT_FILENO);
+// 		close(vars->outfile[i]);
+// 	}
+// 	if(data->id == 4)
+// 	{
+// 		// if (vars->outfile[i] != 1 && vars->outfile[i] != -1)
+// 		// 	close (vars->outfile[i]);
+// 		vars->outfile[i] = open(data->type, O_CREAT | O_WRONLY | O_APPEND, 0644);
+// 		if(vars->outfile[i] < 0)
+// 			ft_putstr_fd("error from appenduk , \n", 2);
+// 		dup2(vars->outfile[i], STDOUT_FILENO);
+// 		close(vars->outfile[i]);
+// 	}
+	
+// 	return 1;
+// }

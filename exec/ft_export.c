@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:50:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/03 09:11:16 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/05 19:54:07 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,12 @@ char **sort_str(char **ptr)
 
 void env_to_exp(t_vars *vars)
 {
-	int i = 0;
+	int i;
+	
+	i = 0;
 	while(vars->env[i])
 	{
+		free(vars->exp[i]);
 		vars->exp[i] = ft_strdup(vars->env[i]);
 		i++;
 	}
@@ -69,7 +72,7 @@ void remove_double(char **bar, t_vars *vars)
 	}
 	vars->exp[j] = vars->exp[i];
 	vars->exp[j + 1] = NULL;
-	// j++;
+	ft_free(test);
 	
 }
 
@@ -78,7 +81,8 @@ char **take_variable(int len, t_vars *vars)
 	int i = 0;
 	int j = 0;
 	char **str;
-	str = malloc(sizeof(char *) * 10000);
+	
+	str = malloc(sizeof(char *) * 1000);
 	while(i < len)
 	{
 		j = 0;
@@ -109,7 +113,7 @@ void aff_export2(char **bar, t_vars *vars)
 	while(vars->exp[++k]);
 	while(i < k )
 	{
-		ft_putstr_fd("declare -x ", vars->outfile[1]);
+		ft_putstr_fd("declare -x ", vars->outfile[vars->index]);	
 		if(ft_strchr(vars->exp[i], '=') == 0)
 		{
 			j = 0;
@@ -118,25 +122,26 @@ void aff_export2(char **bar, t_vars *vars)
 			{
 				if(vars->exp[i][j]== '=')
 				{
-					ft_putchar_fd(vars->exp[i][j], vars->outfile[1]);
-					ft_putchar_fd('\"', vars->outfile[1]);
+					ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
+					ft_putchar_fd('\"', vars->outfile[vars->index]);
 					j++;
 				}
 				if(j == len)
-					{
-						ft_putchar_fd(vars->exp[i][j], vars->outfile[1]);
-						ft_putchar_fd('\"', vars->outfile[1]);
-					}
+				{
+					ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
+					ft_putchar_fd('\"', vars->outfile[vars->index]);
+				}
 				else
-					{
-						ft_putchar_fd(vars->exp[i][j], vars->outfile[1]);
-					}
+					ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
 			j++;
 			}
-			ft_putchar_fd('\n', vars->outfile[1]);
+			ft_putchar_fd('\n', vars->outfile[vars->index]);
 		}
 		else
-			ft_putstr_fd(vars->exp[i], vars->outfile[1]);
+			{
+				ft_putstr_fd(vars->exp[i], vars->outfile[vars->index]);
+				ft_putchar_fd('\n', vars->outfile[vars->index]);
+			}
 		i++;
 	}
 }
@@ -154,9 +159,8 @@ void add_export(char **bar, t_vars *vars)
 	while(bar[j])
 	{
 		vars->exp[i] = ft_strdup(bar[j]);
-		
-		i++;
 		j++;
+		i++;
 	}
 	vars->exp[i] = NULL;
 	remove_double(bar, vars);
@@ -168,9 +172,9 @@ void check_export(char **bar, t_vars *vars)
 	int i = 1;
 	int j = 0;
 	int k = 0;
-	int  o=0;
+	int  o = 0;
 	int l = 0;
-	vars->bar= malloc(sizeof(char*)*1000);
+	vars->bar = malloc(sizeof(char*) * 1000);
 	vars->bar[o] = "export";
 	o++;
 	while(bar[i])
@@ -224,11 +228,11 @@ void check_export(char **bar, t_vars *vars)
 					o++;
 			}
 		}
-		
 		i++;
 	}
+	vars->bar[o] = NULL;
 	if(l > 0)
-		ft_putstr_fd("export: not a valid identifier\n",vars->outfile[2]);
+		ft_putstr_fd("export: not a valid identifier\n", 2);
 
 }
 void check_export2(char **bar, t_vars *vars)
@@ -237,25 +241,25 @@ void check_export2(char **bar, t_vars *vars)
 	int	j = 0;
 	int	k = 0;
 	
-	while(bar[i++]);
 	check_export(bar, vars);
+	while(bar[i++]);
 	bar = vars->bar;
 	char **str = malloc(sizeof(char *) * i);
 	char **ptr = malloc(sizeof(char *) * i);
 	i = 0;
-	str[j] = bar[0];
-	j++;
+	str[j] = ft_strdup(bar[0]);
+	j += 1;
 	while(bar[i])
 	{
+		
 		if(ft_strchr(bar[i], '=') == 0)
 		{
 			str[j] = ft_strdup(bar[i]);
 			j++;
 		}
-		if(ft_strchr(bar[i], '=') != 0)
+		else if(ft_strchr(bar[i], '=') != 0)
 		{
 			ptr[k] = ft_strdup(bar[i]);
-			
 			k++;
 		}
 		i++;	

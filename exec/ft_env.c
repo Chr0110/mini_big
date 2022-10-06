@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/02 15:02:27 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/06 09:42:13 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -57,12 +57,11 @@
 // 	return vars->var;
 // }
 
-int check_isdouble(char   **test, char *str)
+int check_isdouble(char  **test, int len,char *str)
 {
 	int i = 0;
 	int j = 0;
-	// char *ptr;
-	while(test[i])
+	while(i < len - 1)
 	{
 		if(ft_strcmp(test[i], str) == 0)
 			return 0;
@@ -75,43 +74,45 @@ char **take_variable2(int len, t_vars *vars)
 {
 	int i = 0;
 	int j = 0;
-	// int len=0;
-	// while(vars->env[++len]);
-	vars->var = malloc(sizeof(char *) * 1000);
+	char **var;
+	var = malloc(sizeof(char *) * 1000);
 	while(i < len)
 	{
 		j = 0;
-		vars->var[i] = malloc(sizeof(char)*1000);
+		var[i] = malloc(sizeof(char) * 1000);
 		while(vars->env[i][j] != '=')
 		{
-			vars->var[i][j] = vars->env[i][j];
+			var[i][j] = vars->env[i][j];
 			j++;
 		}
+		var[i][j] = '\0';
 		i++;
 	}
-	return vars->var;
+	var[i] = NULL;
+	return var;
 }
 
 
-void aff_env(char **ptr)
+void aff_env(char **ptr, t_vars *vars)
 {
 	int i = 0;
 	while(ptr[i])
 	{
-		printf("%s\n", ptr[i]);
+		ft_putstr_fd(ptr[i], vars->outfile[vars->index]);
+		ft_putchar_fd('\n', vars->outfile[vars->index]);
 		i++;
 	}
 }
 
-void remove_str(char **test, char *str,t_vars *vars,char *bar)
+void remove_str(char **test, char *str, t_vars *vars, char *bar)
 {
-	int i =0;
-	int j =0;
+	int i = 0;
+	int j = 0;
 	int len = 0;
 	while(test[++len]);
 	while(i < len)
 	{
-		if(ft_strcmp(test[i],str)==0)
+		if(ft_strcmp(test[i], str) == 0)
 			i++;
 		vars->env[j] = vars->env[i];
 		i++;
@@ -125,21 +126,26 @@ void add_env(char **bar, t_vars *vars)
 {
 	int i = 0;
 	int j = 1;
+	int len =0;
 	char **test;
 	char **barr;
 	while(vars->env[++i]);
+	len = i;
 	if(bar[1] != NULL)
 		barr = take_bar(bar,vars);
 	while(bar[j])
 	{	
 		test = take_variable2(i, vars);
-		if(check_isdouble(test, barr[j]) == 0)
+		if(check_isdouble(test, len,barr[j]) == 0)
 			remove_str(test, barr[j], vars, bar[j]);
-		if(check_isdouble(test, barr[j]) == 1)
+		if(check_isdouble(test, len,barr[j]) == 1)
 				vars->env[i] = ft_strdup(bar[j]);	
 		j++;
 		i++;
 	}
+	ft_free(test);
+	if(bar[1] != NULL)
+		ft_free(barr);
 }
 
 void ft_env(char **bar,t_vars *vars)
@@ -157,21 +163,20 @@ void ft_env(char **bar,t_vars *vars)
 		i++;
 	}
 	if(k != j)
-		printf("env: No such file or directory\n");
+		ft_putstr_fd("env: No such file or directory\n", 2);
 	else
-		add_env(bar,vars);
+		add_env(bar, vars);
 }
 
-char **take_bar(char **bar,t_vars *vars)
+char **take_bar(char **bar, t_vars *vars)
 {
-	int i =0;
+	int i = 0;
 	int j = 0;
 	char **barr;
 	barr = malloc(sizeof(char*) * 1000);
 	while(bar[i])
 	{
 		j =  0;
-		
 		if(ft_strchr(bar[i], '=') == 0)
 		{
 			barr[i] = malloc(sizeof(char *) * 1000);

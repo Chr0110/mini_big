@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:54:31 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 17:08:37 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/05 15:50:44 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,11 +24,15 @@ int	d_q_lexer(t_lx *lx, int *j, t_token *token)
 		if (lx->str[lx->j] == ' ')
 		{
 			if (not_between_quotes(lx->str, lx->j) == 1)
+			{
+				free(lx->text[lx->t]);
 				return (0);
+			}
 		}
 		if (lx->str[lx->j] == '\'')
 			s_q_lexer(lx, j, token);
 	}
+	free(lx->text[lx->t]);
 	return (1);
 }
 
@@ -44,11 +48,15 @@ int	s_q_lexer(t_lx *lx, int *j, t_token *token)
 		if (lx->str[lx->j] == ' ')
 		{
 			if (not_between_s_quotes(lx->str, lx->j) == 1)
+			{
+				free(lx->text[lx->t]);
 				return (0);
+			}
 		}
 		if (lx->str[lx->j] == '\"')
 			d_q_lexer(lx, j, token);
 	}
+	free(lx->text[lx->t]);
 	return (1);
 }
 

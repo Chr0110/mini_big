@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:00:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/04 18:12:02 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/05 21:42:06 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ char	*creat_the_string(t_b_l *big)
 	}
 	return (s);
 }
+
 void	expand(t_b_l **big_list, char **env)
 {
 	t_b_l	*temp_big;
@@ -98,18 +99,4 @@ void	expand(t_b_l **big_list, char **env)
 	temp_big = *big_list;
 	exp_creat_list(temp_big, env);
 	remove_f_quotes(temp_big);
-	// i = arg_len(temp_big);
-	// s = malloc((i + 1) * sizeof(char));
-	creat_the_string(temp_big);
-	printf("%s\n", creat_the_string(temp_big));
-	while(temp_big)
-	{
-		t_r	*red = temp_big->red;
-		while(red)
-		{
-			printf("id : %d    l7sen: %s\n", red->content.e_type, red->content.value);
-			red = red->next;
-		}
-		temp_big = temp_big->next;
-	}
 }

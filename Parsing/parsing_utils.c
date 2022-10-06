@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 04:09:03 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 17:09:51 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/05 15:59:10 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,7 @@ void	creat_cmd(t_list **s_b, t_token *token, t_p_l **parse_branch, int *i)
 	token->e_type = TOKEN_COMMD;
 	token->value = (*s_b)->content.value;
 	ft_creat_parse_lst(parse_branch, token);
+	//free(token->value);
 	(*i)++;
 }
 

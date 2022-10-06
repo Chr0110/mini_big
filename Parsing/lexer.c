@@ -6,16 +6,19 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 20:13:59 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/05 23:48:56 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
 
-void	get_token(t_lx *lx, char **env, t_token *token, t_list *small_branch)
+void	get_token(char **env, t_lx *lx, t_list *small_branch)
 {
-	int	j;
 
+	int	j;
+	t_token	*token;
+
+	token = malloc(1 * sizeof(t_token));
 	lexer_init(lx);
 	j = 0;
 	while (j < lx->t_sz)
@@ -42,20 +45,18 @@ void	get_token(t_lx *lx, char **env, t_token *token, t_list *small_branch)
 void	init_lexer(char *src, char **env)
 {
 	char	*str;
-	t_token	*token;
 	t_list	*small_branch;
-	int		j;
 	t_lx	*lexer;
+	int		j;
 
+	lexer = malloc(1 * sizeof(t_lx));
 	j = 0;
 	small_branch = NULL;
-	lexer = malloc(1 * sizeof(t_lx));
-	token = malloc(1 * sizeof(t_token));
 	if (src[0] == '\0')
 		return ;
 	str = skip_white_spaces(src, str);
 	lexer->str = str;
 	lexer->j = 0;
 	lexer->c = lexer->str[lexer->j];
-	get_token(lexer, env, token, small_branch);
+	get_token(env, lexer, small_branch);
 }

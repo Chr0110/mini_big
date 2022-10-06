@@ -31,7 +31,7 @@ SRC = minishell.c\
 		remove_quotes.c\
 		parsing_utils.c\
 
-CC = cc #-g3 -fsanitize=address 
+CC = gcc -fsanitize=address 
 
 CFLAGS =  -g 
 OBJ = $(SRC:.c=.o)

@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:35:02 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/01 15:35:22 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/05 14:38:48 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,25 +16,25 @@ int	r_o_error(int i, int *error)
 {
 	if (i == 2)
 	{
-		printf("syntax error near unexpected token `>'\n");
+		panic("syntax error", ">", "error in redirecion out", 258);
 		(*error)++;
 		return (1);
 	}
 	else if (i == 3)
 	{
-		printf("syntax error near unexpected token `<'\n");
+		panic("syntax error", "<", "error in redirecion out", 258);
 		(*error)++;
 		return (1);
 	}
 	else if (i == 4)
 	{
-		printf("syntax error near unexpected token `<<'\n");
+		panic("syntax error", "<<", "error in redirecion out", 258);
 		(*error)++;
 		return (1);
 	}
 	else if (i == 5)
 	{
-		printf("syntax error near unexpected token `>>'\n");
+		panic("syntax error", ">>", "error in redirecion out", 258);
 		(*error)++;
 		return (1);
 	}
@@ -45,25 +45,25 @@ int	r_i_error(int i, int *error)
 {
 	if (i == 2)
 	{
-		printf("syntax error near unexpected token `>'\n");
+		panic("syntax error", ">", "error in redirecion in", 258);
 		(*error)++;
 		return (1);
 	}
 	else if (i == 3)
 	{
-		printf("syntax error near unexpected token `<'\n");
+		panic("syntax error", "<", "error in redirecion in", 258);
 		(*error)++;
 		return (1);
 	}
 	else if (i == 4)
 	{
-		printf("syntax error near unexpected token `<<'\n");
+		panic("syntax error", "<<", "error in redirecion in", 258);
 		(*error)++;
 		return (1);
 	}
 	else if (i == 5)
 	{
-		printf("syntax error near unexpected token `>>'\n");
+		panic("syntax error", ">>", "error in redirecion in", 258);
 		(*error)++;
 		return (1);
 	}

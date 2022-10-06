@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:10:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/04 12:51:39 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/06 00:09:20 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ void	go_print_error(char **env)
 void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 {
 	t_exp_list	*ex_ls;
-
+	
 	ex_ls = malloc(1 * sizeof(t_exp_list));
 	ex_ls->res = strdup("");
 	ex_ls->i = 0;
@@ -48,9 +48,8 @@ void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 	}
 	if (there_is_a_space(ex_ls->res))
 	{
-		if (type == 3 || type == 2 || type == 5)
-			go_print_error(env);
-		else
+		// if (type == 3 || type == 2 || type == 5)
+			// go_print_error(env, );
 			add_to_parse_list(ex_ls->res, exp_list);
 	}
 	else

@@ -5,8 +5,13 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
+<<<<<<< HEAD
 /*   Created: 2022/10/07 16:35:24 by sriyani           #+#    #+#             */
 /*   Updated: 2022/10/07 17:24:02 by sriyani          ###   ########.fr       */
+=======
+/*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
+/*   Updated: 2022/10/07 01:53:52 by eradi-           ###   ########.fr       */
+>>>>>>> 3f615476208db4b87357ca484e14071d2eb466b6
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,10 +39,20 @@ void	how_much(char *s, t_lx *lexer)
 		else if (s[i] == '<' && s[i + 1] != '<')
 			lexer->red_i++;
 		else if (s[i] == '>' && s[i + 1] != '>')
+<<<<<<< HEAD
 			lexer->red_o++;
 		else if (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != ' ')
 		{
 			while (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != ' ' && i < ft_strlen1(s))
+=======
+		{
+			printf("m he\n");
+			lexer->red_o++;
+		}
+		else if (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != ' ')
+		{
+			while (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != ' ' && i < ft_strlen(s))
+>>>>>>> 3f615476208db4b87357ca484e14071d2eb466b6
 				i++;
 			i = i - 1;
 			lexer->tx++;

@@ -3,14 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:57:39 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/04 17:12:53 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:36:47 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+
+#include "../minishell.h"
 
 int	ft_strncmp(const char *src1, const char *src2, size_t n)
 {

@@ -6,11 +6,11 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:21:00 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/05 18:39:00 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 char *ft_getcwd(void)
 {
 	char str[1024];

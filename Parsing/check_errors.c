@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:25:30 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/06 22:26:33 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	global_error(t_list *temp, int *error, int *i)
 {

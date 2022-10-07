@@ -6,11 +6,11 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/06 09:55:52 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 
 // void copie_env(char **hold,int len,t_vars *vars,int index)

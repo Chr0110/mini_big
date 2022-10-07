@@ -6,11 +6,11 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/05 16:26:19 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/07 20:15:47 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 // int count_pipe(char *ptr)
 
 void	inf(t_vars *vars, int count)
@@ -55,7 +55,6 @@ void ft_pipe(char *ptr, t_vars *vars)
 	int i = 0;
 	int len = 0;
 	pid_t child_pro;
-	
 	cmd = ft_split(ptr, '|');
 	while(cmd[++len]);
 	inf(vars, len);
@@ -66,7 +65,6 @@ void ft_pipe(char *ptr, t_vars *vars)
 	}
 	// close(vars->s0);
 	// close(vars->s1);
-
 	if(len == 1 && !is_builtins(ptr, vars))
 	{
 		vars->index = 0;
@@ -74,6 +72,7 @@ void ft_pipe(char *ptr, t_vars *vars)
 		ft_close(len, vars);
 		return ;
 	}
+	
 	i = 0;
 	while(i < len)
 	{

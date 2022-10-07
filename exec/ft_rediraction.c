@@ -6,11 +6,11 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:47:53 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/05 13:14:22 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 // void	ft_red_out(int len,t_vars *vars)
 // {

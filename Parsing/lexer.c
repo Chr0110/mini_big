@@ -3,48 +3,48 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/06 23:44:44 by eradi-           ###   ########.fr       */
+/*   Created: 2022/10/07 16:35:24 by sriyani           #+#    #+#             */
+/*   Updated: 2022/10/07 17:24:02 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
-// void	how_much(char *s, t_lx *lexer)
-// {
-	// int i;
-// 
-	// i = 0;
-	// while (s[i])
-	// {
-		// if (s[i] == '|')
-			// lexer->pi++;
-		// else if (s[i] == '<' && s[i + 1] == '<')
-		// {
-			// lexer->her++;
-			// i++;
-		// }
-		// else if (s[i] == '>' && s[i + 1] == '>')
-		// {
-			// lexer->app++;
-			// i++;
-		// }
-		// else if (s[i] == '<' && s[i + 1] != '<')
-			// lexer->red_i++;
-		// else if (s[i] == '>' && s[i + 1] != '>')
-			// lexer->red_o++;
-		// else if (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != ' ')
-		// {
-			// i++;
-			// while (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] == ' ' && i < ft_strlen(s))
-				// i++;
-			// lexer->tx++;
-		// }
-		// i++;
-	// }
-// }
+void	how_much(char *s, t_lx *lexer)
+{
+	int i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '|')
+			lexer->pi++;
+		else if (s[i] == '<' && s[i + 1] == '<')
+		{
+			lexer->her++;
+			i++;
+		}
+		else if (s[i] == '>' && s[i + 1] == '>')
+		{
+			lexer->app++;
+			i++;
+		}
+		else if (s[i] == '<' && s[i + 1] != '<')
+			lexer->red_i++;
+		else if (s[i] == '>' && s[i + 1] != '>')
+			lexer->red_o++;
+		else if (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != ' ')
+		{
+			while (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != ' ' && i < ft_strlen1(s))
+				i++;
+			i = i - 1;
+			lexer->tx++;
+		}
+		i++;
+	}
+}
 void	get_token(char **env, t_lx *lx, t_list *small_branch, t_b_l **big_list)
 {
 
@@ -97,5 +97,6 @@ void	init_lexer(char *src, char **env, t_b_l **big_branch)
 	lexer->str = str;
 	lexer->j = 0;
 	lexer->c = lexer->str[lexer->j];
+	how_much(lexer->str, lexer);
 	get_token(env, lexer, small_branch, big_branch);
 }

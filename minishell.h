@@ -3,22 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/06 22:27:38 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 20:09:49 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
-# define RED     "\x1b[31m"
-# define GREEN   "\x1b[32m"
-# define YELLOW  "\x1b[33m"
-# define BLUE    "\x1b[34m"
-# define CYAN     "\x1b[36m"
-# define NOR      "\x1B[37m"
 
 # include <stdio.h>
 # include <string.h>
@@ -26,6 +19,25 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+typedef struct s_b_l t_b_l;
+typedef struct s_vars t_vars;
+# include "exec/exec.h"
+
+# define RED     "\x1b[31m"
+# define GREEN   "\x1b[32m"
+# define YELLOW  "\x1b[33m"
+# define BLUE    "\x1b[34m"
+# define CYAN     "\x1b[36m"
+# define NOR      "\x1B[37m"
 
 int	g_status;
 typedef struct s_token
@@ -135,6 +147,7 @@ int		is_alpha(char c);
 int 	panic(char *name, char *arg, char *msg, int error);
 void	ft_putstr_fd(char *s, int fd);
 int		not_between_quotes(char *s, int i);
+t_b_l 	*ft_parsing(char *ptr ,char **env, t_b_l *big_list);
 char	*make_s_q_res(char **res, char *s, int *i, int *type);
 char	*make_d_q_res(t_exp_list *ex_ls, char **env, int type);
 char	*make_n_q_res(t_exp_list *ex_ls, char **env, int type);
@@ -142,7 +155,6 @@ char	*dollar_cases2(char **res, char *s, int *i);
 char	*dollar_cases(char **res, char *s, int *i);
 char	*skip_white_spaces(char *src, char *str);
 int		still_a_quote(t_lx *lexer, int i);
-char	*ft_strjoin(char *s, char c);
 int		number_of_s_quotes(t_lx *lexer);
 int		number_of_quotes(t_lx *lexer);
 void	make_list0(t_p_l **t_a, t_p_l *x_l, t_b_l **t_b, t_p_l *nxt); // TODO: remove
@@ -164,7 +176,7 @@ void	ft_creat_red_lst(t_r **red_branch, t_token *token);
 t_b_l	*ft_lstlast4(t_b_l *lst);
 void	ft_lstadd_back4(t_b_l **lst, t_b_l *new);
 char	*ft_strdup(char *s1);
-int		ft_strlen(char *s);
+int		ft_strlen1(char *s);
 void	lexer_init(t_lx	*lexer);
 int		not_between_s_quotes(char *s, int i);
 void	red_in_lexer(t_lx *lx, int *j, t_token *tk, t_list **s_b);
@@ -197,4 +209,8 @@ char	*s_q_r(char **res, char *s, int *i, int *type);
 char	*d_q_r(t_exp_list *ex_ls, char **env, int type);
 char	*n_q_r(t_exp_list *ex_l, char **env, int type);
 int		not_between_sd_quotes(char *s, int i);
+
+///////////////////////             EXECution        /////////////////////////////
+void ft_execution(t_b_l *big,t_vars *vars, char *ptr);
+
 #endif

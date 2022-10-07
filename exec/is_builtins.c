@@ -6,11 +6,11 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 14:07:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/05 16:29:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 
 int is_builtins(char *ptr, t_vars *vars)

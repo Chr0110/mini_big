@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   creat_parse_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:06:26 by eradi-            #+#    #+#             */
-/*   Updated: 2022/09/30 06:06:52 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 t_p_l	*ft_lstlast2(t_p_l *lst)
 {

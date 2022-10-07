@@ -3,15 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_cases.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:08:28 by eradi-            #+#    #+#             */
-/*   Updated: 2022/09/30 06:09:29 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
+#include "../minishell.h"
 char	*dollar_cases2(char **res, char *s, int *i)
 {
 	if (s[(*i)] == '$')

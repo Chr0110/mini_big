@@ -6,11 +6,11 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:18:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/03 15:27:56 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	ft_chdir(char *ptr, t_vars *vars)
 {

@@ -1,17 +1,17 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell.c                                        :+:      :+:    :+:   */
+/*   Parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:28 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/06 23:33:52 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:46:35 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 
-#include "minishell.h"
+#include "../minishell.h"
 #include <stdio.h>
 #include <readline/readline.h>
 #include <readline/history.h>
@@ -30,35 +30,23 @@
 //         rl_redisplay();
 // 	}
 // }
-int main (int ac, char **av,char **env)
+t_b_l *ft_parsing(char *ptr ,char **env, t_b_l *big_list)
 {
 	char *buffer;
-	char *ptr;
-	t_b_l	*big_list;
-	t_b_l	*temp;
+	//char *ptr;
+	//t_b_l	*big_list;
+	//t_b_l	*temp;
 
-	//*big_list = NULL;
-	temp = NULL;
-	while(1)
-	{
-		// signal(SIGQUIT, SIG_IGN);
-		// signal(SIGINT, handler);
-		ptr = readline(GREEN"minishell$> "NOR);
-		// signal(SIGINT, sig_handler);
-		// signal(SIGQUIT, SIG_IGN);
-		if (ptr == 0x0)
-			exit(EXIT_SUCCESS);
-		add_history(ptr);
-		init_lexer(ptr, env, &big_list);
-		while(big_list)
-		{
-			while (big_list->arg)
-			{
-				printf("%s\n", big_list->arg->content.value);
-				big_list->arg = big_list->arg->next;
-			}
-			big_list = big_list->next;
-		}
-	}
-	return (0);
+	big_list = NULL;
+	
+	// signal(SIGQUIT, SIG_IGN);
+	// signal(SIGINT, handler);
+	// signal(SIGINT, sig_handler);
+	// signal(SIGQUIT, SIG_IGN);
+	//ptr = readline(GREEN"minishell$> "NOR);
+	if (ptr == 0x0)
+		exit(EXIT_SUCCESS);
+	add_history(ptr);
+	init_lexer(ptr, env, &big_list);
+	return(big_list);
 }

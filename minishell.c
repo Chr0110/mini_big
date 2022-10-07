@@ -5,42 +5,31 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/11 10:59:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/06 09:33:10 by sriyani          ###   ########.fr       */
+/*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
+/*   Updated: 2022/10/07 20:12:36 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "minishell.h"
-
-int main(int ac, char** av, char **env)
+int main(int ac, char **av, char  **env)
 {
 	char *buffer;
 	char *ptr;
-	int i = 0;
 	t_vars *vars;
+	t_b_l *big;
+	t_b_l *temp;
 
 	vars = malloc(sizeof(t_vars));
-	vars->pwd = ft_strdup("");
-	vars->infile = malloc(sizeof(int)*100);
-	vars->outfile = malloc(sizeof(int)*100);
-	initial_env(vars, env);
-	initial_exp(vars, env);
-	ft_replace_shlvl(vars);
-	ft_replace_oldpwd(vars);
-	env_to_exp(vars);
-	ft_replace(vars);
-	ft_append(vars);
+	ft_initial_exec(vars, env);
 	while(1)
 	{
 		printf(YELLOW"minishell$> "NOR);
 		ptr = readline(buffer);
-		if(ft_strlen(ptr) != 0)
+		if(ft_strlen1(ptr) != 0)
 		{
 			add_history(ptr);
-			//ft_test(ptr, env);
-			ft_pipe(ptr, vars);
-			
-			// ft_rediraction(ptr, vars, data);
+			big = ft_parsing(ptr, vars->env, temp);
+			ft_execution(big,vars,ptr);
 		}
 		else
 			ft_putchar_fd('\n', 1);

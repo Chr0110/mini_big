@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   creat_big_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:01:45 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/05 23:42:00 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 t_b_l	*ft_lstlast4(t_b_l *lst)
 {

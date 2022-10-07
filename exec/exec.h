@@ -1,5 +1,5 @@
-# ifndef MINISHELL_H
-# define MINISHELL_H
+# ifndef EXEC_H
+# define EXEC_H
 
 #include <unistd.h>
 #include <fcntl.h>
@@ -32,10 +32,6 @@ typedef struct s_data
 	char **type;
 
 } t_data;
-
-
-
-
 
 typedef struct s_vars
 {
@@ -71,15 +67,14 @@ int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_free(char **path);
 void	ft_putendl_fd(char *s, int fd);
 int		is_builtins(char *ptr,t_vars *vars);
-void	 builtins(char *ptr, t_vars *vars, char **env);
-void ft_pwd(t_vars *vars);
+void	builtins(char *ptr, t_vars *vars, char **env);
+void 	ft_pwd(t_vars *vars);
 void	ft_echo(char *ptr, t_vars *vars);
 void	ft_cd(char **ptr, t_vars *vars);
 void	ft_chdir(char *ptr, t_vars *vars);
-
 char	**sort_str(char **ptr);
 void	ft_exit(char **bar, t_vars *vars);
-void check_export(char **bar, t_vars *vars);
+void	 check_export(char **bar, t_vars *vars);
 int		ft_isdigit(int c);
 int		ft_isalpha(int c);
 char	*ft_strjoin(char *s1, char *s2);
@@ -90,7 +85,7 @@ int		ft_strchr(const char *s, int c);
 void	aff_export(char **bar,t_vars *vars);
 void	aff_export2(char **bar,t_vars *vars);
 void	ft_env(char **bar,t_vars *vars);
-void aff_env(char **ptr, t_vars *vars);
+void 	aff_env(char **ptr, t_vars *vars);
 void	initial_env(t_vars *vars, char **env);
 void	initial_exp(t_vars *vars, char **env);
 void 	add_var(char **bar,t_vars *vars);
@@ -108,35 +103,32 @@ void	change_valeur(char *ptr, char *str);
 void	env_to_exp(t_vars *vars);
 void	remove_double(char **bar,t_vars *vars);
 void	unset_exp(char **bar ,t_vars *vars);
-int	size_exp(t_vars *vars);
-void ft_replace(t_vars *vars);
-void ft_append(t_vars *vars);
+int		size_exp(t_vars *vars);
+void	ft_replace(t_vars *vars);
+void	ft_append(t_vars *vars);
 char	*ft_itoa(int n);
-char *ft_getcwd(void);
-void ft_replace_shlvl(t_vars *vars);
-void ft_replace_oldpwd(t_vars *vars);
+char 	*ft_getcwd(void);
+void 	ft_replace_shlvl(t_vars *vars);
+void 	ft_replace_oldpwd(t_vars *vars);
 
 
 //////                 PIPEX              ///////////////
 
 char	*ft_path(char *av, char **env);
-void ft_pipe(char *ptr, t_vars *vars);
-int  ft_rediraction(char *ptr, t_vars *vars);
+void 	ft_pipe(char *ptr, t_vars *vars);
+int  	ft_rediraction(char *ptr, t_vars *vars);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strstr(const char *haystack, const char *needle);
 void	ft_putstr_fd(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
-void ft_close(int len, t_vars *vars);
-void ft_wait(int len);
-void psudo_close(t_vars *vars, int i);
-void ft_execute(char *cmd,t_vars *vars);
-int check_path(char **env);
-char **find_path(char **env, int i, char *envp);
-char **copie_echo(char *ptr);
-
-
-
-void ft_test(char *ptr, char **env);
-char *ft_copie_shlvl(char *str);
-
+void 	ft_close(int len, t_vars *vars);
+void 	ft_wait(int len);
+void 	psudo_close(t_vars *vars, int i);
+void 	ft_execute(char *cmd,t_vars *vars);
+int 	check_path(char **env);
+char 	**find_path(char **env, int i, char *envp);
+char 	**copie_echo(char *ptr);
+void 	ft_test(char *ptr, char **env);
+char 	*ft_copie_shlvl(char *str);
+void	ft_initial_exec(t_vars *vars, char **env);
 # endif

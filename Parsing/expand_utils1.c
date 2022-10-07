@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:09:55 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 20:10:04 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 char	*handle_dollar_double_quotes(char *s, int *i, char **env, int cmp1)
 {

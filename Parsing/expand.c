@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:00:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/05 21:42:06 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:20:57 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	pip_number(t_b_l *big)
 {
@@ -37,7 +37,7 @@ int	arg_len(t_b_l *big)
 		t_p_l *arg = temp->arg;
 		while(arg)
 		{
-			j = ft_strlen(arg->content.value);
+			j = ft_strlen1(arg->content.value);
 			i = i + j;
 			arg = arg->next;
 		}

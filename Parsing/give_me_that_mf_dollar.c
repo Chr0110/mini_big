@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   give_me_that_mf_dollar.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:00:13 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/02 20:04:25 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	get_value(char **s, char **env, int *cmp)
 {

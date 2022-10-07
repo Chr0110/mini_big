@@ -1,4 +1,4 @@
-#include "minishell.h"
+#include "../minishell.h"
 
 int	ft_len(char const *s, char c)
 {
@@ -71,23 +71,23 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	return (ptr);
 }
 
-char	*ft_strdup(char *s1)
-{
-	char	*ptr;
-	int		i;
+// char	*ft_strdup(char *s1)
+// {
+// 	char	*ptr;
+// 	int		i;
 
-	i = 0;
-	ptr = malloc((ft_strlen(s1) + 1) * sizeof(char));
-	if (!ptr)
-		return (NULL);
-	while (s1[i])
-	{
-		ptr[i] = s1[i];
-		i++;
-	}
-	ptr[i] = '\0';
-	return (ptr);
-}
+// 	i = 0;
+// 	ptr = malloc((ft_strlen(s1) + 1) * sizeof(char));
+// 	if (!ptr)
+// 		return (NULL);
+// 	while (s1[i])
+// 	{
+// 		ptr[i] = s1[i];
+// 		i++;
+// 	}
+// 	ptr[i] = '\0';
+// 	return (ptr);
+// }
 
 size_t	ft_strlen(const char *str)
 {
@@ -107,23 +107,23 @@ int ft_strcmp(char *s1, char *s2)
 	return s2[i] - s1[i];
 }
 
-int	ft_strncmp(const char *s1, const char *s2, size_t n)
-{
-	size_t			i;
-	unsigned char	*ss1;
-	unsigned char	*ss2;
+// int	ft_strncmp(const char *s1, const char *s2, size_t n)
+// {
+// 	size_t			i;
+// 	unsigned char	*ss1;
+// 	unsigned char	*ss2;
 
-	i = 0;
-	ss1 = (unsigned char *)s1;
-	ss2 = (unsigned char *)s2;
-	while ((ss1[i] || ss2[i]) && i < n)
-	{
-		if (ss1[i] != ss2[i])
-			return (ss1[i] - ss2[i]);
-		i++;
-	}
-	return (0);
-}
+// 	i = 0;
+// 	ss1 = (unsigned char *)s1;
+// 	ss2 = (unsigned char *)s2;
+// 	while ((ss1[i] || ss2[i]) && i < n)
+// 	{
+// 		if (ss1[i] != ss2[i])
+// 			return (ss1[i] - ss2[i]);
+// 		i++;
+// 	}
+// 	return (0);
+// }
 
 void	ft_free(char **path)
 {
@@ -336,21 +336,21 @@ char	*ft_itoa(int n)
 	}
 	return (ptr);
 }
-void	ft_putstr_fd(char *s, int fd)
-{
-	int	i;
+// void	ft_putstr_fd(char *s, int fd)
+// {
+// 	int	i;
 
-	i = 0;
-	if (!s)
-	{
-		return ;
-	}
-	while (s[i])
-	{
-		write (fd, &s[i], 1);
-		i++;
-	}
-}
+// 	i = 0;
+// 	if (!s)
+// 	{
+// 		return ;
+// 	}
+// 	while (s[i])
+// 	{
+// 		write (fd, &s[i], 1);
+// 		i++;
+// 	}
+// }
 void	ft_putchar_fd(char c, int fd)
 {
 	write (fd, &c, 1);

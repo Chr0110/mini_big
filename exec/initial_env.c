@@ -6,11 +6,26 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/06 09:38:49 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/07 20:15:22 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
+
+
+void ft_initial_exec(t_vars *vars, char **env)
+{
+	vars->pwd = ft_strdup("");
+	vars->infile = malloc(sizeof(int) * 100);
+	vars->outfile = malloc(sizeof(int) * 100);
+	initial_env(vars, env);
+	initial_exp(vars, env);
+	ft_replace_shlvl(vars);
+	ft_replace_oldpwd(vars);
+	env_to_exp(vars);
+	ft_replace(vars);
+	ft_append(vars);
+}
 
 void initial_env(t_vars *vars, char **env)
 {
@@ -20,6 +35,7 @@ void initial_env(t_vars *vars, char **env)
 	while(env[i])
 	{
 		vars->env[i] = ft_strdup(env[i]);
+		
 		i++;
 	}
 	vars->env[i] = NULL;

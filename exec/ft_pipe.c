@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 20:15:47 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/07 20:26:04 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,6 @@ void creat_pipe(int len, int i, t_vars *vars)
 		vars->infile[i + 1] = p[0];
 		
 	vars->outfile[len - 1] = 1;
-	
 	// printf("vars->infile[%d] = %d\n", i, vars->infile[i]);
 	// printf("vars->outfile[%d] = %d\n", i, vars->outfile[i]);
 	// vars->s0 = p[0];

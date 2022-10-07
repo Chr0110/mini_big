@@ -55,7 +55,7 @@ char	*d_q_r(t_exp_list *ex_ls, char **env, int type)
 
 char	*n_q_r(t_exp_list *ex_l, char **env, int type)
 {
-	char	*value;
+	// char	*value;
 	int		v;
 
 	v = 0;
@@ -66,11 +66,11 @@ char	*n_q_r(t_exp_list *ex_l, char **env, int type)
 	{
 		if (ex_l->s[ex_l->i] == '$' && type != 4)
 		{
-			ex_l->i++;
+			(ex_l->i)++;
 			if (ex_l->s[ex_l->i] == '\0' || ex_l->s[ex_l->i] == '$')
 				ex_l->res = dollar_cases2(&ex_l->res, ex_l->s, &ex_l->i);
 			else
-				value = frg3_dik_dollar_n_d_q(ex_l, env, v);
+				ex_l->res = frg3_dik_dollar_n_d_q(ex_l, env, v);
 		}
 		else
 			ex_l->res = ft_strjoin_one(ex_l->res, ex_l->s[ex_l->i++]);

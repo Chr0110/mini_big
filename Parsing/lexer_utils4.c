@@ -19,7 +19,8 @@ void	red_in_lexer(t_lx *lexer, int *j, t_token *token, t_list **small_branch)
 	lexer->redirection_in[lexer->r_i][1] = '\0';
 	token->value = lexer->redirection_in[lexer->r_i];
 	token->e_type = TOKEN_REDIRECTION_IN;
-	lexer->redirection_in[lexer->r_i + 1] = ft_strdup("");
+	if (lexer->redirection_in[lexer->r_i + 1] != NULL)
+		lexer->redirection_in[lexer->r_i + 1] = ft_strdup("");
 	lexer->j++;
 	(*j)++;
 	ft_creatlst(small_branch, token);
@@ -37,7 +38,8 @@ void	red_out_lx(t_lx *lexer, int *j, t_token *token, t_list **small_branch)
 	lexer->redirection_out[lexer->r_o][1] = '\0';
 	token->value = lexer->redirection_out[lexer->r_o];
 	token->e_type = TOKEN_REDIRECTION_OUT;
-	lexer->redirection_out[lexer->r_o + 1] = ft_strdup("");
+	if (lexer->redirection_out[lexer->r_o + 1] != NULL)
+		lexer->redirection_out[lexer->r_o + 1] = ft_strdup("");
 	lexer->j++;
 	(*j)++;
 	ft_creatlst(small_branch, token);
@@ -56,7 +58,8 @@ void	heredoc_lexer(t_lx *lx, int *j, t_token *token, t_list **small_branch)
 	lx->heredoc[lx->h][2] = '\0';
 	token->value = lx->heredoc[lx->h];
 	token->e_type = TOKEN_HERDOC;
-	lx->heredoc[lx->h + 1] = ft_strdup("");
+	if (lx->heredoc[lx->h + 1] != NULL)
+		lx->heredoc[lx->h + 1] = ft_strdup("");
 	lx->j += 2;
 	(*j) += 2;
 	ft_creatlst(small_branch, token);

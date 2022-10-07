@@ -32,11 +32,14 @@ void	get_value(char **s, char **env, int *cmp)
 		n = 0;
 		if (ft_strncmp(env_cmp, *s, strlen(env[i])) == 0)
 		{
+			free(env_cmp);
+			free(*s);
 			*s = take_from_env(env, j, i);
 			break ;
 		}
 		else
 			j = 0;
+		free(env_cmp);
 	}
 	*cmp = i;
 }
@@ -82,6 +85,7 @@ char	*frg3_dik_dollar_n_d_q(t_exp_list *ex_ls, char **env, int cmp1)
 		while (value[++v])
 			(ex_ls->res) = ft_strjoin_one((ex_ls->res), value[v]);
 	}
+	free(value);
 	return ((ex_ls->res));
 }
 

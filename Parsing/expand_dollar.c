@@ -33,7 +33,7 @@ void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 	t_exp_list	*ex_ls;
 	
 	ex_ls = malloc(1 * sizeof(t_exp_list));
-	ex_ls->res = strdup("");
+	ex_ls->res = ft_strdup("");
 	ex_ls->i = 0;
 	ex_ls->s = cont->value;
 	*exp_list = NULL;
@@ -54,4 +54,5 @@ void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 	}
 	else
 		cont->value = ex_ls->res;
+	free(ex_ls);
 }

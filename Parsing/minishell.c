@@ -59,6 +59,7 @@ int main (int ac, char **av,char **env)
 			}
 			big_list = big_list->next;
 		}
+		free(ptr);
 	}
 	return (0);
 }

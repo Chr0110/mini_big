@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/06 22:05:18 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/07 01:56:48 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -100,13 +100,13 @@ int	ft_strlen(char *s)
 
 void	lexer_init(t_lx	*lexer)
 {
+	lexer->text = (char **)malloc((lexer->tx + 1) * sizeof(char *));
+	lexer->redirection_in = (char **)malloc((lexer->red_i + 1) * sizeof(char *));
+	lexer->redirection_out = (char **)malloc((lexer->red_o + 1) * sizeof(char *));
+	lexer->pip = (char **)malloc((lexer->pi + 1) * sizeof(char *));
+	lexer->heredoc = (char **)malloc((lexer->her + 1) * sizeof(char *));
+	lexer->append = (char **)malloc((lexer->app + 1) * sizeof(char *));
 	lexer->error = 0;
-	lexer->text = (char **)malloc(1000 * sizeof(char *));
-	lexer->redirection_in = (char **)malloc(1000 * sizeof(char *));
-	lexer->redirection_out = (char **)malloc(1000 * sizeof(char *));
-	lexer->pip = (char **)malloc(1000 * sizeof(char *));
-	lexer->heredoc = (char **)malloc(1000 * sizeof(char *));
-	lexer->append = (char **)malloc(1000 * sizeof(char *));
 	lexer->t = 0;
 	lexer->r_i = 0;
 	lexer->r_o = 0;

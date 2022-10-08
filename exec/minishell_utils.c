@@ -336,22 +336,56 @@ char	*ft_itoa(int n)
 	}
 	return (ptr);
 }
-// void	ft_putstr_fd(char *s, int fd)
-// {
-// 	int	i;
+void	ft_putstr(char *s, int fd)
+{
+	int	i;
 
-// 	i = 0;
-// 	if (!s)
-// 	{
-// 		return ;
-// 	}
-// 	while (s[i])
-// 	{
-// 		write (fd, &s[i], 1);
-// 		i++;
-// 	}
-// }
+	i = 0;
+	if (!s)
+	{
+		return ;
+	}
+	while (s[i])
+	{
+		write (fd, &s[i], 1);
+		i++;
+	}
+}
 void	ft_putchar_fd(char c, int fd)
 {
 	write (fd, &c, 1);
 }
+
+int	count_list(t_b_l *lst)
+{
+	t_b_l *sv;
+    int len = 0;
+
+	sv = lst;
+    if(!lst)
+    	return 0;
+    while(lst)
+    {
+        len++;
+        lst = lst->next;
+    }
+	lst = sv;
+    return len;
+}
+
+// int	count_lil(t_p_l *lst)
+// {
+// 	t_p_l *sv;
+//     int len = 0;
+
+// 	sv = lst;
+//     if(!lst)
+//     	return 0;
+//     while(lst)
+//     {
+//         len++;
+//         lst = lst->next;
+//     }
+// 	lst = sv;
+//     return len;
+// }

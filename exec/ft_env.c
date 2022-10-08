@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/08 16:08:40 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -143,7 +143,7 @@ void add_env(char **bar, t_vars *vars)
 		j++;
 		i++;
 	}
-	ft_free(test);
+	// ft_free(test);
 	if(bar[1] != NULL)
 		ft_free(barr);
 }

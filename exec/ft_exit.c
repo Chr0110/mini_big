@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:49:48 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/08 17:57:54 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,17 +59,22 @@ void	ft_exit(char **bar, t_vars *vars)
 	while(bar[++i]);
 	if((i == 2 && check_number(bar) == 1) || i == 1)
 	{
-		ft_putstr_fd("exit\n", 1);
+		ft_putstr("exit", 1);
+		ft_putchar_fd('\n', 1);
 		exit(0);
 	}
 
 	if(next_exit(bar, i) == 0)
 	{
-		ft_putstr_fd("exit\nexit: ", 2);
-		ft_putstr_fd(bar[i - 1], 2);
-		ft_putstr_fd(": numeric argument required\n", 2);
+		ft_putstr("exit\nexit: ", 2);
+		ft_putstr(bar[i - 1], 2);
+		ft_putstr(": numeric argument required", 2);
+		ft_putchar_fd('\n', 2);
 		exit(1);
 	}
 	else 
-		ft_putstr_fd("exit: too many arguments\n", 2);
+		{
+			ft_putstr("exit: too many arguments", 2);
+			ft_putchar_fd('\n', 2);
+		}
 }

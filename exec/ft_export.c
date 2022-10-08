@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:50:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/08 17:58:10 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,7 @@ void aff_export2(char **bar, t_vars *vars)
 	while(vars->exp[++k]);
 	while(i < k )
 	{
-		ft_putstr_fd("declare -x ", vars->outfile[vars->index]);	
+		ft_putstr("declare -x ", vars->outfile[vars->index]);	
 		if(ft_strchr(vars->exp[i], '=') == 0)
 		{
 			j = 0;
@@ -139,7 +139,7 @@ void aff_export2(char **bar, t_vars *vars)
 		}
 		else
 			{
-				ft_putstr_fd(vars->exp[i], vars->outfile[vars->index]);
+				ft_putstr(vars->exp[i], vars->outfile[vars->index]);
 				ft_putchar_fd('\n', vars->outfile[vars->index]);
 			}
 		i++;
@@ -232,7 +232,7 @@ void check_export(char **bar, t_vars *vars)
 	}
 	vars->bar[o] = NULL;
 	if(l > 0)
-		ft_putstr_fd("export: not a valid identifier\n", 2);
+		ft_putstr("export: not a valid identifier\n", 2);
 
 }
 void check_export2(char **bar, t_vars *vars)

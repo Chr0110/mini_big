@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:21:00 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/08 17:58:22 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,7 @@ void	ft_pwd(t_vars *vars)
 	char *ptr;
 	
 	ptr = ft_getcwd();
-	ft_putstr_fd(ptr, 1);
-	free(ptr);
+	ft_putstr(ptr, 1);
+	// free(ptr);
 	write(vars->outfile[vars->index], "\n", 1);
 }

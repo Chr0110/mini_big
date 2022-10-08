@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 20:09:49 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/08 16:02:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,6 +29,7 @@
 #include <readline/readline.h>
 #include <readline/history.h>
 typedef struct s_b_l t_b_l;
+// typedef struct s_b_l t_b_l;
 typedef struct s_vars t_vars;
 # include "exec/exec.h"
 

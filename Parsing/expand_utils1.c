@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:09:55 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/08 11:42:22 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,7 +66,7 @@ char	*handle_dollar_no_quotes(char *s, int *i, char **env, int cmp1)
 	return (res);
 }
 
-int	ft_lstsize(t_p_l *lst)
+int		ft_lstsize(t_p_l *lst)
 {
 	t_p_l	*temp;
 	int		i;

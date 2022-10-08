@@ -53,7 +53,6 @@ typedef struct s_vars
 
 }	t_vars;
 
-int idx;
 
 // t_vars *vars;
 
@@ -66,10 +65,10 @@ int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_free(char **path);
 void	ft_putendl_fd(char *s, int fd);
-int		is_builtins(char *ptr,t_vars *vars);
-void	builtins(char *ptr, t_vars *vars, char **env);
+int is_builtins(t_b_l *big, t_vars *vars, char **bar,int len);
+void	builtins(t_b_l *big, t_vars *vars, char **bar, int len);
 void 	ft_pwd(t_vars *vars);
-void	ft_echo(char *ptr, t_vars *vars);
+void	ft_echo(char **bar, t_vars *vars);
 void	ft_cd(char **ptr, t_vars *vars);
 void	ft_chdir(char *ptr, t_vars *vars);
 char	**sort_str(char **ptr);
@@ -115,11 +114,11 @@ void 	ft_replace_oldpwd(t_vars *vars);
 //////                 PIPEX              ///////////////
 
 char	*ft_path(char *av, char **env);
-void 	ft_pipe(char *ptr, t_vars *vars);
+void	ft_pipe(t_b_l *big, t_vars *vars, int  len);
 int  	ft_rediraction(char *ptr, t_vars *vars);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strstr(const char *haystack, const char *needle);
-void	ft_putstr_fd(char *s, int fd);
+void	ft_putstr(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 void 	ft_close(int len, t_vars *vars);
 void 	ft_wait(int len);
@@ -127,8 +126,13 @@ void 	psudo_close(t_vars *vars, int i);
 void 	ft_execute(char *cmd,t_vars *vars);
 int 	check_path(char **env);
 char 	**find_path(char **env, int i, char *envp);
-char 	**copie_echo(char *ptr);
+// char	*copie_echo(char *ptr);
 void 	ft_test(char *ptr, char **env);
 char 	*ft_copie_shlvl(char *str);
 void	ft_initial_exec(t_vars *vars, char **env);
+
+// int	count_lil(t_p_l *lst);
+int	count_list(t_b_l *lst);
+char *find_user(t_vars *vars);
+void	ft_chdir(char *ptr, t_vars *vars);
 # endif

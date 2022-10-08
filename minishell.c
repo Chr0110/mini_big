@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 20:12:36 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/08 15:49:20 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,16 +23,15 @@ int main(int ac, char **av, char  **env)
 	ft_initial_exec(vars, env);
 	while(1)
 	{
-		printf(YELLOW"minishell$> "NOR);
-		ptr = readline(buffer);
+		ptr = readline(YELLOW"minishell$> "NOR);
 		if(ft_strlen1(ptr) != 0)
 		{
 			add_history(ptr);
 			big = ft_parsing(ptr, vars->env, temp);
 			ft_execution(big,vars,ptr);
 		}
-		else
-			ft_putchar_fd('\n', 1);
+		// else
+		// 	ft_putchar_fd('\n', 1);
 		free(ptr);
 			
 	}

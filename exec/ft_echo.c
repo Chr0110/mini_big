@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:13:01 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/08 18:00:58 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,34 +27,42 @@ int ft_check_echo(char *str)
 	return 2;
 }
 
-char **copie_echo(char *ptr)
-{
-	int i;
-	char **cmd;
-	i = 0;
-	cmd = ft_split(ptr,' ');
-	return(cmd + 1);	
-}
+// char *copie_echo(char *ptr)
+// {
+// 	int i;
+// 	int len;
+// 	char *cmd;
+// 	i = 0;
+// 	len = ft_strlen(ptr);
+// 	cmd = ft_strdup("");
+// 	while(i < len - 2)
+// 	{
+// 		cmd[i] = ptr[i];
+// 		i++;
+// 	}
+// 	cmd[i] = '\0';
+// 	return(cmd);	
+// }
 
 
-void ft_echo(char *ptr, t_vars *vars)
+void ft_echo(char **bar, t_vars *vars)
 {
 	int i = -1;
-	char **car;
+	// char **bar;
 	int j = 0;
 	int o = 0;
 	int k = 0;
-	int y=0;
+	int y = 0;
 	char *str;
 
-	car = copie_echo(ptr);
-	while(car[++i])
+	// bar = copie_echo(ptr);
+	while(bar[++i])
 		j++;
 	while(o < j)
 	{
-		if(car[o][0] == '-')
+		if(bar[o][0] == '-')
 		{
-			if(ft_check_echo(car[o]) == 1 && o == y)
+			if(ft_check_echo(bar[o]) == 1 && o == y)
 			{
 				k++;
 				y++;
@@ -62,27 +70,29 @@ void ft_echo(char *ptr, t_vars *vars)
 		}
 		o++;
 	 }
+	 
 	 if(k > 0)
 	 {
 		o = k;
 		while(o < j)
 		{
-			ft_putstr_fd(car[o], vars->outfile[vars->index]);
+			
+			ft_putstr(bar[o], vars->outfile[vars->index]);
 			if(o < j - 1)
-				ft_putstr_fd(" ", vars->outfile[vars->index]);
+				ft_putstr(" ", vars->outfile[vars->index]);
 			o++;
 		}	
 	}
 	 i = 0;
-	 if(ft_check_echo(car[i]) == 2)
+	 if(ft_check_echo(bar[i]) == 2)
 	 {
 		while(i < j)
 		{
-			ft_putstr_fd(car[i], vars->outfile[vars->index]);
+			ft_putstr(bar[i], vars->outfile[vars->index]);
 			if(i < j - 1)
-				ft_putstr_fd(" ", vars->outfile[vars->index]);
+				ft_putstr(" ", vars->outfile[vars->index]);
 			if(i == j - 1)
-				ft_putstr_fd("\n", vars->outfile[vars->index]);
+				ft_putchar_fd('\n', vars->outfile[vars->index]);
 			i++;
 		}
 	 }
@@ -126,18 +136,18 @@ void ft_echo(char *ptr, t_vars *vars)
 
 
 
-	// 		if(ft_check_echo(car[o]) == 2)
+	// 		if(ft_check_echo(bar[o]) == 2)
 	// 			y++;
 				
 	// 	}
 	// 	o++;
 	// }
-	// if(car[0][0] != '-' || car[0][1] == '-' )
+	// if(bar[0][0] != '-' || bar[0][1] == '-' )
 	// {
 	// 	i = 0;
 	// 	while(i < j)
 	// 	{
-	// 		printf("%s", car[i]);
+	// 		printf("%s", bar[i]);
 	// 		if(i < j - 1)
 	// 			printf(" ");
 	// 		if(i == j - 1)
@@ -145,24 +155,24 @@ void ft_echo(char *ptr, t_vars *vars)
 	// 		i++;
 	// 	}
 	// }
-	// else if(k == 1 && car[0][0] == '-')
+	// else if(k == 1 && bar[0][0] == '-')
 	// {
 	// 	o = 1;
 	// 	while(o < j)
 	// 	{
-	// 		printf("%s", car[o]);
+	// 		printf("%s", bar[o]);
 	// 		if(o < j - 1)
 	// 			printf(" ");
 	// 		o++;
 	// 	}
 		
 	// }
-	// else if(y > 0 && car[0][0] == '-')
+	// else if(y > 0 && bar[0][0] == '-')
 	// {
 	// 	o = z - 1;
 	// 	while(o < j)
 	// 	{
-	// 		printf("%s", car[o]);
+	// 		printf("%s", bar[o]);
 	// 		if(o < j - 1)
 	// 			printf(" ");
 	// 		if(o == j - 1)

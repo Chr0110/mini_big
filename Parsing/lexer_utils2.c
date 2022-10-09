@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 04:17:33 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/09 04:24:08 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,7 +88,7 @@ char	*ft_strdup(char *s1)
 	return (s2);
 }
 
-int	ft_strlen(char *s)
+int	ft_strlen1(char *s)
 {
 	int	i;
 

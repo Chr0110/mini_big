@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/08 16:08:40 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/08 18:09:55 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -163,9 +163,12 @@ void ft_env(char **bar,t_vars *vars)
 		i++;
 	}
 	if(k != j)
-		ft_putstr_fd("env: No such file or directory\n", 2);
+		ft_putstr("env: No such file or directory\n", 2);
 	else
+	{
 		add_env(bar, vars);
+		aff_env(vars->env, vars);
+	}
 }
 
 char **take_bar(char **bar, t_vars *vars)

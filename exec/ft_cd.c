@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:18:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/08 17:55:33 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 14:44:12 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,7 +43,7 @@ char *find_user(t_vars *vars)
 void	ft_chdir(char *ptr, t_vars *vars)
 {
 	if(chdir(ptr) == 0)
-		ft_replace(vars);
+		ft_replace(vars); 
 	else
 	{
 		ft_putstr(ptr, 2);

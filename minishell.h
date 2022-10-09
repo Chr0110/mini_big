@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/08 16:02:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 14:38:07 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,6 +108,7 @@ typedef struct s_p_l
 
 typedef struct s_b_l
 {
+	char			**str;
 	t_p_l			*arg;
 	t_r				*red;
 	struct s_b_l	*next;

@@ -123,7 +123,7 @@ void	ft_putchar_fd(char c, int fd);
 void 	ft_close(int len, t_vars *vars);
 void 	ft_wait(int len);
 void 	psudo_close(t_vars *vars, int i);
-void 	ft_execute(char *cmd,t_vars *vars);
+void 	ft_execute(char **cmmd,t_vars *vars);
 int 	check_path(char **env);
 char 	**find_path(char **env, int i, char *envp);
 // char	*copie_echo(char *ptr);
@@ -135,4 +135,5 @@ void	ft_initial_exec(t_vars *vars, char **env);
 int	count_list(t_b_l *lst);
 char *find_user(t_vars *vars);
 void	ft_chdir(char *ptr, t_vars *vars);
+void ft_transform(t_b_l *lil);
 # endif

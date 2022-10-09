@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 11:29:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 16:13:32 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*ft_path(char *av, char **env)
 	i = -1;
 	cmdpath = NULL;
 	if(check_path(env) == 1)
-		ft_putstr_fd("No such file or directory\n", 2);
+		ft_putstr("No such file or directory\n", 2);
 	else
 	{
 		path = find_path(env, i, envp);

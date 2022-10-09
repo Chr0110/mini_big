@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:49:48 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/08 17:57:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 16:11:41 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,13 +68,9 @@ void	ft_exit(char **bar, t_vars *vars)
 	{
 		ft_putstr("exit\nexit: ", 2);
 		ft_putstr(bar[i - 1], 2);
-		ft_putstr(": numeric argument required", 2);
-		ft_putchar_fd('\n', 2);
+		ft_putstr(": numeric argument required\n", 2);
 		exit(1);
 	}
 	else 
-		{
-			ft_putstr("exit: too many arguments", 2);
-			ft_putchar_fd('\n', 2);
-		}
+		ft_putstr("exit: too many arguments\n", 2);
 }

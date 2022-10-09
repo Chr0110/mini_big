@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/08 10:05:02 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 04:17:33 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,7 +74,7 @@ char	*ft_strdup(char *s1)
 	int		i;
 	char	*s2;
 
-	i = ft_strlen1(s1);
+	i = ft_strlen(s1);
 	j = 0;
 	s2 = malloc(i + 1 * sizeof(char));
 	if (!s2)
@@ -88,7 +88,7 @@ char	*ft_strdup(char *s1)
 	return (s2);
 }
 
-int	ft_strlen1(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -106,6 +106,12 @@ void	lexer_init(t_lx	*lexer)
 	lexer->pip = (char **)malloc((lexer->pi + 1) * sizeof(char *));
 	lexer->heredoc = (char **)malloc((lexer->her + 1) * sizeof(char *));
 	lexer->append = (char **)malloc((lexer->app + 1) * sizeof(char *));
+	lexer->text[lexer->tx] = NULL;
+	lexer->redirection_in[lexer->red_i] = NULL;
+	lexer->redirection_out[lexer->red_o] = NULL;
+	lexer->pip[lexer->pi] = NULL;
+	lexer->heredoc[lexer->her] = NULL;
+	lexer->append[lexer->app] = NULL;
 	lexer->error = 0;
 	lexer->t = 0;
 	lexer->r_i = 0;
@@ -113,12 +119,18 @@ void	lexer_init(t_lx	*lexer)
 	lexer->p = 0;
 	lexer->h = 0;
 	lexer->a = 0;
-	lexer->t_sz = ft_strlen1(lexer->str);
-	lexer->text[lexer->t] = ft_strdup("");
-	lexer->redirection_in[lexer->r_i] = ft_strdup("");
-	lexer->redirection_out[lexer->r_o] = ft_strdup("");
-	lexer->pip[lexer->p] = ft_strdup("");
-	lexer->heredoc[lexer->h] = ft_strdup("");
-	lexer->append[lexer->a] = ft_strdup("");
+	lexer->t_sz = ft_strlen(lexer->str);
+	if (lexer->tx != 0)
+		lexer->text[lexer->t] = ft_strdup("");
+	if (lexer->red_i != 0)
+		lexer->redirection_in[lexer->r_i] = ft_strdup("");
+	if (lexer->red_o != 0)
+		lexer->redirection_out[lexer->r_o] = ft_strdup("");
+	if (lexer->pi != 0)
+		lexer->pip[lexer->p] = ft_strdup("");
+	if (lexer->her != 0)
+		lexer->heredoc[lexer->h] = ft_strdup("");
+	if (lexer->app != 0)
+		lexer->append[lexer->a] = ft_strdup("");
 }
 

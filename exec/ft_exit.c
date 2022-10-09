@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   ft_exit.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:49:48 by sriyani           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/09 16:11:41 by sriyani          ###   ########.fr       */
+=======
+/*   Updated: 2022/10/09 04:24:23 by eradi-           ###   ########.fr       */
+>>>>>>> 5716a39e3c163f15e711654e68f38b1ebf8583f7
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +46,7 @@ int next_exit(char **bar,int len)
 		{
 			while(bar[i + 1][j])
 			{
-				if(!isdigit(bar[i + 1][j]))
+				if(!ft_isdigit(bar[i + 1][j]))
 					return 0;
 				j++;
 			}

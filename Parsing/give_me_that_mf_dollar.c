@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   give_me_that_mf_dollar.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:00:13 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 04:16:56 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,11 +32,14 @@ void	get_value(char **s, char **env, int *cmp)
 		n = 0;
 		if (ft_strncmp(env_cmp, *s, strlen(env[i])) == 0)
 		{
+			free(env_cmp);
+			free(*s);
 			*s = take_from_env(env, j, i);
 			break ;
 		}
 		else
 			j = 0;
+		free(env_cmp);
 	}
 	*cmp = i;
 }
@@ -82,6 +85,7 @@ char	*frg3_dik_dollar_n_d_q(t_exp_list *ex_ls, char **env, int cmp1)
 		while (value[++v])
 			(ex_ls->res) = ft_strjoin_one((ex_ls->res), value[v]);
 	}
+	free(value);
 	return ((ex_ls->res));
 }
 

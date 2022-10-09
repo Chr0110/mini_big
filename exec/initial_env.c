@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 20:15:22 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:29:37 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -151,18 +151,20 @@ char *ft_copie_shlvl(char *str)
 	int i;
 	int j;
 	char *ptr;
+	int len;
 	
 	i = 0;
 	j = 0;
-	ptr = ft_strdup("");
+	len = ft_strlen(str);
 	while(str[i] != '=')
 		i++;
+	ptr = malloc(sizeof(char)*(len - i + 1));
 	while(str[++i])
 	{
 		ptr[j] = str[i];
 		j++;
 	}
-	ptr[i] = '\0';
+	ptr[j] = '\0';
 	return (ptr);
 }
 

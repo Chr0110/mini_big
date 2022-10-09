@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:54:31 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:08:56 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,6 +55,7 @@ int	s_q_lexer(t_lx *lx, int *j, t_token *token)
 
 int	lexer_q_cases(t_lx *lx, int *j, t_token *token, t_list **sm_br)
 {
+	
 	while (lx->str[lx->j] != '<' && lx->str[lx->j] != '>'
 		&& lx->str[lx->j] != '|' && *j < lx->t_sz)
 	{
@@ -62,6 +63,7 @@ int	lexer_q_cases(t_lx *lx, int *j, t_token *token, t_list **sm_br)
 		{
 			if (lx->str[lx->j] == '\"')
 			{
+		
 				if (d_q_with_error(lx, j, token) == 1)
 					return (0);
 				else
@@ -78,10 +80,12 @@ int	lexer_q_cases(t_lx *lx, int *j, t_token *token, t_list **sm_br)
 			}
 			ft_ft_creat_list(lx, j, token, sm_br);
 		}
+			
 		if (lx->str[lx->j] != '\"' && lx->str[lx->j] != '\''
 			&& lx->str[lx->j] != '<' && lx->str[lx->j] != '>'
 			&& lx->str[lx->j] != '|' && *j < lx->t_sz)
 			ft_creat_normal_text(lx, j, token, sm_br);
+			
 	}
 	return (1);
 }

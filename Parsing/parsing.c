@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   Parsing.c                                          :+:      :+:    :+:   */
+/*   parsing.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/06 18:39:28 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:46:35 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 18:11:47 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,8 @@ t_b_l *ft_parsing(char *ptr ,char **env, t_b_l *big_list)
 	//ptr = readline(GREEN"minishell$> "NOR);
 	if (ptr == 0x0)
 		exit(EXIT_SUCCESS);
-	add_history(ptr);
+	// add_history(ptr);
 	init_lexer(ptr, env, &big_list);
+	
 	return(big_list);
 }

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/09 16:16:25 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 21:16:37 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,7 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 	pid_t child_pro;
 	t_b_l *lil = big;
 	t_b_l *lil2 = big;
+	// t_b_l *lil3 = big;
 	inf(vars, len);
 	while(i < len)
 	{
@@ -69,6 +70,8 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 	{
 		vars->index = 0;
 		builtins(big, vars, big->str, len);
+		if(check_rediraction(lil2))
+			ft_rediraction(lil2, vars, i);
 		ft_close(len, vars);
 		return ;
 	}
@@ -92,6 +95,8 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 				builtins(big, vars,lil->str, len);
 				exit(0);
 			}
+			if(check_rediraction(lil2))
+				ft_rediraction(lil2, vars, i);
 			ft_execute(lil->str, vars);
 		}
 		psudo_close(vars, i);

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:02:26 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/09 04:17:15 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/09 18:28:09 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,7 +99,9 @@ void	get_token(char **env, t_lx *lx, t_list *small_branch, t_b_l **big_list)
 			red_out_lx(lx, &j, token, &small_branch);
 		if (lx->str[lx->j] == '<' && lx->str[lx->j + 1] != '<')
 			red_in_lexer(lx, &j, token, &small_branch);
+	
 	}
+	
 	if (lx->error == 0)
 		check_errors(small_branch, token, env, big_list);
 	free(token);
@@ -129,12 +131,12 @@ void	init_lexer(char *src, char **env, t_b_l **big_branch)
 	lexer->j = 0;
 	lexer->c = lexer->str[lexer->j];
 	how_much(lexer->str, lexer);
-	//printf("%d\n",lexer->tx);
-	//printf("%d\n",lexer->red_i);
-	//printf("%d\n",lexer->red_o);
-	//printf("%d\n",lexer->pi);
-	//printf("%d\n",lexer->her);
-	//printf("%d\n",lexer->app);
+	// printf("%d\n",lexer->tx);
+	// printf("%d\n",lexer->red_i);
+	// printf("%d\n",lexer->red_o);
+	// printf("%d\n",lexer->pi);
+	// printf("%d\n",lexer->her);
+	// printf("%d\n",lexer->app);
 	get_token(env, lexer, small_branch, big_branch);
 	free_lexer(lexer);
 }

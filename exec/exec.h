@@ -112,10 +112,10 @@ void 	ft_replace_oldpwd(t_vars *vars);
 
 
 //////                 PIPEX              ///////////////
-
+int		check_rediraction(t_b_l *lil);
 char	*ft_path(char *av, char **env);
 void	ft_pipe(t_b_l *big, t_vars *vars, int  len);
-int  	ft_rediraction(char *ptr, t_vars *vars);
+int		ft_rediraction( t_b_l *lil, t_vars *vars,int  i);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strstr(const char *haystack, const char *needle);
 void	ft_putstr(char *s, int fd);
@@ -127,7 +127,7 @@ void 	ft_execute(char **cmmd,t_vars *vars);
 int 	check_path(char **env);
 char 	**find_path(char **env, int i, char *envp);
 // char	*copie_echo(char *ptr);
-void 	ft_test(char *ptr, char **env);
+// void 	ft_test(char *ptr, char **env);
 char 	*ft_copie_shlvl(char *str);
 void	ft_initial_exec(t_vars *vars, char **env);
 
@@ -136,4 +136,7 @@ int	count_list(t_b_l *lst);
 char *find_user(t_vars *vars);
 void	ft_chdir(char *ptr, t_vars *vars);
 void ft_transform(t_b_l *lil);
+void ft_test(t_b_l *lil2);
+
+
 # endif

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:59:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/09 15:32:30 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 20:49:08 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,6 @@ void ft_execution(t_b_l *big, t_vars *vars, char *ptr)
 	int i;
 	char *str;
 	
-	// len = count_list(big);
-	// printf("len %d\n", len);
 	sv = big;
 	while(big)
 	{
@@ -34,7 +32,6 @@ void ft_execution(t_b_l *big, t_vars *vars, char *ptr)
 		i = 0;
 		while (lil)
 		{
-			// printf(GREEN"%s          %d\n", lil->content.value, i);
 			big->str[i] = ft_strdup(lil->content.value);
 			lil = lil->next;
 			i++;
@@ -44,12 +41,25 @@ void ft_execution(t_b_l *big, t_vars *vars, char *ptr)
 		j++;
 	}
 	big = sv;
-	// while(big)
-	// {
-	// 	ft_transform(big);
-	// 	big= big->next;
-	// }
-	
 	ft_pipe(big, vars, j);
-	
+
+	// t_b_l *lil2 = big;
+	// ft_test(lil2);
 }
+// void ft_test(t_b_l *lil2)
+// {
+// 	t_r *lit;
+	
+// 	int i = 0;
+	
+// 	while(lil2)
+// 	{
+// 		lit = lil2->red;
+// 		while(lit)
+// 		{
+// 			printf(BLUE"%d            %s\n", lit->content.e_type, lit->content.value);
+// 			lit = lit->next;
+// 		}
+// 		lil2 = lil2->next;
+// 	}
+// }

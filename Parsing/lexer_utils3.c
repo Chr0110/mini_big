@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:50:01 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 04:17:46 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/09 20:23:39 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,7 @@ void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 	if (lx->str[lx->j] == ' ' || lx->str[lx->j] == '<' || lx->str[lx->j] == '>'
 		|| lx->str[lx->j] == '|' || (*j) == lx->t_sz)
 	{
+	
 		ft_creatlst(sm_br, tkn);
 		lx->t = lx->t + 1;
 		if(lx->text[lx->t] != NULL)
@@ -45,6 +46,7 @@ void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 			(*j)++;
 		}
 	}
+		
 }
 
 void	pip_lexer(t_lx *lx, int *j, t_token *tkn, t_list **small_b)

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/09 04:18:44 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/09 20:30:11 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ int main(int ac, char **av, char  **env)
 		if(ft_strlen1(ptr) != 0)
 		{
 			add_history(ptr);
-			big = ft_parsing(ptr, vars->env, temp);
+			big = ft_parsing(ptr, env, temp);
 			ft_execution(big,vars,ptr);
 		}
 		// else

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:47:53 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 21:16:46 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -65,50 +65,72 @@
 // 	}
 // }
 
-// int ft_rediraction(char *ptr, t_vars *vars, t_data *data)
-// {
-// 	int  i = 0;
-// 	int len = 0;
+int check_rediraction(t_b_l *lil)
+{
+	
+	//  = -1;
+		
+	if( lil->red->content.e_type == 2)
+		return 2;
+	if( lil->red->content.e_type == 3)
+		return 3;
+	if(lil->red->content.e_type== 5)
+		return 5;
+	if(lil->red->content.e_type == 4)
+		return 4;
+	return 0;	
+}
 
 
-// 	if(data->id == 2)
-// 	{
-// 		vars->infile[i] = open(data->type, O_RDONLY, 0644);
-// 		if(vars->infile[i] < 0)
-// 			ft_putstr_fd("No such file or directory\n", 2);
-// 		dup2(vars->infile[i], STDIN_FILENO);
-// 		close(vars->infile[i]);
-// 	}
+int ft_rediraction(t_b_l *lil,t_vars *vars,int  i)
+{
+	int len = 0;
 	
-// 	if(data->id == 3)
-// 	{		
-// 		vars->outfile[i]= open(data->type, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-// 		if(vars->outfile[i] < 0)
-// 			ft_putstr_fd("error from output_redirect\n", 2);
-// 		dup2(vars->outfile[i], STDOUT_FILENO);
-// 		close(vars->outfile[i]);
-// 	}
-	
-// 	if(data->id == 5)
-// 	{
-// 		// if (vars->outfile[i] != 1 && vars->outfile[i] != -1)
-// 		// 	close (vars->outfile[i]);
-// 		vars->outfile[i] = open(data->type, O_CREAT | O_WRONLY | O_APPEND, 0644);
-// 		if(vars->outfile[i] < 0)
-// 			ft_putstr_fd("error from appenduk , \n", 2);
-// 		dup2(vars->outfile[i], STDOUT_FILENO);
-// 		close(vars->outfile[i]);
-// 	}
-// 	if(data->id == 4)
-// 	{
-// 		// if (vars->outfile[i] != 1 && vars->outfile[i] != -1)
-// 		// 	close (vars->outfile[i]);
-// 		vars->outfile[i] = open(data->type, O_CREAT | O_WRONLY | O_APPEND, 0644);
-// 		if(vars->outfile[i] < 0)
-// 			ft_putstr_fd("error from appenduk , \n", 2);
-// 		dup2(vars->outfile[i], STDOUT_FILENO);
-// 		close(vars->outfile[i]);
-// 	}
-	
-// 	return 1;
-// }
+	if(lil->red->content.e_type == 2)
+	{
+		if (vars->infile[i] != -1 && vars->infile[i] != 0)
+			close(vars->infile[i]);
+		vars->infile[i] = open(lil->red->content.value, O_RDONLY, 0644);
+		if(vars->infile[i] < 0)
+			ft_putstr_fd("No such file or directory\n", 2);
+		// dup2(vars->infile[i], STDIN_FILENO);
+		// close(vars->infile[i]);
+		return 0;
+	}
+	if(lil->red->content.e_type == 3)
+	{	
+		if (vars->outfile[i] != -1 && vars->outfile[i] != 1)
+			close(vars->outfile[i]);
+		vars->outfile[i]= open(lil->red->content.value, O_CREAT | O_WRONLY | O_TRUNC, 0644);
+		if(vars->outfile[i] < 0)
+			ft_putstr_fd("error from output_redirect\n", 2);
+		// dup2(vars->outfile[i], STDOUT_FILENO);
+		// close(vars->outfile[i]);
+		return 0;
+	}
+	if(lil->red->content.e_type == 5)
+	{
+		
+		if (vars->outfile[i] != -1 && vars->outfile[i] != 1)
+			close (vars->outfile[i]);
+		vars->outfile[i] = open(lil->red->content.value, O_CREAT | O_WRONLY | O_APPEND, 0644);
+		if(vars->outfile[i] < 0)
+			ft_putstr_fd("error from appenduk , \n", 2);
+		// dup2(vars->outfile[i], STDOUT_FILENO);
+		// close(vars->outfile[i]);
+		return 0;
+	}
+	// if(lil->red->content.e_type == 4)
+	// {
+	// 	// if (vars->outfile[i] != 1 && vars->outfile[i] != -1)
+	// 	// 	close (vars->outfile[i]);
+	// 	vars->outfile[i] = open(lil->red->content.value, O_CREAT | O_WRONLY | O_APPEND, 0644);
+	// 	if(vars->outfile[i] < 0)
+	// 		ft_putstr_fd("error from appenduk , \n", 2);
+	// 	dup2(vars->outfile[i], STDOUT_FILENO);
+	// 	close(vars->outfile[i]);
+	// 	return 0;
+	// }
+	// 
+	return 1;
+}

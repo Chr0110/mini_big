@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 04:08:19 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/10 03:15:37 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/10 03:37:01 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ void	parsing(t_list *s_b, t_token *token, char **env, t_b_l **big_list)
 			ft_creat_big_list(big_list, &parse_branch, &red, &i);
 		s_b = s_b->next;
 	}
-	//printf("%p\n", (*big_list)->arg->content.value);
 	while(tmp)
 	{
 		t = tmp->next;

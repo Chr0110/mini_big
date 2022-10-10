@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 14:38:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/10 03:19:37 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -204,9 +204,9 @@ int		here_error(t_list *temp, int *error);
 int		app_error(t_list *temp, int *error);
 int		r_o_error(int i, int *error);
 int		r_i_error(int i, int *error);
-void	red_creat(t_list **s_b, t_token *token, t_r **red);
-void	creat_cmd(t_list **s_b, t_token *token, t_p_l **parse_branch, int *i);
-void	creat_arg(t_list **s_b, t_token *token, t_p_l **parse_branch);
+void	red_creat(t_list *s_b, t_token *token, t_r **red);
+void	creat_cmd(t_list *s_b, t_token *token, t_p_l **parse_branch, int *i);
+void	creat_arg(t_list *s_b, t_token *token, t_p_l **parse_branch);
 char	*s_q_r(char **res, char *s, int *i, int *type);
 char	*d_q_r(t_exp_list *ex_ls, char **env, int type);
 char	*n_q_r(t_exp_list *ex_l, char **env, int type);

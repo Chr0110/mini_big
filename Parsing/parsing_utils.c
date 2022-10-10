@@ -3,42 +3,42 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 04:09:03 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/10 03:20:56 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	red_creat(t_list **s_b, t_token *token, t_r **red)
+void	red_creat(t_list *s_b, t_token *token, t_r **red)
 {
-	if ((*s_b)->content.e_type == 2)
+	if (s_b->content.e_type == 2)
 		token->e_type = 2;
-	else if ((*s_b)->content.e_type == 3)
+	else if (s_b->content.e_type == 3)
 		token->e_type = 3;
-	else if ((*s_b)->content.e_type == 4)
+	else if (s_b->content.e_type == 4)
 		token->e_type = 4;
-	else if ((*s_b)->content.e_type == 5)
+	else if (s_b->content.e_type == 5)
 		token->e_type = 5;
-	if ((*s_b)->next)
-		token->value = (*s_b)->next->content.value;
+	if (s_b->next)
+		token->value = s_b->next->content.value;
 	ft_creat_red_lst(red, token);
-	(*s_b) = (*s_b)->next;
+	s_b = s_b->next;
 }
 
-void	creat_cmd(t_list **s_b, t_token *token, t_p_l **parse_branch, int *i)
+void	creat_cmd(t_list*s_b, t_token *token, t_p_l **parse_branch, int *i)
 {
 	token->e_type = TOKEN_COMMD;
-	token->value = (*s_b)->content.value;
+	token->value = s_b->content.value;
 	ft_creat_parse_lst(parse_branch, token);
 	(*i)++;
 }
 
-void	creat_arg(t_list **s_b, t_token *token, t_p_l **parse_branch)
+void	creat_arg(t_list *s_b, t_token *token, t_p_l **parse_branch)
 {
 	token->e_type = TOKEN_ARG;
-	token->value = (*s_b)->content.value;
+	token->value = s_b->content.value;
 	ft_creat_parse_lst(parse_branch, token);
 }

@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/12 15:23:38 by sriyani          ###   ########.fr       */
+=======
+/*   Updated: 2022/10/10 03:41:01 by eradi-           ###   ########.fr       */
+>>>>>>> 4ed9e97b95357f563f7c4fbca38f767688aa9607
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,11 +82,15 @@ int main(int ac, char **av, char  **env)
 			big = ft_parsing(ptr, env, temp);
 			ft_execution(big,vars,ptr);
 		}
+<<<<<<< HEAD
 		// else
 			// ft_putchar_fd('\n', 1);
 		free(ptr);
 		
 		// signal(SIGINT, SIG_DFL);
+=======
+		free(ptr);	
+>>>>>>> 4ed9e97b95357f563f7c4fbca38f767688aa9607
 	}
 	
 }

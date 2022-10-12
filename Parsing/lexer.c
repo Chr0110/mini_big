@@ -3,10 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:02:26 by sriyani           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/10 21:39:32 by sriyani          ###   ########.fr       */
+=======
+/*   Updated: 2022/10/10 03:34:56 by eradi-           ###   ########.fr       */
+>>>>>>> 4ed9e97b95357f563f7c4fbca38f767688aa9607
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,8 +108,6 @@ void	get_token(char **env, t_lx *lx, t_list *small_branch, t_b_l **big_list)
 	
 	if (lx->error == 0)
 		check_errors(small_branch, token, env, big_list);
-	free(token);
-	
 }
 
 void	init_lexer(char *src, char **env, t_b_l **big_branch)

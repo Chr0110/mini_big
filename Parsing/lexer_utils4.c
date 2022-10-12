@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:35:56 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 18:21:12 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/10 20:40:26 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	red_in_lexer(t_lx *lexer, int *j, t_token *token, t_list **small_branch)
 	if (lexer->redirection_in[lexer->r_i + 1] != NULL)
 		lexer->redirection_in[lexer->r_i + 1] = ft_strdup("");
 	lexer->j++;
+	lexer->r_i  =  lexer->r_i + 1;
 	(*j)++;
 	ft_creatlst(small_branch, token);
 	while (lexer->str[lexer->j] == ' ')
@@ -41,6 +42,7 @@ void	red_out_lx(t_lx *lexer, int *j, t_token *token, t_list **small_branch)
 	if (lexer->redirection_out[lexer->r_o + 1] != NULL)
 		lexer->redirection_out[lexer->r_o + 1] = ft_strdup("");
 	lexer->j++;
+	lexer->r_o = lexer->r_o + 1;
 	(*j)++;
 	ft_creatlst(small_branch, token);
 	while (lexer->str[lexer->j] == ' ')
@@ -61,6 +63,7 @@ void	heredoc_lexer(t_lx *lx, int *j, t_token *token, t_list **small_branch)
 	if (lx->heredoc[lx->h + 1] != NULL)
 		lx->heredoc[lx->h + 1] = ft_strdup("");
 	lx->j += 2;
+	lx->h = lx->h + 1;
 	(*j) += 2;
 	ft_creatlst(small_branch, token);
 	while (lx->str[lx->j] == ' ')

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   making_result.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:12:53 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 04:18:18 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/12 13:36:21 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,7 +70,10 @@ char	*n_q_r(t_exp_list *ex_l, char **env, int type)
 			if (ex_l->s[ex_l->i] == '\0' || ex_l->s[ex_l->i] == '$')
 				ex_l->res = dollar_cases2(&ex_l->res, ex_l->s, &ex_l->i);
 			else
+			{
 				ex_l->res = frg3_dik_dollar_n_d_q(ex_l, env, v);
+				//printf("------------>%s\n", ex_l->res);
+			}
 		}
 		else
 			ex_l->res = ft_strjoin_one(ex_l->res, ex_l->s[ex_l->i++]);

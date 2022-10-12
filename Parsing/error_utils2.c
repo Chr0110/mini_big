@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:35:02 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/11 09:04:39 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,13 @@
 
 int	r_o_error(int i, int *error)
 {
-	if (i == 2)
+	if (i == 0)
+	{
+		panic("syntax error", "|", "error in redirecion out", 258);
+		(*error)++;
+		return (1);
+	}
+	else if (i == 2)
 	{
 		panic("syntax error", ">", "error in redirecion out", 258);
 		(*error)++;
@@ -43,7 +49,13 @@ int	r_o_error(int i, int *error)
 
 int	r_i_error(int i, int *error)
 {
-	if (i == 2)
+	if (i == 0)
+	{
+		panic("syntax error", "|", "error in redirecion out", 258);
+		(*error)++;
+		return (1);
+	}
+	else if (i == 2)
 	{
 		panic("syntax error", ">", "error in redirecion in", 258);
 		(*error)++;

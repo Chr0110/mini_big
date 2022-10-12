@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 14:38:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/11 16:09:11 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,5 +214,6 @@ int		not_between_sd_quotes(char *s, int i);
 
 ///////////////////////             EXECution        /////////////////////////////
 void ft_execution(t_b_l *big,t_vars *vars, char *ptr);
+void	sig_handler(int sig);
 
 #endif

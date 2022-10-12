@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:50:01 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 20:23:39 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/10 20:39:40 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,6 +77,7 @@ void	append_lexer(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 	tkn->e_type = TOKEN_APPEND;
 	if (lx->append[lx->a + 1] != NULL)
 		lx->append[lx->a + 1] = ft_strdup("");
+	lx->a = lx->a + 1;
 	lx->j += 2;
 	(*j) += 2;
 	ft_creatlst(sm_br, tkn);

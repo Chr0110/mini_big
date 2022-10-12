@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/09 20:29:37 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/11 18:39:57 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -93,7 +93,7 @@ void ft_replace(t_vars *vars)
 	int  len;
 	int size;
 	char *pwd;
-	pwd = ft_getcwd();
+	pwd = ft_getcwd(vars);
 	
 	j = 0 ;
 	i = 0;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 04:24:08 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/11 18:25:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ char	*ft_strdup(char *s1)
 	int		j;
 	int		i;
 	char	*s2;
-
+	
 	i = ft_strlen(s1);
 	j = 0;
-	s2 = malloc(i + 1 * sizeof(char));
+	s2 = malloc((i + 1) * sizeof(char));
 	if (!s2)
 		return (NULL);
 	while (s1[j] != '\0')
@@ -133,4 +133,3 @@ void	lexer_init(t_lx	*lexer)
 	if (lexer->app != 0)
 		lexer->append[lexer->a] = ft_strdup("");
 }
-

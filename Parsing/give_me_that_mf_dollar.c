@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   give_me_that_mf_dollar.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:00:13 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 04:16:56 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/12 13:34:57 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ void	get_value(char **s, char **env, int *cmp)
 		}
 		else
 			j = 0;
-		free(env_cmp);
+		// free(env_cmp);
 	}
 	*cmp = i;
 }

@@ -59,13 +59,18 @@ CFLAGS =   -I /Users/sriyani/goinfre/brew/opt/readline/include -fsanitize=addres
 LIB_FLAG = -L /Users/sriyani/goinfre/brew/opt/readline/lib
 OBJ = $(SRC:.c=.o)
 
+
+ %.o: %.c
+	
+
+
 all: $(NAME)
 
 $(NAME) : $(OBJ) $(LIB)
-			$(CC) $(CFLAGS) $(LIB_FLAG) -o $(NAME)   -lreadline  $(OBJ) 
+		$(CC) $(CFLAGS) $(LIB_FLAG) -o $(NAME)   -lreadline  $(OBJ) 
 
 $(OBJ):
-	$(CC) -c $(CFLAGS) $(@:%.o=%.c) -o $(@)
+	@$(CC) -c $(CFLAGS) $(@:%.o=%.c) -o $(@)
 
 clean:
 	@/bin/rm -f $(OBJ)

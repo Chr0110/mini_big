@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/08 10:02:26 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/09 18:28:09 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/10 21:39:32 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -138,5 +138,6 @@ void	init_lexer(char *src, char **env, t_b_l **big_branch)
 	// printf("%d\n",lexer->her);
 	// printf("%d\n",lexer->app);
 	get_token(env, lexer, small_branch, big_branch);
-	free_lexer(lexer);
+	// free_lexer(lexer);
+	//exit(0);
 }

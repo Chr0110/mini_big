@@ -6,12 +6,11 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:59:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/09 20:49:08 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/11 11:21:26 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-	
 
 
 void ft_execution(t_b_l *big, t_vars *vars, char *ptr)
@@ -22,13 +21,15 @@ void ft_execution(t_b_l *big, t_vars *vars, char *ptr)
 	int j= 0;
 	int i;
 	char *str;
-	
+	if(big == NULL)
+		return ;
 	sv = big;
 	while(big)
 	{
 		lil = big->arg;
 		len = ft_lstsize(lil);
 		big->str = malloc(sizeof(char *) * (len + 1));
+		big->str[len] = NULL;
 		i = 0;
 		while (lil)
 		{
@@ -36,16 +37,19 @@ void ft_execution(t_b_l *big, t_vars *vars, char *ptr)
 			lil = lil->next;
 			i++;
 		}
-		big->str[len] = NULL;
 		big = big->next;
 		j++;
 	}
 	big = sv;
 	ft_pipe(big, vars, j);
+}
+
+	
+	
 
 	// t_b_l *lil2 = big;
 	// ft_test(lil2);
-}
+// }
 // void ft_test(t_b_l *lil2)
 // {
 // 	t_r *lit;

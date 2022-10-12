@@ -6,18 +6,18 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 14:07:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/09 20:43:22 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/11 17:57:56 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
 
-int is_builtins(t_b_l *big, t_vars *vars, char **bar,int len)
+int is_builtins(t_vars *vars, char **bar)
 {
-	// t_p_l *lil;
 	
-	int i = 0;
+	int i;
+	i = 0;
 
 	if(bar[0] != NULL)
 	{
@@ -33,12 +33,12 @@ int is_builtins(t_b_l *big, t_vars *vars, char **bar,int len)
 	return (1);
 }
 
-void	builtins(t_b_l *big, t_vars *vars, char **bar, int len)
+void	builtins(t_vars *vars, char **bar)
 {
 
-	char **exp;
-	t_p_l *lil;
-	int i = 0;
+	int i;
+	char *str;
+	i = 0;
 	if(bar[0] != NULL)
 	{
 		if(ft_strcmp(bar[0],"pwd") == 0 || ft_strcmp(bar[0],"PWD") == 0)
@@ -48,14 +48,18 @@ void	builtins(t_b_l *big, t_vars *vars, char **bar, int len)
 		if(ft_strcmp("echo", bar[0]) == 0 || ft_strcmp("ECHO", bar[0]) == 0)
 		{
 			if(bar[1] ==  NULL)
-				ft_putchar_fd('\n', vars->outfile[1]);
+				ft_putchar_fd('\n', vars->outfile[vars->index]);
 			else
 				ft_echo(bar + 1, vars);
 		}
 		if(ft_strcmp(bar[0], "cd") == 0 || ft_strcmp(bar[0], "CD") == 0)
 		{
 			if(bar[1] ==  NULL)
-				ft_chdir(find_user(vars), vars);
+				{
+					str = find_user(vars);
+					ft_chdir(str, vars);
+					free(str);
+				}
 			else
 				ft_cd(bar, vars);
 		}

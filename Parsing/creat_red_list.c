@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   creat_red_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:07:57 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/14 00:10:15 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 t_r	*ft_lstlast3(t_r *lst)
 {
@@ -42,7 +42,16 @@ void	ft_creat_red_lst(t_r **red_branch, t_token *token)
 	new = malloc(sizeof(t_r));
 	if (!new)
 		printf("error\n");
-	new->content = *token;
+	int i = ft_strlen(token->value);
+	int j = 0;
+	new->content.value = malloc((i + 1) * sizeof(char *));
+	new->content.value[i] = '\0';
+	while(j < i)
+	{
+		new->content.value[j] = token->value[j];
+		j++;
+	}
+	new->content.e_type = token->e_type;
 	new->next = NULL;
 	ft_lstadd_back3(red_branch, new);
 	return ;

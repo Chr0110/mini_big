@@ -3,40 +3,21 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:37:25 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:22:46 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/09 04:34:27 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
-
-// char	*ft_strjoin(char *s, char c)
-// {
-// 	char	*temp;
-// 	int		i;
-// 	int		j;
-
-// 	j = 0;
-// 	i = ft_strlen1(s);
-// 	temp = malloc((i + 2) * sizeof(char));
-// 	while (j < i)
-// 	{
-// 		temp[j] = s[j];
-// 		j++;
-// 	}
-// 	temp[i] = c;
-// 	temp[i + 1] = '\0';
-// 	return (temp);
-// }
+#include "minishell.h"
 
 int	count_s_q(int *i, t_lx *lexer)
 {
 	(*i)++;
 	while (lexer->str[(*i)] != '\'' && lexer->str[(*i)] != '\0')
 		(*i)++;
-	if ((*i) == ft_strlen1(lexer->str))
+	if ((*i) == ft_strlen(lexer->str))
 		return (1);
 	else
 		(*i)++;
@@ -48,7 +29,7 @@ int	count_d_q(int *i, t_lx *lexer)
 	(*i)++;
 	while (lexer->str[(*i)] != '\"' && lexer->str[(*i)] != '\0')
 		(*i)++;
-	if ((*i) == ft_strlen1(lexer->str))
+	if ((*i) == ft_strlen(lexer->str))
 		return (1);
 	else
 		(*i)++;

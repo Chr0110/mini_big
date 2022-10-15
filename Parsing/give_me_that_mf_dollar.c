@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   give_me_that_mf_dollar.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:00:13 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/12 13:34:57 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/15 06:02:59 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-void	get_value(char **s, char **env, int *cmp)
+char*	get_value(char *s, char **env, int *cmp)
 {
 	int		i;
 	int		j;
@@ -25,23 +25,36 @@ void	get_value(char **s, char **env, int *cmp)
 	n = 0;
 	while (env[++i])
 	{
-		while (env[i][++j] != '=')
-		env_cmp = strdup("");
+		while (env[i][++j] != '=');
+		env_cmp = ft_strdup("");
 		while (n < j)
 			env_cmp = ft_strjoin_one(env_cmp, env[i][n++]);
 		n = 0;
-		if (ft_strncmp(env_cmp, *s, strlen(env[i])) == 0)
+		if (ft_strncmp(env_cmp, s, ft_strlen(env[i])) == 0)
 		{
+			res = take_from_env(env, j, i);
+			while(res[n])
+				n++;
+			s = malloc((n) * sizeof(char*));
+			s[n] = '\0';
+			n = 0;
+			while (res[n])
+			{
+				s[n] = res[n];
+				n++;
+			}
+			free(res);
 			free(env_cmp);
-			free(*s);
-			*s = take_from_env(env, j, i);
 			break ;
 		}
 		else
+		{
 			j = 0;
-		// free(env_cmp);
+			free(env_cmp);
+		}
 	}
 	*cmp = i;
+	return(s);
 }
 
 char	*take_from_env(char **env, int j, int i)
@@ -62,56 +75,61 @@ char	*take_from_env(char **env, int j, int i)
 	return (res);
 }
 
-char	*frg3_dik_dollar_n_d_q(t_exp_list *ex_ls, char **env, int cmp1)
+char	*expand_dollar_n_q(t_exp_list *list, char **env, int cmp1)
 {
 	int		v;
 	char	*value;
+	char	*value1;
 	int		cmp;
 
 	cmp = 0;
-	v = ex_ls->i + 1;
-	while (ex_ls->s[v] != '\'' && ex_ls->s[v] != ' '
-		&& ex_ls->s[v] != '\"' && ex_ls->s[v] != '\0')
+	v = list->i + 1;
+	while (list->s[v] != '\'' && list->s[v] != ' '
+		&& list->s[v] != '\"' && list->s[v] != '\0')
 			v++;
-	value = malloc(((v - (ex_ls->i)) + 1) * sizeof(char));
+	value = malloc(((v - (list->i)) + 1) * sizeof(char));
 	v = 0;
-	while (is_alpha(ex_ls->s[(ex_ls->i)]) == 1 || ex_ls->s[ex_ls->i] == '_')
-	value[v++] = ex_ls->s[(ex_ls->i)++];
+	while (is_alpha(list->s[(list->i)]) == 1 || list->s[list->i] == '_')
+		value[v++] = list->s[(list->i)++];
 	value[v] = '\0';
-	get_value(&value, env, &cmp);
-	if (cmp != cmp1)
-	{
-		v = -1;
-		while (value[++v])
-			(ex_ls->res) = ft_strjoin_one((ex_ls->res), value[v]);
-	}
+	value1 = get_value(value, env, &cmp);
 	free(value);
-	return ((ex_ls->res));
-}
-
-char	*frg3_dik_dollar_d_q(t_exp_list *ex_ls, char **env, int cmp1)
-{
-	int		v;
-	char	*value;
-	int		cmp;
-
-	cmp = 0;
-	ex_ls->i = ex_ls->i + 1;
-	v = ex_ls->i + 1;
-	while (ex_ls->s[v] != '\'' && ex_ls->s[v] != ' '
-		&& ex_ls->s[v] != '\"' && ex_ls->s[v] != '\0' && ex_ls->s[v] != '$')
-			v++;
-	value = malloc(((v - (ex_ls->i)) + 1) * sizeof(char));
-	v = 0;
-	while (is_alpha(ex_ls->s[(ex_ls->i)]) == 1 || ex_ls->s[ex_ls->i] == '_')
-		value[v++] = ex_ls->s[(ex_ls->i)++];
-	value[v] = '\0';
-	get_value(&value, env, &cmp);
 	if (cmp != cmp1)
 	{
 		v = -1;
-		while (value[++v])
-			(ex_ls->res) = ft_strjoin_one((ex_ls->res), value[v]);
+		while (value1[++v])
+			(list->res) = ft_strjoin_one((list->res), value1[v]);
+		free(value1);
 	}
-	return (ex_ls->res);
+	return ((list->res));
 }
+
+char	*expand_dollar_q(t_exp_list *list, char **env, int cmp1, int cmp)
+{
+	int		v;
+	char	*value;
+	char	*value1;
+
+	cmp = 0;
+	list->i = list->i + 1;
+	v = list->i + 1;
+	while (list->s[v] != '\'' && list->s[v] != ' '
+		&& list->s[v] != '\"' && list->s[v] != '\0')
+			v++;
+	value = malloc(((v - (list->i)) + 1) * sizeof(char)); // leak
+	v = 0;
+	while (is_alpha(list->s[(list->i)]) == 1 || list->s[list->i] == '_')
+		value[v++] = list->s[(list->i)++];
+	value[v] = '\0';
+	value1 = get_value(value, env, &cmp);
+	free(value);
+	if (cmp != cmp1)
+	{
+		v = -1;
+		while (value1[++v])
+			(list->res) = ft_strjoin_one((list->res), value1[v]);
+		free(value1);
+	}
+	return ((list->res));
+}
+

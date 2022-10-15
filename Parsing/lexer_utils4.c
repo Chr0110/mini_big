@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils4.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:35:56 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/10 20:40:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/14 01:56:12 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	red_in_lexer(t_lx *lexer, int *j, t_token *token, t_list **small_branch)
 {
@@ -19,10 +19,8 @@ void	red_in_lexer(t_lx *lexer, int *j, t_token *token, t_list **small_branch)
 	lexer->redirection_in[lexer->r_i][1] = '\0';
 	token->value = lexer->redirection_in[lexer->r_i];
 	token->e_type = TOKEN_REDIRECTION_IN;
-	if (lexer->redirection_in[lexer->r_i + 1] != NULL)
-		lexer->redirection_in[lexer->r_i + 1] = ft_strdup("");
+	lexer->r_i = lexer->r_i + 1;
 	lexer->j++;
-	lexer->r_i  =  lexer->r_i + 1;
 	(*j)++;
 	ft_creatlst(small_branch, token);
 	while (lexer->str[lexer->j] == ' ')
@@ -39,10 +37,8 @@ void	red_out_lx(t_lx *lexer, int *j, t_token *token, t_list **small_branch)
 	lexer->redirection_out[lexer->r_o][1] = '\0';
 	token->value = lexer->redirection_out[lexer->r_o];
 	token->e_type = TOKEN_REDIRECTION_OUT;
-	if (lexer->redirection_out[lexer->r_o + 1] != NULL)
-		lexer->redirection_out[lexer->r_o + 1] = ft_strdup("");
-	lexer->j++;
 	lexer->r_o = lexer->r_o + 1;
+	lexer->j++;
 	(*j)++;
 	ft_creatlst(small_branch, token);
 	while (lexer->str[lexer->j] == ' ')
@@ -60,10 +56,8 @@ void	heredoc_lexer(t_lx *lx, int *j, t_token *token, t_list **small_branch)
 	lx->heredoc[lx->h][2] = '\0';
 	token->value = lx->heredoc[lx->h];
 	token->e_type = TOKEN_HERDOC;
-	if (lx->heredoc[lx->h + 1] != NULL)
-		lx->heredoc[lx->h + 1] = ft_strdup("");
-	lx->j += 2;
 	lx->h = lx->h + 1;
+	lx->j += 2;
 	(*j) += 2;
 	ft_creatlst(small_branch, token);
 	while (lx->str[lx->j] == ' ')

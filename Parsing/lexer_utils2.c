@@ -3,16 +3,25 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/11 18:25:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/14 01:53:51 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-char	*skip_white_spaces(char *src, char *str)
+int	ft_strlen(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+		i++;
+	return (i);
+}
+char	*skip_white_spaces(char *src)
 {
 	int	i;
 	int	j;
@@ -21,11 +30,12 @@ char	*skip_white_spaces(char *src, char *str)
 	i = 0;
 	j = 0;
 	n = 0;
+	char *str;
 	while (src[i])
 		i++;
 	str = malloc((i + 1) * sizeof(char));
 	i = 0;
-	while (src[i] == ' ' || src[i] == '\t')
+	while (src[i] && (src[i] == ' ' || src[i] == '\t'))
 		i++;
 	while (src[i])
 	{
@@ -33,9 +43,8 @@ char	*skip_white_spaces(char *src, char *str)
 		i++;
 		j++;
 	}
-	// while (str[j - 1] == ' ' || str[j - 1] == '\t')
-	// 	j--;
 	str[j] = '\0';
+	free(src);
 	return (str);
 }
 
@@ -73,10 +82,10 @@ char	*ft_strdup(char *s1)
 	int		j;
 	int		i;
 	char	*s2;
-	
+
 	i = ft_strlen(s1);
 	j = 0;
-	s2 = malloc((i + 1) * sizeof(char));
+	s2 = malloc(i + 1 * sizeof(char));
 	if (!s2)
 		return (NULL);
 	while (s1[j] != '\0')
@@ -88,15 +97,6 @@ char	*ft_strdup(char *s1)
 	return (s2);
 }
 
-int	ft_strlen1(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-		i++;
-	return (i);
-}
 
 void	lexer_init(t_lx	*lexer)
 {
@@ -120,16 +120,4 @@ void	lexer_init(t_lx	*lexer)
 	lexer->h = 0;
 	lexer->a = 0;
 	lexer->t_sz = ft_strlen(lexer->str);
-	if (lexer->tx != 0)
-		lexer->text[lexer->t] = ft_strdup("");
-	if (lexer->red_i != 0)
-		lexer->redirection_in[lexer->r_i] = ft_strdup("");
-	if (lexer->red_o != 0)
-		lexer->redirection_out[lexer->r_o] = ft_strdup("");
-	if (lexer->pi != 0)
-		lexer->pip[lexer->p] = ft_strdup("");
-	if (lexer->her != 0)
-		lexer->heredoc[lexer->h] = ft_strdup("");
-	if (lexer->app != 0)
-		lexer->append[lexer->a] = ft_strdup("");
 }

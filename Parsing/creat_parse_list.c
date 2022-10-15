@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   creat_parse_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:06:26 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/15 05:53:32 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 t_p_l	*ft_lstlast2(t_p_l *lst)
 {
@@ -38,12 +38,21 @@ void	ft_lstadd_back2(t_p_l **lst, t_p_l *new)
 void	ft_creat_parse_lst(t_p_l **parse_branch, t_token *token)
 {
 	t_p_l	*new;
-
+	int i = ft_strlen(token->value);
+	int j = 0;
 	new = malloc(sizeof(t_p_l));
+	new->content.value = malloc((i + 1) * sizeof(char *));
+	new->content.value[i] = '\0';
 	if (!new)
 		printf("error\n");
-	new->content = *token;
+	while(j < i)
+	{
+		new->content.value[j] = token->value[j];
+		j++;
+	}
+	new->content.e_type = token->e_type;
 	new->next = NULL;
 	ft_lstadd_back2(parse_branch, new);
 	return ;
 }
+

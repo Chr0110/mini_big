@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:09:55 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/08 11:42:22 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/14 00:11:30 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 char	*handle_dollar_double_quotes(char *s, int *i, char **env, int cmp1)
 {
@@ -29,7 +29,7 @@ char	*handle_dollar_double_quotes(char *s, int *i, char **env, int cmp1)
 	while (is_alpha(s[(*i)]) == 1 || s[*i] == '_')
 		value[v++] = s[(*i)++];
 	value[v] = '\0';
-	get_value(&value, env, &cmp);
+	get_value(value, env, &cmp);
 	if (cmp != cmp1)
 	{
 		v = -1;
@@ -55,7 +55,7 @@ char	*handle_dollar_no_quotes(char *s, int *i, char **env, int cmp1)
 	while ((is_alpha(s[(*i)]) == 1) || s[*i] == '_')
 		value[v++] = s[(*i)++];
 	value[v] = '\0';
-	get_value(&value, env, &cmp);
+	get_value(value, env, &cmp);
 	v = 0;
 	if (cmp != cmp1)
 	{

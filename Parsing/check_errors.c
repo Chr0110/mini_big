@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:25:30 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/11 09:43:00 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/15 04:14:48 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 int	global_error(t_list *temp, int *error, int *i)
 {
@@ -27,7 +27,7 @@ int	global_error(t_list *temp, int *error, int *i)
 	return (0);
 }
 
-void	check_errors(t_list *small_branch, t_token *token, char **env, t_b_l **big_branch)
+void	check_errors(t_list *small_branch, char **env, t_b_l **big_branch, t_lx *lx)
 {
 	int		i;
 	int		error;
@@ -47,7 +47,19 @@ void	check_errors(t_list *small_branch, t_token *token, char **env, t_b_l **big_
 		temp = temp->next;
 	}
 	if (error == 0)
-		parsing(small_branch, token, env, big_branch);
+		parsing(small_branch, env, big_branch, lx);
 	else
-		big_branch = NULL;
+	{
+		free_lexer(&lx);
+		t_list *t;
+		t_list *tmp1 = small_branch;
+		while(tmp1)
+		{
+			t = tmp1->next;
+			free(tmp1->content.value);
+			free(tmp1);
+			tmp1 = t;
+		}
+		*big_branch = NULL;
+	}
 }

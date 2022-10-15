@@ -6,53 +6,49 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:10:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/09 04:16:34 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/15 06:07:48 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
-// void	go_print_error(char **env)
-// {
-// 	char	*ptr;
-
-// 	printf("ambiguous redirect\n");
-// 	while (1)
-// 	{
-// 		ptr = readline(GREEN"minishell$> "NOR);
-// 		if (ptr == 0)
-// 			exit(EXIT_SUCCESS);
-// 		add_history(ptr);
-// 		init_lexer(ptr, env);
-// 		free(ptr);
-// 	}
-// }
 
 void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 {
-	t_exp_list	*ex_ls;
-	
-	ex_ls = malloc(1 * sizeof(t_exp_list));
-	ex_ls->res = ft_strdup("");
-	ex_ls->i = 0;
-	ex_ls->s = cont->value;
+	t_exp_list	*list;
+	list = malloc(1 * sizeof(t_exp_list));
+	list->i = 0;
+	list->s = cont->value;
+	list->res = ft_strdup("");
 	*exp_list = NULL;
-	while (ex_ls->s[ex_ls->i])
+	while (list->s[list->i])
 	{
-		if (ex_ls->s[ex_ls->i] == 34)
-			ex_ls->res = d_q_r(ex_ls, env, type);
-		else if (ex_ls->s[ex_ls->i] == 39)
-			ex_ls->res = s_q_r(&ex_ls->res, ex_ls->s, &(ex_ls->i), &type);
+		if (list->s[list->i] == 34)
+			list->res = d_q_r(list, env, type);
+		else if (list->s[list->i] == 39)
+			list->res = s_q_r(list, &type);
 		else
-			ex_ls->res = n_q_r(ex_ls, env, type);
+			list->res = n_q_r(list, env, type);
 	}
-	if (there_is_a_space(ex_ls->res))
-	{
-		// if (type == 3 || type == 2 || type == 5)
-			// go_print_error(env, );
-			add_to_parse_list(ex_ls->res, exp_list);
-	}
+	if (there_is_a_space(list->res) && type == 0)
+		add_to_parse_list(list->res, exp_list);
+	else if (there_is_a_space(list->res) && type != 0)
+		panic("ambiguous redirect", NULL, NULL, 1);
 	else
-		cont->value = ex_ls->res;
-	free(ex_ls);
+	{
+		int n = 0;
+		while(list->res[n])
+			n++;
+		free(cont->value);
+		cont->value = malloc((n) * sizeof(char*));
+		cont->value[n] = '\0';
+		n = 0;
+		while(list->res[n])
+		{
+			cont->value[n] = list->res[n];
+			n++;
+		}
+	}
+	free(list->res);
+	free(list);
 }

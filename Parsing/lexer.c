@@ -5,16 +5,12 @@
 /*                                                    +:+ +:+         +:+     */
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/08 10:02:26 by sriyani           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/10 21:39:32 by sriyani          ###   ########.fr       */
-=======
-/*   Updated: 2022/10/10 03:34:56 by eradi-           ###   ########.fr       */
->>>>>>> 4ed9e97b95357f563f7c4fbca38f767688aa9607
+/*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
+/*   Updated: 2022/10/15 06:03:35 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	free2d(char **ptr)
 {
@@ -31,18 +27,18 @@ void	free2d(char **ptr)
 	free(ptr);
 }
 
-void	free_lexer(t_lx *lexer)
+void	free_lexer(t_lx **lexer)
 {
-	if (lexer == NULL)
+	if ((*lexer) == NULL)
 		return ;
-	free(lexer->str);
-	free2d(lexer->text);
-	free2d(lexer->pip);
-	free2d(lexer->append);
-	free2d(lexer->heredoc);
-	free2d(lexer->redirection_in);
-	free2d(lexer->redirection_out);
-	free(lexer);
+	free((*lexer)->str);
+	free((*lexer)->text);
+	free2d((*lexer)->pip);
+	free2d((*lexer)->append);
+	free2d((*lexer)->heredoc);
+	free2d((*lexer)->redirection_in);
+	free2d((*lexer)->redirection_out);
+	free((*lexer));
 }
 
 void	how_much(char *s, t_lx *lexer)
@@ -103,11 +99,15 @@ void	get_token(char **env, t_lx *lx, t_list *small_branch, t_b_l **big_list)
 			red_out_lx(lx, &j, token, &small_branch);
 		if (lx->str[lx->j] == '<' && lx->str[lx->j + 1] != '<')
 			red_in_lexer(lx, &j, token, &small_branch);
-	
 	}
-	
+	free(token);
 	if (lx->error == 0)
-		check_errors(small_branch, token, env, big_list);
+		check_errors(small_branch, env, big_list, lx);
+	else
+	{
+		free_lexer(&lx);
+		*big_list = NULL;
+	}
 }
 
 void	init_lexer(char *src, char **env, t_b_l **big_branch)
@@ -126,20 +126,10 @@ void	init_lexer(char *src, char **env, t_b_l **big_branch)
 	lexer->app = 0;
 	j = 0;
 	small_branch = NULL;
-	if (src[0] == '\0')
-		return ;
-	str = skip_white_spaces(src, str);
+	str = skip_white_spaces(src);
 	lexer->str = str;
 	lexer->j = 0;
 	lexer->c = lexer->str[lexer->j];
 	how_much(lexer->str, lexer);
-	// printf("%d\n",lexer->tx);
-	// printf("%d\n",lexer->red_i);
-	// printf("%d\n",lexer->red_o);
-	// printf("%d\n",lexer->pi);
-	// printf("%d\n",lexer->her);
-	// printf("%d\n",lexer->app);
 	get_token(env, lexer, small_branch, big_branch);
-	// free_lexer(lexer);
-	//exit(0);
 }

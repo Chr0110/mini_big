@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:48:12 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/15 06:04:15 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	remove_s_a(char **res, int *i, char *s)
 {
@@ -55,7 +55,16 @@ void	remove_quotes(t_token *node)
 			i++;
 		}
 	}
-	node->value = res;
+	free(node->value);
+	node->value = malloc(ft_strlen(res) + 1 * sizeof(char));
+	node->value[ft_strlen(res)] = '\0';
+	i = 0;
+	while (i <  ft_strlen(res))
+	{
+		node->value[i] = res[i];
+		i++;
+	}
+	free(res);
 }
 
 void	remove_f_quotes(t_b_l *temp_big)

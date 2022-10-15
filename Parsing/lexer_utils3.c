@@ -3,22 +3,23 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:50:01 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/10 20:39:40 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/15 06:03:13 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	ft_ft_creat_list(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 {
 	ft_creatlst(sm_br, tkn);
+	free(lx->text[lx->t]);
 	lx->t = lx->t + 1;
-	if (lx->text[lx->t] != NULL)
+	if(lx->str[lx->j] != 0 && lx->text[lx->t])
 		lx->text[lx->t] = ft_strdup("");
-	while (lx->str[lx->j] == ' ')
+	while (lx->str[lx->j] == ' ') 
 	{
 		lx->j++;
 		(*j)++;
@@ -27,26 +28,18 @@ void	ft_ft_creat_list(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 
 void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 {
-	lx->text[lx->t] = ft_strjoin_one(lx->text[lx->t], lx->str[lx->j]);
-	tkn->value = lx->text[lx->t];
-	tkn->e_type = TOKEN_TEXT;
-	lx->j++;
-	(*j)++;
-	if (lx->str[lx->j] == ' ' || lx->str[lx->j] == '<' || lx->str[lx->j] == '>'
-		|| lx->str[lx->j] == '|' || (*j) == lx->t_sz)
+	while (lx->str[lx->j] != '\"' && lx->str[lx->j] != '\''
+			&& lx->str[lx->j] != '<' && lx->str[lx->j] != '>'
+			&& lx->str[lx->j] != '|' && *j < lx->t_sz)
 	{
-	
-		ft_creatlst(sm_br, tkn);
-		lx->t = lx->t + 1;
-		if(lx->text[lx->t] != NULL)
-			lx->text[lx->t] = ft_strdup("");
-		while (lx->str[lx->j] == ' ')
-		{
-			lx->j++;
-			(*j)++;
-		}
+		lx->text[lx->t] = ft_strjoin_one(lx->text[lx->t], lx->str[lx->j]);
+		tkn->value = lx->text[lx->t];
+		tkn->e_type = TOKEN_TEXT;
+		lx->j++;
+		(*j)++;
+		if (lx->str[lx->j] == ' ')
+			return;
 	}
-		
 }
 
 void	pip_lexer(t_lx *lx, int *j, t_token *tkn, t_list **small_b)
@@ -56,10 +49,10 @@ void	pip_lexer(t_lx *lx, int *j, t_token *tkn, t_list **small_b)
 	lx->pip[lx->p][1] = '\0';
 	tkn->value = lx->pip[lx->p];
 	tkn->e_type = TOKEN_PIP;
+	ft_creatlst(small_b, tkn);
 	lx->p = lx->p + 1;
 	lx->j++;
 	(*j)++;
-	ft_creatlst(small_b, tkn);
 	while (lx->str[lx->j] == ' ')
 	{
 		lx->j++;
@@ -75,9 +68,7 @@ void	append_lexer(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 	lx->append[lx->a][2] = '\0';
 	tkn->value = lx->append[lx->a];
 	tkn->e_type = TOKEN_APPEND;
-	if (lx->append[lx->a + 1] != NULL)
-		lx->append[lx->a + 1] = ft_strdup("");
-	lx->a = lx->a + 1;
+	lx-> a= lx->a + 1;
 	lx->j += 2;
 	(*j) += 2;
 	ft_creatlst(sm_br, tkn);

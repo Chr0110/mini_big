@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   creat_list_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:05:26 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/07 17:15:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/14 00:09:53 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 t_list	*ft_lstlast(t_list *lst)
 {
@@ -38,12 +38,19 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 void	ft_creatlst(t_list **small_branch, t_token *token)
 {
 	t_list	*new;
-
-	new = malloc(sizeof(t_list));
+	int i = ft_strlen(token->value);
+	int j = 0;
+	new = malloc(sizeof(t_p_l));
+	new->content.value = malloc((i + 1) * sizeof(char *));
+	new->content.value[i] = '\0';
 	if (!new)
 		printf("error\n");
-	new->content = *token;
+	while(j < i)
+	{
+		new->content.value[j] = token->value[j];
+		j++;
+	}
+	new->content.e_type = token->e_type;
 	new->next = NULL;
 	ft_lstadd_back(small_branch, new);
-	return ;
 }

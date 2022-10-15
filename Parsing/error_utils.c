@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:09:05 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/11 09:04:53 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/05 14:30:13 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 void	ft_putstr_fd(char *s, int fd)
 {
@@ -73,7 +73,7 @@ int	heredoc_error(int i, int *error)
 {
 	if (i == 0)
 	{
-		panic("syntax error", "|", "error in redirecion out", 258);
+		panic("syntax error", "|", "error in redirecion in", 258);
 		(*error)++;
 		return (1);
 	}
@@ -108,7 +108,7 @@ int	append_error(int i, int *error)
 {
 	if (i == 0)
 	{
-		panic("syntax error", "|", "error in redirecion out", 258);
+		panic("syntax error", "|", "error in redirecion in", 258);
 		(*error)++;
 		return (1);
 	}

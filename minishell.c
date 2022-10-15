@@ -6,11 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-<<<<<<< HEAD
-/*   Updated: 2022/10/12 15:23:38 by sriyani          ###   ########.fr       */
-=======
-/*   Updated: 2022/10/10 03:41:01 by eradi-           ###   ########.fr       */
->>>>>>> 4ed9e97b95357f563f7c4fbca38f767688aa9607
+/*   Updated: 2022/10/15 06:23:16 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -82,15 +78,39 @@ int main(int ac, char **av, char  **env)
 			big = ft_parsing(ptr, env, temp);
 			ft_execution(big,vars,ptr);
 		}
-<<<<<<< HEAD
 		// else
 			// ft_putchar_fd('\n', 1);
 		free(ptr);
-		
+		if (big)
+		{
+			t_b_l *btmp = big;
+			t_b_l *btmp1;
+			t_p_l *tmp;
+			t_r *rtmp;
+			while(btmp)
+			{
+				while(btmp->arg)
+				{
+					tmp = btmp->arg;
+					btmp->arg = btmp->arg->next;
+					free(tmp->content.value);
+					free(tmp);
+				}
+				while(btmp->red)
+				{
+					rtmp = btmp->red;
+					btmp->red = btmp->red->next;
+					free(rtmp->content.value);
+					free(rtmp);
+				}
+				btmp1 = btmp;
+				btmp = btmp->next;
+				printf("m here\n");
+				free(btmp1);
+			}
+			free(btmp);
+		}
 		// signal(SIGINT, SIG_DFL);
-=======
-		free(ptr);	
->>>>>>> 4ed9e97b95357f563f7c4fbca38f767688aa9607
 	}
 	
 }

@@ -3,20 +3,20 @@
 /*                                                        :::      ::::::::   */
 /*   error_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:35:02 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/11 09:04:39 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/05 14:38:48 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../minishell.h"
+#include "minishell.h"
 
 int	r_o_error(int i, int *error)
 {
 	if (i == 0)
 	{
-		panic("syntax error", "|", "error in redirecion out", 258);
+		panic("syntax error", "|", "error in redirecion in", 258);
 		(*error)++;
 		return (1);
 	}
@@ -51,7 +51,7 @@ int	r_i_error(int i, int *error)
 {
 	if (i == 0)
 	{
-		panic("syntax error", "|", "error in redirecion out", 258);
+		panic("syntax error", "|", "error in redirecion in", 258);
 		(*error)++;
 		return (1);
 	}

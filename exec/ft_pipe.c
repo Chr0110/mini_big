@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/15 22:51:12 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 17:14:37 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,22 +31,18 @@ void creat_pipe(int len, int i, t_vars *vars)
 	
 	if (i < len - 1)
 		pipe(p);
-	// printf(CYAN"p[0] = %d\n", p[0]);
-	// printf(CYAN"p[1] = %d\n", p[1]);
-	
+	// printf("p[0] = %d\n", p[0]);
+	// printf("p[1] = %d\n", p[1]);
 	vars->infile[0] = 0;
-	
-	if (i < len - 1)
-	{
-		if (vars->outfile[i] == -1)
-			vars->outfile[i] = p[1];
-	}
+		
+	if (vars->outfile[i] == -1)
+		vars->outfile[i] = p[1];
 	if (vars->infile[i + 1] == -1)
 		vars->infile[i + 1] = p[0];
 		
 	vars->outfile[len - 1] = 1;
-	// printf(MAG"vars->infile[%d] = %d\n", i, vars->infile[i]);
-	// printf(MAG"vars->outfile[%d] = %d\n", i, vars->outfile[i]);
+	// printf("vars->infile[%d] = %d\n", i, vars->infile[i]);
+	// printf("vars->outfile[%d] = %d\n", i, vars->outfile[i]);
 	// vars->s0 = p[0];
 	// vars->s1 = p[1];
 	
@@ -55,21 +51,30 @@ void creat_pipe(int len, int i, t_vars *vars)
 void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 {
 	int i = 0;
-	pid_t child_pro;
+	pid_t child_pro[len];
 	t_b_l *lil = big;
 	t_b_l *lil2 = big;
+	t_b_l *lil3 = big;
+	t_data *data;
 	
+	data = malloc(sizeof(t_data));
+	data->count = 0;
+	data->flag = -1;
+	// if(check_herdoc(lil))
+	// 	is_herdoc(lil, vars, data, len);
 	inf(vars, len);
 	while(i < len)
 	{
 		creat_pipe(len, i, vars);
 		i++;
 	}
+	i = 0;	
+
 	// close(vars->s0);
 	// close(vars->s1);
-	if(check_rediraction(lil2))
-		ft_rediraction(lil2, vars, i);
-		
+	if(check_rediraction(lil))
+		ft_rediraction(lil, vars, len, data);
+	// printf("%d  %d \n",data->p[0],data->p[1]);
 	if(len == 1 && !is_builtins(vars, big->str))
 	{
 		vars->index = 0;
@@ -77,26 +82,31 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 		ft_close(len, vars);
 		return ;
 	}
-	
 	i = 0;
-	
 	while(lil)
-	{
-		
+	{ 
 		if (lil->str[0])
 		{
 			signal(SIGINT, SIG_IGN);
-			child_pro = fork();
-			
-			if(child_pro == 0)
+			child_pro[i] = fork();
+			if(child_pro[i] == 0)
 			{
-				
 				signal(SIGINT, SIG_DFL);
-				if(dup2(vars->infile[i], STDIN_FILENO) < 0)
+				if (data->flag != -1)
+				{
+					vars->infile[i] = data->p[0];
+				}
+				else if(dup2(vars->infile[i], STDIN_FILENO) < 0)
+				{
 					ft_putstr("dup1:\n", 2);
+					exit(0);
+				}
 				if(dup2(vars->outfile[i] , STDOUT_FILENO) < 0)
+				{
 					ft_putstr("dup2:\n", 2);
-				ft_close(len, vars);
+					
+					exit(0);
+				}
 				if(!is_builtins(vars, lil->str))
 				{	
 					vars->index = i;
@@ -105,16 +115,20 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 					builtins(vars, lil->str);
 					exit(0);
 				}
+				if (vars->sig_on == 2)
+				{
+					exit(0);
+				}
 				ft_execute(lil->str, vars);
+				ft_close(len, vars);
 			}
-		}	
+		}
 		psudo_close(vars, i);
 		lil = lil->next;
 		i++;
 	}
-	
 	ft_close(len, vars);
-	ft_wait(child_pro,len);
+	ft_wait(child_pro, len);
 	init_signal();
 }
 
@@ -124,8 +138,9 @@ void ft_execute(char **cmd, t_vars *vars)
 	int	i;
 	
 	i = 0;
+		
 	if(access(cmd[0], F_OK) == 0)
-		execve(cmd[0], cmd, vars->env);
+	execve(cmd[0], cmd, vars->env);
 	if (execve(ft_path(cmd[0], vars->env), cmd, vars->env) < 0 && check_path(vars->env) == 0)
 	{
 		ft_putstr(cmd[0], 2);
@@ -156,15 +171,14 @@ void ft_close(int len, t_vars *vars)
 	}
 }
 
-void ft_wait(pid_t child_pro, int len)
+void ft_wait(pid_t *child_pro, int len)
 {
 	int i = 0;
 	int *status;
-	status = malloc(sizeof(int) + 2);
+	status = malloc(sizeof(int) * len + 2);
 	while(i < len)
 	{	
-		waitpid(child_pro, status, 0);
-		//printf()
+		waitpid(child_pro[i], status, 0);
 		if(status[i] == 3)
 			ft_putstr("^\\Quiet: 3\n", 2);
 		i++;

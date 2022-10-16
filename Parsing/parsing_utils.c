@@ -3,16 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   parsing_utils.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 04:09:03 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/14 00:15:01 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 20:46:35 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
-
-#include "minishell.h"
+#include "../minishell.h"
 
 void	red_creat(t_list *s_b, t_token *token, t_r **red)
 {

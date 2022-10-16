@@ -3,7 +3,6 @@ NAME = minishell
 LIB = minishell.h
 
 SRC_P = \
-		./Parsing/parsing.c\
 		./Parsing/lexer.c\
 		./Parsing/lexer_utils.c\
 		./Parsing/lexer_utils2.c\
@@ -30,6 +29,8 @@ SRC_P = \
 		./Parsing/give_me_that_mf_dollar.c\
 		./Parsing/remove_quotes.c\
 		./Parsing/parsing_utils.c\
+		./Parsing/error_utils3.c\
+		./Parsing/parsing.c\
 
 SRC_E = \
 		./minishell.c\
@@ -47,6 +48,7 @@ SRC_E = \
 		./exec/ft_pipe.c\
 		./exec/ft_path.c\
 		./exec/ft_rediraction.c\
+		./exec/ft_herdoc.c\
 		# test.c\
 		# pipex_utils2.c\
 		# multiple_pipe.c\

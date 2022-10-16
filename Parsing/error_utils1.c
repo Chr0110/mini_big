@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_utils1.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:09:38 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/05 14:36:03 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	red_in_error(t_list *temp, int *error)
 {

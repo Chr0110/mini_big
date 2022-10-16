@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   error_utils3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/16 06:30:14 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 06:32:46 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 int	print_this_error(int *i, int *error)
 {

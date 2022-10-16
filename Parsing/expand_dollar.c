@@ -3,14 +3,14 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:10:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 06:46:15 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "minishell.h"
+#include "../minishell.h"
 
 void	initial_param( t_exp_list **list, t_p_l **exp_list, t_token *cont)
 {

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:18:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/11 18:37:16 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/16 10:00:37 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char *find_user(t_vars *vars)
 		{
 			while(vars->env[i][j] != '=')
 				j++;
-			str = ft_strdup(vars->env[i]+j);
+			str = ft_strdup(vars->env[i] + j);
 			while(vars->env[i][++j])
 			{
 				str[k] = vars->env[i][j];

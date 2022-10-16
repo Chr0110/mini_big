@@ -6,11 +6,12 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:21:00 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/12 10:51:04 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/12 21:45:44 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 char *ft_getcwd(t_vars *vars)
 {
 	char str[1024];
@@ -33,3 +34,4 @@ void	ft_pwd(t_vars *vars)
 	// free(ptr);
 	write(vars->outfile[vars->index], "\n", 1);
 }
+

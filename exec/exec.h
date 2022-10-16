@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   exec.h                                             :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
+/*   Updated: 2022/10/16 17:19:22 by sriyani          ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 # ifndef EXEC_H
 # define EXEC_H
 
@@ -11,7 +23,8 @@
 #include <readline/history.h>
 
 #include <termios.h>
-#include <sys/errno.h>
+#include <sys/stat.h>
+ #include <dirent.h>
 
 # define RED     "\x1b[31m"
 # define GREEN   "\x1b[32m"
@@ -31,12 +44,13 @@ typedef struct s_env
 
 typedef struct s_data 
 {
-	int id;
+	char *har;
+	int flag;
+	int p[2];
+	int count;
 	char **type;
 
 } t_data;
-
-int g_var[2];
 
 typedef struct s_vars
 {
@@ -55,24 +69,28 @@ typedef struct s_vars
 	int index;
 	int s0;
 	int s1;
-	int flag;
+	int sig_on;
+	int  pid;
 
 }	t_vars;
 
+int num;
+int	heredoc_on;
+int	heredoc_pid;
 
 // t_vars *vars;
 
 char	**ft_split(char const *s, char c);
 int		ft_len(char const *s, char c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
-// char	*ft_strdupp(char *s1);
+char	*ft_strdup(char *s1);
 size_t	ft_strlen(const char *str);
 int		ft_strcmp(char *s1, char *s2);
 int		ft_strncmp(const char *s1, const char *s2, size_t n);
 void	ft_free(char **path);
 void	ft_putendl_fd(char *s, int fd);
-int is_builtins(t_vars *vars, char **bar);
 void	builtins(t_vars *vars, char **bar);
+int is_builtins(t_vars *vars, char **bar);
 void 	ft_pwd(t_vars *vars);
 void	ft_echo(char **bar, t_vars *vars);
 void	ft_cd(char **ptr, t_vars *vars);
@@ -118,16 +136,16 @@ void 	ft_replace_oldpwd(t_vars *vars);
 
 
 //////                 PIPEX              ///////////////
-int		check_rediraction(t_b_l *lil);
+int check_rediraction(t_b_l *lil);
 char	*ft_path(char *av, char **env);
 void	ft_pipe(t_b_l *big, t_vars *vars, int  len);
-void	ft_rediraction( t_b_l *lil, t_vars *vars, int i);
+void ft_rediraction(t_b_l *lil, t_vars *vars, int len,t_data *data);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strstr(const char *haystack, const char *needle);
 void	ft_putstr(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
 void 	ft_close(int len, t_vars *vars);
-void ft_wait(pid_t child_pro, int len);
+
 void 	psudo_close(t_vars *vars, int i);
 void 	ft_execute(char **cmmd,t_vars *vars);
 int 	check_path(char **env);
@@ -143,6 +161,16 @@ char *find_user(t_vars *vars);
 void	ft_chdir(char *ptr, t_vars *vars);
 void ft_transform(t_b_l *lil);
 void ft_test(t_b_l *lil2);
-void init_signal(void);
+
+void ft_wait(pid_t *child_pro, int len);
+void init_signal();
+void    sig_handler(int signum);
+int check_herdoc(t_b_l * lil);
+void sig_han(int signum);
+void ft_execution(t_b_l *big, t_vars *vars, char *ptr);
+void pip_herdoc(t_vars *vars, t_b_l *lil, int len, t_data *data);
+
+void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data);
+void is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len);
 
 # endif

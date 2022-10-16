@@ -6,19 +6,19 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:59:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/11 11:21:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/14 18:42:11 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-
+	
 
 void ft_execution(t_b_l *big, t_vars *vars, char *ptr)
 {
 	t_p_l *lil;
 	t_b_l *sv;
 	int len = 0;
-	int j= 0;
+	int j = 0;
 	int i;
 	char *str;
 	if(big == NULL)
@@ -44,12 +44,8 @@ void ft_execution(t_b_l *big, t_vars *vars, char *ptr)
 	ft_pipe(big, vars, j);
 }
 
-	
-	
 
-	// t_b_l *lil2 = big;
-	// ft_test(lil2);
-// }
+
 // void ft_test(t_b_l *lil2)
 // {
 // 	t_r *lit;

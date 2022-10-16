@@ -71,7 +71,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	return (ptr);
 }
 
-// char	*ft_strdupp(char *s1)
+// char	*ft_strdup(char *s1)
 // {
 // 	char	*ptr;
 // 	int		i;

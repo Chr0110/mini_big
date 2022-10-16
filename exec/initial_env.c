@@ -6,11 +6,12 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/11 18:39:57 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/16 09:59:55 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
 
 
 void ft_initial_exec(t_vars *vars, char **env)
@@ -35,7 +36,6 @@ void initial_env(t_vars *vars, char **env)
 	while(env[i])
 	{
 		vars->env[i] = ft_strdup(env[i]);
-		
 		i++;
 	}
 	vars->env[i] = NULL;
@@ -103,7 +103,7 @@ void ft_replace(t_vars *vars)
 	{
 		if(ft_strncmp(vars->env[i], "PWD=", 4) == 0 )
 		{
-			free(vars->env[i]);
+			// free(vars->env[i]);
 			vars->env[i] = ft_strjoin("PWD=", pwd);
 		}
 		i++;
@@ -116,7 +116,7 @@ void ft_replace(t_vars *vars)
 	}
 	env_to_exp(vars);
 	size = size_exp(vars);
-	free(vars->pwd);
+	// free(vars->pwd);
 	vars->pwd = pwd;
 }
 
@@ -134,12 +134,12 @@ void ft_replace_shlvl(t_vars *vars)
 		if(ft_strncmp(vars->env[i], "SHLVL", 5) == 0)
 		{
 			str = ft_copie_shlvl(vars->env[i]);
-			free(vars->env[i]);
+			// free(vars->env[i]);
 			a = atoi(str) + 1;
 			n = ft_itoa(a);
 			vars->env[i] = ft_strjoin("SHLVL=", n);
-			free(n);
-			free(str);
+			// free(n);
+			// free(str);
 		}
 		i++;
 	}
@@ -182,7 +182,7 @@ void ft_replace_oldpwd(t_vars *vars)
 	{
 		if (ft_strncmp(vars->env[i], "OLDPWD", 6) == 0)
 		{
-			free(vars->env[i]);
+			// free(vars->env[i]);
 			i++;
 		}
 		vars->env[j] = vars->env[i];

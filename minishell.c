@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/15 22:51:02 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 20:52:37 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,6 +46,34 @@ void init_signal(void)
 	tgcatt();
 }
 
+void	free_big(t_b_l *big_list, t_p_l *tmp, t_b_l *btmp)
+{
+	t_r *rtmp;
+	t_b_l *btmp1;
+
+	btmp = big_list;
+	while(btmp)
+	{
+		while(btmp->arg)
+		{
+			tmp = btmp->arg;
+			btmp->arg = btmp->arg->next;
+			free(tmp->content.value);
+			free(tmp);
+		}
+		while(btmp->red)
+		{
+			rtmp = btmp->red;
+			btmp->red = btmp->red->next;
+			free(rtmp->content.value);
+			free(rtmp);
+		}
+		btmp1 = btmp;
+		btmp = btmp->next;
+		free(btmp1);
+	}
+	free(btmp);
+}
 
 int main(int ac, char **av, char  **env)
 {
@@ -55,15 +83,17 @@ int main(int ac, char **av, char  **env)
 	t_b_l *big;
 	t_b_l *temp;
 	t_data *data;
+	t_p_l	*tmp;
+	t_b_l	*btmp;
 
 	vars = malloc(sizeof(t_vars));
 	data = malloc(sizeof(t_data));
-	ft_initial_exec(vars, env);
-	data->id = 0;
+	// ft_initial_exec(vars, env);
+	// data->id = 0;
 	init_signal();
 	while(1)
 	{
-		g_var[1] = 0;
+		
 		ptr = readline(YELLOW"minishell$> "NOR);
 		init_signal();
 		if (!ptr)
@@ -76,38 +106,8 @@ int main(int ac, char **av, char  **env)
 		{
 			add_history(ptr);
 			big = ft_parsing(ptr, env, temp);
-			//ft_execution(big,vars,ptr);
 		}
-		free(ptr);
 		if (big)
-		{
-			t_b_l *btmp = big;
-			t_b_l *btmp1;
-			t_p_l *tmp;
-			t_r *rtmp;
-			while(btmp)
-			{
-				while(btmp->arg)
-				{
-					tmp = btmp->arg;
-					btmp->arg = btmp->arg->next;
-					free(tmp->content.value);
-					free(tmp);
-				}
-				while(btmp->red)
-				{
-					rtmp = btmp->red;
-					btmp->red = btmp->red->next;
-					free(rtmp->content.value);
-					free(rtmp);
-				}
-				btmp1 = btmp;
-				btmp = btmp->next;
-				printf("m here\n");
-				free(btmp1);
-			}
-			free(btmp);
-		}
+			free_big(big, tmp, btmp);
 	}
-	
 }

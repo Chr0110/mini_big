@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:48:12 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/15 06:04:15 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 06:16:45 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,25 @@ void	remove_d_a(char **res, int *i, char *s)
 	(*i)++;
 }
 
+void	which_quote(char **res, char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == 34)
+			remove_d_a(&(*res), &i, s);
+		else if (s[i] == 39)
+			remove_s_a(&(*res), &i, s);
+		else
+		{
+			(*res) = ft_strjoin_one((*res), s[i]);
+			i++;
+		}
+	}
+}
+
 void	remove_quotes(t_token *node)
 {
 	char	*s;
@@ -43,18 +62,7 @@ void	remove_quotes(t_token *node)
 	res = strdup("");
 	i = 0;
 	s = node->value;
-	while (s[i])
-	{
-		if (s[i] == 34)
-			remove_d_a(&res, &i, s);
-		else if (s[i] == 39)
-			remove_s_a(&res, &i, s);
-		else
-		{
-			res = ft_strjoin_one(res, s[i]);
-			i++;
-		}
-	}
+	which_quote(&res, s);
 	free(node->value);
 	node->value = malloc(ft_strlen(res) + 1 * sizeof(char));
 	node->value[ft_strlen(res)] = '\0';

@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:06:26 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/15 05:53:32 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 06:19:02 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,8 +38,11 @@ void	ft_lstadd_back2(t_p_l **lst, t_p_l *new)
 void	ft_creat_parse_lst(t_p_l **parse_branch, t_token *token)
 {
 	t_p_l	*new;
-	int i = ft_strlen(token->value);
-	int j = 0;
+	int		i;
+	int		j;
+
+	j = 0;
+	i = ft_strlen(token->value);
 	new = malloc(sizeof(t_p_l));
 	new->content.value = malloc((i + 1) * sizeof(char *));
 	new->content.value[i] = '\0';

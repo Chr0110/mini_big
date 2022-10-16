@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:12:53 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/15 06:03:54 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 05:44:15 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ char	*d_q_r(t_exp_list *ex_ls, char **env, int type)
 {
 	char	*value;
 	int		v;
-	int cmp;
+	int 	cmp;
+	int		j;
 
 	v = 0;
 	cmp = 0;
@@ -43,10 +44,10 @@ char	*d_q_r(t_exp_list *ex_ls, char **env, int type)
 	{
 		if (ex_ls->s[ex_ls->i] == '$' && type != 4)
 		{
-			if (ex_ls->s[ex_ls->i + 1] != 34 && ex_ls->s[ex_ls->i + 1] != '$')
+			if (ex_ls->s[ex_ls->i + 1] != 34 && ex_ls->s[ex_ls->i + 1] != '$' && ex_ls->s[ex_ls->i + 1] != '?')
 				value = expand_dollar_q(ex_ls, env, v, cmp);
 			else
-				ex_ls->res = dollar_cases(&ex_ls->res, ex_ls->s, &ex_ls->i);
+				ex_ls->res = dollar_cases(&ex_ls->res, ex_ls->s, &ex_ls->i, j);
 		}
 		else
 			ex_ls->res = ft_strjoin_one(ex_ls->res, ex_ls->s[ex_ls->i++]);
@@ -57,7 +58,8 @@ char	*d_q_r(t_exp_list *ex_ls, char **env, int type)
 
 char	*n_q_r(t_exp_list *list, char **env, int type)
 {
-	int		v;
+	int	v;
+	int j;
 
 	v = 0;
 	while (env[v])
@@ -68,14 +70,13 @@ char	*n_q_r(t_exp_list *list, char **env, int type)
 		if (list->s[list->i] == '$' && type != 4)
 		{
 			(list->i)++;
-			if (list->s[list->i] == '\0' || list->s[list->i] == '$')
-				list->res = dollar_cases2(&list->res, list->s, &list->i);
+			if (list->s[list->i] == '\0' || list->s[list->i] == '$' || list->s[list->i] == '?')
+				list->res = dollar_cases2(&list->res, list->s, &list->i, j);
 			else
 				list->res = expand_dollar_n_q(list, env, v);
 		}
 		else
 			list->res = ft_strjoin_one(list->res, list->s[list->i++]);
 	}
-	
 	return (list->res);
 }

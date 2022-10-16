@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:35:02 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/05 14:38:48 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 06:32:26 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,33 +14,21 @@
 
 int	r_o_error(int i, int *error)
 {
+	int	j;
+
+	j = 0;
 	if (i == 0)
-	{
-		panic("syntax error", "|", "error in redirecion in", 258);
-		(*error)++;
-		return (1);
-	}
+		j = panic("syntax error", "|", "error in redirecion in", 258);
 	else if (i == 2)
-	{
-		panic("syntax error", ">", "error in redirecion out", 258);
-		(*error)++;
-		return (1);
-	}
+		j = panic("syntax error", "<", "error in redirecion in", 258);
 	else if (i == 3)
-	{
-		panic("syntax error", "<", "error in redirecion out", 258);
-		(*error)++;
-		return (1);
-	}
+		j = panic("syntax error", ">", "error in redirecion in", 258);
 	else if (i == 4)
-	{
-		panic("syntax error", "<<", "error in redirecion out", 258);
-		(*error)++;
-		return (1);
-	}
+		j = panic("syntax error", "<<", "error in redirecion in", 258);
 	else if (i == 5)
+		j = panic("syntax error", ">>", "error in redirecion in", 258);
+	if (j == 1)
 	{
-		panic("syntax error", ">>", "error in redirecion out", 258);
 		(*error)++;
 		return (1);
 	}
@@ -49,33 +37,21 @@ int	r_o_error(int i, int *error)
 
 int	r_i_error(int i, int *error)
 {
+	int	j;
+
+	j = 0;
 	if (i == 0)
-	{
-		panic("syntax error", "|", "error in redirecion in", 258);
-		(*error)++;
-		return (1);
-	}
+		j = panic("syntax error", "|", "error in redirecion in", 258);
 	else if (i == 2)
-	{
-		panic("syntax error", ">", "error in redirecion in", 258);
-		(*error)++;
-		return (1);
-	}
+		j = panic("syntax error", "<", "error in redirecion in", 258);
 	else if (i == 3)
-	{
-		panic("syntax error", "<", "error in redirecion in", 258);
-		(*error)++;
-		return (1);
-	}
+		j = panic("syntax error", ">", "error in redirecion in", 258);
 	else if (i == 4)
-	{
-		panic("syntax error", "<<", "error in redirecion in", 258);
-		(*error)++;
-		return (1);
-	}
+		j = panic("syntax error", "<<", "error in redirecion in", 258);
 	else if (i == 5)
+		j = panic("syntax error", ">>", "error in redirecion in", 258);
+	if (j == 1)
 	{
-		panic("syntax error", ">>", "error in redirecion in", 258);
 		(*error)++;
 		return (1);
 	}

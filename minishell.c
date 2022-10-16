@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/15 06:23:16 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/15 22:51:02 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -76,10 +76,8 @@ int main(int ac, char **av, char  **env)
 		{
 			add_history(ptr);
 			big = ft_parsing(ptr, env, temp);
-			ft_execution(big,vars,ptr);
+			//ft_execution(big,vars,ptr);
 		}
-		// else
-			// ft_putchar_fd('\n', 1);
 		free(ptr);
 		if (big)
 		{
@@ -110,7 +108,6 @@ int main(int ac, char **av, char  **env)
 			}
 			free(btmp);
 		}
-		// signal(SIGINT, SIG_DFL);
 	}
 	
 }

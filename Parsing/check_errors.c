@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:25:30 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/15 04:14:48 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 05:54:55 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,20 @@ int	global_error(t_list *temp, int *error, int *i)
 	else if (temp->content.e_type == 5 && app_error(temp, error) == 1)
 		return (1);
 	return (0);
+}
+
+void	free_for_error(t_lx *lx, t_list *small_branch)
+{
+	free_lexer(&lx);
+	t_list *t;
+	t_list *tmp1 = small_branch;
+	while(tmp1)
+	{
+		t = tmp1->next;
+		free(tmp1->content.value);
+		free(tmp1);
+		tmp1 = t;
+	}
 }
 
 void	check_errors(t_list *small_branch, char **env, t_b_l **big_branch, t_lx *lx)
@@ -50,16 +64,7 @@ void	check_errors(t_list *small_branch, char **env, t_b_l **big_branch, t_lx *lx
 		parsing(small_branch, env, big_branch, lx);
 	else
 	{
-		free_lexer(&lx);
-		t_list *t;
-		t_list *tmp1 = small_branch;
-		while(tmp1)
-		{
-			t = tmp1->next;
-			free(tmp1->content.value);
-			free(tmp1);
-			tmp1 = t;
-		}
+		free_for_error(lx, small_branch);
 		*big_branch = NULL;
 	}
 }

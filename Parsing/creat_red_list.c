@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:07:57 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/14 00:10:15 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/16 06:19:07 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,12 +38,14 @@ void	ft_lstadd_back3(t_r **lst, t_r *new)
 void	ft_creat_red_lst(t_r **red_branch, t_token *token)
 {
 	t_r	*new;
+	int	j;
+	int	i;
 
 	new = malloc(sizeof(t_r));
 	if (!new)
 		printf("error\n");
-	int i = ft_strlen(token->value);
-	int j = 0;
+	i = ft_strlen(token->value);
+	j = 0;
 	new->content.value = malloc((i + 1) * sizeof(char *));
 	new->content.value[i] = '\0';
 	while(j < i)

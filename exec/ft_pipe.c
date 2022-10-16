@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   ft_pipe.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/12 15:35:34 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/15 22:51:12 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -164,7 +164,7 @@ void ft_wait(pid_t child_pro, int len)
 	while(i < len)
 	{	
 		waitpid(child_pro, status, 0);
-		printf()
+		//printf()
 		if(status[i] == 3)
 			ft_putstr("^\\Quiet: 3\n", 2);
 		i++;

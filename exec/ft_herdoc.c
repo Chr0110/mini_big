@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:25:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/16 20:13:35 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 09:29:57 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,8 +67,7 @@ void sig_han(int signum)
 {
 	if(signum == SIGINT)
 	{
-		printf("dfgfdgfgfg       %d\n",heredoc_pid);
-		printf(BLUE"%d\n",kill(heredoc_pid, SIGQUIT));
+		exit(2);
 	}
 }
 

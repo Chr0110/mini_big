@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/16 17:19:22 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 08:52:18 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,9 @@ typedef struct s_vars
 
 }	t_vars;
 
-int num;
+// int num;
 int	heredoc_on;
-int	heredoc_pid;
+// int	heredoc_pid;
 
 // t_vars *vars;
 
@@ -171,6 +171,6 @@ void ft_execution(t_b_l *big, t_vars *vars, char *ptr);
 void pip_herdoc(t_vars *vars, t_b_l *lil, int len, t_data *data);
 
 void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data);
-void is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len);
+int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len);
 
 # endif

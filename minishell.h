@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:48:43 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 06:31:26 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -214,6 +214,7 @@ char	*s_q_r(t_exp_list *list, int *type);
 char	*d_q_r(t_exp_list *ex_ls, char **env, int type);
 char	*n_q_r(t_exp_list *ex_l, char **env, int type);
 int		not_between_sd_quotes(char *s, int i);
+t_b_l 	*ft_parsing(char *ptr ,char **env, t_b_l *big_list);
 
 ///////////////////////             EXECution        /////////////////////////////
 void ft_execution(t_b_l *big,t_vars *vars, char *ptr);

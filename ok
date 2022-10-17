@@ -1,0 +1,8 @@
+Makefile
+Parsing
+exec
+minishell
+minishell.c
+minishell.h
+minishell.o
+ok

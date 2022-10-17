@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/16 17:14:37 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 09:40:28 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -72,8 +72,11 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 
 	// close(vars->s0);
 	// close(vars->s1);
+	vars->sig_on = -1;
 	if(check_rediraction(lil))
 		ft_rediraction(lil, vars, len, data);
+	if (vars->sig_on == 2)
+		return ;
 	// printf("%d  %d \n",data->p[0],data->p[1]);
 	if(len == 1 && !is_builtins(vars, big->str))
 	{
@@ -115,10 +118,7 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 					builtins(vars, lil->str);
 					exit(0);
 				}
-				if (vars->sig_on == 2)
-				{
-					exit(0);
-				}
+				
 				ft_execute(lil->str, vars);
 				ft_close(len, vars);
 			}

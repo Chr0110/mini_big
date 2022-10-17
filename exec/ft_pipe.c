@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 11:59:44 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 12:29:37 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,12 +56,11 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 	t_b_l *lil2 = big;
 	t_b_l *lil3 = big;
 	t_data *data;
-	char	*ptr;
 	
 	data = malloc(sizeof(t_data));
 	data->count = 0;
 	data->flag = -1;
-	ptr = NULL;
+	data->name = NULL;
 	// if(check_herdoc(lil))
 	// 	is_herdoc(lil, vars, data, len);
 	inf(vars, len);
@@ -77,8 +76,8 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 	vars->sig_on = -1;
 	if(check_rediraction(lil))
 	{
-		ptr = creat_name();
-		ft_rediraction(lil, vars, len, data, ptr);
+		data->name = creat_name();
+		ft_rediraction(lil, vars, len, data);
 	}
 	if (vars->sig_on == 2)
 		return ;
@@ -87,7 +86,7 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 	{
 		vars->index = 0;
 		builtins(vars, big->str);
-		ft_close(len, vars, ptr);
+		ft_close(len, vars, data->name);
 		return ;
 	}
 	i = 0;
@@ -126,17 +125,17 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 					exit(0);
 				}
 				ft_execute(lil->str, vars);
-				ft_close(len, vars, ptr);
+				ft_close(len, vars,  data->name);
 			}
 		}
 		psudo_close(vars, i);
 		lil = lil->next;
 		i++;
 	}
-	ft_close(len, vars, ptr);
+	ft_close(len, vars, data->name);
 	ft_wait(child_pro, len);
 	init_signal();
-	free (ptr);
+	free ( data->name);
 }
 
 

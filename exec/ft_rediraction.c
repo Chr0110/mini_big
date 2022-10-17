@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:47:53 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 11:56:33 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 12:28:18 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int check_herdoc(t_b_l * lil)
 }
 
 
-int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len, char *ptr)
+int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len)
 {
 	t_b_l *lil2;
 	pid_t	child;
@@ -46,7 +46,7 @@ int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len, char *ptr)
 				if(lil2->red->content.e_type == 4)
 				{
 					str = lil2->red->content.value;
-					ft_herdoc(vars,lil, str, data, ptr);
+					ft_herdoc(vars,lil, str, data);
 				}
 				lil2->red = lil2->red->next;
 			}			
@@ -56,7 +56,7 @@ int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len, char *ptr)
 	else
 	{
 		waitpid(child, &status, 0);
-		data->p[0] = open(ptr, O_RDONLY, 0644);
+		data->p[0] = open(data->name, O_RDONLY, 0644);
 		vars->sig_on = status;
 		if (vars->sig_on == -1 || vars->sig_on == 0)
 			return 0;
@@ -87,7 +87,7 @@ int check_rediraction(t_b_l *lil)
 }
 
 
-void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data, char *ptr)
+void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
 {
 	int i = 0;
 	t_b_l*lil2;
@@ -101,7 +101,7 @@ void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data, char *ptr)
 				// printf(CYAN"fFdgfgff\n ");
 				// ft_herdoc(vars,lil, len, data);
 				vars->sig_on = 0;
-				if (is_herdoc(lil2, vars, data, len, ptr) == 1)
+				if (is_herdoc(lil2, vars, data, len) == 1)
 				vars->sig_on = 2;
 			}
 			if(lil->red->content.e_type == 2)

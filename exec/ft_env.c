@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/08 18:09:55 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 18:49:51 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 // char **new_barr(char **bar, t_vars *vars)
 // {
 // 	int i = 0;
-// 	int j = 1;
+// 	int j = 1
 // 	int k = 0;
 // 	char  **barr;
 // 	char **str = malloc(sizeof(char*)*1000);
@@ -61,7 +61,7 @@ int check_isdouble(char  **test, int len,char *str)
 {
 	int i = 0;
 	int j = 0;
-	while(i < len - 1)
+	while(i < len)
 	{
 		if(ft_strcmp(test[i], str) == 0)
 			return 0;
@@ -98,7 +98,7 @@ void aff_env(char **ptr, t_vars *vars)
 	int i = 0;
 	while(ptr[i])
 	{
-		ft_putstr_fd(ptr[i], vars->outfile[vars->index]);
+		ft_putstr(ptr[i], vars->outfile[vars->index]);
 		ft_putchar_fd('\n', vars->outfile[vars->index]);
 		i++;
 	}
@@ -118,7 +118,7 @@ void remove_str(char **test, char *str, t_vars *vars, char *bar)
 		i++;
 		j++;
 	}
-	vars->env[j] = bar;
+	// vars->env[j] = bar;
 	vars->env[j] = NULL;
 }
 
@@ -135,17 +135,32 @@ void add_env(char **bar, t_vars *vars)
 		barr = take_bar(bar,vars);
 	while(bar[j])
 	{	
-		test = take_variable2(i, vars);
-		if(check_isdouble(test, len,barr[j]) == 0)
+		test = take_variable2(len, vars);
+		if(check_isdouble(test, len, barr[j]) == 0)
+		{
 			remove_str(test, barr[j], vars, bar[j]);
-		if(check_isdouble(test, len,barr[j]) == 1)
-				vars->env[i] = ft_strdup(bar[j]);	
+			j = 1;
+			len--;
+		}
 		j++;
-		i++;
+		ft_free(test);
 	}
+	j = 1;
+	while(bar[j])
+	{	
+		test = take_variable2(len, vars);
+		if(check_isdouble(test, len, barr[j]) == 1)
+		{
+			vars->env[len] = ft_strdup(bar[j]);
+			len++;
+		}
+		j++;
+		ft_free(test);
+	}
+	vars->env[len] = NULL;
 	// ft_free(test);
-	if(bar[1] != NULL)
-		ft_free(barr);
+	// if(bar[1] != NULL)
+	// 	ft_free(barr);
 }
 
 void ft_env(char **bar,t_vars *vars)
@@ -185,7 +200,6 @@ char **take_bar(char **bar, t_vars *vars)
 			barr[i] = malloc(sizeof(char *) * 1000);
 			while(bar[i][j] != '=')
 			{
-				
 				barr[i][j] = bar[i][j];
 				j++;
 			}

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/16 09:59:55 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 17:36:34 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,11 @@ void ft_initial_exec(t_vars *vars, char **env)
 void initial_env(t_vars *vars, char **env)
 {
 
-	int i = 0;
-	vars->env = malloc(sizeof(char *) * 1000);
+	int i;
+	i = 0;
+
+	vars->env = malloc(sizeof(char *) *10240);
+	i = 0;
 	while(env[i])
 	{
 		vars->env[i] = ft_strdup(env[i]);
@@ -58,7 +61,8 @@ int size_env(t_vars *vars)
 	int len;
 	
 	len = 0;
-	while(vars->env[++len]);
+	while(vars->env[len])
+		++len;
 	return (len);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 11:58:44 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 18:25:30 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,12 +35,12 @@
 # define MAG  "\x1B[35m"
 
 
-typedef struct s_env
-{
-	char *content;
-	char *str;
-	struct s_env *next;
-}	t_env;
+// typedef struct s_env
+// {
+// 	char *content;
+// 	char *str;
+// 	struct s_env *next;
+// }	t_env;
 
 typedef struct s_data 
 {
@@ -49,6 +49,7 @@ typedef struct s_data
 	int p[2];
 	int count;
 	char **type;
+	char *name;
 
 } t_data;
 
@@ -138,7 +139,7 @@ void 	ft_replace_oldpwd(t_vars *vars);
 int check_rediraction(t_b_l *lil);
 char	*ft_path(char *av, char **env);
 void	ft_pipe(t_b_l *big, t_vars *vars, int  len);
-void 	ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data, char *ptr);
+void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strstr(const char *haystack, const char *needle);
 void	ft_putstr(char *s, int fd);
@@ -169,8 +170,8 @@ void sig_han(int signum);
 void ft_execution(t_b_l *big, t_vars *vars, char *ptr);
 void pip_herdoc(t_vars *vars, t_b_l *lil, int len, t_data *data);
 
-void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data, char *ptr);
-int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len, char *ptr);
+void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data);
+int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len);
 char *creat_name(void);
 
 # endif

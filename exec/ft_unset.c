@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/07 17:14:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 19:19:40 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char **take_variable_exp(int len, t_vars *vars)
 	return var;
 }
 
-void unset_exp(char **bar ,t_vars *vars)
+void unset_exp(char **ba ,t_vars *vars)
 {
 	int i = 0;
 	int j = 0;

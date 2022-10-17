@@ -342,9 +342,7 @@ void	ft_putstr(char *s, int fd)
 
 	i = 0;
 	if (!s)
-	{
 		return ;
-	}
 	while (s[i])
 	{
 		write (fd, &s[i], 1);

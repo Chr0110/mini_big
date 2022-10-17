@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:25:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 11:50:39 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 12:27:27 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -71,15 +71,13 @@ void sig_han(int signum)
 	}
 }
 
-void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data, char *ptr)
+void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data)
 {
 	char *str;
 	char *buffer;
 	char *tmp;
-	// char *ptr;
 	char *expand;
 	int i = 0;
-	// ptr = creat_name();
 	data->har = ft_strdup("");
 	
 	while(1)
@@ -87,7 +85,7 @@ void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data, char *ptr)
 		str = readline("> ");
 		if(!str || ft_strcmp(str, dil) == 0)
 		{
-			data->p[1] = open(ptr, O_TRUNC | O_WRONLY | O_CREAT ,0644);
+			data->p[1] = open(data->name, O_TRUNC | O_WRONLY | O_CREAT ,0644);
 			ft_putstr(data->har, data->p[1]);
 			close(data->p[1]);
 			// data->p[0] = open(ptr, O_RDONLY, 0644);

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 09:40:28 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 11:59:44 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,12 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 	t_b_l *lil2 = big;
 	t_b_l *lil3 = big;
 	t_data *data;
+	char	*ptr;
 	
 	data = malloc(sizeof(t_data));
 	data->count = 0;
 	data->flag = -1;
+	ptr = NULL;
 	// if(check_herdoc(lil))
 	// 	is_herdoc(lil, vars, data, len);
 	inf(vars, len);
@@ -74,7 +76,10 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 	// close(vars->s1);
 	vars->sig_on = -1;
 	if(check_rediraction(lil))
-		ft_rediraction(lil, vars, len, data);
+	{
+		ptr = creat_name();
+		ft_rediraction(lil, vars, len, data, ptr);
+	}
 	if (vars->sig_on == 2)
 		return ;
 	// printf("%d  %d \n",data->p[0],data->p[1]);
@@ -82,7 +87,7 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 	{
 		vars->index = 0;
 		builtins(vars, big->str);
-		ft_close(len, vars);
+		ft_close(len, vars, ptr);
 		return ;
 	}
 	i = 0;
@@ -95,11 +100,13 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 			if(child_pro[i] == 0)
 			{
 				signal(SIGINT, SIG_DFL);
-				if (data->flag != -1)
+				printf ("data->flag = |%d|\tdata->p[0] = |%d|\n", data->flag, data->p[0]);
+				if (data->flag == 1)
 				{
 					vars->infile[i] = data->p[0];
+					
 				}
-				else if(dup2(vars->infile[i], STDIN_FILENO) < 0)
+				if(dup2(vars->infile[i], STDIN_FILENO) < 0)
 				{
 					ft_putstr("dup1:\n", 2);
 					exit(0);
@@ -118,18 +125,18 @@ void ft_pipe(t_b_l *big, t_vars *vars, int  len)
 					builtins(vars, lil->str);
 					exit(0);
 				}
-				
 				ft_execute(lil->str, vars);
-				ft_close(len, vars);
+				ft_close(len, vars, ptr);
 			}
 		}
 		psudo_close(vars, i);
 		lil = lil->next;
 		i++;
 	}
-	ft_close(len, vars);
+	ft_close(len, vars, ptr);
 	ft_wait(child_pro, len);
 	init_signal();
+	free (ptr);
 }
 
 
@@ -158,7 +165,7 @@ void psudo_close(t_vars *vars, int i)
 }
 
 
-void ft_close(int len, t_vars *vars)
+void ft_close(int len, t_vars *vars, char *ptr)
 {
 	int k = 0;
 	while(k < len)
@@ -169,6 +176,7 @@ void ft_close(int len, t_vars *vars)
 			close(vars->outfile[k]);
 		k++;
 	}
+	unlink (ptr);
 }
 
 void ft_wait(pid_t *child_pro, int len)

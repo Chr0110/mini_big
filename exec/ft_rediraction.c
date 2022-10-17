@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:47:53 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 10:28:47 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 11:56:33 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,17 +24,16 @@ int check_herdoc(t_b_l * lil)
 }
 
 
-int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len)
+int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len, char *ptr)
 {
 	t_b_l *lil2;
 	pid_t	child;
 	char *str;
 	int status;
 	lil2 = lil;
-	
+	data->flag = 1;
 	signal(SIGINT, SIG_IGN);
 	child = fork();
-	
 	if(child == 0)
 	{	
 		signal(SIGQUIT, SIG_IGN);
@@ -47,7 +46,7 @@ int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len)
 				if(lil2->red->content.e_type == 4)
 				{
 					str = lil2->red->content.value;
-					ft_herdoc(vars,lil, str, data);
+					ft_herdoc(vars,lil, str, data, ptr);
 				}
 				lil2->red = lil2->red->next;
 			}			
@@ -57,6 +56,7 @@ int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len)
 	else
 	{
 		waitpid(child, &status, 0);
+		data->p[0] = open(ptr, O_RDONLY, 0644);
 		vars->sig_on = status;
 		if (vars->sig_on == -1 || vars->sig_on == 0)
 			return 0;
@@ -87,7 +87,7 @@ int check_rediraction(t_b_l *lil)
 }
 
 
-void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
+void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data, char *ptr)
 {
 	int i = 0;
 	t_b_l*lil2;
@@ -101,8 +101,8 @@ void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
 				// printf(CYAN"fFdgfgff\n ");
 				// ft_herdoc(vars,lil, len, data);
 				vars->sig_on = 0;
-				if (is_herdoc(lil2, vars, data, len) == 1)
-					vars->sig_on = 2;
+				if (is_herdoc(lil2, vars, data, len, ptr) == 1)
+				vars->sig_on = 2;
 			}
 			if(lil->red->content.e_type == 2)
 			{
@@ -110,12 +110,7 @@ void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
 				if (vars->infile[i] != -1 && vars->infile[i] != 0)
 					close(vars->infile[i]);
 				vars->infile[i] = open(lil->red->content.value, O_RDONLY, 0644);
-				if(access(lil->red->content.value,R_OK) == -1 )
-				{
-					ft_putstr(lil->red->content.value, 2);
-					ft_putstr(": Permission denied\n", 2);
-				}
-				else if(opendir(lil->red->content.value))
+				if(opendir(lil->red->content.value))
 				{
 					ft_putstr(lil->red->content.value, 2);
 					ft_putstr(": Is directory\n", 2);
@@ -123,6 +118,11 @@ void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
 				else if(vars->infile[i] < 0)
 				{
 					ft_putstr("No such file or directory\n", 2);
+				}
+				else if(access(lil->red->content.value,R_OK) == -1 )
+				{
+					ft_putstr(lil->red->content.value, 2);
+					ft_putstr(": Permission denied\n", 2);
 				}
 			}
 			
@@ -132,34 +132,29 @@ void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
 				if (vars->outfile[i] != -1 && vars->outfile[i] != 1)
 					close(vars->outfile[i]);
 				vars->outfile[i] = open(lil->red->content.value, O_CREAT | O_WRONLY | O_TRUNC, 0644);
-				if(access(lil->red->content.value, W_OK) == -1 )
-				{
-					ft_putstr(lil->red->content.value, 2);
-					ft_putstr(": Permission denied\n", 2);
-				}
-				else if(opendir(lil->red->content.value))
+				if(opendir(lil->red->content.value))
 				{
 					ft_putstr(lil->red->content.value, 2);
 					ft_putstr(": Is directory\n", 2);
 				}
-		
 				else if(vars->outfile[i] < 0)
 				{
 					ft_putstr("No such file or directory\n", 2);
 					
 				}
+				else if(access(lil->red->content.value, W_OK) == -1 )
+				{
+					ft_putstr(lil->red->content.value, 2);
+					ft_putstr(": Permission denied\n", 2);
+				}
+		
 			}
 			if(lil->red->content.e_type == 5)
 			{
 				if (vars->outfile[i] != -1 && vars->outfile[i] != 1)
 					close (vars->outfile[i]);
 				vars->outfile[i] = open(lil->red->content.value, O_CREAT | O_WRONLY | O_APPEND, 0644);
-				if(access(lil->red->content.value, W_OK) == -1 )
-				{
-					ft_putstr(lil->red->content.value, 2);
-					ft_putstr(": Permission denied\n", 2);
-				}
-				else if(opendir(lil->red->content.value))
+				if(opendir(lil->red->content.value))
 				{
 					ft_putstr(lil->red->content.value, 2);
 					ft_putstr(": Is directory\n", 2);
@@ -167,6 +162,11 @@ void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
 				else if(vars->outfile[i] < 0)
 				{
 					ft_putstr("No such file or directory\n", 2);
+				}
+				else if(access(lil->red->content.value, W_OK) == -1 )
+				{
+					ft_putstr(lil->red->content.value, 2);
+					ft_putstr(": Permission denied\n", 2);
 				}
 			}
 			lil->red = lil->red->next;

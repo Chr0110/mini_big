@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 08:52:18 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/17 11:58:44 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -74,9 +74,8 @@ typedef struct s_vars
 
 }	t_vars;
 
-// int num;
-int	heredoc_on;
-// int	heredoc_pid;
+int in;
+int out;
 
 // t_vars *vars;
 
@@ -139,12 +138,12 @@ void 	ft_replace_oldpwd(t_vars *vars);
 int check_rediraction(t_b_l *lil);
 char	*ft_path(char *av, char **env);
 void	ft_pipe(t_b_l *big, t_vars *vars, int  len);
-void ft_rediraction(t_b_l *lil, t_vars *vars, int len,t_data *data);
+void 	ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data, char *ptr);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strstr(const char *haystack, const char *needle);
 void	ft_putstr(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
-void 	ft_close(int len, t_vars *vars);
+void 	ft_close(int len, t_vars *vars, char *ptr);
 
 void 	psudo_close(t_vars *vars, int i);
 void 	ft_execute(char **cmmd,t_vars *vars);
@@ -170,7 +169,8 @@ void sig_han(int signum);
 void ft_execution(t_b_l *big, t_vars *vars, char *ptr);
 void pip_herdoc(t_vars *vars, t_b_l *lil, int len, t_data *data);
 
-void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data);
-int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len);
+void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data, char *ptr);
+int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len, char *ptr);
+char *creat_name(void);
 
 # endif

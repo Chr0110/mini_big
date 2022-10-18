@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:25:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 12:27:27 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 07:15:10 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char *ft_expand(t_vars *vars,char *ptr)
 	int	i;
 	int	j;
 	int	k;
-	char *str;
+	char *str = NULL;
 	 i = 0;
 	 j = 0;
 	k = 0;
@@ -57,6 +57,7 @@ char *ft_expand(t_vars *vars,char *ptr)
 				k++;
 			}
 			str[k] = '\0';
+			break;
 		}
 		i++;
 	}

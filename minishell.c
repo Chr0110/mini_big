@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 10:13:46 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 13:08:35 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    sig_handler(int signum)
     {
         ft_putchar_fd('\n', 1);
         rl_on_new_line();
-        rl_replace_line("", 1);
+       rl_replace_line("", 1);
         rl_redisplay();	
     }
 	if (signum == SIGQUIT)
@@ -89,11 +89,9 @@ int main(int ac, char **av, char  **env)
 	vars = malloc(sizeof(t_vars));
 	data = malloc(sizeof(t_data));
 	ft_initial_exec(vars, env);
-	// data->id = 0;
 	init_signal();
 	while(1)
 	{
-		
 		ptr = readline(YELLOW"minishell$> "NOR);
 		init_signal();
 		if (!ptr)
@@ -105,8 +103,8 @@ int main(int ac, char **av, char  **env)
 		if(ft_strlen1(ptr) != 0)
 		{
 			add_history(ptr);
-			big = ft_parsing(ptr, env, temp);
-			ft_execution(big,vars, ptr);
+			big = ft_parsing(ptr, vars->env, temp);
+			ft_execution(big, vars, ptr);
 		}
 		
 	}

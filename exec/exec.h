@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 18:25:30 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 18:29:19 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include <termios.h>
 #include <sys/stat.h>
  #include <dirent.h>
-
+# define	size_all 1024
 # define RED     "\x1b[31m"
 # define GREEN   "\x1b[32m"
 # define YELLOW  "\x1b[33m"
@@ -72,14 +72,22 @@ typedef struct s_vars
 	int s1;
 	int sig_on;
 	int  pid;
-
+	
 }	t_vars;
 
 int in;
 int out;
 
 // t_vars *vars;
-
+void	ft_unset2(t_vars *vars, char **bar, char **barr, char **take);
+int	check_isdouble(char **test, int len, char *str);
+void	remove_str(char **test, char *str, t_vars *vars, char *bar);
+void take_bar2(char **barr,char **bar, int i);
+ void add_bar_to_env(int len ,char **barr, char **bar,t_vars *vars);
+void fill_bar(t_b_l *big);
+void	print_echo(char **bar, t_vars *vars, int o, int j);
+void	option_echo(t_vars *vars, char **bar, int j, int y);
+void normal_echo(t_vars *vars, char **bar, int j);
 char	**ft_split(char const *s, char c);
 int		ft_len(char const *s, char c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:47:53 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 12:28:18 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 18:01:56 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,6 @@ int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len)
 		signal(SIGINT, sig_han);
 		while(lil2)
 		{
-			
 			while(lil2->red)
 			{	
 				if(lil2->red->content.e_type == 4)
@@ -57,7 +56,6 @@ int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len)
 	{
 		waitpid(child, &status, 0);
 		data->p[0] = open(data->name, O_RDONLY, 0644);
-		vars->sig_on = status;
 		if (vars->sig_on == -1 || vars->sig_on == 0)
 			return 0;
 	}
@@ -91,7 +89,8 @@ void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
 {
 	int i = 0;
 	t_b_l*lil2;
-	lil2 = lil;vars->sig_on = 0;
+	lil2 = lil;
+	vars->sig_on = 0;
 	while(lil)
 	{	
 		while(lil->red)
@@ -99,10 +98,11 @@ void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
 			if(lil->red->content.e_type == 4 )
 			{
 				// printf(CYAN"fFdgfgff\n ");
-				// ft_herdoc(vars,lil, len, data);
-				vars->sig_on = 0;
+				// ft_herdoc(vars,lil, data->name, data);
+				data->p[0] = -1;
+				data->p[1] = -1;
 				if (is_herdoc(lil2, vars, data, len) == 1)
-				vars->sig_on = 2;
+					vars->sig_on = 2;
 			}
 			if(lil->red->content.e_type == 2)
 			{
@@ -119,7 +119,7 @@ void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data)
 				{
 					ft_putstr("No such file or directory\n", 2);
 				}
-				else if(access(lil->red->content.value,R_OK) == -1 )
+				else if(access(lil->red->content.value, R_OK) == -1)
 				{
 					ft_putstr(lil->red->content.value, 2);
 					ft_putstr(": Permission denied\n", 2);

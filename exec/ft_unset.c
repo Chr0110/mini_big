@@ -6,24 +6,12 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 19:19:40 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 18:43:05 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
-// void copie_env(char **hold,int len,t_vars *vars,int index)
-// {
-	
-// 	int i= 0;
-// 	while(i < len - index)
-// 	{
-// 		vars->env[i] = ft_strdup(hold[i]);	
-// 		i++;
-// 	}
-// 	vars->env[i] = NULL;
-// }
 
 
 void ft_unset(char **bar ,t_vars *vars)
@@ -64,6 +52,34 @@ void ft_unset(char **bar ,t_vars *vars)
 	// ft_free(barr);
 }
 
+// void	ft_unset2(t_vars *vars, char **bar, char **barr, char **take)
+// {
+// 	int i;
+// 	int j;
+// 	int len;
+// 	int k;
+	
+	
+// 	i = 0;
+// 	k = 0;
+// 	len = size_env(vars);
+// 	take = take_variable2(len, vars);
+	
+// 	while(i < len)
+// 	{
+// 		if(ft_strcmp(take[i], barr[j]) == 0)
+// 		{
+// 			free(vars->env[i]);
+// 			i++;
+// 		}
+// 		vars->env[k] = vars->env[i];
+// 		k++;
+// 		i++;	
+// 	}
+// 	// ft_free(take);
+// 	vars->env[k]=  NULL;
+// }
+
 char **take_variable_exp(int len, t_vars *vars)
 {
 	int i = 0;
@@ -92,7 +108,7 @@ char **take_variable_exp(int len, t_vars *vars)
 	return var;
 }
 
-void unset_exp(char **ba ,t_vars *vars)
+void unset_exp(char **bar ,t_vars *vars)
 {
 	int i = 0;
 	int j = 0;

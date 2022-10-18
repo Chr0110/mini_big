@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:36:25 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 08:52:44 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -85,6 +85,7 @@ char	*ft_strdup(char *s1)
 
 	i = ft_strlen(s1);
 	j = 0;
+	s2 = NULL;
 	s2 = malloc(i + 1 * sizeof(char));
 	if (!s2)
 		return (NULL);

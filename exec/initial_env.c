@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/17 17:36:34 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 17:49:25 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,8 +33,8 @@ void initial_env(t_vars *vars, char **env)
 
 	int i;
 	i = 0;
-
-	vars->env = malloc(sizeof(char *) *10240);
+	vars->env = NULL;
+	vars->env = malloc(sizeof(char *) *1024);
 	i = 0;
 	while(env[i])
 	{
@@ -46,8 +46,11 @@ void initial_env(t_vars *vars, char **env)
 
 void initial_exp(t_vars *vars, char **env)
 {
-	int  i = 0;
-	vars->exp = malloc(sizeof(char *)*1000);
+	int  i;
+	
+	i = 0;
+	vars->exp = NULL;
+	vars->exp = malloc(sizeof(char *)*1024);
 	while(env[i])
 	{
 		vars->exp[i] = ft_strdup(env[i]);
@@ -101,7 +104,6 @@ void ft_replace(t_vars *vars)
 	
 	j = 0 ;
 	i = 0;
-	len = 35;
  	len = size_env(vars);
 	while(i < len)
 	{
@@ -132,6 +134,8 @@ void ft_replace_shlvl(t_vars *vars)
 	char *str;
 	char *n;
 	i = 0;
+	str = NULL;
+	a = 0;
 	len = size_env(vars);
 	while(i < len)
 	{
@@ -159,6 +163,7 @@ char *ft_copie_shlvl(char *str)
 	
 	i = 0;
 	j = 0;
+	ptr = NULL;
 	len = ft_strlen(str);
 	while(str[i] != '=')
 		i++;
@@ -171,7 +176,6 @@ char *ft_copie_shlvl(char *str)
 	ptr[j] = '\0';
 	return (ptr);
 }
-
 
 void ft_replace_oldpwd(t_vars *vars)
 {
@@ -202,6 +206,7 @@ void ft_append(t_vars *vars)
 	char *pwd;
 	
 	i  = 0;
+	pwd = NULL;
 	pwd = ft_strdup("OLDPWD");
 	while(vars->exp[i])
 		i++;

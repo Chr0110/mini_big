@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 18:29:19 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:14:01 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,7 +79,9 @@ int in;
 int out;
 
 // t_vars *vars;
-void	ft_unset2(t_vars *vars, char **bar, char **barr, char **take);
+void ft_unset_exp2(t_vars *vars, char *barr, char **take);
+char *take_variable_exp2(char **var, t_vars *vars, int i);
+void	ft_unset2(t_vars *vars,char *barr, char **take);
 int	check_isdouble(char **test, int len, char *str);
 void	remove_str(char **test, char *str, t_vars *vars, char *bar);
 void take_bar2(char **barr,char **bar, int i);

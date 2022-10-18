@@ -6,140 +6,82 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 18:43:05 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:20:05 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
-
-void ft_unset(char **bar ,t_vars *vars)
+char	**take_variable_exp(int len, t_vars *vars)
 {
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	int len = 0;
-	int index = 0;
-	char **take;
-	char **barr;
+	int		i;
+	char	**var;
 
 	i = 0;
-	check_export(bar, vars);
-	bar = vars->bar;
-	barr = sort_str(bar);
-	
-	while(barr[j])
+	var = malloc(sizeof(char *) * size_all);
+	while (i < len)
 	{
-		i = 0;
-		k = 0;
-		len = size_env(vars);
-		take = take_variable2(len, vars);
-		while(i < len)
-		{
-			if(ft_strcmp(take[i], barr[j]) == 0)
-			{	free(vars->env[i]);
-				i++;
-			}
-			vars->env[k] = vars->env[i];
-			k++;
-			i++;	
-		}
-		ft_free(take);
-		vars->env[k]=  NULL;
-		j++;
-	}
-	// ft_free(barr);
-}
-
-// void	ft_unset2(t_vars *vars, char **bar, char **barr, char **take)
-// {
-// 	int i;
-// 	int j;
-// 	int len;
-// 	int k;
-	
-	
-// 	i = 0;
-// 	k = 0;
-// 	len = size_env(vars);
-// 	take = take_variable2(len, vars);
-	
-// 	while(i < len)
-// 	{
-// 		if(ft_strcmp(take[i], barr[j]) == 0)
-// 		{
-// 			free(vars->env[i]);
-// 			i++;
-// 		}
-// 		vars->env[k] = vars->env[i];
-// 		k++;
-// 		i++;	
-// 	}
-// 	// ft_free(take);
-// 	vars->env[k]=  NULL;
-// }
-
-char **take_variable_exp(int len, t_vars *vars)
-{
-	int i = 0;
-	int j = 0;
-	char **var;
-	var = malloc(sizeof(char *) * 1000);
-	while(i < len)
-	{
-		j = 0;
-		
-		if(ft_strchr(vars->exp[i], '=') == 0)
-		{
-			var[i] = malloc(sizeof(char) * 1000);
-			while(vars->exp[i][j] != '=')
-			{
-				var[i][j] = vars->exp[i][j];
-				j++;
-			}
-			var[i][j] = '\0';
-		}
+		var[i] = malloc(sizeof(char) * size_all);
+		if (ft_strchr(vars->exp[i], '=') == 0)
+			var[i] = take_variable_exp2(var, vars, i);
 		else
-			var[i] =ft_strdup(vars->exp[i]);
+			var[i] = ft_strdup(vars->exp[i]);
 		i++;
 	}
 	var[i] = NULL;
-	return var;
+	return (var);
 }
 
-void unset_exp(char **bar ,t_vars *vars)
+char	*take_variable_exp2(char **var, t_vars *vars, int i)
 {
-	int i = 0;
-	int j = 0;
-	int k = 0;
-	int len = 0;
-	char **take;
-	char **barr;
+	int	j;
 
-	i = 0;
-	barr = sort_str(bar);
-	while(barr[j])
+	j = 0;
+	while (vars->exp[i][j] != '=')
 	{
-		i = 0;
-		k = 0;
-		len = size_exp(vars);
-		take = take_variable_exp(len, vars);
-		while(i < len)
-		{
-			if(ft_strcmp(take[i], barr[j]) == 0)
-			{	
-				free(vars->exp[i]);
-				i++;
-			}
-			vars->exp[k] = vars->exp[i];
-			k++;
-			i++;	
-		}
-		ft_free(take);
-		vars->exp[k]=  NULL;
+		var[i][j] = vars->exp[i][j];
 		j++;
 	}
-	
+	var[i][j] = '\0';
+	return (var[i]);
+}
 
+void	unset_exp(char **bar, t_vars *vars)
+{
+	int		j;
+	char	**take;
+	char	**barr;
+
+	j = 0;
+	barr = sort_str(bar);
+	while (barr[j])
+	{
+		ft_unset_exp2(vars, barr[j], take);
+		j++;
+	}
+}
+
+void	ft_unset_exp2(t_vars *vars, char *barr, char **take)
+{
+	int	i;
+	int	len;
+	int	k;
+
+	i = 0;
+	k = 0;
+	len = size_exp(vars);
+	take = take_variable_exp(len, vars);
+	while (i < len)
+	{
+		if (ft_strcmp(take[i], barr) == 0)
+		{	
+			free(vars->exp[i]);
+			i++;
+		}
+		vars->exp[k] = vars->exp[i];
+		k++;
+		i++;
+	}
+	ft_free(take);
+	vars->exp[k] = NULL;
 }

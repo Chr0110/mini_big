@@ -3,35 +3,15 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/17 06:31:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/19 08:24:52 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #ifndef MINISHELL_H
 # define MINISHELL_H
-
-# include <stdio.h>
-# include <string.h>
-# include <stdlib.h>
-# include <unistd.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <signal.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-typedef struct s_b_l t_b_l;
-// typedef struct s_b_l t_b_l;
-typedef struct s_vars t_vars;
-# include "exec/exec.h"
 
 # define RED     "\x1b[31m"
 # define GREEN   "\x1b[32m"
@@ -39,6 +19,13 @@ typedef struct s_vars t_vars;
 # define BLUE    "\x1b[34m"
 # define CYAN     "\x1b[36m"
 # define NOR      "\x1B[37m"
+
+# include <stdio.h>
+# include <string.h>
+# include <stdlib.h>
+# include <unistd.h>
+# include <readline/readline.h>
+# include <readline/history.h>
 
 int	g_status;
 typedef struct s_token
@@ -109,7 +96,6 @@ typedef struct s_p_l
 
 typedef struct s_b_l
 {
-	char **str;
 	t_p_l			*arg;
 	t_r				*red;
 	struct s_b_l	*next;
@@ -122,7 +108,26 @@ typedef struct s_exp_list
 	char	*res;
 }	t_exp_list;
 
+typedef struct s_for_exp
+{
+	t_p_l	*prev_arg;
+	t_p_l	*current_arg_next;
+	t_p_l	*tmp_ex_ls_last;
+	t_p_l	*current_arg;
+	t_r 	*current_red;
+}	t_for_exp;
+
+typedef struct s_get_value
+{
+	int		i;
+	int		j;
+	int		n;
+	char	*env_cmp;
+	char	*res;
+}	t_get_value;
+
 void	free2d(char **ptr);
+int		find_dollar(char *s);
 char	*ft_itoa(int n);
 void	free_lexer(t_lx **lexer);
 void	init_lexer(char *src, char **env, t_b_l **big_list);
@@ -140,9 +145,12 @@ int		ft_strncmp(const char *src1, const char *src2, size_t n);
 char	*take_from_env(char **env, int j, int i);
 int		there_is_a_space(char *str);
 char	*get_value(char *s, char **env, int *cmp);
+char	*get_value2(char **res, char **env_cmp);
+void	get_param_values(int *i, int *n, int *j);
+void	retry(int *j, char **env_cmp);
 char	*ft_strjoin_one(char *str, char c);
-char	*handle_dollar_double_quotes(char *s, int *i, char **env, int cmp1);
-char	*handle_dollar_no_quotes(char *s, int *i, char **env, int cmp1);
+char	*handle_dollar_double_quotes(char *s, int *i, char **env);
+char	*handle_dollar_no_quotes(char *s, int *i, char **env);
 char	*expand_dollar_q(t_exp_list *ex_ls, char **env, int cmp1, int cmp);
 char	*expand_dollar_n_q(t_exp_list *ex_ls, char **env, int cmp1);
 char	*handle_dollar_no_quotes1(char *s, int *i, char **env, int cmp1);
@@ -160,7 +168,7 @@ char	*dollar_cases2(char **res, char *s, int *i, int j);
 char	*dollar_cases(char **res, char *s, int *i, int j);
 char	*skip_white_spaces(char *src);
 int		still_a_quote(t_lx *lexer, int i);
-// char	*ft_strjoin(char *s, char c);
+char	*ft_strjoin(char *s, char c);
 int		number_of_s_quotes(t_lx *lexer);
 int		number_of_quotes(t_lx *lexer);
 void	make_list(t_p_l **curr, t_p_l *t_a_prev, t_p_l *x_ls);
@@ -181,7 +189,7 @@ void	ft_creat_red_lst(t_r **red_branch, t_token *token);
 t_b_l	*ft_lstlast4(t_b_l *lst);
 void	ft_lstadd_back4(t_b_l **lst, t_b_l *new);
 char	*ft_strdup(char *s1);
-int		ft_strlen1(char *s);
+int		ft_strlen(char *s);
 void	lexer_init(t_lx	*lexer);
 int		not_between_s_quotes(char *s, int i);
 void	red_in_lexer(t_lx *lx, int *j, t_token *tk, t_list **s_b);
@@ -192,13 +200,13 @@ int		d_q_lexer(t_lx *lexer, int *j, t_token *token);
 int		s_q_lexer(t_lx *lexer, int *j, t_token *token);
 int		lexer_q_cases(t_lx *lx, int *j, t_token *token, t_list **small_branch);
 void	ft_ft_creat_list(t_lx *lexer, int *j, t_token *token, t_list **s_b);
-void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tk, t_list **s_b);
+void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tk);
 void	pip_lexer(t_lx *lexer, int *j, t_token *token, t_list **s_b);
 void	append_lexer(t_lx *lexer, int *j, t_token *token, t_list **s_b);
 int		r_o_error(int i, int *error);
 int		r_i_error(int i, int *error);
 int		red_in_error(t_list *temp, int *error);
-int		print_this_error(int *i, int *error);
+int		print_this_error(int *error);
 int		pip_error(t_list *temp, int *error);
 int		heredoc_error(int i, int *error);
 int		append_error(int i, int *error);
@@ -214,7 +222,13 @@ char	*s_q_r(t_exp_list *list, int *type);
 char	*d_q_r(t_exp_list *ex_ls, char **env, int type);
 char	*n_q_r(t_exp_list *ex_l, char **env, int type);
 int		not_between_sd_quotes(char *s, int i);
-t_b_l 	*ft_parsing(char *ptr ,char **env, t_b_l *big_list);
+void	expand1(t_for_exp *exp, t_b_l *tmp_big);
+void	expand2(t_for_exp *exp, t_p_l *ex_ls, t_b_l *tmp_big);
+void	expand3(t_for_exp *exp);
+t_p_l	*get_last_node(t_p_l *list);
+#endif
+
+
 
 ///////////////////////             EXECution        /////////////////////////////
 void ft_execution(t_b_l *big,t_vars *vars, char *ptr);

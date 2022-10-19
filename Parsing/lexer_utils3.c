@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils3.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:50:01 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/19 05:51:30 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ void	ft_ft_creat_list(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 	ft_creatlst(sm_br, tkn);
 	free(lx->text[lx->t]);
 	lx->t = lx->t + 1;
-	if(lx->str[lx->j] != 0 && lx->text[lx->t])
+	if(lx->str[lx->j] != 0)
 		lx->text[lx->t] = ft_strdup("");
 	while (lx->str[lx->j] == ' ') 
 	{
@@ -26,7 +26,7 @@ void	ft_ft_creat_list(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 	}
 }
 
-void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
+void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tkn)
 {
 	while (lx->str[lx->j] != '\"' && lx->str[lx->j] != '\''
 			&& lx->str[lx->j] != '<' && lx->str[lx->j] != '>'

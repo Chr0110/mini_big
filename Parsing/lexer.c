@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/19 05:50:50 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,6 +38,20 @@ void	free_lexer(t_lx **lexer)
 	free2d((*lexer)->heredoc);
 	free2d((*lexer)->redirection_in);
 	free2d((*lexer)->redirection_out);
+	free((*lexer));
+}
+
+void	free_lexer2(t_lx **lexer)
+{
+	if ((*lexer) == NULL)
+		return ;
+	free((*lexer)->str);
+	free((*lexer)->text);
+	free((*lexer)->pip);
+	free((*lexer)->append);
+	free((*lexer)->heredoc);
+	free((*lexer)->redirection_in);
+	free((*lexer)->redirection_out);
 	free((*lexer));
 }
 
@@ -76,14 +90,13 @@ void	how_much(char *s, t_lx *lexer)
 }
 void	get_token(char **env, t_lx *lx, t_list *small_branch, t_b_l **big_list)
 {
-
-	int	j;
+	int		j;
 	t_token	*token;
 
 	token = malloc(1 * sizeof(t_token));
 	lexer_init(lx);
 	j = 0;
-	while (j < lx->t_sz)
+	while (lx->j < lx->t_sz)
 	{
 		if (lx->str[lx->j] == '|' )
 			pip_lexer(lx, &j, token, &small_branch);
@@ -105,7 +118,7 @@ void	get_token(char **env, t_lx *lx, t_list *small_branch, t_b_l **big_list)
 		check_errors(small_branch, env, big_list, lx);
 	else
 	{
-		free_lexer(&lx);
+		free_lexer2(&lx);
 		*big_list = NULL;
 	}
 }
@@ -115,7 +128,6 @@ void	init_lexer(char *src, char **env, t_b_l **big_branch)
 	char	*str;
 	t_list	*small_branch;
 	t_lx	*lexer;
-	int		j;
 
 	lexer = malloc(1 * sizeof(t_lx));
 	lexer->tx = 0;
@@ -124,7 +136,6 @@ void	init_lexer(char *src, char **env, t_b_l **big_branch)
 	lexer->pi = 0;
 	lexer->her = 0;
 	lexer->app = 0;
-	j = 0;
 	small_branch = NULL;
 	str = skip_white_spaces(src);
 	lexer->str = str;

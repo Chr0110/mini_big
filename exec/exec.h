@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/16 17:19:22 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 20:14:01 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@
 #include <termios.h>
 #include <sys/stat.h>
  #include <dirent.h>
-
+# define	size_all 1024
 # define RED     "\x1b[31m"
 # define GREEN   "\x1b[32m"
 # define YELLOW  "\x1b[33m"
@@ -35,12 +35,12 @@
 # define MAG  "\x1B[35m"
 
 
-typedef struct s_env
-{
-	char *content;
-	char *str;
-	struct s_env *next;
-}	t_env;
+// typedef struct s_env
+// {
+// 	char *content;
+// 	char *str;
+// 	struct s_env *next;
+// }	t_env;
 
 typedef struct s_data 
 {
@@ -49,6 +49,7 @@ typedef struct s_data
 	int p[2];
 	int count;
 	char **type;
+	char *name;
 
 } t_data;
 
@@ -71,15 +72,24 @@ typedef struct s_vars
 	int s1;
 	int sig_on;
 	int  pid;
-
+	
 }	t_vars;
 
-int num;
-int	heredoc_on;
-int	heredoc_pid;
+int in;
+int out;
 
 // t_vars *vars;
-
+void ft_unset_exp2(t_vars *vars, char *barr, char **take);
+char *take_variable_exp2(char **var, t_vars *vars, int i);
+void	ft_unset2(t_vars *vars,char *barr, char **take);
+int	check_isdouble(char **test, int len, char *str);
+void	remove_str(char **test, char *str, t_vars *vars, char *bar);
+void take_bar2(char **barr,char **bar, int i);
+ void add_bar_to_env(int len ,char **barr, char **bar,t_vars *vars);
+void fill_bar(t_b_l *big);
+void	print_echo(char **bar, t_vars *vars, int o, int j);
+void	option_echo(t_vars *vars, char **bar, int j, int y);
+void normal_echo(t_vars *vars, char **bar, int j);
 char	**ft_split(char const *s, char c);
 int		ft_len(char const *s, char c);
 char	*ft_substr(const char *s, unsigned int start, size_t len);
@@ -139,12 +149,12 @@ void 	ft_replace_oldpwd(t_vars *vars);
 int check_rediraction(t_b_l *lil);
 char	*ft_path(char *av, char **env);
 void	ft_pipe(t_b_l *big, t_vars *vars, int  len);
-void ft_rediraction(t_b_l *lil, t_vars *vars, int len,t_data *data);
+void ft_rediraction(t_b_l *lil, t_vars *vars, int len, t_data * data);
 char	*ft_strnstr(const char *haystack, const char *needle, size_t len);
 char	*ft_strstr(const char *haystack, const char *needle);
 void	ft_putstr(char *s, int fd);
 void	ft_putchar_fd(char c, int fd);
-void 	ft_close(int len, t_vars *vars);
+void 	ft_close(int len, t_vars *vars, char *ptr);
 
 void 	psudo_close(t_vars *vars, int i);
 void 	ft_execute(char **cmmd,t_vars *vars);
@@ -171,6 +181,7 @@ void ft_execution(t_b_l *big, t_vars *vars, char *ptr);
 void pip_herdoc(t_vars *vars, t_b_l *lil, int len, t_data *data);
 
 void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data);
-void is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len);
+int is_herdoc(t_b_l *lil, t_vars *vars, t_data *data, int len);
+char *creat_name(void);
 
 # endif

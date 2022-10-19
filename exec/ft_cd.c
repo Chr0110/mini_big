@@ -6,30 +6,30 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:18:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/16 10:00:37 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 09:48:03 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char *find_user(t_vars *vars)
+char	*find_user(t_vars *vars)
 {
-	int i;
-	int  j;
-	int k;
-	char *str;
+	char	*str;
+	int		i;
+	int		j;
+	int		k;
+
 	j = 0;
 	i = 0;
 	k = 0;
-	
-	while(vars->env[i])
+	while (vars->env[i])
 	{
-		if(ft_strncmp(vars->env[i], "HOME", 4) == 0)
+		if (ft_strncmp(vars->env[i], "HOME", 4) == 0)
 		{
-			while(vars->env[i][j] != '=')
+			while (vars->env[i][j] != '=')
 				j++;
 			str = ft_strdup(vars->env[i] + j);
-			while(vars->env[i][++j])
+			while (vars->env[i][++j])
 			{
 				str[k] = vars->env[i][j];
 				k++;
@@ -43,20 +43,19 @@ char *find_user(t_vars *vars)
 
 void	ft_chdir(char *ptr, t_vars *vars)
 {
-	if(chdir(ptr) == 0)
-		ft_replace(vars); 
+	if (chdir(ptr) == 0)
+		ft_replace(vars);
 	else
 	{
 		ft_putstr(ptr, 2);
 		ft_putstr(": No such file or directory\n", 2);
 	}
-	
 }
 
-void ft_cd(char **ptr, t_vars *vars)
+void	ft_cd(char **ptr, t_vars *vars)
 {
-	int i;
-	
+	int	i;
+
 	i = 0;
 	ft_chdir(ptr[1], vars);
 }

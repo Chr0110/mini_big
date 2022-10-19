@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 14:07:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/12 21:55:10 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 11:09:13 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,6 +39,7 @@ void	builtins(t_vars *vars, char **bar)
 	int i;
 	char *str;
 	i = 0;
+	
 	if(bar[0] != NULL)
 	{
 		if(ft_strcmp(bar[0],"pwd") == 0 || ft_strcmp(bar[0],"PWD") == 0)

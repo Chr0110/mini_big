@@ -6,60 +6,46 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:59:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/14 18:42:11 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 14:42:55 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
-	
 
-void ft_execution(t_b_l *big, t_vars *vars, char *ptr)
+void	fill_bar(t_b_l *big)
 {
-	t_p_l *lil;
-	t_b_l *sv;
-	int len = 0;
-	int j = 0;
-	int i;
-	char *str;
-	if(big == NULL)
+	int	i;
+	int	len;
+
+	len = 0;
+	i = 0;
+	len = ft_lstsize(big->arg);
+	big->str = malloc(sizeof(char *) * (len + 1));
+	big->str[len] = NULL;
+	while (big->arg)
+	{
+		big->str[i] = ft_strdup(big->arg->content.value);
+		big->arg = big->arg->next;
+		i++;
+	}
+}
+
+void	ft_execution(t_b_l *big, t_vars *vars, char *ptr)
+{
+	t_b_l	*sv;
+	int		j;
+	int		i;
+
+	j = 0;
+	if (big == NULL)
 		return ;
 	sv = big;
-	while(big)
+	while (big)
 	{
-		lil = big->arg;
-		len = ft_lstsize(lil);
-		big->str = malloc(sizeof(char *) * (len + 1));
-		big->str[len] = NULL;
-		i = 0;
-		while (lil)
-		{
-			big->str[i] = ft_strdup(lil->content.value);
-			lil = lil->next;
-			i++;
-		}
+		fill_bar(big);
 		big = big->next;
 		j++;
 	}
 	big = sv;
 	ft_pipe(big, vars, j);
 }
-
-
-
-// void ft_test(t_b_l *lil2)
-// {
-// 	t_r *lit;
-	
-// 	int i = 0;
-	
-// 	while(lil2)
-// 	{
-// 		lit = lil2->red;
-// 		while(lit)
-// 		{
-// 			printf(BLUE"%d            %s\n", lit->content.e_type, lit->content.value);
-// 			lit = lit->next;
-// 		}
-// 		lil2 = lil2->next;
-// 	}
-// }

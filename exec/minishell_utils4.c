@@ -1,71 +1,18 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   minishell_utils.c                                  :+:      :+:    :+:   */
+/*   minishell_utils4.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/18 11:23:31 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 11:38:10 by sriyani          ###   ########.fr       */
+/*   Created: 2022/10/18 11:35:33 by sriyani           #+#    #+#             */
+/*   Updated: 2022/10/18 11:41:40 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_strcat(char	*s1, char *s2)
-{
-	int	i;
-	int	j;
-
-	i = 0;
-	j = 0;
-	while (s1[i])
-		i++;
-	while (s2[j])
-	{
-		s1[i] = s2[j];
-		i++;
-		j++;
-	}
-	s1[i] = '\0';
-	return (s1);
-}
-
-char	*ft_strcpy(char	*dst,	char	*src)
-{
-	int	i;
-
-	i = 0;
-	while (src[i])
-	{
-		dst[i] = src[i];
-		i++;
-	}
-	dst[i] = '\0';
-	return (dst);
-}
-
-int	ft_isalnum(int c)
-{
-	if (ft_isdigit(c) || ft_isalpha(c))
-		return (1);
-	return (0);
-}
-
-int	ft_strchr(const char *s, int c)
-{
-	while (*s)
-	{
-		if (*s == (char) c)
-			return (0);
-		s++;
-	}
-	if (c == '\0')
-		return (1);
-	return (1);
-}
-
-char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
+char	*ft_strstr(const char *haystack, const char *needle)
 {
 	size_t	i;
 	int		j;
@@ -75,12 +22,12 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 	j = 0;
 	if (needle[0] == '\0')
 		return ((char *)haystack);
-	while (haystack[i] && i < len)
+	while (haystack[i])
 	{
 		big = (char *)haystack + i;
 		if (haystack[i] == needle[0])
 		{
-			while (haystack[i + j] == needle[j] && i + j < len)
+			while (haystack[i + j] == needle[j])
 			{
 				if (needle[j + 1] == '\0')
 					return (big);
@@ -91,4 +38,22 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		i++;
 	}
 	return (NULL);
+}
+
+int	count_list(t_b_l *lst)
+{
+	t_b_l	*sv;
+	int		len;
+
+	len = 0;
+	sv = lst;
+	if (!lst)
+		return (0);
+	while (lst)
+	{
+		len++;
+		lst = lst->next;
+	}
+	lst = sv;
+	return (len);
 }

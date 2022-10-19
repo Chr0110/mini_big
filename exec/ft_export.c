@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:50:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/08 17:58:10 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 09:06:20 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,16 +55,19 @@ void remove_double(char **bar, t_vars *vars)
 	int i = 0;
 	int j = 0;
 	int len = 0;
-	char **take = take_bar(bar,vars);
+	char **take;
 	char **test;
+	take = NULL;
+	test = NULL;
+	take = take_bar(bar,vars);
 	while(vars->exp[++len]);
 	test = take_variable(len, vars);
 	while(i < len - 1)
 	{
 		if(ft_strcmp(test[i], test[i + 1]) == 0)
 		{
-			
-			i++;
+			free(vars->exp[i]);
+			i++;	
 		}
 		vars->exp[j] = vars->exp[i];
 		i++;
@@ -73,7 +76,6 @@ void remove_double(char **bar, t_vars *vars)
 	vars->exp[j] = vars->exp[i];
 	vars->exp[j + 1] = NULL;
 	ft_free(test);
-	
 }
 
 char **take_variable(int len, t_vars *vars)
@@ -107,8 +109,8 @@ char **take_variable(int len, t_vars *vars)
 void aff_export2(char **bar, t_vars *vars)
 {
 	int i = 0;
-	int  j =0;
-	int len=0;
+	int  j = 0;
+	int len = 0;
 	int k = 0;
 	while(vars->exp[++k]);
 	while(i < k )
@@ -148,6 +150,7 @@ void aff_export2(char **bar, t_vars *vars)
 void aff_export(char **bar, t_vars *vars)
 {
 	sort_str(vars->exp);
+	remove_double(bar, vars);
 	aff_export2(bar,vars);
 }
 

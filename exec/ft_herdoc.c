@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:25:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/16 20:13:35 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/18 07:15:10 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,7 +39,7 @@ char *ft_expand(t_vars *vars,char *ptr)
 	int	i;
 	int	j;
 	int	k;
-	char *str;
+	char *str = NULL;
 	 i = 0;
 	 j = 0;
 	k = 0;
@@ -57,6 +57,7 @@ char *ft_expand(t_vars *vars,char *ptr)
 				k++;
 			}
 			str[k] = '\0';
+			break;
 		}
 		i++;
 	}
@@ -67,8 +68,7 @@ void sig_han(int signum)
 {
 	if(signum == SIGINT)
 	{
-		printf("dfgfdgfgfg       %d\n",heredoc_pid);
-		printf(BLUE"%d\n",kill(heredoc_pid, SIGQUIT));
+		exit(2);
 	}
 }
 
@@ -77,10 +77,8 @@ void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data)
 	char *str;
 	char *buffer;
 	char *tmp;
-	char *ptr;
 	char *expand;
 	int i = 0;
-	ptr = creat_name();
 	data->har = ft_strdup("");
 	
 	while(1)
@@ -88,11 +86,11 @@ void ft_herdoc(t_vars *vars, t_b_l *lil, char *dil, t_data *data)
 		str = readline("> ");
 		if(!str || ft_strcmp(str, dil) == 0)
 		{
-			data->p[1] = open(ptr, O_CREAT | O_TRUNC | O_WRONLY ,0644);
+			data->p[1] = open(data->name, O_TRUNC | O_WRONLY | O_CREAT ,0644);
 			ft_putstr(data->har, data->p[1]);
 			close(data->p[1]);
-			data->p[0] = open(ptr, O_RDONLY, 0644);
-			unlink(ptr);
+			// data->p[0] = open(ptr, O_RDONLY, 0644);
+			// unlink(ptr);
 			exit(0);
 		}
 		

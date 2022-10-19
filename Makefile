@@ -36,10 +36,15 @@ SRC_E = \
 		./minishell.c\
 		./exec/ft_execution.c\
 		./exec/minishell_utils.c\
+		./exec/minishell_utils1.c\
+		./exec/minishell_utils2.c\
+		./exec/minishell_utils3.c\
+		./exec/minishell_utils4.c\
 		./exec/ft_pwd.c\
 		./exec/ft_echo.c\
 		./exec/ft_cd.c\
 		./exec/ft_env.c\
+		./exec/ft_env2.c\
 		./exec/ft_export.c\
 		./exec/ft_exit.c\
 		./exec/ft_unset.c\

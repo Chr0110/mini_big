@@ -9,6 +9,7 @@ SRC_P = \
 		./Parsing/lexer_utils3.c\
 		./Parsing/lexer_utils4.c\
 		./Parsing/lexer_utils5.c\
+		./Parsing/lexer_utils6.c\
 		./Parsing/creat_big_list.c\
 		./Parsing/creat_list_list.c\
 		./Parsing/creat_parse_list.c\
@@ -31,6 +32,8 @@ SRC_P = \
 		./Parsing/parsing_utils.c\
 		./Parsing/error_utils3.c\
 		./Parsing/parsing.c\
+		./Parsing/give_dollar_utils.c\
+		./Parsing/expand_utils4.c\
 
 SRC_E = \
 		./minishell.c\

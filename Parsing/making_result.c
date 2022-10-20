@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   making_result.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:12:53 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 09:04:04 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,60 +23,61 @@ char	*s_q_r(t_exp_list *list, int *type)
 	}
 	list->res = ft_strjoin_one(list->res, list->s[(list->i)]);
 	(list->i)++;
-	*type = 1;
+	*type = 0;
 	return (list->res);
 }
 
-char	*d_q_r(t_exp_list *ex_ls, char **env, int type)
+char	*d_q_r(t_exp_list *e, char **env, int type)
 {
 	char	*value;
 	int		v;
-	int 	cmp;
 	int		j;
 
+	j = 0;
 	v = 0;
-	cmp = 0;
 	while (env[v])
 		v++;
-	ex_ls->res = ft_strjoin_one(ex_ls->res, ex_ls->s[ex_ls->i]);
-	ex_ls->i++;
-	while (ex_ls->s[ex_ls->i] != 34)
+	e->res = ft_strjoin_one(e->res, e->s[e->i]);
+	e->i++;
+	while (e->s[e->i] != 34)
 	{
-		if (ex_ls->s[ex_ls->i] == '$' && type != 4)
+		if (e->s[e->i] == '$' && type != 4)
 		{
-			if (ex_ls->s[ex_ls->i + 1] != 34 && ex_ls->s[ex_ls->i + 1] != '$' && ex_ls->s[ex_ls->i + 1] != '?')
-				value = expand_dollar_q(ex_ls, env, v, cmp);
+			if (e->s[e->i + 1] != 34 && e->s[e->i + 1] != '$'
+				&& e->s[e->i + 1] != '?')
+				value = expand_dollar_q(e, env, v, 0);
 			else
-				ex_ls->res = dollar_cases(&ex_ls->res, ex_ls->s, &ex_ls->i, j);
+				e->res = dollar_cases(&e->res, e->s, &e->i, j);
 		}
 		else
-			ex_ls->res = ft_strjoin_one(ex_ls->res, ex_ls->s[ex_ls->i++]);
+			e->res = ft_strjoin_one(e->res, e->s[e->i++]);
 	}
-	ex_ls->res = ft_strjoin_one(ex_ls->res, ex_ls->s[ex_ls->i++]);
-	return (ex_ls->res);
+	e->res = ft_strjoin_one(e->res, e->s[e->i++]);
+	return (e->res);
 }
 
-char	*n_q_r(t_exp_list *list, char **env, int type)
+char	*n_q_r(t_exp_list *e, char **env, int type)
 {
 	int	v;
-	int j;
+	int	j;
 
+	j = 0;
 	v = 0;
 	while (env[v])
 		v++;
-	while (list->s[list->i] != 34 && list->s[list->i] != 39
-		&& list->s[list->i] != '\0')
+	while (e->s[e->i] != 34 && e->s[e->i] != 39
+		&& e->s[e->i] != '\0')
 	{
-		if (list->s[list->i] == '$' && type != 4)
+		if (e->s[e->i] == '$' && type != 4)
 		{
-			(list->i)++;
-			if (list->s[list->i] == '\0' || list->s[list->i] == '$' || list->s[list->i] == '?')
-				list->res = dollar_cases2(&list->res, list->s, &list->i, j);
+			(e->i)++;
+			if (e->s[e->i] == '\0' || e->s[e->i] == '$' || e->s[e->i] == '?')
+				e->res = dollar_cases2(&e->res, e->s, &e->i, j);
 			else
-				list->res = expand_dollar_n_q(list, env, v);
+				e->res = expand_dollar_n_q(e, env, v);
 		}
 		else
-			list->res = ft_strjoin_one(list->res, list->s[list->i++]);
+			e->res = ft_strjoin_one(e->res, e->s[e->i++]);
 	}
-	return (list->res);
+	return (e->res);
 }

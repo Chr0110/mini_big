@@ -3,53 +3,68 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 04:08:19 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 09:04:19 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	parsing(t_list *s_b, char **env, t_b_l **big_list, t_lx *lx)
+void	free_after_parsing(t_lx *lx, t_list *tmp1)
 {
-	int		i;
-	t_p_l	*parse_branch;
-	t_r		*red;
-	t_token	*token; 
-	t_list *t;
-	i = 0;
-	int j = 0;
-	*big_list = NULL;
-	parse_branch = NULL;
-	red = NULL;
-	t_list *tmp1 = s_b;
-	token = malloc(1 * sizeof(t_token));
-	while (s_b)
-	{
-		if (i == 0 && s_b->content.e_type == 1)
-			creat_cmd(s_b, token, &parse_branch, &i);
-		else if (s_b && s_b->content.e_type == 1)
-			creat_arg(s_b, token, &parse_branch);
-		else if (s_b && s_b->content.e_type != 1 && s_b->content.e_type != 0)
-		{
-			red_creat(s_b, token, &red);
-			s_b = s_b->next;
-		}
-		if (s_b && (s_b->content.e_type == 0 || s_b->next == NULL))
-			ft_creat_big_list(big_list, &parse_branch, &red, &i);
-		s_b = s_b->next;
-	}
-	while(tmp1)
+	t_list	*t;
+
+	while (tmp1)
 	{
 		t = tmp1->next;
 		free(tmp1->content.value);
 		free(tmp1);
 		tmp1 = t;
 	}
-	t_p_l *tmp = parse_branch;
-	free(token);
 	free_lexer(&lx);
+}
+
+void	parse2(t_b_l **big_list, t_list *s_b, t_p_l *p, t_r *red)
+{
+	int		i;
+	t_token	*token;
+
+	i = 0;
+	token = malloc(1 * sizeof(t_token));
+	while (s_b)
+	{
+		if (i == 0 && s_b->content.e_type == 1)
+			creat_cmd(s_b, token, &p, &i);
+		else if (s_b && s_b->content.e_type == 1)
+			creat_arg(s_b, token, &p);
+		else if (s_b && s_b->content.e_type != 1 && s_b->content.e_type != 0)
+		{
+			red_creat(s_b, token, &red);
+			s_b = s_b->next;
+		}
+		if (s_b && (s_b->content.e_type == 0 || s_b->next == NULL))
+			ft_creat_big_list(big_list, &p, &red, &i);
+		s_b = s_b->next;
+	}
+	free(token);
+}
+
+void	parsing(t_list *s_b, char **env, t_b_l **big_list, t_lx *lx)
+{
+	int		i;
+	t_p_l	*parse_branch;
+	t_r		*red;
+	t_token	*token;
+	t_list	*tmp1;
+
+	tmp1 = s_b;
+	i = 0;
+	*big_list = NULL;
+	parse_branch = NULL;
+	red = NULL;
+	parse2(big_list, s_b, parse_branch, red);
+	free_after_parsing(lx, tmp1);
 	expand(big_list, env);
 }

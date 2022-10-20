@@ -6,88 +6,23 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/19 05:50:50 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/20 09:03:52 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	free2d(char **ptr)
+void	choose_a_path(t_b_l **big, t_lx *lx, char **env, t_list *s_b)
 {
-	int j;
-
-	j = 0;
-	if (ptr == NULL)
-		return ;
-	while (ptr[j] != NULL)
+	if (lx->error == 0)
+		check_errors(s_b, env, big, lx);
+	else
 	{
-		free(ptr[j]);
-		j++;
-	}
-	free(ptr);
-}
-
-void	free_lexer(t_lx **lexer)
-{
-	if ((*lexer) == NULL)
-		return ;
-	free((*lexer)->str);
-	free((*lexer)->text);
-	free2d((*lexer)->pip);
-	free2d((*lexer)->append);
-	free2d((*lexer)->heredoc);
-	free2d((*lexer)->redirection_in);
-	free2d((*lexer)->redirection_out);
-	free((*lexer));
-}
-
-void	free_lexer2(t_lx **lexer)
-{
-	if ((*lexer) == NULL)
-		return ;
-	free((*lexer)->str);
-	free((*lexer)->text);
-	free((*lexer)->pip);
-	free((*lexer)->append);
-	free((*lexer)->heredoc);
-	free((*lexer)->redirection_in);
-	free((*lexer)->redirection_out);
-	free((*lexer));
-}
-
-void	how_much(char *s, t_lx *lexer)
-{
-	int i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '|')
-			lexer->pi++;
-		else if (s[i] == '<' && s[i + 1] == '<')
-		{
-			lexer->her++;
-			i++;
-		}
-		else if (s[i] == '>' && s[i + 1] == '>')
-		{
-			lexer->app++;
-			i++;
-		}
-		else if (s[i] == '<' && s[i + 1] != '<')
-			lexer->red_i++;
-		else if (s[i] == '>' && s[i + 1] != '>')
-			lexer->red_o++;
-		else if (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != ' ')
-		{
-			while (s[i] != '<' && s[i] != '>' && s[i] != '|' && s[i] != ' ' && i < ft_strlen(s))
-				i++;
-			i = i - 1;
-			lexer->tx++;
-		}
-		i++;
+		free_lexer2(&lx);
+		*big = NULL;
 	}
 }
+
 void	get_token(char **env, t_lx *lx, t_list *small_branch, t_b_l **big_list)
 {
 	int		j;
@@ -113,14 +48,8 @@ void	get_token(char **env, t_lx *lx, t_list *small_branch, t_b_l **big_list)
 		if (lx->str[lx->j] == '<' && lx->str[lx->j + 1] != '<')
 			red_in_lexer(lx, &j, token, &small_branch);
 	}
+	choose_a_path(big_list, lx, env, small_branch);
 	free(token);
-	if (lx->error == 0)
-		check_errors(small_branch, env, big_list, lx);
-	else
-	{
-		free_lexer2(&lx);
-		*big_list = NULL;
-	}
 }
 
 void	init_lexer(char *src, char **env, t_b_l **big_branch)

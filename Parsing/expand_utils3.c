@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:51:02 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:58:32 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,9 @@
 
 void	send_by_type(t_b_l *t_b, char **env, t_p_l **ex_ls)
 {
-	t_r *current_red = t_b->red;
+	t_r	*current_red;
+
+	current_red = t_b->red;
 	while (current_red)
 	{
 		if (current_red->content.e_type == 4)
@@ -31,19 +33,19 @@ void	send_by_type(t_b_l *t_b, char **env, t_p_l **ex_ls)
 
 t_p_l	*get_last_node(t_p_l *list)
 {
-	if (!list)	return NULL;
+	if (!list)
+		return (NULL);
 	while (list->next)
 		list = list->next;
-	return list;
+	return (list);
 }
 
 void	make_list(t_p_l **curr, t_p_l *prev, t_p_l *x_ls)
 {
-	t_p_l	*nexty;
 	t_p_l	*temp_ar;
 
 	temp_ar = *curr;
-	get_last_node(x_ls)->next = (*curr)->next;		
+	get_last_node(x_ls)->next = (*curr)->next;
 	if (prev != NULL)
 		prev->next = x_ls;
 	else
@@ -52,8 +54,10 @@ void	make_list(t_p_l **curr, t_p_l *prev, t_p_l *x_ls)
 
 int	find_dollar(char *s)
 {
-	int i = 0;
-	while(s[i])
+	int	i;
+
+	i = 0;
+	while (s[i])
 	{
 		if (s[i] == '$')
 			return (1);
@@ -64,48 +68,28 @@ int	find_dollar(char *s)
 
 void	exp_creat_list(t_b_l *t_big, char **env, t_p_l *ex_ls, t_b_l *tmp_big)
 {
-	t_p_l	*prev_arg;
-	t_p_l	*current_arg_next;
-	t_p_l	*tmp_ex_ls_last;
-	t_p_l	*current_arg;
-	t_r 	*current_red;
+	t_for_exp	*exp;
 
+	exp = malloc(sizeof(t_for_exp));
 	tmp_big = t_big;
 	while (tmp_big)
 	{
-		current_red = tmp_big->red;
-		current_arg = tmp_big->arg;
-		prev_arg = NULL;
-		while (current_arg)
+		expand1(exp, tmp_big);
+		while (exp->current_arg)
 		{
-			expand_dollar(&current_arg->content, env, 0, &ex_ls);
+			expand_dollar(&exp->current_arg->content, env, 0, &ex_ls);
 			if (ft_lstsize(ex_ls) != 0)
-			{
-				current_arg_next = current_arg->next;
-				tmp_ex_ls_last = get_last_node(ex_ls);
-				make_list(&current_arg, prev_arg, ex_ls);
-				if (prev_arg == NULL)
-				tmp_big->arg = current_arg;
-				else
-				{
-					free(current_arg->content.value);
-					free(current_arg);
-				}
-				prev_arg = tmp_ex_ls_last;
-				current_arg = current_arg_next;
-			}
+				expand2(exp, ex_ls, tmp_big);
 			else
-			{
-				prev_arg = current_arg;
-				current_arg = current_arg->next;
-			}
+				expand3(exp);
 		}
-		while (current_red)
+		while (exp->current_red)
 		{
-			if (find_dollar(current_red->content.value))
+			if (find_dollar(exp->current_red->content.value))
 				send_by_type(tmp_big, env, &ex_ls);
-			current_red = current_red->next;
+			exp->current_red = exp->current_red->next;
 		}
 		tmp_big = tmp_big->next;
 	}
+	free(exp);
 }

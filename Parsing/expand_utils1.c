@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils1.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:09:55 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:58:05 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*handle_dollar_double_quotes(char *s, int *i, char **env, int cmp1)
+char	*handle_dollar_double_quotes(char *s, int *i, char **env)
 {
 	int		v;
 	char	*value;
@@ -30,16 +30,13 @@ char	*handle_dollar_double_quotes(char *s, int *i, char **env, int cmp1)
 		value[v++] = s[(*i)++];
 	value[v] = '\0';
 	get_value(value, env, &cmp);
-	if (cmp != cmp1)
-	{
-		v = -1;
-		while (value[++v])
-			res = ft_strjoin_one(res, value[v]);
-	}
+	v = -1;
+	while (value[++v])
+		res = ft_strjoin_one(res, value[v]);
 	return (res);
 }
 
-char	*handle_dollar_no_quotes(char *s, int *i, char **env, int cmp1)
+char	*handle_dollar_no_quotes(char *s, int *i, char **env)
 {
 	int		v;
 	char	*value;
@@ -57,16 +54,13 @@ char	*handle_dollar_no_quotes(char *s, int *i, char **env, int cmp1)
 	value[v] = '\0';
 	get_value(value, env, &cmp);
 	v = 0;
-	if (cmp != cmp1)
-	{
-		v = -1;
-		while (value[++v])
-			res = ft_strjoin_one(res, value[v]);
-	}
+	v = -1;
+	while (value[++v])
+		res = ft_strjoin_one(res, value[v]);
 	return (res);
 }
 
-int		ft_lstsize(t_p_l *lst)
+int	ft_lstsize(t_p_l *lst)
 {
 	t_p_l	*temp;
 	int		i;

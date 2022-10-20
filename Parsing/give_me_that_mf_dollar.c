@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   give_me_that_mf_dollar.c                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 20:00:13 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 09:00:48 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char*	get_value(char *s, char **env, int *cmp)
+char	*get_value(char *s, char **env, int *cmp)
 {
 	int		i;
 	int		j;
@@ -20,41 +20,25 @@ char*	get_value(char *s, char **env, int *cmp)
 	char	*env_cmp;
 	char	*res;
 
-	i = -1;
-	j = -1;
-	n = 0;
+	get_param_values(&i, &n, &j);
 	while (env[++i])
 	{
-		while (env[i][++j] != '=');
+		while (env[i][j] != '=')
+			j++;
 		env_cmp = ft_strdup("");
 		while (n < j)
 			env_cmp = ft_strjoin_one(env_cmp, env[i][n++]);
-		n = 0;
 		if (ft_strncmp(env_cmp, s, ft_strlen(env[i])) == 0)
 		{
 			res = take_from_env(env, j, i);
-			while(res[n])
-				n++;
-			s = malloc((n) * sizeof(char*));
-			s[n] = '\0';
-			n = 0;
-			while (res[n])
-			{
-				s[n] = res[n];
-				n++;
-			}
-			free(res);
-			free(env_cmp);
+			s = get_value2(&res, &env_cmp);
 			break ;
 		}
 		else
-		{
-			j = 0;
-			free(env_cmp);
-		}
+			retry(&j, &env_cmp, &n);
 	}
 	*cmp = i;
-	return(s);
+	return (s);
 }
 
 char	*take_from_env(char **env, int j, int i)
@@ -116,7 +100,7 @@ char	*expand_dollar_q(t_exp_list *list, char **env, int cmp1, int cmp)
 	while (list->s[v] != '\'' && list->s[v] != ' '
 		&& list->s[v] != '\"' && list->s[v] != '\0')
 			v++;
-	value = malloc(((v - (list->i)) + 1) * sizeof(char)); // leak
+	value = malloc(((v - (list->i)) + 1) * sizeof(char));
 	v = 0;
 	while (is_alpha(list->s[(list->i)]) == 1 || list->s[list->i] == '_')
 		value[v++] = list->s[(list->i)++];
@@ -132,4 +116,3 @@ char	*expand_dollar_q(t_exp_list *list, char **env, int cmp1, int cmp)
 	}
 	return ((list->res));
 }
-

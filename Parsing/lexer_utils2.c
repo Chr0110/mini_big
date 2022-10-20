@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/18 08:52:44 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 09:02:08 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_strlen1(char *s)
+int	ft_strlen(char *s)
 {
 	int	i;
 
@@ -21,16 +21,17 @@ int	ft_strlen1(char *s)
 		i++;
 	return (i);
 }
+
 char	*skip_white_spaces(char *src)
 {
-	int	i;
-	int	j;
-	int	n;
+	int		i;
+	int		j;
+	int		n;
+	char	*str;
 
 	i = 0;
 	j = 0;
 	n = 0;
-	char *str;
 	while (src[i])
 		i++;
 	str = malloc((i + 1) * sizeof(char));
@@ -85,7 +86,6 @@ char	*ft_strdup(char *s1)
 
 	i = ft_strlen(s1);
 	j = 0;
-	s2 = NULL;
 	s2 = malloc(i + 1 * sizeof(char));
 	if (!s2)
 		return (NULL);
@@ -98,27 +98,26 @@ char	*ft_strdup(char *s1)
 	return (s2);
 }
 
-
-void	lexer_init(t_lx	*lexer)
+void	lexer_init(t_lx	*lx)
 {
-	lexer->text = (char **)malloc((lexer->tx + 1) * sizeof(char *));
-	lexer->redirection_in = (char **)malloc((lexer->red_i + 1) * sizeof(char *));
-	lexer->redirection_out = (char **)malloc((lexer->red_o + 1) * sizeof(char *));
-	lexer->pip = (char **)malloc((lexer->pi + 1) * sizeof(char *));
-	lexer->heredoc = (char **)malloc((lexer->her + 1) * sizeof(char *));
-	lexer->append = (char **)malloc((lexer->app + 1) * sizeof(char *));
-	lexer->text[lexer->tx] = NULL;
-	lexer->redirection_in[lexer->red_i] = NULL;
-	lexer->redirection_out[lexer->red_o] = NULL;
-	lexer->pip[lexer->pi] = NULL;
-	lexer->heredoc[lexer->her] = NULL;
-	lexer->append[lexer->app] = NULL;
-	lexer->error = 0;
-	lexer->t = 0;
-	lexer->r_i = 0;
-	lexer->r_o = 0;
-	lexer->p = 0;
-	lexer->h = 0;
-	lexer->a = 0;
-	lexer->t_sz = ft_strlen(lexer->str);
+	lx->text = (char **)malloc((lx->tx + 1) * sizeof(char *));
+	lx->redirection_in = (char **)malloc((lx->red_i + 1) * sizeof(char *));
+	lx->redirection_out = (char **)malloc((lx->red_o + 1) * sizeof(char *));
+	lx->pip = (char **)malloc((lx->pi + 1) * sizeof(char *));
+	lx->heredoc = (char **)malloc((lx->her + 1) * sizeof(char *));
+	lx->append = (char **)malloc((lx->app + 1) * sizeof(char *));
+	lx->text[lx->tx] = NULL;
+	lx->redirection_in[lx->red_i] = NULL;
+	lx->redirection_out[lx->red_o] = NULL;
+	lx->pip[lx->pi] = NULL;
+	lx->heredoc[lx->her] = NULL;
+	lx->append[lx->app] = NULL;
+	lx->error = 0;
+	lx->t = 0;
+	lx->r_i = 0;
+	lx->r_o = 0;
+	lx->p = 0;
+	lx->h = 0;
+	lx->a = 0;
+	lx->t_sz = ft_strlen(lx->str);
 }

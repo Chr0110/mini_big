@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:57:39 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:58:19 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,9 +35,12 @@ int	ft_strncmp(const char *src1, const char *src2, size_t n)
 
 int	not_between_sd_quotes(char *s, int i)
 {
-	int j = 0;
-	int n = 1;
-	while(s[j])
+	int	j;
+	int	n;
+
+	j = 0;
+	n = 1;
+	while (s[j])
 	{
 		if (s[j] == '\'')
 		{

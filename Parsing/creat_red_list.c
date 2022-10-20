@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   creat_red_list.c                                   :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:07:57 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:53:23 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_creat_red_lst(t_r **red_branch, t_token *token)
 	j = 0;
 	new->content.value = malloc((i + 1) * sizeof(char *));
 	new->content.value[i] = '\0';
-	while(j < i)
+	while (j < i)
 	{
 		new->content.value[j] = token->value[j];
 		j++;

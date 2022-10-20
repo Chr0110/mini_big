@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:25:30 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:52:22 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	global_error(t_list *temp, int *error, int *i)
+int	global_error(t_list *temp, int *error)
 {
 	if (pip_error(temp, error) == 1)
 		return (1);
@@ -29,10 +29,12 @@ int	global_error(t_list *temp, int *error, int *i)
 
 void	free_for_error(t_lx *lx, t_list *small_branch)
 {
+	t_list	*t;
+	t_list	*tmp1;
+
 	free_lexer(&lx);
-	t_list *t;
-	t_list *tmp1 = small_branch;
-	while(tmp1)
+	tmp1 = small_branch;
+	while (tmp1)
 	{
 		t = tmp1->next;
 		free(tmp1->content.value);
@@ -41,7 +43,7 @@ void	free_for_error(t_lx *lx, t_list *small_branch)
 	}
 }
 
-void	check_errors(t_list *small_branch, char **env, t_b_l **big_branch, t_lx *lx)
+void	check_errors(t_list *s_b, char **env, t_b_l **big_branch, t_lx *lx)
 {
 	int		i;
 	int		error;
@@ -49,22 +51,22 @@ void	check_errors(t_list *small_branch, char **env, t_b_l **big_branch, t_lx *lx
 
 	i = 0;
 	error = 0;
-	temp = small_branch;
+	temp = s_b;
 	while (temp)
 	{
-		if (i == 0 && temp->content.e_type == 0 && print_this_error(&i, &error))
+		if (i == 0 && temp->content.e_type == 0 && print_this_error(&error))
 			break ;
-		else if (global_error(temp, &error, &i))
+		else if (global_error(temp, &error))
 			break ;
 		else
 			i++;
 		temp = temp->next;
 	}
 	if (error == 0)
-		parsing(small_branch, env, big_branch, lx);
+		parsing(s_b, env, big_branch, lx);
 	else
 	{
-		free_for_error(lx, small_branch);
+		free_for_error(lx, s_b);
 		*big_branch = NULL;
 	}
 }

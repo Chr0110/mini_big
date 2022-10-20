@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_cases.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:08:28 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:53:38 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,10 +14,10 @@
 
 char	*dollar_cases2(char **res, char *s, int *i, int j)
 {
-	char *exit_status;
+	char	*exit_status;
 
 	j = 0;
-	exit_status = ft_itoa(g_status); 
+	exit_status = ft_itoa(g_status);
 	if (s[(*i)] == '$')
 	{
 		(*res) = ft_strjoin_one((*res), '1');
@@ -28,7 +28,7 @@ char	*dollar_cases2(char **res, char *s, int *i, int j)
 	}
 	else if (s[(*i)] == '?')
 	{
-		while(j < ft_strlen(exit_status))
+		while (j < ft_strlen(exit_status))
 		{
 			(*res) = ft_strjoin_one((*res), exit_status[j]);
 			j++;
@@ -43,10 +43,10 @@ char	*dollar_cases2(char **res, char *s, int *i, int j)
 
 char	*dollar_cases(char **res, char *s, int *i, int j)
 {
-	char *exit_status;
+	char	*exit_status;
 
 	j = 0;
-	exit_status = ft_itoa(g_status); 
+	exit_status = ft_itoa(g_status);
 	*i += 1;
 	if (s[(*i)] == '$')
 	{
@@ -58,7 +58,7 @@ char	*dollar_cases(char **res, char *s, int *i, int j)
 	}
 	else if (s[(*i)++] == '?')
 	{
-		while(j < ft_strlen(exit_status))
+		while (j < ft_strlen(exit_status))
 		{
 			(*res) = ft_strjoin_one((*res), exit_status[j]);
 			j++;

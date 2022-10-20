@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:50:01 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/19 05:51:30 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/20 09:02:21 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,9 @@ void	ft_ft_creat_list(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 	ft_creatlst(sm_br, tkn);
 	free(lx->text[lx->t]);
 	lx->t = lx->t + 1;
-	if(lx->str[lx->j] != 0)
+	if (lx->str[lx->j] != 0)
 		lx->text[lx->t] = ft_strdup("");
-	while (lx->str[lx->j] == ' ') 
+	while (lx->str[lx->j] == ' ')
 	{
 		lx->j++;
 		(*j)++;
@@ -29,8 +29,8 @@ void	ft_ft_creat_list(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tkn)
 {
 	while (lx->str[lx->j] != '\"' && lx->str[lx->j] != '\''
-			&& lx->str[lx->j] != '<' && lx->str[lx->j] != '>'
-			&& lx->str[lx->j] != '|' && *j < lx->t_sz)
+		&& lx->str[lx->j] != '<' && lx->str[lx->j] != '>'
+		&& lx->str[lx->j] != '|' && *j < lx->t_sz)
 	{
 		lx->text[lx->t] = ft_strjoin_one(lx->text[lx->t], lx->str[lx->j]);
 		tkn->value = lx->text[lx->t];
@@ -38,7 +38,7 @@ void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tkn)
 		lx->j++;
 		(*j)++;
 		if (lx->str[lx->j] == ' ')
-			return;
+			return ;
 	}
 }
 
@@ -68,7 +68,7 @@ void	append_lexer(t_lx *lx, int *j, t_token *tkn, t_list **sm_br)
 	lx->append[lx->a][2] = '\0';
 	tkn->value = lx->append[lx->a];
 	tkn->e_type = TOKEN_APPEND;
-	lx-> a= lx->a + 1;
+	lx->a = lx->a + 1;
 	lx->j += 2;
 	(*j) += 2;
 	ft_creatlst(sm_br, tkn);

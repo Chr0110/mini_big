@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   error_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:09:05 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:56:05 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	ft_putstr_fd(char *s, int fd)
 	write(fd, &espace, 1);
 }
 
-int panic(char *name, char *arg, char *msg, int error)
+int	panic(char *name, char *arg, char *msg, int error)
 {
 	if (name)
 		ft_putstr_fd(name, 2);
@@ -44,4 +44,3 @@ int panic(char *name, char *arg, char *msg, int error)
 	g_status = error;
 	return (1);
 }
-

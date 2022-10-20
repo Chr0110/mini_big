@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   remove_quotes.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:48:12 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 09:05:04 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	remove_quotes(t_token *node)
 	node->value = malloc(ft_strlen(res) + 1 * sizeof(char));
 	node->value[ft_strlen(res)] = '\0';
 	i = 0;
-	while (i <  ft_strlen(res))
+	while (i < ft_strlen(res))
 	{
 		node->value[i] = res[i];
 		i++;
@@ -77,13 +77,15 @@ void	remove_quotes(t_token *node)
 
 void	remove_f_quotes(t_b_l *temp_big)
 {
-	t_b_l *big;
+	t_b_l	*big;
+	t_p_l	*arg;
+	t_r		*red;
 
 	big = temp_big;
 	while (big)
 	{
-		t_p_l *arg = big->arg;
-		t_r *red = big->red;
+		arg = big->arg;
+		red = big->red;
 		while (arg)
 		{
 			remove_quotes(&arg->content);

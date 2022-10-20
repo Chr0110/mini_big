@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   creat_list_list.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:05:26 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:52:51 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,10 +38,9 @@ void	ft_lstadd_back(t_list **lst, t_list *new)
 void	ft_creatlst(t_list **small_branch, t_token *token)
 {
 	t_list	*new;
+	int		i;
+	int		j;
 
-	int i;
-	int j;
-	
 	j = 0;
 	i = ft_strlen(token->value);
 	new = malloc(sizeof(t_p_l));
@@ -49,7 +48,7 @@ void	ft_creatlst(t_list **small_branch, t_token *token)
 	new->content.value[i] = '\0';
 	if (!new)
 		printf("error\n");
-	while(j < i)
+	while (j < i)
 	{
 		new->content.value[j] = token->value[j];
 		j++;

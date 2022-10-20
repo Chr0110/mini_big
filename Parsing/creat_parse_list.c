@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   creat_parse_list.c                                 :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:06:26 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:41:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:53:08 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,7 +48,7 @@ void	ft_creat_parse_lst(t_p_l **parse_branch, t_token *token)
 	new->content.value[i] = '\0';
 	if (!new)
 		printf("error\n");
-	while(j < i)
+	while (j < i)
 	{
 		new->content.value[j] = token->value[j];
 		j++;
@@ -58,4 +58,3 @@ void	ft_creat_parse_lst(t_p_l **parse_branch, t_token *token)
 	ft_lstadd_back2(parse_branch, new);
 	return ;
 }
-

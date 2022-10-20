@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:10:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/16 20:33:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/20 08:57:38 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,16 +26,17 @@ void	fill_cont_value(t_token **cont, t_exp_list *list)
 	int	n;
 
 	n = -1;
-	(*cont)->value = malloc(ft_strlen(list->res) * sizeof(char*));
+	(*cont)->value = malloc(ft_strlen(list->res) * sizeof(char *));
 	(*cont)->value[ft_strlen(list->res)] = '\0';
 	n = -1;
-	while(list->res[++n])
+	while (list->res[++n])
 		(*cont)->value[n] = list->res[n];
 }
+
 void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 {
 	t_exp_list	*list;
-	
+
 	initial_param(&list, exp_list, cont);
 	while (list->s[list->i])
 	{

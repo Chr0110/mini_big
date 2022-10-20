@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/19 08:24:52 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/20 09:05:31 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,7 +136,7 @@ int		ft_lstsize(t_p_l *lst);
 void	ft_lstadd_back(t_list **lst, t_list *new);
 void	ft_creatlst(t_list **stack, t_token *token);
 void	parsing(t_list *small_branch, char **env, t_b_l **big_list, t_lx *lx);
-void	check_errors(t_list *small_branch, char **env, t_b_l **big_list, t_lx *lx);
+void	check_errors(t_list *s_b, char **env, t_b_l **big_list, t_lx *lx);
 void	expand(t_b_l **big_list, char **env);
 void	ft_creat_parse_lst(t_p_l **parse_branch, t_token *token);
 void	ft_creat_red_lst(t_r **red_branch, t_token *token);
@@ -147,7 +147,7 @@ int		there_is_a_space(char *str);
 char	*get_value(char *s, char **env, int *cmp);
 char	*get_value2(char **res, char **env_cmp);
 void	get_param_values(int *i, int *n, int *j);
-void	retry(int *j, char **env_cmp);
+void	retry(int *j, char **env_cmp, int *n);
 char	*ft_strjoin_one(char *str, char c);
 char	*handle_dollar_double_quotes(char *s, int *i, char **env);
 char	*handle_dollar_no_quotes(char *s, int *i, char **env);
@@ -158,7 +158,7 @@ void	add_to_parse_list(char *str, t_p_l **expand_list);
 void	expand_quotes(t_token *ar_cnt, char **env, int type, t_p_l **ex_ls);
 void	expand_dollar(t_token *cnt, char **env, int type, t_p_l **ex_ls);
 int		is_alpha(char c);
-int 	panic(char *name, char *arg, char *msg, int error);
+int		panic(char *name, char *arg, char *msg, int error);
 void	ft_putstr_fd(char *s, int fd);
 int		not_between_quotes(char *s, int i);
 char	*make_s_q_res(char **res, char *s, int *i, int *type);
@@ -226,9 +226,9 @@ void	expand1(t_for_exp *exp, t_b_l *tmp_big);
 void	expand2(t_for_exp *exp, t_p_l *ex_ls, t_b_l *tmp_big);
 void	expand3(t_for_exp *exp);
 t_p_l	*get_last_node(t_p_l *list);
-#endif
-
-
+void	free_lexer2(t_lx **lexer);
+void	go_count_again(char *s, int *i, t_lx *lexer);
+void	how_much(char *s, t_lx *lexer);
 
 ///////////////////////             EXECution        /////////////////////////////
 void ft_execution(t_b_l *big,t_vars *vars, char *ptr);

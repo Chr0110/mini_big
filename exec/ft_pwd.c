@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:21:00 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 09:57:50 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/21 16:17:32 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 char	*ft_getcwd(t_vars *vars)
 {
-	char	str[1024];
+	char	str[SIZE_ALL];
 	char	*ptr;
 
 	if (!getcwd(str, sizeof(str)))
@@ -24,12 +24,13 @@ char	*ft_getcwd(t_vars *vars)
 	return (ptr);
 }
 
-void	ft_pwd(t_vars *vars)
+int	ft_pwd(t_vars *vars)
 {
 	char	*ptr;
 
 	ptr = ft_getcwd(vars);
 	ft_putstr(ptr, vars->outfile[vars->index]);
-	// free(ptr);
+	free(ptr);
 	write(vars->outfile[vars->index], "\n", 1);
+	return (0);
 }

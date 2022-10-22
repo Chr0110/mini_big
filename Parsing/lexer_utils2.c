@@ -3,16 +3,16 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils2.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/20 09:02:08 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/22 08:03:17 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	ft_strlen(char *s)
+int	ft_strlen1(char *s)
 {
 	int	i;
 
@@ -26,12 +26,13 @@ char	*skip_white_spaces(char *src)
 {
 	int		i;
 	int		j;
-	int		n;
 	char	*str;
 
+	str = NULL;
+	if (!src)
+		return (NULL);
 	i = 0;
 	j = 0;
-	n = 0;
 	while (src[i])
 		i++;
 	str = malloc((i + 1) * sizeof(char));

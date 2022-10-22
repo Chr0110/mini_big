@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   dollar_cases.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:08:28 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/20 08:53:38 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/22 07:52:32 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	*dollar_cases2(char **res, char *s, int *i, int j)
 	}
 	else if (s[(*i)] == '?')
 	{
-		while (j < ft_strlen(exit_status))
+		while (j < ft_strlen1(exit_status))
 		{
 			(*res) = ft_strjoin_one((*res), exit_status[j]);
 			j++;
@@ -58,7 +58,7 @@ char	*dollar_cases(char **res, char *s, int *i, int j)
 	}
 	else if (s[(*i)++] == '?')
 	{
-		while (j < ft_strlen(exit_status))
+		while (j < ft_strlen1(exit_status))
 		{
 			(*res) = ft_strjoin_one((*res), exit_status[j]);
 			j++;

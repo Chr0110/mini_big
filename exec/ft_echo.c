@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:13:01 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 11:17:37 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 07:37:44 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,8 +14,8 @@
 
 int	ft_check_echo(char *str)
 {
-	int	i;
-	int	j;
+	size_t	i;
+	size_t	j;
 
 	i = 1;
 	j = 0;
@@ -30,7 +30,7 @@ int	ft_check_echo(char *str)
 	return (2);
 }
 
-void	ft_echo(char **bar, t_vars *vars)
+int	ft_echo(char **bar, t_vars *vars)
 {
 	int	j;
 	int	y;
@@ -39,12 +39,17 @@ void	ft_echo(char **bar, t_vars *vars)
 	y = 0;
 	while (bar[j])
 		j++;
-	option_echo(vars, bar, j, y);
+	if (option_echo(vars, bar, j, y) == 1)
+		return (1);
 	if (ft_check_echo(bar[0]) == 2)
-		normal_echo(vars, bar, j);
+	{
+		if (normal_echo(vars, bar, j) == 1)
+			return (1);
+	}
+	return (0);
 }
 
-void	option_echo(t_vars *vars, char **bar, int j, int y)
+int	option_echo(t_vars *vars, char **bar, int j, int y)
 {
 	int	o;
 	int	k;
@@ -66,11 +71,13 @@ void	option_echo(t_vars *vars, char **bar, int j, int y)
 	if (k > 0)
 	{
 		o = k;
-		print_echo(bar, vars, o, j);
+		if (print_echo(bar, vars, o, j) == 1)
+			return (1);
 	}
+	return (0);
 }
 
-void	print_echo(char **bar, t_vars *vars, int o, int j)
+int	print_echo(char **bar, t_vars *vars, int o, int j)
 {
 	while (o < j)
 	{
@@ -79,9 +86,12 @@ void	print_echo(char **bar, t_vars *vars, int o, int j)
 			ft_putstr(" ", vars->outfile[vars->index]);
 		o++;
 	}
+	if (o == j)
+		return (0);
+	return (1);
 }
 
-void	normal_echo(t_vars *vars, char **bar, int j)
+int	normal_echo(t_vars *vars, char **bar, int j)
 {
 	int	o;
 
@@ -95,4 +105,7 @@ void	normal_echo(t_vars *vars, char **bar, int j)
 			ft_putchar_fd('\n', vars->outfile[vars->index]);
 		o++;
 	}
+	if(o == j)
+		return (1);
+	return (0);
 }

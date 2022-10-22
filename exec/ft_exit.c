@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:44:09 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 09:57:11 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 07:42:26 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_number(char **bar)
 	return (1);
 }
 
-int	next_exit(char **bar, int len)
+int	next_exit(char **bar)
 {
 	int	i;
 	int	j;
@@ -58,26 +58,34 @@ int	next_exit(char **bar, int len)
 	return (1);
 }
 
-void	ft_exit(char **bar, t_vars *vars)
+int	ft_exit(char **bar)
 {
 	int	i;
 
 	i = 0;
 	while (bar[i])
 		++i;
-	if ((i == 2 && check_number(bar) == 1) || i == 1)
+	if (i == 1)
 	{
-		ft_putstr("exit", 1);
-		ft_putchar_fd('\n', 1);
-		exit(0);
+		ft_putstr("exit\n", 1);
+		exit(g_status);
 	}
-	if (next_exit(bar, i) == 0)
+	else if (i == 2 && check_number(bar) == 1)
+	{
+		ft_putstr("exit\n", 1);
+		exit(ft_atoi(bar[1]) % 256);
+	}
+	else if (next_exit(bar) == 0)
 	{
 		ft_putstr("exit\nexit: ", 2);
 		ft_putstr(bar[i - 1], 2);
 		ft_putstr(": numeric argument required\n", 2);
-		exit(1);
+		exit(255);
 	}
 	else
+	{
 		ft_putstr("exit: too many arguments\n", 2);
+		return (1);
+	}
+	return (0);
 }

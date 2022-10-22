@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   parse.c                                            :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 04:08:19 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/20 09:04:19 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/22 07:52:07 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,6 @@ void	parsing(t_list *s_b, char **env, t_b_l **big_list, t_lx *lx)
 	int		i;
 	t_p_l	*parse_branch;
 	t_r		*red;
-	t_token	*token;
 	t_list	*tmp1;
 
 	tmp1 = s_b;

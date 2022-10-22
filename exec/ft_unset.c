@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 20:20:05 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 07:42:56 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,10 +18,10 @@ char	**take_variable_exp(int len, t_vars *vars)
 	char	**var;
 
 	i = 0;
-	var = malloc(sizeof(char *) * size_all);
+	var = malloc(sizeof(char *) * SIZE_ALL);
 	while (i < len)
 	{
-		var[i] = malloc(sizeof(char) * size_all);
+		var[i] = malloc(sizeof(char) * SIZE_ALL);
 		if (ft_strchr(vars->exp[i], '=') == 0)
 			var[i] = take_variable_exp2(var, vars, i);
 		else
@@ -46,12 +46,13 @@ char	*take_variable_exp2(char **var, t_vars *vars, int i)
 	return (var[i]);
 }
 
-void	unset_exp(char **bar, t_vars *vars)
+int	unset_exp(char **bar, t_vars *vars)
 {
 	int		j;
 	char	**take;
 	char	**barr;
 
+	take = NULL;
 	j = 0;
 	barr = sort_str(bar);
 	while (barr[j])
@@ -59,6 +60,7 @@ void	unset_exp(char **bar, t_vars *vars)
 		ft_unset_exp2(vars, barr[j], take);
 		j++;
 	}
+	return (0);
 }
 
 void	ft_unset_exp2(t_vars *vars, char *barr, char **take)

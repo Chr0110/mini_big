@@ -6,278 +6,141 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:50:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 09:06:20 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/21 10:10:10 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char **sort_str(char **ptr)
+void	aff_export3(t_vars *vars, int i)
 {
-	int  i=0;
-	int  j=0;
-	char *swap;
-	
-	while(ptr[i])
+	int	len;
+	int	j;
+
+	j = 0;
+	len = ft_strlen(vars->exp[i]) - 1;
+	while (vars->exp[i][j])
 	{
-		j = i + 1;
-		while(ptr[j])
+		if (vars->exp[i][j] == '=')
 		{
-			if(ft_strcmp(ptr[i],ptr[j]) < 0)
-			{
-				swap = ptr[i];
-				ptr[i] = ptr[j];
-				ptr[j] = swap;
-			}
+			ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
+			ft_putchar_fd('\"', vars->outfile[vars->index]);
 			j++;
 		}
-		i++;
-	}
-	return ptr;
-}
-
-void env_to_exp(t_vars *vars)
-{
-	int i;
-	
-	i = 0;
-	while(vars->env[i])
-	{
-		free(vars->exp[i]);
-		vars->exp[i] = ft_strdup(vars->env[i]);
-		i++;
-	}
-	vars->exp[i] = NULL;
-}
-
-void remove_double(char **bar, t_vars *vars)
-{
-	int i = 0;
-	int j = 0;
-	int len = 0;
-	char **take;
-	char **test;
-	take = NULL;
-	test = NULL;
-	take = take_bar(bar,vars);
-	while(vars->exp[++len]);
-	test = take_variable(len, vars);
-	while(i < len - 1)
-	{
-		if(ft_strcmp(test[i], test[i + 1]) == 0)
+		if (j == len)
 		{
-			free(vars->exp[i]);
-			i++;	
-		}
-		vars->exp[j] = vars->exp[i];
-		i++;
-		j++;
-	}
-	vars->exp[j] = vars->exp[i];
-	vars->exp[j + 1] = NULL;
-	ft_free(test);
-}
-
-char **take_variable(int len, t_vars *vars)
-{
-	int i = 0;
-	int j = 0;
-	char **str;
-	
-	str = malloc(sizeof(char *) * 1000);
-	while(i < len)
-	{
-		j = 0;
-		str[i] = malloc(sizeof(char) * 1000);
-		if(ft_strchr(vars->exp[i], '=') == 0)
-		{
-			while(vars->exp[i][j] != '=')
-			{
-				str[i][j] = vars->exp[i][j];
-				j++;
-			}
-			str[i][j] = '\0';
+			ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
+			ft_putchar_fd('\"', vars->outfile[vars->index]);
 		}
 		else
-			str[i] = ft_strdup(vars->exp[i]);
-		i++;
+			ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
+	j++;
 	}
-	str[i] = NULL;
-	return str;
+	ft_putchar_fd('\n', vars->outfile[vars->index]);
 }
 
-void aff_export2(char **bar, t_vars *vars)
+int	check_export(char **bar, t_vars *vars)
 {
-	int i = 0;
-	int  j = 0;
-	int len = 0;
-	int k = 0;
-	while(vars->exp[++k]);
-	while(i < k )
-	{
-		ft_putstr("declare -x ", vars->outfile[vars->index]);	
-		if(ft_strchr(vars->exp[i], '=') == 0)
-		{
-			j = 0;
-			len = ft_strlen(vars->exp[i]) - 1;
-			while(vars->exp[i][j])
-			{
-				if(vars->exp[i][j]== '=')
-				{
-					ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
-					ft_putchar_fd('\"', vars->outfile[vars->index]);
-					j++;
-				}
-				if(j == len)
-				{
-					ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
-					ft_putchar_fd('\"', vars->outfile[vars->index]);
-				}
-				else
-					ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
-			j++;
-			}
-			ft_putchar_fd('\n', vars->outfile[vars->index]);
-		}
-		else
-			{
-				ft_putstr(vars->exp[i], vars->outfile[vars->index]);
-				ft_putchar_fd('\n', vars->outfile[vars->index]);
-			}
-		i++;
-	}
-}
-void aff_export(char **bar, t_vars *vars)
-{
-	sort_str(vars->exp);
-	remove_double(bar, vars);
-	aff_export2(bar,vars);
-}
+	int	i;
+	int	o;
 
-void add_export(char **bar, t_vars *vars)
-{
-	int i = 0;
-	int j = 1;
-	while(vars->exp[++i]);
-	while(bar[j])
-	{
-		vars->exp[i] = ft_strdup(bar[j]);
-		j++;
-		i++;
-	}
-	vars->exp[i] = NULL;
-	remove_double(bar, vars);
-}
-
-void check_export(char **bar, t_vars *vars)
-{
-	
-	int i = 1;
-	int j = 0;
-	int k = 0;
-	int  o = 0;
-	int l = 0;
-	vars->bar = malloc(sizeof(char*) * 1000);
+	i = 1;
+	o = 0;
+	vars->bar = NULL;
+	vars->bar = malloc(sizeof(char *) * SIZE_ALL);
 	vars->bar[o] = "export";
-	o++;
-	while(bar[i])
+	o = 1;
+	while (bar[i])
 	{
-		
-		if(ft_strchr(bar[i], '=') != 0)
-		{
-			j = 0;
-			k = 0;
-			while(bar[i][j])
-			{
-				if(ft_isalpha(bar[i][0]) == 0)
-				{
-					if(bar[i][0] != '_')
-						k++;
-						l++;
-				}	
-				else
-				{
-					if(ft_isalnum(bar[i][j]) == 0)
-					{
-						if(bar[i][j] != '=')
-							k++;
-							l++;
-					}
-				}
-				j++;	
-			}
-			if(k == 0)
-			{
-				vars->bar[o] = ft_strdup(bar[i]);
-				o++;
-			}
-		}
-		else
-		{
-			j = 0;
-			k = 0;
-			while(bar[i][j])
-			{
-				if(ft_isalpha(bar[i][0]) == 0)
-				{
-					if(bar[i][0] != '_')
-						k++;
-				}
-				j++;
-			}
-			if(k == 0)
-			{
-				vars->bar[o] = ft_strdup(bar[i]);
-					o++;
-			}
-		}
+		check_export4(bar, vars, o, i);
 		i++;
 	}
-	vars->bar[o] = NULL;
-	if(l > 0)
-		ft_putstr("export: not a valid identifier\n", 2);
-
+	return (g_status);
 }
-void check_export2(char **bar, t_vars *vars)
+
+int	check_export2(char **bar, int i, int j, int k)
 {
-	int	i = 0;
-	int	j = 0;
-	int	k = 0;
-	
-	check_export(bar, vars);
-	while(bar[i++]);
-	bar = vars->bar;
-	char **str = malloc(sizeof(char *) * i);
-	char **ptr = malloc(sizeof(char *) * i);
-	i = 0;
-	str[j] = ft_strdup(bar[0]);
-	j += 1;
-	while(bar[i])
+	int	l;
+
+	l = 0;
+	while (bar[i][j])
 	{
-		
-		if(ft_strchr(bar[i], '=') == 0)
+		if (ft_isalpha(bar[i][0]) == 0)
 		{
-			str[j] = ft_strdup(bar[i]);
-			j++;
-		}
-		else if(ft_strchr(bar[i], '=') != 0)
+			if (bar[i][0] != '_')
+				k++;
+				l++;
+		}	
+		else
 		{
-			ptr[k] = ft_strdup(bar[i]);
-			k++;
+			if (ft_isalnum(bar[i][j]) == 0)
+			{
+				if (bar[i][j] != '=')
+					k++;
+					l++;
+			}
 		}
-		i++;	
+		j++;
 	}
-	str[j] = NULL;
-	ptr[k] = NULL;
-	if(j > 1)
+	print_export_error(l, bar, i);
+	return (k);
+}
+void print_export_error(int l, char **bar, int i)
+{
+	if (l > 0)
 	{
-		add_env(str, vars);
-		remove_double(bar, vars);
-		add_export(bar, vars);
+		ft_putstr(bar[i], 2);
+		ft_putstr(": not a valid identifier\n", 2);
 	}
-	if(k > 1)
+}
+
+
+
+int	check_export3(char **bar, int i)
+{
+	int	j;
+	int	k;
+
+	j = 0;
+	k = 0;
+	while (bar[i][j])
 	{
-		remove_double(bar, vars);
-		add_export(ptr, vars);
+		if (ft_isalpha(bar[i][0]) == 0)
+		{
+			if (bar[i][0] != '_')
+				k++;
+		}
+		j++;
 	}
+	return (k);
+}
+
+void	check_export4(char **bar, t_vars *vars, int o, int i)
+{
+	int	k;
+	int	j;
+
+	k = 0;
+	j = 0;
+	if (ft_strchr(bar[i], '=') != 0)
+	{
+		k = check_export2(bar, i, j, k);
+		if (k == 0)
+		{
+			vars->bar[o] = ft_strdup(bar[i]);
+			o++;
+		}
+	}
+	else
+	{
+		k = check_export3(bar, i);
+		if (k == 0)
+		{
+			vars->bar[o] = ft_strdup(bar[i]);
+				o++;
+		}
+	}
+	if (k > 0)
+		g_status = 1;
+	vars->bar[o] = NULL;
 }

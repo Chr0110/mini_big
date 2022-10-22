@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 13:08:35 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 07:36:57 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,7 +77,6 @@ void	free_big(t_b_l *big_list, t_p_l *tmp, t_b_l *btmp)
 
 int main(int ac, char **av, char  **env)
 {
-	char *buffer;
 	char *ptr;
 	t_vars *vars;
 	t_b_l *big;
@@ -86,6 +85,9 @@ int main(int ac, char **av, char  **env)
 	t_p_l	*tmp;
 	t_b_l	*btmp;
 
+	av = NULL;
+	ac = 0;
+	temp = NULL;
 	vars = malloc(sizeof(t_vars));
 	data = malloc(sizeof(t_data));
 	ft_initial_exec(vars, env);
@@ -104,7 +106,7 @@ int main(int ac, char **av, char  **env)
 		{
 			add_history(ptr);
 			big = ft_parsing(ptr, vars->env, temp);
-			ft_execution(big, vars, ptr);
+			ft_execution(big, data, vars);
 		}
 		
 	}

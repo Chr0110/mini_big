@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:35:33 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 11:41:40 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 08:07:06 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,4 +56,33 @@ int	count_list(t_b_l *lst)
 	}
 	lst = sv;
 	return (len);
+}
+
+int	ft_atoi(const char *str)
+{
+	size_t	res;
+	int		signe;
+	size_t	i;
+
+	i = 0;
+	signe = 1;
+	res = 0;
+	while ((str[i] >= 9 && str[i] <= 13) || str[i] == ' ')
+		i++;
+	if (str[i] == '-' || str[i] == '+')
+	{
+		if (str[i++] == '-')
+			signe = signe * (-1);
+	}
+	while (str[i] >= '0' && str[i] <= '9')
+	{
+		res = res * 10 + str[i++] - '0';
+		if (res > 9223372036854775807)
+		{
+			if (signe == -1)
+				return (0);
+			return (-1);
+		}
+	}
+	return (res * signe);
 }

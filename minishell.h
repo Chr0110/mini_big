@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/20 09:05:31 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/22 08:06:09 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,6 +26,18 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
+
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include "exec/exec.h"
+typedef struct s_b_l t_b_l;
+typedef struct s_vars t_vars;
 
 int	g_status;
 typedef struct s_token
@@ -96,6 +108,7 @@ typedef struct s_p_l
 
 typedef struct s_b_l
 {
+	char			**str;
 	t_p_l			*arg;
 	t_r				*red;
 	struct s_b_l	*next;
@@ -168,7 +181,7 @@ char	*dollar_cases2(char **res, char *s, int *i, int j);
 char	*dollar_cases(char **res, char *s, int *i, int j);
 char	*skip_white_spaces(char *src);
 int		still_a_quote(t_lx *lexer, int i);
-char	*ft_strjoin(char *s, char c);
+// char	*ft_strjoin(char *s, char c);
 int		number_of_s_quotes(t_lx *lexer);
 int		number_of_quotes(t_lx *lexer);
 void	make_list(t_p_l **curr, t_p_l *t_a_prev, t_p_l *x_ls);
@@ -189,7 +202,7 @@ void	ft_creat_red_lst(t_r **red_branch, t_token *token);
 t_b_l	*ft_lstlast4(t_b_l *lst);
 void	ft_lstadd_back4(t_b_l **lst, t_b_l *new);
 char	*ft_strdup(char *s1);
-int		ft_strlen(char *s);
+int		ft_strlen1(char *s);
 void	lexer_init(t_lx	*lexer);
 int		not_between_s_quotes(char *s, int i);
 void	red_in_lexer(t_lx *lx, int *j, t_token *tk, t_list **s_b);
@@ -203,6 +216,7 @@ void	ft_ft_creat_list(t_lx *lexer, int *j, t_token *token, t_list **s_b);
 void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tk);
 void	pip_lexer(t_lx *lexer, int *j, t_token *token, t_list **s_b);
 void	append_lexer(t_lx *lexer, int *j, t_token *token, t_list **s_b);
+t_b_l	*ft_parsing(char *ptr, char **env, t_b_l *big_list);
 int		r_o_error(int i, int *error);
 int		r_i_error(int i, int *error);
 int		red_in_error(t_list *temp, int *error);
@@ -231,7 +245,7 @@ void	go_count_again(char *s, int *i, t_lx *lexer);
 void	how_much(char *s, t_lx *lexer);
 
 ///////////////////////             EXECution        /////////////////////////////
-void ft_execution(t_b_l *big,t_vars *vars, char *ptr);
-void	sig_handler(int sig);
+// void ft_execution(t_b_l *big,t_vars *vars, char *ptr);
+// void	sig_handler(int sig);
 
 #endif

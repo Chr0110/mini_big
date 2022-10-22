@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils.c                                      :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:37:25 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/20 09:01:56 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/22 07:51:27 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	count_s_q(int *i, t_lx *lexer)
 	(*i)++;
 	while (lexer->str[(*i)] != '\'' && lexer->str[(*i)] != '\0')
 		(*i)++;
-	if ((*i) == ft_strlen(lexer->str))
+	if ((*i) == ft_strlen1(lexer->str))
 		return (1);
 	else
 		(*i)++;
@@ -29,7 +29,7 @@ int	count_d_q(int *i, t_lx *lexer)
 	(*i)++;
 	while (lexer->str[(*i)] != '\"' && lexer->str[(*i)] != '\0')
 		(*i)++;
-	if ((*i) == ft_strlen(lexer->str))
+	if ((*i) == ft_strlen1(lexer->str))
 		return (1);
 	else
 		(*i)++;

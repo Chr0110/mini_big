@@ -6,37 +6,46 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 17:49:25 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/21 19:35:20 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-
-
-void ft_initial_exec(t_vars *vars, char **env)
-{
-	vars->pwd = ft_strdup("");
-	vars->infile = malloc(sizeof(int) * 100);
-	vars->outfile = malloc(sizeof(int) * 100);
+void	ft_initial_exec(t_vars *vars, char **env)
+{	
 	initial_env(vars, env);
 	initial_exp(vars, env);
 	ft_replace_shlvl(vars);
+	vars->pwd = ft_strdup("");
 	ft_replace_oldpwd(vars);
 	env_to_exp(vars);
 	ft_replace(vars);
 	ft_append(vars);
 }
 
-void initial_env(t_vars *vars, char **env)
+int	len_env(char **ptr)
 {
+	int	i;
 
-	int i;
+	i = 0;
+	if (!ptr)
+		return (0);
+	while (ptr[i])
+		i++;
+	return (i);
+}
+
+void	initial_env(t_vars *vars, char **env)
+{
+	int	i;
+
 	i = 0;
 	vars->env = NULL;
-	vars->env = malloc(sizeof(char *) *1024);
-	i = 0;
-	while(env[i])
+	if (!env)
+		return ;
+	vars->env = malloc(sizeof(char *) * (len_env(env) + 1));
+	while (env[i])
 	{
 		vars->env[i] = ft_strdup(env[i]);
 		i++;
@@ -44,14 +53,14 @@ void initial_env(t_vars *vars, char **env)
 	vars->env[i] = NULL;
 }
 
-void initial_exp(t_vars *vars, char **env)
+void	initial_exp(t_vars *vars, char **env)
 {
-	int  i;
-	
+	int	i;
+
 	i = 0;
 	vars->exp = NULL;
-	vars->exp = malloc(sizeof(char *)*1024);
-	while(env[i])
+	vars->exp = malloc(sizeof(char *) * SIZE_ALL);
+	while (env[i])
 	{
 		vars->exp[i] = ft_strdup(env[i]);
 		i++;
@@ -59,157 +68,22 @@ void initial_exp(t_vars *vars, char **env)
 	vars->exp[i] = NULL;
 }
 
-int size_env(t_vars *vars)
+int	size_env(t_vars *vars)
 {
-	int len;
-	
+	int	len;
+
 	len = 0;
-	while(vars->env[len])
+	while (vars->env[len])
 		++len;
 	return (len);
 }
 
-int size_exp(t_vars *vars)
+int	size_exp(t_vars *vars)
 {
-	int len;
-	
+	int	len;
+
 	len = 0;
-	while(vars->exp[++len]);
+	while (vars->exp[len])
+		++len;
 	return (len);
-}
-
-char **ft_remove(char **str, char *ptr, int len)
-{
-	int  i = 0;
-	int  j = 0;
-	while(i < len)
-	{
-		if(ft_strcmp(str[i], ptr) == 0)
-			i++;
-		str[j] = str[i];
-		i++;
-		j++;
-	}
-	return str;
-}
-
-void ft_replace(t_vars *vars)
-{
-	int  i;
-	int  j;
-	int  len;
-	int size;
-	char *pwd;
-	pwd = ft_getcwd(vars);
-	
-	j = 0 ;
-	i = 0;
- 	len = size_env(vars);
-	while(i < len)
-	{
-		if(ft_strncmp(vars->env[i], "PWD=", 4) == 0 )
-		{
-			// free(vars->env[i]);
-			vars->env[i] = ft_strjoin("PWD=", pwd);
-		}
-		i++;
-	}
-	vars->env[i] = NULL;
-	if(ft_strcmp(vars->pwd, "\0") != 0)	
-	{
-		len = size_env(vars);
-		vars->env[--len] = ft_strjoin("OLDPWD=", vars->pwd);
-	}
-	env_to_exp(vars);
-	size = size_exp(vars);
-	// free(vars->pwd);
-	vars->pwd = pwd;
-}
-
-void ft_replace_shlvl(t_vars *vars)
-{
-	int i;
-	int len;
-	int a;
-	char *str;
-	char *n;
-	i = 0;
-	str = NULL;
-	a = 0;
-	len = size_env(vars);
-	while(i < len)
-	{
-		if(ft_strncmp(vars->env[i], "SHLVL", 5) == 0)
-		{
-			str = ft_copie_shlvl(vars->env[i]);
-			// free(vars->env[i]);
-			a = atoi(str) + 1;
-			n = ft_itoa(a);
-			vars->env[i] = ft_strjoin("SHLVL=", n);
-			// free(n);
-			// free(str);
-		}
-		i++;
-	}
-	// vars->env[i] = NULL;
-	env_to_exp(vars);
-}
-char *ft_copie_shlvl(char *str)
-{
-	int i;
-	int j;
-	char *ptr;
-	int len;
-	
-	i = 0;
-	j = 0;
-	ptr = NULL;
-	len = ft_strlen(str);
-	while(str[i] != '=')
-		i++;
-	ptr = malloc(sizeof(char)*(len - i + 1));
-	while(str[++i])
-	{
-		ptr[j] = str[i];
-		j++;
-	}
-	ptr[j] = '\0';
-	return (ptr);
-}
-
-void ft_replace_oldpwd(t_vars *vars)
-{
-	int i;
-	int j;
-	int len;
-	len = size_env(vars);
-	i = 0;
-	j = 0;
-	
-	while (i < len)
-	{
-		if (ft_strncmp(vars->env[i], "OLDPWD", 6) == 0)
-		{
-			// free(vars->env[i]);
-			i++;
-		}
-		vars->env[j] = vars->env[i];
-		j++;
-		i++;
-	}
-	vars->env[j] = NULL;
-}
-
-void ft_append(t_vars *vars)
-{
-	int  i;
-	char *pwd;
-	
-	i  = 0;
-	pwd = NULL;
-	pwd = ft_strdup("OLDPWD");
-	while(vars->exp[i])
-		i++;
-	vars->exp[i] = pwd;
-	vars->exp[i + 1] = NULL;
 }

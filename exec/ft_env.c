@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 17:09:05 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 07:40:33 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,13 +37,13 @@ void	add_env(char **bar, t_vars *vars)
 	while (vars->env[len])
 		++len;
 	if (bar[1] != NULL)
-		barr = take_bar(bar, vars);
+		barr = take_bar(bar);
 	while (bar[j])
 	{	
 		test = take_variable2(len, vars);
 		if (check_isdouble(test, len, barr[j]) == 0)
 		{
-			remove_str(test, barr[j], vars, bar[j]);
+			remove_str(test, barr[j], vars);
 			j = 1;
 			len--;
 		}
@@ -72,7 +72,7 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 	vars->env[len] = NULL;
 }
 
-void	ft_env(char **bar, t_vars *vars)
+int	ft_env(char **bar, t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -90,10 +90,15 @@ void	ft_env(char **bar, t_vars *vars)
 		i++;
 	}
 	if (k != j)
-		ft_putstr("env: No such file or directory\n", 2);
+		{
+			ft_putstr(bar[1], 2);
+			ft_putstr(": No such file or directory\n", 2);
+			return (1);
+		}
 	else
 	{
 		add_env(bar, vars);
 		aff_env(vars->env, vars);
 	}
+	return (0);
 }

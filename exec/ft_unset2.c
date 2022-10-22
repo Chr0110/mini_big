@@ -6,18 +6,19 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:16:59 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 20:22:44 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 07:43:19 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	ft_unset(char **bar, t_vars *vars)
+int	ft_unset(char **bar, t_vars *vars)
 {
 	int		j;
 	char	**take;
 	char	**barr;
 
+	take = NULL;
 	j = 0;
 	check_export(bar, vars);
 	bar = vars->bar;
@@ -28,6 +29,7 @@ void	ft_unset(char **bar, t_vars *vars)
 		j++;
 	}
 	// ft_free(barr);
+	return (0);
 }
 
 void	ft_unset2(t_vars *vars, char *barr, char **take)

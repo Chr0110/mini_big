@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:18:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:18:28 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/21 19:45:18 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,21 +41,36 @@ char	*find_user(t_vars *vars)
 	return (str);
 }
 
-void	ft_chdir(char *ptr, t_vars *vars)
+int	ft_chdir(char *ptr, t_vars *vars)
 {
 	if (chdir(ptr) == 0)
+	{
 		ft_replace(vars);
+		return (0);
+	}
 	else
 	{
 		ft_putstr(ptr, 2);
 		ft_putstr(": No such file or directory\n", 2);
+		return (1);
 	}
+	return (0);
 }
-
-void	ft_cd(char **ptr, t_vars *vars)      
+int	ft_cd(char **ptr, t_vars *vars)
 {
 	int	i;
 
 	i = 0;
-	ft_chdir(ptr[1], vars);
+	if (!opendir(ptr[1]) && !access(ptr[1], F_OK))
+	{
+		ft_putstr(ptr[1], 2);
+		ft_putstr(": Not a directory\n", 2);
+	}
+	else
+	{
+		if(ft_chdir(ptr[1], vars) == 1)
+		return (1);
+	}
+	return (0);
 }
+

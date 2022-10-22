@@ -49,21 +49,31 @@ SRC_E = \
 		./exec/ft_env.c\
 		./exec/ft_env2.c\
 		./exec/ft_export.c\
+		./exec/ft_export2.c\
+		./exec/ft_export3.c\
+		./exec/ft_export4.c\
 		./exec/ft_exit.c\
 		./exec/ft_unset.c\
+		./exec/ft_unset2.c\
 		./exec/is_builtins.c\
 		./exec/initial_env.c\
+		./exec/initial_env2.c\
+		./exec/initial_env3.c\
 		./exec/ft_pipe.c\
+		./exec/ft_pipe2.c\
+		./exec/ft_pipe3.c\
 		./exec/ft_path.c\
 		./exec/ft_rediraction.c\
+		./exec/ft_rediraction2.c\
 		./exec/ft_herdoc.c\
+		./exec/ft_herdoc2.c\
 		# test.c\
 		# pipex_utils2.c\
 		# multiple_pipe.c\
 
 SRC = $(SRC_E) $(SRC_P)
 
-CC = cc 
+CC = cc -Wall -Wextra -Werror
 
 CFLAGS =   -I /Users/sriyani/goinfre/brew/opt/readline/include -fsanitize=address 
 LIB_FLAG = -L /Users/sriyani/goinfre/brew/opt/readline/lib

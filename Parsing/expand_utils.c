@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:14:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/20 08:57:55 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/22 07:52:20 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ void	p_l_n_q_case(char *exp, t_p_l **ex_ls)
 	token = malloc(1 * sizeof(t_token));
 	token->value = malloc((ft_strlen(exp) + 1) * sizeof(char));
 	token->value[ft_strlen(exp)] = '\0';
-	while (i < ft_strlen(exp))
+	while (i < ft_strlen1(exp))
 	{
 		token->value[i] = exp[i];
 		i++;

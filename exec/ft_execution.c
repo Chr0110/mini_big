@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:59:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 14:42:55 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 07:36:39 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,10 @@ void	fill_bar(t_b_l *big)
 	}
 }
 
-void	ft_execution(t_b_l *big, t_vars *vars, char *ptr)
+void	ft_execution(t_b_l *big, t_data *data, t_vars *vars)
 {
 	t_b_l	*sv;
 	int		j;
-	int		i;
 
 	j = 0;
 	if (big == NULL)
@@ -47,5 +46,5 @@ void	ft_execution(t_b_l *big, t_vars *vars, char *ptr)
 		j++;
 	}
 	big = sv;
-	ft_pipe(big, vars, j);
+	ft_pipe(big, data, vars, j);
 }

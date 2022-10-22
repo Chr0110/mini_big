@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:03:17 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 17:11:01 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 07:38:23 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ char	**take_variable2(int len, t_vars *vars)
 	i = 0;
 	j = 0;
 	var = NULL;
-	var = malloc(sizeof(char *) * size_all);
+	var = malloc(sizeof(char *) * SIZE_ALL);
 	while (i < len)
 	{
 		j = 0;
-		var[i] = malloc(sizeof(char) * size_all);
+		var[i] = malloc(sizeof(char) * SIZE_ALL);
 		while (vars->env[i][j] != '=')
 		{
 			var[i][j] = vars->env[i][j];
@@ -54,7 +54,7 @@ char	**take_variable2(int len, t_vars *vars)
 	return (var);
 }
 
-void	remove_str(char **test, char *str, t_vars *vars, char *bar)
+void	remove_str(char **test, char *str, t_vars *vars)
 {
 	int	i;
 	int	j;
@@ -76,17 +76,17 @@ void	remove_str(char **test, char *str, t_vars *vars, char *bar)
 	vars->env[j] = NULL;
 }
 
-char	**take_bar(char **bar, t_vars *vars)
+char	**take_bar(char **bar)
 {
 	int		i;
 	char	**barr;
 
 	i = 0;
 	barr = NULL;
-	barr = malloc(sizeof(char *) * size_all);
+	barr = malloc(sizeof(char *) * SIZE_ALL);
 	while (bar[i])
 	{
-		barr[i] = malloc(sizeof(char *) * size_all);
+		barr[i] = malloc(sizeof(char *) * SIZE_ALL);
 		if (ft_strchr(bar[i], '=') == 0)
 			take_bar2(barr, bar, i);
 		else

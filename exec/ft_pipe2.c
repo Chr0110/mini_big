@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:18 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/21 15:24:40 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 13:15:33 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,8 @@ void	ft_wait(pid_t *child_pro, int len)
 	int	status;
 
 	i = 0;
+	status = 0;
+	
 	while (i < len)
 	{
 		waitpid(child_pro[i], &status, 0);

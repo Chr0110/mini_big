@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:23:31 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 11:38:10 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 13:48:04 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ char	*ft_strcat(char	*s1, char *s2)
 	return (s1);
 }
 
-char	*ft_strcpy(char	*dst,	char	*src)
+char	*ft_strcpy(char	*dst, char *src)
 {
 	int	i;
 

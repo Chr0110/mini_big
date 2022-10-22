@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:40:33 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 11:17:38 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,6 +66,7 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 		{
 			vars->env[len] = ft_strdup(bar[j]);
 			len++;
+			
 		}
 		j++;
 	}

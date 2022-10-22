@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:36:57 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 08:42:46 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -108,8 +108,9 @@ int main(int ac, char **av, char  **env)
 			big = ft_parsing(ptr, vars->env, temp);
 			ft_execution(big, data, vars);
 		}
-		
 	}
+	free(vars);
+	free(data);
 	if (big)
 		free_big(big, tmp, btmp);
 }

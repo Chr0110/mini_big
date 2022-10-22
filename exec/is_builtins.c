@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 14:07:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:44:20 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 10:25:59 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,7 +78,6 @@ int	builtins2(t_vars *vars, char **bar)
 		if (bar[1] != NULL)
 			{
 				g_status = check_export5(bar, vars);
-				
 			}
 		
 		else

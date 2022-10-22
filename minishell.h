@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/22 08:06:09 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 08:18:08 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,17 +27,19 @@
 # include <readline/readline.h>
 # include <readline/history.h>
 
-# include <unistd.h>
-# include <fcntl.h>
-# include <stdio.h>
-# include <stdlib.h>
-# include <string.h>
-# include <signal.h>
-# include <readline/readline.h>
-# include <readline/history.h>
-# include "exec/exec.h"
+#include <unistd.h>
+#include <fcntl.h>
+#include <stdio.h>
+#include <stdlib.h>
+#include <string.h>
+#include <signal.h>
+#include <readline/readline.h>
+#include <readline/history.h>
+#include <sys/types.h>
+#include <sys/wait.h>
 typedef struct s_b_l t_b_l;
 typedef struct s_vars t_vars;
+# include "exec/exec.h"
 
 int	g_status;
 typedef struct s_token

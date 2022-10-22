@@ -75,7 +75,7 @@ SRC = $(SRC_E) $(SRC_P)
 
 CC = cc -Wall -Wextra -Werror
 
-CFLAGS =   -I /Users/sriyani/goinfre/brew/opt/readline/include -fsanitize=address 
+CFLAGS =   -I /Users/sriyani/goinfre/brew/opt/readline/include #-fsanitize=address 
 LIB_FLAG = -L /Users/sriyani/goinfre/brew/opt/readline/lib
 OBJ = $(SRC:.c=.o)
 

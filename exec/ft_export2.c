@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:32:50 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:41:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 14:23:37 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,7 @@ void	env_to_exp(t_vars *vars)
 		vars->exp[i] = ft_strdup(vars->env[i]);
 		i++;
 	}
+	free(vars->exp[i]);
 	vars->exp[i] = NULL;
 }
 

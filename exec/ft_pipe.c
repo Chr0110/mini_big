@@ -6,11 +6,23 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:49:27 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 11:38:35 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void kill_pro(pid_t *child_pro, int len)
+{
+	int i;
+	i = 0;
+	while (i < len)
+	{
+		kill(child_pro[i], SIGKILL);
+		i++;
+	}
+}
+
 
 void	ft_pipe(t_b_l *big, t_data *data, t_vars *vars, int len)
 {
@@ -31,6 +43,7 @@ void	ft_pipe(t_b_l *big, t_data *data, t_vars *vars, int len)
 			if ((vars->child_pro[i] = fork()) < 0)
 			{
 				ft_putstr("fork: Resource temporarily unavailable\n", 2);
+				kill_pro(vars->child_pro, i -1);
 				break;
 			}
 			if (vars->child_pro[i] == 0)

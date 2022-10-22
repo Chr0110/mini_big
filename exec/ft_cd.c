@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:18:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 09:48:03 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 07:18:28 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,7 +52,7 @@ void	ft_chdir(char *ptr, t_vars *vars)
 	}
 }
 
-void	ft_cd(char **ptr, t_vars *vars)
+void	ft_cd(char **ptr, t_vars *vars)      
 {
 	int	i;
 

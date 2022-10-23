@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 11:07:45 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 15:25:06 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    sig_handler(int signum)
     {
         ft_putchar_fd('\n', 1);
         rl_on_new_line();
-    //    rl_replace_line("", 1);
+       rl_replace_line("", 1);
         rl_redisplay();	
     }
 	if (signum == SIGQUIT)
@@ -59,7 +59,7 @@ void	free_big(t_b_l *big_list, t_p_l *tmp, t_b_l *btmp)
 		{
 			tmp = btmp->arg;
 			btmp->arg = btmp->arg->next;
-			// free(tmp->content.value);////check
+			free(tmp->content.value);////check
 			free(tmp);
 			i++;
 		}
@@ -103,8 +103,7 @@ int main(int ac, char **av, char  **env)
 	while(1)
 	{
 		ptr = readline(YELLOW"minishell$> "NOR);
-		
-		
+
 		init_signal();
 		if (!ptr)
 		{
@@ -115,12 +114,13 @@ int main(int ac, char **av, char  **env)
 		if(ft_strlen1(ptr) != 0)
 		{
 			add_history(ptr);
-			big = ft_parsing(ptr, vars->env, temp);
+			big = ft_parsing(ptr, env, temp);
 			ft_execution(big, data, vars);
 			if (big)
 				free_big(big, tmp, btmp);
 		}
 	}
+	
 	ft_free(vars->bar);
 	ft_free(vars->env);
 	ft_free(vars->exp);

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:21:58 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 09:50:15 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 17:22:38 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ char	**ft_remove(char **str, char *ptr, int len)
 		i++;
 		j++;
 	}
+	str[j] = NULL;
 	return (str);
 }
 
@@ -39,24 +40,25 @@ void	ft_replace(t_vars *vars)
 	int		i;
 	int		len;
 	char	*pwd;
-	char	*tmp;
+	// char	*tmp;
 
 	i = 0;
-	tmp = NULL;
+	// tmp = NULL;
 	pwd = getcwd(NULL, 0);
 	len = size_env(vars);
 	while (i < len)
 	{
 		if (ft_strncmp(vars->env[i], "PWD=", 4) == 0)
 		{
-			tmp = ft_strjoin("PWD=", pwd);
-			free(vars->env[i]);
-			vars->env[i] = NULL;
-			vars->env[i] = tmp;
+			// tmp = ft_strjoin("PWD=", pwd);
+			// free(vars->env[i]);
+			// vars->env[i] = NULL;
+			vars->env[i] = ft_strjoin("PWD=", pwd);
+			break ;
 		}
 		i++;
 	}
-	vars->env[i] = NULL;
+	// vars->env[i] = NULL;
 	ft_replace2(vars);
 	free(vars->pwd);
 	vars->pwd = NULL;

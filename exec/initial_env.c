@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 07:36:27 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 17:28:35 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	initial_env(t_vars *vars, char **env)
 
 	i = 0;
 
-	vars->env = NULL;
 	if (!env)
 		return ;
+	vars->env = NULL;
 	vars->env = malloc(sizeof(char *) * SIZE_ALL);
 	while (env[i])
 	{
@@ -85,6 +85,6 @@ int	size_exp(t_vars *vars)
 
 	len = 0;
 	while (vars->exp[len])
-		++len;
+		len++;
 	return (len);
 }

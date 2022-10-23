@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:18 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 09:23:00 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 13:17:10 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -81,7 +81,6 @@ void	ft_close(int len, t_vars *vars, char *ptr)
 		k++;
 	}
 	free(ptr);
-	ptr = NULL;
 	unlink (ptr);
 }
 

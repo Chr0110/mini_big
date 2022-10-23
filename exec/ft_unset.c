@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 11:41:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 17:48:06 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,10 +56,10 @@ int	unset_exp(char **bar, t_vars *vars)
 	char	**barr;
 	int 	len;
 	
-	len = size_exp(vars);
 	take = NULL;
 	j = 0;
-	barr = sort_str(bar, len);
+	len = size_exp(vars);
+	barr = sort_str(bar);
 	while (barr[j])
 	{
 		ft_unset_exp2(vars, barr[j], take);

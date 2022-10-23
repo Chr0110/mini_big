@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:37:47 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 10:55:23 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 15:43:08 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,8 +24,7 @@ int	check_export5(char **bar, t_vars *vars)
 	check_export(bar, vars);
 	while (bar[i])
 		i++;
-	ft_free(bar);///////
-	bar = vars->bar;
+	// bar = vars->bar;
 	vars->sar = malloc(sizeof(char *) * (i + 1));
 	vars->mar = malloc(sizeof(char *) * (i + 1));
 	check_export6(bar, vars, k);
@@ -50,18 +49,18 @@ void	check_export6(char **bar, t_vars *vars, int k)
 
 	i = 0;
 	j = 0;
-	vars->sar[j] = ft_strcpy(vars->sar[j], bar[0]);
+	vars->sar[j] = ft_strdup(bar[0]);
 	j = 1;
 	while (bar[i])
 	{
 		if (ft_strchr(bar[i], '=') == 0)
 		{
-			vars->sar[j] = ft_strcpy(vars->sar[j], bar[i]);
+			vars->sar[j] =  ft_strdup(bar[i]);
 			j++;
 		}
-		else if (ft_strchr(bar[i], '=') != 0)
+		else
 		{
-			vars->mar[k] = ft_strcpy(vars->mar[k], bar[i]);
+			vars->mar[k] = ft_strdup(bar[i]);
 			k++;
 		}
 		i++;

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:58:05 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 10:45:18 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 17:43:58 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,14 @@
 
 void	remove_double(char **bar, t_vars *vars)
 {
-	// char	**take;
 	(void)bar;
 	char	**test;
 	int		len;
 
-	// take = NULL;
 	test = NULL;
 	len = 0;
 	while (vars->exp[len])
 		++len;
-	// take = take_bar(bar);
-	// ft_free(take);
 	test = take_variable(len, vars);
 	remove_double2(test, vars, len);
 }

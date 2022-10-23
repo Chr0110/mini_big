@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:32:10 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 09:51:51 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 17:37:13 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,14 +54,24 @@ int	ft_isalpha(int c)
 char	*ft_strjoin(char *s1, char *s2)
 {
 	char	*ptr;
+	int		i;
+	int		j;
 
 	if (!s1 || !s2)
 		return (NULL);
-	ptr = (char *) malloc((ft_strlen (s1) + ft_strlen (s2) + 2) * sizeof(char));
+	i = 0;
+	j = 0;
+	ptr = (char *) malloc((ft_strlen (s1) + ft_strlen (s2) + 1) * sizeof(char));
 	if (!ptr)
 		return (NULL);
-	else
-		ft_strcpy (ptr, s1);
-	ft_strcat (ptr, s2);
+	while (s1[j])
+		ptr[i++] = s1[j++];
+	j = 0;
+	while (s2[j])
+		ptr[i++] = s2[j++];
+	ptr[i] = '\0';
+	// else
+	// 	ft_strcpy (ptr, s1);
+	// ft_strcat (ptr, s2);
 	return (ptr);
 }

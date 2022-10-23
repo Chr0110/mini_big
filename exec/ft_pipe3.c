@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:49 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 11:34:57 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 13:22:48 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,11 +29,11 @@ int	one_built(t_b_l *big, t_vars *vars, t_data *data, int len)
 			free(vars->outfile);
 			vars->outfile = NULL;
 		}
-		if (vars->mar && vars->sar)
-		{
-			ft_free(vars->mar);
-			ft_free(vars->sar);
-		}
+		// if (vars->mar[0] && vars->sar[0])
+		// {
+		// 	free(vars->mar);
+		// 	free(vars->sar);
+		// }
 		return (1);
 	}
 	return (0);

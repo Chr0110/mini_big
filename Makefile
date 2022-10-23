@@ -73,9 +73,9 @@ SRC_E = \
 
 SRC = $(SRC_E) $(SRC_P)
 
-CC = cc -g3 -g -Wall -Wextra -Werror
+CC = cc -g3 -g #-Wall -Wextra -Werror
 
-CFLAGS =   -I /Users/sriyani/goinfre/brew/opt/readline/include -I /valgrind/valgrind.rb -fsanitize=address 
+CFLAGS =   -I /Users/sriyani/goinfre/brew/opt/readline/include -I /valgrind/valgrind.rb #-fsanitize=address 
 LIB_FLAG = -L /Users/sriyani/goinfre/brew/opt/readline/lib
 OBJ = $(SRC:.c=.o)
 

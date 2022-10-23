@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:20:21 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 09:48:27 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 17:28:21 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,13 +19,17 @@ void	ft_replace_shlvl(t_vars *vars)
 
 	i = 0;
 	len = size_env(vars);
-	while (i < len)
+	while (vars->env[i] && i < len - 1)
 	{
 		if (ft_strncmp(vars->env[i], "SHLVL", 5) == 0)
+		{
 			ft_replace_shlvl2(vars, i);
+			break ;
+		}
+	
 		i++;
 	}
-	vars->env[i] = NULL;
+	// vars->env[i] = NULL;
 	env_to_exp(vars);
 }
 
@@ -44,8 +48,9 @@ void	ft_replace_shlvl2(t_vars *vars, int i)
 	free(vars->env[i]);
 	vars->env[i] =  NULL;
 	vars->env[i] = ft_strjoin("SHLVL=", n);
-	free(n);
+	// free(vars->env[i]);
 	free(str);
+	free(n);
 }
 
 char	*ft_copie_shlvl(char *str)

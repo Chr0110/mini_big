@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 11:38:57 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 16:43:54 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -119,7 +119,8 @@ int		ft_pwd(t_vars *vars);
 int		ft_echo(char **bar, t_vars *vars);
 int		ft_cd(char **ptr, t_vars *vars);
 int		ft_chdir(char *ptr, t_vars *vars);
-char	**sort_str(char **ptr, int len);
+char	**sort_str_exp(char **ptr, int len);
+char	**sort_str(char **ptr);
 int		ft_exit(char **bar);
 int		check_export(char **bar, t_vars *vars);
 int		ft_isdigit(int c);

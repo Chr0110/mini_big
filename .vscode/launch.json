@@ -8,11 +8,9 @@
             "type": "lldb",
             "request": "launch",
             "name": "Debug",
-            "program": "${workspaceFolder}/Parsing/minishell",
+            "program": "${workspaceFolder}/minishell",
             "args": [],
             "env": {
-                "var": "ls -la",
-                "var2": "ls",
             },
             "cwd": "${workspaceFolder}"
         }

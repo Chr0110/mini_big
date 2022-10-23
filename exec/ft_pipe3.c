@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:49 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:45:12 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 11:34:57 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,21 @@ int	one_built(t_b_l *big, t_vars *vars, t_data *data, int len)
 		vars->index = 0;
 		builtins(vars, big->str);
 		ft_close(len, vars, data->name);
+		if(vars->infile)
+		{
+			free(vars->infile);
+			vars->infile = NULL;
+		}
+		if(vars->outfile)
+		{
+			free(vars->outfile);
+			vars->outfile = NULL;
+		}
+		if (vars->mar && vars->sar)
+		{
+			ft_free(vars->mar);
+			ft_free(vars->sar);
+		}
 		return (1);
 	}
 	return (0);
@@ -57,5 +72,17 @@ void	fin_pipe(t_vars *vars, pid_t *child_pro, t_data *data, int len)
 {
 	ft_close(len, vars, data->name);
 	ft_wait(child_pro, len);
+	if(vars->infile)
+	{
+		free(vars->infile);
+		vars->infile = NULL;
+	}
+	if(vars->outfile)
+	{
+		free(vars->outfile);
+		vars->outfile = NULL;
+	}
+	free(vars->child_pro);
+	vars->child_pro = NULL;
 	init_signal();
 }

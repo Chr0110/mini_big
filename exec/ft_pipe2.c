@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:18 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 13:15:33 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 09:23:00 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	intial_fd(t_vars *vars, int len)
 	int	i;
 
 	i = 0;
-	vars->infile = malloc(sizeof(int) * (len + 1));
-	vars->outfile = malloc(sizeof(int) * (len + 1));
+	vars->infile = NULL;
+	vars->outfile = NULL;
+	vars->infile = malloc(sizeof(int) * len);
+	vars->outfile = malloc(sizeof(int) * len);
 	while (i < len)
 	{
 		vars->infile[i] = -1;
@@ -34,9 +36,9 @@ void	creat_pipe(int len, int i, t_vars *vars)
 	if (i < len - 1)
 		pipe(p);
 	vars->infile[0] = 0;
-	if (vars->outfile[i] == -1)
+	if (len > 1 && vars->outfile[i] == -1)
 		vars->outfile[i] = p[1];
-	if (vars->infile[i + 1] == -1)
+	if (len > 1 && vars->infile[i + 1] == -1)
 		vars->infile[i + 1] = p[0];
 	vars->outfile[len - 1] = 1;
 }
@@ -78,6 +80,8 @@ void	ft_close(int len, t_vars *vars, char *ptr)
 			close(vars->outfile[k]);
 		k++;
 	}
+	free(ptr);
+	ptr = NULL;
 	unlink (ptr);
 }
 

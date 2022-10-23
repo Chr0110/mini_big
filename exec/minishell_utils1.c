@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:30:21 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/18 11:39:30 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 09:11:56 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,6 +98,8 @@ int	ft_strcmp(char *s1, char *s2)
 	int	i;
 
 	i = 0;
+	if (!s1 || !s2)
+		return (0);
 	while (s1[i] && s2[i] && s1[i] == s2[i])
 		i++;
 	return (s2[i] - s1[i]);

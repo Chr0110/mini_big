@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 11:38:35 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 11:35:19 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -50,6 +50,11 @@ void	ft_pipe(t_b_l *big, t_data *data, t_vars *vars, int len)
 			{
 				body_pipe(vars, data, i, len);
 				built_inside_pipe(vars, i, lil->str);
+				if (vars->mar && vars->sar)
+				{
+					ft_free(vars->mar);
+					ft_free(vars->sar);
+				}
 			}
 		}
 		psudo_close(vars, i);

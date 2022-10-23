@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:58:48 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/22 08:03:17 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 10:01:13 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ char	*skip_white_spaces(char *src)
 	}
 	str[j] = '\0';
 	free(src);
+	src = NULL; 
 	return (str);
 }
 

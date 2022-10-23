@@ -6,17 +6,48 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 11:17:38 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 10:44:51 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
+
+void	ft_remove_str(t_vars *vars)
+{
+	int i;
+	int len;
+	char **take;
+	int j;
+	j= 0;
+	i= 0;
+	len = 0;
+	len = size_env(vars);
+	take = take_variable2(len, vars);
+	while(i < len - 1)
+	{
+		if(ft_strcmp(take[i],take[i + 1]) == 0)
+		{
+			free(vars->env[i]);
+			vars->env[i] = NULL;
+			i++;
+		}
+		vars->env[j] = vars->env[i];
+		j++;
+		i++;
+	}
+	vars->env[j] = vars->env[i];
+	vars->env[j + 1] = NULL;
+	ft_free(take);
+}
+
+
 
 void	aff_env(char **ptr, t_vars *vars)
 {
 	int	i;
 
 	i = 0;
+	ft_remove_str(vars);
 	while (ptr[i])
 	{
 		ft_putstr(ptr[i], vars->outfile[vars->index]);
@@ -71,6 +102,7 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 		j++;
 	}
 	vars->env[len] = NULL;
+	ft_free(barr);
 }
 
 int	ft_env(char **bar, t_vars *vars)

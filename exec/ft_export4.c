@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:37:47 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/21 10:13:01 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 10:55:23 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@ int	check_export5(char **bar, t_vars *vars)
 	check_export(bar, vars);
 	while (bar[i])
 		i++;
+	ft_free(bar);///////
 	bar = vars->bar;
 	vars->sar = malloc(sizeof(char *) * (i + 1));
 	vars->mar = malloc(sizeof(char *) * (i + 1));
@@ -31,12 +32,12 @@ int	check_export5(char **bar, t_vars *vars)
 	if (vars->n_sar > 1)
 	{
 		add_env(vars->sar, vars);
-		remove_double(bar, vars);
-		add_export(bar, vars);
+		remove_double(vars->sar, vars);
+		add_export(vars->sar, vars);
 	}
 	if (vars->n_mar > 1)
 	{
-		remove_double(bar, vars);
+		remove_double(vars->mar, vars);
 		add_export(vars->mar, vars);
 	}
 	return (g_status);
@@ -49,18 +50,18 @@ void	check_export6(char **bar, t_vars *vars, int k)
 
 	i = 0;
 	j = 0;
-	vars->sar[j] = ft_strdup(bar[0]);
+	vars->sar[j] = ft_strcpy(vars->sar[j], bar[0]);
 	j = 1;
 	while (bar[i])
 	{
 		if (ft_strchr(bar[i], '=') == 0)
 		{
-			vars->sar[j] = ft_strdup(bar[i]);
+			vars->sar[j] = ft_strcpy(vars->sar[j], bar[i]);
 			j++;
 		}
 		else if (ft_strchr(bar[i], '=') != 0)
 		{
-			vars->mar[k] = ft_strdup(bar[i]);
+			vars->mar[k] = ft_strcpy(vars->mar[k], bar[i]);
 			k++;
 		}
 		i++;

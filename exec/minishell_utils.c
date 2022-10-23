@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:23:31 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 13:48:04 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 10:19:02 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,6 +36,8 @@ char	*ft_strcpy(char	*dst, char *src)
 	int	i;
 
 	i = 0;
+	if (!dst || !src)
+		return (NULL);
 	while (src[i])
 	{
 		dst[i] = src[i];

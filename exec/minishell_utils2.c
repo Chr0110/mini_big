@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:32:10 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/21 10:50:33 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 09:51:51 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,6 +22,7 @@ void	ft_free(char **path)
 	while (path[i])
 	{
 		free(path[i]);
+		path[i] = NULL;
 		i++;
 	}
 	free (path);

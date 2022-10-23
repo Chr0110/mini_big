@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:42:56 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 11:41:26 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,9 +21,12 @@ char	**take_variable_exp(int len, t_vars *vars)
 	var = malloc(sizeof(char *) * SIZE_ALL);
 	while (i < len)
 	{
-		var[i] = malloc(sizeof(char) * SIZE_ALL);
+		
 		if (ft_strchr(vars->exp[i], '=') == 0)
+		{
+			var[i] = malloc(sizeof(char) * SIZE_ALL);
 			var[i] = take_variable_exp2(var, vars, i);
+		}
 		else
 			var[i] = ft_strdup(vars->exp[i]);
 		i++;
@@ -51,10 +54,12 @@ int	unset_exp(char **bar, t_vars *vars)
 	int		j;
 	char	**take;
 	char	**barr;
-
+	int 	len;
+	
+	len = size_exp(vars);
 	take = NULL;
 	j = 0;
-	barr = sort_str(bar);
+	barr = sort_str(bar, len);
 	while (barr[j])
 	{
 		ft_unset_exp2(vars, barr[j], take);
@@ -78,6 +83,7 @@ void	ft_unset_exp2(t_vars *vars, char *barr, char **take)
 		if (ft_strcmp(take[i], barr) == 0)
 		{	
 			free(vars->exp[i]);
+			vars->exp[i] = NULL;
 			i++;
 		}
 		vars->exp[k] = vars->exp[i];
@@ -85,5 +91,6 @@ void	ft_unset_exp2(t_vars *vars, char *barr, char **take)
 		i++;
 	}
 	ft_free(take);
+	take = NULL;
 	vars->exp[k] = NULL;
 }

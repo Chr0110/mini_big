@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:25:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:50:13 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 07:52:59 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,7 +69,6 @@ char	*ft_expand2(t_vars *vars, int i, int j)
 
 	str = NULL;
 	k = 0;
-	str = ft_strdup(vars->env[i] + j);
 	while (vars->env[i][++j])
 	{
 		str[k] = vars->env[i][j];

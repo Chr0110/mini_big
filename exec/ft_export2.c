@@ -6,17 +6,18 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:32:50 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 14:23:37 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 11:38:19 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	**sort_str(char **ptr)
+char	**sort_str(char **ptr, int len)
 {
 	int		i;
 	int		j;
 	char	*swap;
+
 
 	i = 0;
 	j = 0;
@@ -24,7 +25,7 @@ char	**sort_str(char **ptr)
 	while (ptr[i])
 	{
 		j = i + 1;
-		while (ptr[j])
+		while (j < len -1)
 		{
 			if (ft_strcmp(ptr[i], ptr[j]) < 0)
 			{
@@ -46,17 +47,17 @@ void	env_to_exp(t_vars *vars)
 	i = 0;
 	while (vars->env[i])
 	{
-		free(vars->exp[i]);
-		vars->exp[i] = ft_strdup(vars->env[i]);
+		vars->exp[i] = vars->env[i];
 		i++;
 	}
-	free(vars->exp[i]);
 	vars->exp[i] = NULL;
 }
 
 int	aff_export(char **bar, t_vars *vars)
 {
-	sort_str(vars->exp);
+	int len;
+	len = size_exp(vars);
+	sort_str(vars->exp, len);
 	remove_double(bar, vars);
 	aff_export2(vars);
 	return (0);
@@ -78,5 +79,6 @@ void	add_export(char **bar, t_vars *vars)
 		i++;
 	}
 	vars->exp[i] = NULL;
+	ft_free(bar);
 	remove_double(bar, vars);
 }

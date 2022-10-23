@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:03:17 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:38:23 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 20:52:08 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -90,7 +90,7 @@ char	**take_bar(char **bar)
 		if (ft_strchr(bar[i], '=') == 0)
 			take_bar2(barr, bar, i);
 		else
-			barr[i] = ft_strdup(bar[i]);
+			barr[i] = ft_strcpy(barr[i], bar[i]);
 		i++;
 	}
 	barr[i] = NULL;

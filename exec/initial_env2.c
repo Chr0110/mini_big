@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:20:21 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/21 16:22:28 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 09:48:27 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,7 @@ void	ft_replace_shlvl2(t_vars *vars, int i)
 	a = atoi(str) + 1;
 	n = ft_itoa(a);
 	free(vars->env[i]);
+	vars->env[i] =  NULL;
 	vars->env[i] = ft_strjoin("SHLVL=", n);
 	free(n);
 	free(str);
@@ -84,6 +85,7 @@ void	ft_replace_oldpwd(t_vars *vars)
 		if (ft_strncmp(vars->env[i], "OLDPWD", 6) == 0)
 		{
 			free(vars->env[i]);
+			vars->env[i] = NULL;
 			i++;
 		}
 		vars->env[j] = vars->env[i];
@@ -92,6 +94,7 @@ void	ft_replace_oldpwd(t_vars *vars)
 	}
 	vars->env[j] = NULL;
 }
+
 
 void	ft_append(t_vars *vars)
 {
@@ -103,6 +106,9 @@ void	ft_append(t_vars *vars)
 	pwd = ft_strdup("OLDPWD");
 	while (vars->exp[i])
 		i++;
+	free(vars->exp[i]);
+	vars->exp[i] = NULL;
 	vars->exp[i] = pwd;
 	vars->exp[i + 1] = NULL;
 }
+

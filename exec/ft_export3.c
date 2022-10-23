@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:58:05 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:41:38 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 10:45:18 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,16 +14,18 @@
 
 void	remove_double(char **bar, t_vars *vars)
 {
-	char	**take;
+	// char	**take;
+	(void)bar;
 	char	**test;
 	int		len;
 
-	take = NULL;
+	// take = NULL;
 	test = NULL;
 	len = 0;
 	while (vars->exp[len])
 		++len;
-	take = take_bar(bar);
+	// take = take_bar(bar);
+	// ft_free(take);
 	test = take_variable(len, vars);
 	remove_double2(test, vars, len);
 }
@@ -40,6 +42,7 @@ void	remove_double2(char **test, t_vars *vars, int len)
 		if (ft_strcmp(test[i], test[i + 1]) == 0)
 		{
 			free(vars->exp[i]);
+			vars->exp[i] = NULL;
 			i++;
 		}
 		vars->exp[j] = vars->exp[i];
@@ -49,6 +52,7 @@ void	remove_double2(char **test, t_vars *vars, int len)
 	vars->exp[j] = vars->exp[i];
 	vars->exp[j + 1] = NULL;
 	ft_free(test);
+	test = NULL;
 }
 
 char	**take_variable(int len, t_vars *vars)
@@ -57,18 +61,20 @@ char	**take_variable(int len, t_vars *vars)
 	int		j;
 	char	**str;
 
-	str = NULL;
 	i = 0;
 	j = 0;
+
+	str = NULL;
 	str = malloc(sizeof(char *) * SIZE_ALL);
 	while (i < len)
 	{
 		j = 0;
+		// printf("%s\n", vars->exp[i]);
 		str[i] = malloc(sizeof(char) * SIZE_ALL);
 		if (ft_strchr(vars->exp[i], '=') == 0)
 			str[i] = takevariable2(vars, str, i, j);
 		else
-			str[i] = ft_strdup(vars->exp[i]);
+			str[i] = ft_strcpy(str[i], vars->exp[i]);
 		i++;
 	}
 	str[i] = NULL;
@@ -92,7 +98,7 @@ void	aff_export2(t_vars *vars)
 	int	j;
 	int	k;
 
-	i = 0;
+	i = 1;
 	j = 0;
 	k = 0;
 	while (vars->exp[k])

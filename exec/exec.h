@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:50:53 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 11:38:57 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,21 +46,21 @@ typedef struct s_data
 typedef struct s_vars
 {
 	pid_t	*child_pro;
-	char	*content;
+	//char	*content;
+	//char	**nar;
+	//char	**envp;
+	//char	**var;
+	//char	**cmd;
 	char	**bar;
 	char	**env;
-	char	**nar;
-	char	**envp;
-	char	**var;
 	char	**exp;
+	char	**sar;
+	char	**mar;
 	char	*pwd;
-	char	**cmd;
 	int		len;
 	int		*infile;
 	int		*outfile;
 	int		index;
-	char	**sar;
-	char	**mar;
 	int		sig_on;
 	int		pid;
 	int		n_sar;
@@ -119,7 +119,7 @@ int		ft_pwd(t_vars *vars);
 int		ft_echo(char **bar, t_vars *vars);
 int		ft_cd(char **ptr, t_vars *vars);
 int		ft_chdir(char *ptr, t_vars *vars);
-char	**sort_str(char **ptr);
+char	**sort_str(char **ptr, int len);
 int		ft_exit(char **bar);
 int		check_export(char **bar, t_vars *vars);
 int		ft_isdigit(int c);
@@ -134,7 +134,7 @@ void	aff_export2(t_vars *vars);
 int		ft_env(char **bar, t_vars *vars);
 void	aff_env(char **ptr, t_vars *vars);
 void	initial_env(t_vars *vars, char **env);
-void	initial_exp(t_vars *vars, char **env);
+void	initial_exp(t_vars *vars);
 void	add_var(char **bar, t_vars *vars);
 int		ft_unset(char **bar, t_vars *vars);
 void	add_env(char **bar, t_vars *vars);
@@ -173,7 +173,6 @@ char	*ft_copie_shlvl(char *str);
 void	ft_initial_exec(t_vars *vars, char **env);
 int		count_list(t_b_l *lst);
 char	*find_user(t_vars *vars);
-int		ft_chdir(char *ptr, t_vars *vars);
 void	ft_transform(t_b_l *lil);
 void	ft_test(t_b_l *lil2);
 void	ft_wait(pid_t *child_pro, int len);

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:59:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:36:39 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/22 17:41:49 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,18 +16,19 @@ void	fill_bar(t_b_l *big)
 {
 	int	i;
 	int	len;
-
+	t_p_l *tmp;
 	len = 0;
 	i = 0;
 	len = ft_lstsize(big->arg);
+	tmp = big->arg;
 	big->str = malloc(sizeof(char *) * (len + 1));
-	big->str[len] = NULL;
-	while (big->arg)
+	while (tmp)
 	{
-		big->str[i] = ft_strdup(big->arg->content.value);
-		big->arg = big->arg->next;
+		big->str[i] = tmp->content.value;
+		tmp = tmp->next;
 		i++;
 	}
+	big->str[i] = NULL;
 }
 
 void	ft_execution(t_b_l *big, t_data *data, t_vars *vars)
@@ -39,12 +40,12 @@ void	ft_execution(t_b_l *big, t_data *data, t_vars *vars)
 	if (big == NULL)
 		return ;
 	sv = big;
-	while (big)
+	while (sv)
 	{
-		fill_bar(big);
-		big = big->next;
+		fill_bar(sv);
+		sv = sv->next;
 		j++;
 	}
-	big = sv;
+	// free(sv);
 	ft_pipe(big, data, vars, j);
 }

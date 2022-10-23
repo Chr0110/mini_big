@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:32:50 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 17:05:09 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 18:35:12 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,7 +28,7 @@ char	**sort_str(char **ptr)
 	{
 		j = i + 1;
 		
-		while (ptr[j] && j < len - 1)
+		while (ptr[j] && j < len)
 		{
 			if (ft_strcmp(ptr[i], ptr[j]) < 0)
 			{
@@ -71,7 +71,6 @@ char	**sort_str(char **ptr)
 // 	}
 // 	return (ptr);
 // }
-
 
 void	env_to_exp(t_vars *vars)
 {

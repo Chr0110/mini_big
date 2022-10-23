@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 10:44:51 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 18:56:19 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -95,9 +95,8 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 		test = take_variable2(len, vars);
 		if (check_isdouble(test, len, barr[j]) == 1)
 		{
-			vars->env[len] = ft_strdup(bar[j]);
+			vars->env[len] = bar[j];
 			len++;
-			
 		}
 		j++;
 	}

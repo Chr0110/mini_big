@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 15:25:06 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 18:40:11 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ void	free_big(t_b_l *big_list, t_p_l *tmp, t_b_l *btmp)
 		// i = i - 1;
 		// while(i-- > 0)
 		// if (btmp->str[i])
-		// 	free(btmp->str[i]);
+			// free(btmp->str[i]);
 		btmp1 = btmp;
 		btmp = btmp->next;
 		free(btmp1);
@@ -119,6 +119,8 @@ int main(int ac, char **av, char  **env)
 			if (big)
 				free_big(big, tmp, btmp);
 		}
+		if(!ptr)
+			free(ptr);
 	}
 	
 	ft_free(vars->bar);

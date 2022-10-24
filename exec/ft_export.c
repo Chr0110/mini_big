@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:50:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 14:46:41 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 10:24:09 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,10 +45,6 @@ int	check_export(char **bar, t_vars *vars)
 	int	o;
 
 	i = 1;
-	o = 0;
-	vars->bar = NULL;
-	vars->bar = malloc(sizeof(char *) * SIZE_ALL);
-	vars->bar[o] = "export";
 	o = 1;
 	while (bar[i])
 	{
@@ -126,21 +122,14 @@ void	check_export4(char **bar, t_vars *vars, int o, int i)
 	{
 		k = check_export2(bar, i, j, k);
 		if (k == 0)
-		{
-			vars->bar[o] = bar[i];
 			o++;
-		}
 	}
 	else
 	{
 		k = check_export3(bar, i);
 		if (k == 0)
-		{
-			vars->bar[o] = bar[i];
-				o++;
-		}
+			o++;
 	}
 	if (k > 0)
 		g_status = 1;
-	vars->bar[o] = NULL;
 }

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:32:50 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 18:35:12 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 10:21:43 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,35 +43,6 @@ char	**sort_str(char **ptr)
 	return (ptr);
 }
 
-// char	**sort_str_exp(char **ptr,int len)
-// {
-// 	int		i;
-// 	int		j;
-// 	char	*swap;
-
-
-// 	i = 0;
-// 	j = 0;
-// 	swap = NULL;
-// 	while (i < len -1)
-// 	{
-// 		printf("%s\n",ptr[i]);
-// 		j = i + 1;
-// 		while (j < len)
-// 		{
-// 			if (ft_strcmp(ptr[i], ptr[j]) < 0)
-// 			{
-// 				swap = ptr[i];
-// 				ptr[i] = ptr[j];
-// 				ptr[j] = swap;
-// 			}
-// 			j++;
-// 		}
-// 		i++;
-// 	}
-// 	return (ptr);
-// }
-
 void	env_to_exp(t_vars *vars)
 {
 	int	i;
@@ -107,12 +78,10 @@ void	add_export(char **bar, t_vars *vars)
 		++i;
 	while (bar[j])
 	{
-		// printf(GREEN"%s\n",bar[j]);
 		vars->exp[i] = bar[j];
 		j++;
 		i++;
 	}
 	vars->exp[i] = NULL;
 	remove_double(bar, vars);
-	// ft_free(bar);
 }

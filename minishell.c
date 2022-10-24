@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 20:15:17 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 09:57:47 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -116,7 +116,7 @@ int main(int ac, char **av, char  **env)
 		else if(ft_strlen1(ptr) != 0)
 		{
 			add_history(ptr);
-			big = ft_parsing(ptr, env, temp);
+			big = ft_parsing(ptr, vars->env, temp);
 
 			ft_execution(big, data, vars);
 			if (big)

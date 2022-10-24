@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 16:43:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 10:24:24 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ typedef struct s_data
 typedef struct s_vars
 {
 	pid_t	*child_pro;
-	//char	*content;
-	//char	**nar;
-	//char	**envp;
-	//char	**var;
-	//char	**cmd;
 	char	**bar;
 	char	**env;
 	char	**exp;

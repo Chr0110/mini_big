@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:37:47 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 11:38:58 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 13:30:13 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	check_export5(char **bar, t_vars *vars)
 		remove_double(vars->sar, vars);
 		add_export(vars->sar, vars);
 	}
-	if (vars->n_mar > 1)
+	else if (vars->n_mar > 1)
 	{
 		remove_double(vars->mar, vars);
 		add_export(vars->mar, vars);
@@ -64,8 +64,8 @@ void	check_export6(char **bar, t_vars *vars, int k)
 		}
 		i++;
 	}
-	vars->n_sar = j;
-	vars->n_mar = k;
 	vars->sar[j] = NULL;
 	vars->mar[k] = NULL;
+	vars->n_sar = j;
+	vars->n_mar = k;
 }

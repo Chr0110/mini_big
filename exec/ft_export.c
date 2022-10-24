@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:50:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 10:24:09 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 12:53:54 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -89,8 +89,6 @@ void print_export_error(int l, char **bar, int i)
 		ft_putstr(": not a valid identifier\n", 2);
 	}
 }
-
-
 
 int	check_export3(char **bar, int i)
 {

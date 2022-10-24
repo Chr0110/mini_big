@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 11:38:31 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:38:49 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,6 +14,8 @@
 
 void	ft_initial_exec(t_vars *vars, char **env)
 {	
+	// for (int i = 0; env[i]; i++)
+	// 	printf("%s\n", env[i]);
 	vars->pwd = ft_strdup("");
 	initial_env(vars, env);
 	initial_exp(vars);

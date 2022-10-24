@@ -6,7 +6,7 @@
 #    By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 07:58:05 by sriyani           #+#    #+#              #
-#    Updated: 2022/10/24 14:46:54 by sriyani          ###   ########.fr        #
+#    Updated: 2022/10/24 15:41:05 by sriyani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,9 +85,9 @@ SRC_E = \
 
 SRC = $(SRC_E) $(SRC_P)
 
-CC = cc -g3 -g #-Wall -Wextra -Werror
+CC = cc # -g3 -g #-Wall -Wextra -Werror
 
-CFLAGS =   -I /Users/sriyani/goinfre/brew/opt/readline/include  -fsanitize=address 
+CFLAGS =   -I /Users/sriyani/goinfre/brew/opt/readline/include  # -fsanitize=address 
 LIB_FLAG = -L /Users/sriyani/goinfre/brew/opt/readline/lib
 OBJ = $(SRC:.c=.o)
 

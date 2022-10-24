@@ -1,6 +1,5 @@
 while :
 do
 	leaks minishell
-	sleep 2
-	clear
+	sleep 1
 done

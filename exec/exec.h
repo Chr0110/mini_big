@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 10:24:24 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:58:00 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,13 +25,13 @@
 # include <sys/stat.h>
 # include <dirent.h>
 # define SIZE_ALL	10240
-# define RED	"\x1b[31m"
-# define GREEN	"\x1b[32m"
-# define YELLOW	"\x1b[33m"
-# define BLUE	"\x1b[34m"
-# define CYAN	"\x1b[36m"
-# define NOR	"\x1B[37m"
-# define MAG	"\x1B[35m"
+// # define RED	"\x1b[31m"
+// # define GREEN	"\x1b[32m"
+// # define YELLOW	"\x1b[33m"
+// # define BLUE	"\x1b[34m"
+// # define CYAN	"\x1b[36m"
+// # define NOR	"\x1B[37m"
+// # define MAG	"\x1B[35m"
 
 typedef struct s_data
 {
@@ -189,5 +189,6 @@ void	is_herdoc2(t_vars *vars, t_b_l *lil, t_data *data);
 int		redirect_herd(t_data *data, t_vars *vars, t_b_l *lil2);
 char	*ft_expand(t_vars *vars, char *ptr);
 char	*ft_expand2(t_vars *vars, int i, int j);
+int		ft_replace_oldpwd2(t_vars *vars, char *oldpwd);
 void	ft_herdoc2(t_vars *vars, char *str, t_data *data);
 #endif

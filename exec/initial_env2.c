@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:20:21 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 14:14:48 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 16:53:03 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -98,18 +98,35 @@ void	ft_replace_oldpwd(t_vars *vars)
 	vars->env[j] = NULL;
 }
 
+int	ft_replace_oldpwd2(t_vars *vars, char *oldpwd)
+{
+	int	i;
+	int	len;
+
+	i = 0;
+	len = size_env(vars);
+	while (i < len)
+	{
+		if (ft_strncmp(vars->env[i], "OLDPWD", 6) == 0)
+		{
+			free(vars->env[i]);
+			vars->env[i] = oldpwd;
+			vars->exp[i] = vars->env[i];
+			return (0);
+		}
+		i++;
+	}
+	return (1);
+}
+
 void	ft_append(t_vars *vars)
 {
 	int		i;
-	char	*pwd;
 
 	i = 0;
-	pwd = ft_strdup("OLDPWD");
 	while (vars->exp[i])
 		i++;
 	free(vars->exp[i]);
-	vars->exp[i] = NULL;
-	vars->exp[i] = pwd;
+	vars->exp[i] = ft_strdup("OLDPWD");
 	vars->exp[i + 1] = NULL;
 }
-

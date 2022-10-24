@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 18:56:19 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 11:40:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	add_env(char **bar, t_vars *vars)
 		}
 		j++;
 		ft_free(test);
+		test = NULL;
 	}
 	add_bar_to_env(len, barr, bar, vars);
 }
@@ -99,9 +100,13 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 			len++;
 		}
 		j++;
+		ft_free(test);
+		test = NULL;
+		ft_free(barr);
+		barr = NULL;
 	}
 	vars->env[len] = NULL;
-	ft_free(barr);
+	
 }
 
 int	ft_env(char **bar, t_vars *vars)

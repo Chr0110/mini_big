@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/29 17:28:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 11:35:19 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 09:30:45 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,6 @@ void	ft_pipe(t_b_l *big, t_data *data, t_vars *vars, int len)
 	t_b_l	*lil;
 
 	lil = big;
-	vars->child_pro = NULL;
 	if (ft_pipe2(big, data, vars, len))
 		return ;
 	vars->child_pro = malloc(sizeof(int) * len);
@@ -57,6 +56,9 @@ void	ft_pipe(t_b_l *big, t_data *data, t_vars *vars, int len)
 				}
 			}
 		}
+		if (lil->str)
+			free(lil->str);
+		lil->str = NULL;
 		psudo_close(vars, i);
 		lil = lil->next;
 		i++;

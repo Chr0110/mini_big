@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:18 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 13:17:10 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 08:09:33 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,9 +17,7 @@ void	intial_fd(t_vars *vars, int len)
 	int	i;
 
 	i = 0;
-	vars->infile = NULL;
-	vars->outfile = NULL;
-	vars->infile = malloc(sizeof(int) * len);
+	vars->infile = malloc(sizeof(int) * (len + 1));
 	vars->outfile = malloc(sizeof(int) * len);
 	while (i < len)
 	{

@@ -8,8 +8,8 @@ int main()
 	// s[3] = '4';
 	//printf("{%s}", s);
 	printf("{befor => %s}\n", s);
-	s = NULL;
 	free(s);
+	s = NULL;
 	printf("{after => %s}\n", s);
 
 	system("leaks a.out");

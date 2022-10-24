@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:59:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 20:17:14 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 09:31:41 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,10 @@ void	fill_bar(t_b_l *big)
 	int	i;
 	t_p_l *tmp;
 	i = 0;
+	int  len;
 	tmp = big->arg;
-
+	len = ft_lstsize(big->arg);
+	big->str = malloc(sizeof(char *) * (len + 1));
 	while (tmp)
 	{
 		big->str[i] = tmp->content.value;
@@ -39,17 +41,14 @@ void	ft_execution(t_b_l *big, t_data *data, t_vars *vars)
 	if (big == NULL)
 		return ;
 	sv = big;
-	len = ft_lstsize(big->arg);
-	big->str = malloc(sizeof(char *) * (len + 1));
 	while (sv)
 	{
+		
 		fill_bar(sv);
 		sv = sv->next;
 		j++;
 	}
-	// free(sv);
+
 	ft_pipe(big, data, vars, j);
-	if (big->str)
-		free(big->str);
 	big->str = NULL;
 }

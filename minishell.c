@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 11:07:45 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 21:33:18 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void    sig_handler(int signum)
     {
         ft_putchar_fd('\n', 1);
         rl_on_new_line();
-    //    rl_replace_line("", 1);
+       rl_replace_line("", 1);
         rl_redisplay();	
     }
 	if (signum == SIGQUIT)
@@ -42,26 +42,24 @@ void init_signal(void)
 	signal(SIGQUIT, SIG_IGN);
 	signal(SIGINT, sig_handler);
 	signal(SIGQUIT, sig_handler);
-	// signal(SIGQUIT,  sig_term);
+	signal(SIGQUIT,  sig_term);
 	tgcatt();
 }
 
 void	free_big(t_b_l *big_list, t_p_l *tmp, t_b_l *btmp)
 {
-	t_r *rtmp;
-	t_b_l *btmp1;
-	int i;
+	t_r		*rtmp;
+	t_b_l	*btmp1;
+
 	btmp = big_list;
 	while(btmp)
 	{	
-		i = 0;
 		while(btmp->arg)
 		{
 			tmp = btmp->arg;
 			btmp->arg = btmp->arg->next;
-			// free(tmp->content.value);////check
+			free(tmp->content.value);
 			free(tmp);
-			i++;
 		}
 		while(btmp->red)
 		{
@@ -70,10 +68,6 @@ void	free_big(t_b_l *big_list, t_p_l *tmp, t_b_l *btmp)
 			free(rtmp->content.value);
 			free(rtmp);
 		}
-		// i = i - 1;
-		// while(i-- > 0)
-		// if (btmp->str[i])
-		// 	free(btmp->str[i]);
 		btmp1 = btmp;
 		btmp = btmp->next;
 		free(btmp1);
@@ -115,17 +109,14 @@ int main(int ac, char **av, char  **env)
 		if(ft_strlen1(ptr) != 0)
 		{
 			add_history(ptr);
-			big = ft_parsing(ptr, vars->env, temp);
+			big = ft_parsing(ptr, env, temp);
 			ft_execution(big, data, vars);
 			if (big)
+			{
 				free_big(big, tmp, btmp);
+				big = NULL;
+			}
 		}
 	}
-	ft_free(vars->bar);
-	ft_free(vars->env);
-	ft_free(vars->exp);
-	ft_free(vars->sar);
-	ft_free(vars->mar);
-	free(vars);
-	free(data);
+	
 }

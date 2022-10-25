@@ -84,7 +84,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME) : $(OBJ) # $(LIB)
+$(NAME) : $(OBJ) $(LIB)
 		$(CC) $(CFLAGS) $(LIB_FLAG) -o $(NAME)   -lreadline  $(OBJ) 
 
 clean:

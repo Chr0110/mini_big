@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils6.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 09:03:10 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/22 07:51:58 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 21:29:09 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,12 +25,14 @@ void	free2d(char **ptr)
 		j++;
 	}
 	free(ptr);
+	ptr = NULL;
 }
 
 void	free_lexer(t_lx **lexer)
 {
 	if ((*lexer) == NULL)
 		return ;
+	free((*lexer)->text[(*lexer)->t]);
 	free((*lexer)->str);
 	free((*lexer)->text);
 	free2d((*lexer)->pip);
@@ -39,6 +41,7 @@ void	free_lexer(t_lx **lexer)
 	free2d((*lexer)->redirection_in);
 	free2d((*lexer)->redirection_out);
 	free((*lexer));
+	lexer = NULL;
 }
 
 void	free_lexer2(t_lx **lexer)
@@ -53,6 +56,7 @@ void	free_lexer2(t_lx **lexer)
 	free((*lexer)->redirection_in);
 	free((*lexer)->redirection_out);
 	free((*lexer));
+	lexer = NULL;
 }
 
 void	go_count_again(char *s, int *i, t_lx *lexer)

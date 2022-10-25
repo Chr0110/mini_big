@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   check_errors.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:25:30 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/23 09:52:21 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 21:12:58 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	free_for_error(t_lx *lx, t_list *small_branch)
 	t_list	*t;
 	t_list	*tmp1;
 
+	free(lx->text[lx->t]);
 	free_lexer(&lx);
 	tmp1 = small_branch;
 	while (tmp1)

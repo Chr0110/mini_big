@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:18:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 14:54:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 08:12:19 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -45,7 +45,7 @@ int	ft_chdir(char *ptr, t_vars *vars)
 {
 	if (chdir(ptr) == 0)
 	{
-		ft_replace(vars);
+		// ft_replace(vars);
 		return (0);
 	}
 	else
@@ -59,9 +59,11 @@ int	ft_chdir(char *ptr, t_vars *vars)
 int	ft_cd(char **ptr, t_vars *vars)
 {
 	int	i;
+	DIR	*dir;
 
 	i = 0;
-	if (!opendir(ptr[1]) && !access(ptr[1], F_OK))
+	dir = opendir(ptr[1]);
+	if (!dir && !access(ptr[1], F_OK))
 	{
 		ft_putstr(ptr[1], 2);
 		ft_putstr(": Not a directory\n", 2);
@@ -73,6 +75,6 @@ int	ft_cd(char **ptr, t_vars *vars)
 		if(ft_chdir(ptr[1], vars) == 1)
 			return (1);
 	}
+	closedir(dir);
 	return (0);
 }
-

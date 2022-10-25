@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:49 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 13:13:17 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 17:47:06 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,12 +40,15 @@ int	one_built(t_b_l *big, t_vars *vars, t_data *data, int len)
 void	ft_execute(char **cmd, t_vars *vars)
 {
 	int	i;
+	DIR	*dir;
 
 	i = 0;
-	if (opendir(cmd[0]))
+	dir = opendir(cmd[0]);
+	if (dir)
 	{
 		ft_putstr(cmd[0], 2);
 		ft_putstr(": is a directory\n", 2);
+		closedir(dir);
 		exit(126);
 	}
 	if (access(cmd[0], F_OK) == 0)
@@ -55,8 +58,10 @@ void	ft_execute(char **cmd, t_vars *vars)
 	{
 		ft_putstr(cmd[0], 2);
 		ft_putstr(": command not found\n", 2);
+		closedir(dir);
 		exit(127);
 	}
+	closedir(dir);
 }
 
 void	body_pipe(t_vars *vars, t_data *data, int i, int len)

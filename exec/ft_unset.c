@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 17:48:06 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:52:58 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,13 +18,13 @@ char	**take_variable_exp(int len, t_vars *vars)
 	char	**var;
 
 	i = 0;
-	var = malloc(sizeof(char *) * SIZE_ALL);
+	var = ft_calloc(sizeof(char *) , SIZE_ALL);
 	while (i < len)
 	{
 		
 		if (ft_strchr(vars->exp[i], '=') == 0)
 		{
-			var[i] = malloc(sizeof(char) * SIZE_ALL);
+			var[i] = ft_calloc(sizeof(char) , SIZE_ALL);
 			var[i] = take_variable_exp2(var, vars, i);
 		}
 		else
@@ -91,6 +91,5 @@ void	ft_unset_exp2(t_vars *vars, char *barr, char **take)
 		i++;
 	}
 	ft_free(take);
-	take = NULL;
 	vars->exp[k] = NULL;
 }

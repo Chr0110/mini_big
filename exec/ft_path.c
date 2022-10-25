@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 11:29:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:45:35 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 08:08:43 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 void	path_error(char *cmd)
 {
 	ft_putstr(cmd, 2);
-	ft_putstr(": No such file or directoryyyy\n", 2);
+	ft_putstr(": No such file or directory\n", 2);
 	exit(127);
 }
 

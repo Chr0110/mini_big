@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 18:32:50 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 16:29:09 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 08:29:49 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,6 +17,7 @@ char	**sort_str(char **ptr)
 	int		i;
 	int		j;
 	char	*swap;
+	char *test;
 	int len = 0;
 
 	i = 0;
@@ -30,6 +31,8 @@ char	**sort_str(char **ptr)
 		
 		while (ptr[j] && j < len)
 		{
+			test = ptr[j];
+			// 	printf("|%s|\n",ptr[j]);
 			if (ft_strcmp(ptr[i], ptr[j]) < 0)
 			{
 				swap = ptr[i];
@@ -59,7 +62,20 @@ void	env_to_exp(t_vars *vars)
 int	aff_export(char **bar, t_vars *vars)
 {
 	int len;
+	// char *tmp;
+	int i = 0;
+
 	len = size_exp(vars);
+	// while(i < len)
+	// {
+	// 	if(ft_strncmp(vars->exp[i], "PWD",3) == 0)
+	// 	{
+	// 		free(vars->exp[i]);
+	// 		tmp = ft_strjoin("PWD=", getcwd(NULL, 0));
+	// 		vars->exp[i] = tmp;
+	// 	}
+	// 	i++;
+	// }
 	if (vars->exp)
 		sort_str(vars->exp);
 	remove_double(bar, vars);

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:25:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 07:52:59 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:52:33 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*creat_name(int i)
 	i = 0;
 	j = 0;
 	ptr = NULL;
-	ptr = malloc(sizeof(char) * 6);
+	ptr = ft_calloc(sizeof(char) , 6);
 	str = "abcdefghijklmnopqrstuvwxyz0123456789";
 	while (j < 5)
 	{

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 20:16:59 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 18:22:08 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:34:36 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,5 +54,4 @@ void	ft_unset2(t_vars *vars, char *barr, char **take)
 	}
 	vars->env[k] = NULL;
 	ft_free(take);
-	take = NULL;
 }

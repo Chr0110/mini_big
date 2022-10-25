@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:30:21 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 17:09:30 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:53:50 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,7 +38,7 @@ char	**ft_split(char const *s, char c)
 	index = 0;
 	if (!s)
 		return (NULL);
-	ptr = malloc(sizeof(char *) * (ft_len(s, c) + 1));
+	ptr = ft_calloc(sizeof(char *) , (ft_len(s, c) + 1));
 	if (!ptr)
 		return (NULL);
 	while (index < ft_len(s, c))
@@ -72,7 +72,7 @@ char	*ft_substr(const char *s, unsigned int start, size_t len)
 	{
 		len = ft_strlen(s);
 	}
-	ptr = malloc(sizeof(char) * (len + 1));
+	ptr = ft_calloc(sizeof(char) , (len + 1));
 	if (!ptr)
 		return (ptr);
 	while (s[start] && i < len && start <= ft_strlen(s))

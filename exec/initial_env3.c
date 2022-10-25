@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:21:58 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 17:01:52 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 08:11:08 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,29 +40,28 @@ void	ft_replace(t_vars *vars)
 	int		i;
 	int		len;
 	char	*pwd;
-	// char	*tmp;
+	char	*tmp;
+	int j;
 
 	i = 0;
-	// tmp = NULL;
+	j = 0;
 	pwd = getcwd(NULL, 0);
 	len = size_env(vars);
 	while (i < len)
 	{
-		if (ft_strncmp(vars->env[i], "PWD=", 4) == 0)
+		if (vars->env[i] && ft_strncmp(vars->env[i], "PWD=", 4) == 0)
 		{
-			// tmp = ft_strjoin("PWD=", pwd);
 			free(vars->env[i]);
-			vars->env[i] = ft_strjoin("PWD=", pwd);
-			break ;
+			tmp = 	ft_strjoin("PWD=", pwd);
+			vars->env[i] = tmp; 
 		}
+		vars->env[j] = vars->env[i];
+		j++;
 		i++;
 	}
-	// vars->env[i] = NULL;
+	vars->env[j] = NULL;
 	ft_replace2(vars);
-	free(vars->pwd);
-	vars->pwd = NULL;
 	vars->pwd = pwd;
-	// free(pwd);
 }
 
 void	ft_replace2(t_vars *vars)
@@ -75,7 +74,7 @@ void	ft_replace2(t_vars *vars)
 	i = 0;
 	j = 0;
 	len = size_env(vars);
-	if (vars->pwd[0] != '\0')
+	if (vars->pwd && vars->pwd[0] != '\0')
 	{
 		oldpwd = ft_strjoin("OLDPWD=", vars->pwd);
 		if (ft_replace_oldpwd2(vars, oldpwd))
@@ -85,7 +84,7 @@ void	ft_replace2(t_vars *vars)
 			vars->env[len] = NULL;
 			vars->env[len] = oldpwd;
 			vars->env[len + 1] = NULL;
-			if (ft_strlen(vars->exp[len]) == 6)
+			if (ft_strcmp(vars->exp[len],"OLDPWD") == 0)
 				free(vars->exp[len]);
 			vars->exp[len] = vars->env[len];
 		}

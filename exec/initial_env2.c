@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 10:20:21 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 16:53:03 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 07:34:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,7 +26,6 @@ void	ft_replace_shlvl(t_vars *vars)
 			ft_replace_shlvl2(vars, i);
 			break ;
 		}
-	
 		i++;
 	}
 	env_to_exp(vars);
@@ -45,7 +44,6 @@ void	ft_replace_shlvl2(t_vars *vars, int i)
 	a = atoi(str) + 1;
 	n = ft_itoa(a);
 	free(vars->env[i]);
-	vars->env[i] =  NULL;
 	vars->env[i] = ft_strjoin("SHLVL=", n);
 	free(str);
 	free(n);
@@ -64,7 +62,7 @@ char	*ft_copie_shlvl(char *str)
 	len = ft_strlen(str);
 	while (str[i] != '=')
 		i++;
-	ptr = malloc(sizeof(char) * (len - i + 1));
+	ptr = ft_calloc(sizeof(char) , (len - i + 1));
 	while (str[++i])
 	{
 		ptr[j] = str[i];

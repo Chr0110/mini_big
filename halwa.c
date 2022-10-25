@@ -1,16 +1,11 @@
 #include "minishell.h"
 int main()
 {
-	char *s = malloc(4);
-	// s[0] = '1';
-	// s[1] = '2';
-	// s[2] = 'h';
-	// s[3] = '4';
-	//printf("{%s}", s);
-	printf("{befor => %s}\n", s);
-	free(s);
-	s = NULL;
-	printf("{after => %s}\n", s);
+	char *test;
 
-	system("leaks a.out");
+	// i = 0;
+	// tmp = NULL;
+	test = getcwd(NULL, 0);
+	printf("pwd = [%s]\n" , test);
+	// system("leaks a.out");
 }

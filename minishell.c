@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 09:57:47 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:49:17 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -96,8 +96,8 @@ int main(int ac, char **av, char  **env)
 	temp = NULL;
 	tmp = NULL;
 	btmp = NULL;
-	vars = malloc(sizeof(t_vars));
-	data = malloc(sizeof(t_data));
+	vars = ft_calloc(sizeof(t_vars) , 1);
+	data = ft_calloc(sizeof(t_data) , 1);
 	ft_initial_exec(vars, env);
 	init_signal();
 	while(1)
@@ -119,6 +119,7 @@ int main(int ac, char **av, char  **env)
 			big = ft_parsing(ptr, vars->env, temp);
 
 			ft_execution(big, data, vars);
+
 			if (big)
 				free_big(big, tmp, btmp);
 		}

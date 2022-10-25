@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:50:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 12:53:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 10:24:26 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	aff_export3(t_vars *vars, int i)
 		{
 			ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
 			ft_putchar_fd('\"', vars->outfile[vars->index]);
+			if (vars->exp[i][j + 1] == '\0')
+				ft_putchar_fd('\"', vars->outfile[vars->index]);
 			j++;
 		}
 		if (j == len)

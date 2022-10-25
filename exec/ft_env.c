@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:32:06 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 15:32:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_remove_str(t_vars *vars)
 	int len;
 	char **take;
 	int j;
-	j= 0;
-	i= 0;
+	j = 0;
+	i = 0;
 	len = 0;
 	len = size_env(vars);
 	take = take_variable2(len, vars);
@@ -103,7 +103,6 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 		ft_free(barr);
 	}
 	vars->env[len] = NULL;
-	
 }
 
 int	ft_env(char **bar, t_vars *vars)

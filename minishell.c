@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:49:17 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 15:27:15 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -70,10 +70,6 @@ void	free_big(t_b_l *big_list, t_p_l *tmp, t_b_l *btmp)
 			free(rtmp->content.value);
 			free(rtmp);
 		}
-		// i = i - 1;
-		// while(i-- > 0)
-		// if (btmp->str[i])
-		// 	free(btmp->str[i]);
 		btmp1 = btmp;
 		btmp = btmp->next;
 		free(btmp1);
@@ -117,19 +113,20 @@ int main(int ac, char **av, char  **env)
 		{
 			add_history(ptr);
 			big = ft_parsing(ptr, vars->env, temp);
-
+			ptr = NULL;
 			ft_execution(big, data, vars);
-
 			if (big)
 				free_big(big, tmp, btmp);
+			if(vars->n_mar)
+				ft_free(vars->mar);
+			vars->mar = NULL;
+			if(vars->n_sar )
+				ft_free(vars->sar);
+			vars->sar = NULL;
 		}
+		// system("leaks minishell");
 	}
 	
-	ft_free(vars->bar);
-	ft_free(vars->env);
-	ft_free(vars->exp);
-	ft_free(vars->sar);
-	ft_free(vars->mar);
-	free(vars);
-	free(data);
+	
+	
 }

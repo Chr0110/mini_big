@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 14:07:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 07:19:30 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 14:28:59 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,15 +77,14 @@ int	builtins2(t_vars *vars, char **bar)
 	{
 		if (bar[1] != NULL)
 			{
-				g_status = check_export5(bar, vars);
-				// ft_free(vars->sar);
-				// ft_free(vars->mar);
-				// vars->sar = NULL;
-				// vars->mar = NULL;
+				g_status = check_export5(&bar[1], vars);
 			}
 		
 		else
-			g_status = aff_export(bar, vars);
+			{
+				g_status = aff_export(bar, vars);
+			}
+			
 	}
 	return (g_status);
 }

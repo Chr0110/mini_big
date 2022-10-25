@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 10:59:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:52:15 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 10:45:14 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -44,7 +44,6 @@ void	ft_execution(t_b_l *big, t_data *data, t_vars *vars)
 	sv = big;
 	while (sv)
 	{
-		
 		fill_bar(sv);
 		sv = sv->next;
 		j++;

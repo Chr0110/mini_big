@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:48:12 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/22 07:52:49 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/23 12:50:38 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,6 +64,7 @@ void	remove_quotes(t_token *node)
 	s = node->value;
 	which_quote(&res, s);
 	free(node->value);
+	node->value = NULL;
 	node->value = malloc(ft_strlen1(res) + 1 * sizeof(char));
 	node->value[ft_strlen1(res)] = '\0';
 	i = 0;

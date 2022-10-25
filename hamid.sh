@@ -1,6 +1,6 @@
 while :
 do
-	leaks minishell
+	leaks a.out
 	sleep 1
 	clear
 done

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 10:44:51 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 17:54:26 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,8 +18,8 @@ void	ft_remove_str(t_vars *vars)
 	int len;
 	char **take;
 	int j;
-	j= 0;
-	i= 0;
+	j = 0;
+	i = 0;
 	len = 0;
 	len = size_env(vars);
 	take = take_variable2(len, vars);
@@ -64,10 +64,10 @@ void	add_env(char **bar, t_vars *vars)
 	int		len;
 
 	len = 0;
-	j = 1;
+	j = 0;
 	while (vars->env[len])
 		++len;
-	if (bar[1] != NULL)
+	// if (bar[1] != NULL)
 		barr = take_bar(bar);
 	while (bar[j])
 	{	
@@ -75,7 +75,7 @@ void	add_env(char **bar, t_vars *vars)
 		if (check_isdouble(test, len, barr[j]) == 0)
 		{
 			remove_str(test, barr[j], vars);
-			j = 1;
+			j = 0;
 			len--;
 		}
 		j++;
@@ -89,7 +89,7 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 	char	**test;
 	int		j;
 
-	j = 1;
+	j = 0;
 	while (bar[j])
 	{	
 		test = take_variable2(len, vars);
@@ -97,12 +97,12 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 		{
 			vars->env[len] = ft_strdup(bar[j]);
 			len++;
-			
 		}
 		j++;
+		ft_free(test);
+		ft_free(barr);
 	}
 	vars->env[len] = NULL;
-	ft_free(barr);
 }
 
 int	ft_env(char **bar, t_vars *vars)
@@ -130,7 +130,7 @@ int	ft_env(char **bar, t_vars *vars)
 		}
 	else
 	{
-		add_env(bar, vars);
+		//add_env(bar, vars);
 		aff_env(vars->env, vars);
 	}
 	return (0);

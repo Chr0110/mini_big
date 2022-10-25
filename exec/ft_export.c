@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:50:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 09:41:10 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 10:24:26 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,8 @@ void	aff_export3(t_vars *vars, int i)
 		{
 			ft_putchar_fd(vars->exp[i][j], vars->outfile[vars->index]);
 			ft_putchar_fd('\"', vars->outfile[vars->index]);
+			if (vars->exp[i][j + 1] == '\0')
+				ft_putchar_fd('\"', vars->outfile[vars->index]);
 			j++;
 		}
 		if (j == len)
@@ -45,10 +47,6 @@ int	check_export(char **bar, t_vars *vars)
 	int	o;
 
 	i = 1;
-	o = 0;
-	vars->bar = NULL;
-	vars->bar = malloc(sizeof(char *) * SIZE_ALL);
-	vars->bar[o] = "export";
 	o = 1;
 	while (bar[i])
 	{
@@ -94,8 +92,6 @@ void print_export_error(int l, char **bar, int i)
 	}
 }
 
-
-
 int	check_export3(char **bar, int i)
 {
 	int	j;
@@ -126,21 +122,14 @@ void	check_export4(char **bar, t_vars *vars, int o, int i)
 	{
 		k = check_export2(bar, i, j, k);
 		if (k == 0)
-		{
-			vars->bar[o] = bar[i];
 			o++;
-		}
 	}
 	else
 	{
 		k = check_export3(bar, i);
 		if (k == 0)
-		{
-			vars->bar[o] = bar[i];
-				o++;
-		}
+			o++;
 	}
 	if (k > 0)
 		g_status = 1;
-	vars->bar[o] = NULL;
 }

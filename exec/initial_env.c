@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 07:36:27 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 14:17:08 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,14 @@
 
 void	ft_initial_exec(t_vars *vars, char **env)
 {	
-	vars->pwd = ft_strdup("");
+	// vars->pwd = ft_strdup("");
 	initial_env(vars, env);
 	initial_exp(vars);
 	ft_replace_shlvl(vars);
-	ft_replace_oldpwd(vars);
+	// ft_replace_oldpwd(vars);
+	// ft_replace(vars);
 	env_to_exp(vars);
-	ft_replace(vars);
-	ft_append(vars);
+	// ft_append(vars);
 }
 
 int	len_env(char **ptr)
@@ -42,10 +42,10 @@ void	initial_env(t_vars *vars, char **env)
 
 	i = 0;
 
-	vars->env = NULL;
 	if (!env)
 		return ;
-	vars->env = malloc(sizeof(char *) * SIZE_ALL);
+	vars->env = NULL;
+	vars->env = ft_calloc(sizeof(char *) , SIZE_ALL);
 	while (env[i])
 	{
 		vars->env[i] = ft_strdup(env[i]);
@@ -60,7 +60,7 @@ void	initial_exp(t_vars *vars)
 
 	i = 0;
 	vars->exp = NULL;
-	vars->exp = malloc(sizeof(char *) * SIZE_ALL);
+	vars->exp = ft_calloc(sizeof(char *) , SIZE_ALL);
 	while (vars->env[i])
 	{
 		vars->exp[i] = vars->env[i];
@@ -85,6 +85,6 @@ int	size_exp(t_vars *vars)
 
 	len = 0;
 	while (vars->exp[len])
-		++len;
+		len++;
 	return (len);
 }

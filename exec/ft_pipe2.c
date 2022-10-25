@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:18 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 09:23:00 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:52:52 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,10 +17,8 @@ void	intial_fd(t_vars *vars, int len)
 	int	i;
 
 	i = 0;
-	vars->infile = NULL;
-	vars->outfile = NULL;
-	vars->infile = malloc(sizeof(int) * len);
-	vars->outfile = malloc(sizeof(int) * len);
+	vars->infile = ft_calloc(sizeof(int) , (len + 1));
+	vars->outfile = ft_calloc(sizeof(int) , len);
 	while (i < len)
 	{
 		vars->infile[i] = -1;
@@ -81,7 +79,6 @@ void	ft_close(int len, t_vars *vars, char *ptr)
 		k++;
 	}
 	free(ptr);
-	ptr = NULL;
 	unlink (ptr);
 }
 

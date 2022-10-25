@@ -6,7 +6,11 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
+<<<<<<< HEAD
 /*   Updated: 2022/10/25 21:33:18 by eradi-           ###   ########.fr       */
+=======
+/*   Updated: 2022/10/25 15:27:15 by sriyani          ###   ########.fr       */
+>>>>>>> 7e7dba743a2ed6c013b8500cfaa15b74103d4c5f
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,7 +62,11 @@ void	free_big(t_b_l *big_list, t_p_l *tmp, t_b_l *btmp)
 		{
 			tmp = btmp->arg;
 			btmp->arg = btmp->arg->next;
+<<<<<<< HEAD
 			free(tmp->content.value);
+=======
+			free(tmp->content.value);////check
+>>>>>>> 7e7dba743a2ed6c013b8500cfaa15b74103d4c5f
 			free(tmp);
 		}
 		while(btmp->red)
@@ -90,15 +98,14 @@ int main(int ac, char **av, char  **env)
 	temp = NULL;
 	tmp = NULL;
 	btmp = NULL;
-	vars = malloc(sizeof(t_vars));
-	data = malloc(sizeof(t_data));
+	vars = ft_calloc(sizeof(t_vars) , 1);
+	data = ft_calloc(sizeof(t_data) , 1);
 	ft_initial_exec(vars, env);
 	init_signal();
 	while(1)
 	{
 		ptr = readline(YELLOW"minishell$> "NOR);
-		
-		
+
 		init_signal();
 		if (!ptr)
 		{
@@ -106,17 +113,39 @@ int main(int ac, char **av, char  **env)
 			ft_putstr(NOR"exit\n", 2);
 			exit(1);
 		}
-		if(ft_strlen1(ptr) != 0)
+		else if (!ft_strlen1(ptr))
+			free(ptr);
+		else if(ft_strlen1(ptr) != 0)
 		{
 			add_history(ptr);
+<<<<<<< HEAD
 			big = ft_parsing(ptr, env, temp);
+=======
+			big = ft_parsing(ptr, vars->env, temp);
+			ptr = NULL;
+>>>>>>> 7e7dba743a2ed6c013b8500cfaa15b74103d4c5f
 			ft_execution(big, data, vars);
 			if (big)
 			{
 				free_big(big, tmp, btmp);
+<<<<<<< HEAD
 				big = NULL;
 			}
+=======
+			if(vars->n_mar)
+				ft_free(vars->mar);
+			vars->mar = NULL;
+			if(vars->n_sar )
+				ft_free(vars->sar);
+			vars->sar = NULL;
+>>>>>>> 7e7dba743a2ed6c013b8500cfaa15b74103d4c5f
 		}
+		// system("leaks minishell");
 	}
 	
+<<<<<<< HEAD
+=======
+	
+	
+>>>>>>> 7e7dba743a2ed6c013b8500cfaa15b74103d4c5f
 }

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/09 18:21:00 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/21 16:17:32 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 21:41:37 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,9 @@
 
 char	*ft_getcwd(t_vars *vars)
 {
-	char	str[SIZE_ALL];
 	char	*ptr;
 
-	if (!getcwd(str, sizeof(str)))
-		ptr = ft_strdup(vars->pwd);
-	else
-		ptr = ft_strdup(getcwd(str, sizeof(str)));
+	ptr = ft_strdup(getcwd(NULL, 0));
 	return (ptr);
 }
 

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 14:07:07 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 09:22:08 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/24 19:33:03 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	ft_herdoc(t_vars *vars, char *dil, t_data *data)
 {
 	char	*str;
 
-	data->har = ft_strdup("");
+	data->har = NULL;
 	while (1)
 	{
 		str = readline("> ");
@@ -39,13 +39,13 @@ void	ft_herdoc2(t_vars *vars, char *str, t_data *data)
 	char	*tmp;
 
 	tmp = NULL;
-	tmp = data->har;
 	if (ft_strchr(str, '$') == 0)
 		str = ft_expand(vars, str);
 	data->har = ft_strjoin(data->har, str);
+	tmp = data->har;
+	data->har = ft_strjoin(data->har, "\n");
 	free(tmp);
 	tmp = NULL;
-	data->har = ft_strjoin(data->har, "\n");
 }
 
 void	sig_han(int signum)

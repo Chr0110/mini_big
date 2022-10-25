@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 11:38:57 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 09:45:18 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,11 +46,6 @@ typedef struct s_data
 typedef struct s_vars
 {
 	pid_t	*child_pro;
-	//char	*content;
-	//char	**nar;
-	//char	**envp;
-	//char	**var;
-	//char	**cmd;
 	char	**bar;
 	char	**env;
 	char	**exp;
@@ -119,7 +114,8 @@ int		ft_pwd(t_vars *vars);
 int		ft_echo(char **bar, t_vars *vars);
 int		ft_cd(char **ptr, t_vars *vars);
 int		ft_chdir(char *ptr, t_vars *vars);
-char	**sort_str(char **ptr, int len);
+char	**sort_str_exp(char **ptr, int len);
+char	**sort_str(char **ptr);
 int		ft_exit(char **bar);
 int		check_export(char **bar, t_vars *vars);
 int		ft_isdigit(int c);
@@ -193,5 +189,8 @@ void	is_herdoc2(t_vars *vars, t_b_l *lil, t_data *data);
 int		redirect_herd(t_data *data, t_vars *vars, t_b_l *lil2);
 char	*ft_expand(t_vars *vars, char *ptr);
 char	*ft_expand2(t_vars *vars, int i, int j);
+int		ft_replace_oldpwd2(t_vars *vars, char *oldpwd);
 void	ft_herdoc2(t_vars *vars, char *str, t_data *data);
+void	*ft_calloc(size_t count, size_t size);
+void	ft_bzero(void *s, size_t n);
 #endif

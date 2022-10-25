@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/15 15:50:42 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 10:24:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 21:44:11 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,8 +46,8 @@ int	check_export(char **bar, t_vars *vars)
 	int	i;
 	int	o;
 
-	i = 1;
-	o = 1;
+	i = 0;
+	o = 0;
 	while (bar[i])
 	{
 		check_export4(bar, vars, o, i);
@@ -80,17 +80,17 @@ int	check_export2(char **bar, int i, int j, int k)
 		}
 		j++;
 	}
-	print_export_error(l, bar, i);
+	// print_export_error(l, bar, i);
 	return (k);
 }
-void print_export_error(int l, char **bar, int i)
-{
-	if (l > 0)
-	{
-		ft_putstr(bar[i], 2);
-		ft_putstr(": not a valid identifier\n", 2);
-	}
-}
+// void print_export_error(int l, char **bar, int i)
+// {
+// 	if (l > 0)
+// 	{
+// 		ft_putstr(bar[i], 2);
+// 		ft_putstr(": not a valid identifier\n", 2);
+// 	}
+// }
 
 int	check_export3(char **bar, int i)
 {
@@ -131,5 +131,9 @@ void	check_export4(char **bar, t_vars *vars, int o, int i)
 			o++;
 	}
 	if (k > 0)
+	{
+		ft_putstr(bar[i], 2);
+		ft_putstr(": not a valid identifier\n", 2);
 		g_status = 1;
+	}
 }

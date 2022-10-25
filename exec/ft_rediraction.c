@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:47:53 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/23 08:04:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/26 00:40:55 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,22 +97,23 @@ int	ft_rediraction(t_b_l *lil, t_vars *vars, t_data *data)
 {
 	int		i;
 	t_b_l	*lil2;
-
+	t_r		*r;
 	lil2 = lil;
 	i = 0;
 	while (lil)
-	{	
-		while (lil->red)
+	{
+		r = lil->red;
+		while (r)
 		{
-			if (lil->red->content.e_type == 4)
+			if (r->content.e_type == 4)
 				 g_status = redirect_herd(data, vars, lil2);
-			if (lil->red->content.e_type == 2)
-				 g_status = redirect_in(vars, i, lil->red->content.value);
-			if (lil->red->content.e_type == 3)
-				 g_status = redirect_out(vars, i, lil->red->content.value);
-			if (lil->red->content.e_type == 5)
-				 g_status = redirect_app(vars, i, lil->red->content.value);
-			lil->red = lil->red->next;
+			if (r->content.e_type == 2)
+				 g_status = redirect_in(vars, i, r->content.value);
+			if (r->content.e_type == 3)
+				 g_status = redirect_out(vars, i, r->content.value);
+			if (r->content.e_type == 5)
+				 g_status = redirect_app(vars, i, r->content.value);
+			r = r->next;
 		}
 		lil = lil->next;
 		i++;

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils6.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 09:03:10 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/25 21:29:09 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/25 22:03:07 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,7 @@ void	free_lexer(t_lx **lexer)
 {
 	if ((*lexer) == NULL)
 		return ;
-	free((*lexer)->text[(*lexer)->t]);
+	//free((*lexer)->text[(*lexer)->t]);
 	free((*lexer)->str);
 	free((*lexer)->text);
 	free2d((*lexer)->pip);

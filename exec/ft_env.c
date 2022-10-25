@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 17:54:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 18:53:06 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,6 +88,7 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 {
 	char	**test;
 	int		j;
+	char *tmp;
 
 	j = 0;
 	while (bar[j])
@@ -95,13 +96,15 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 		test = take_variable2(len, vars);
 		if (check_isdouble(test, len, barr[j]) == 1)
 		{
+			tmp = vars->env[len];
+				// printf("vars->env[%d]->[%s]\n", len, vars->env[len]);
 			vars->env[len] = ft_strdup(bar[j]);
 			len++;
 		}
 		j++;
 		ft_free(test);
-		ft_free(barr);
 	}
+	ft_free(barr);
 	vars->env[len] = NULL;
 }
 

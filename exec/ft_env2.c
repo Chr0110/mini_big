@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:03:17 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:52:10 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 18:40:31 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -59,7 +59,7 @@ void	remove_str(char **test, char *str, t_vars *vars)
 	int	i;
 	int	j;
 	int	len;
-
+	// char	*tmp;
 	i = 0;
 	j = 0;
 	len = 0;
@@ -68,7 +68,10 @@ void	remove_str(char **test, char *str, t_vars *vars)
 	while (i < len)
 	{
 		if (ft_strcmp(test[i], str) == 0)
+		{
+			free(vars->env[i]);
 			i++;
+		}
 		vars->env[j] = vars->env[i];
 		i++;
 		j++;

@@ -1,0 +1,13 @@
+Makefile
+Parsing
+a.out
+exec
+halwa.c
+hamid.sh
+l
+leaks.sh
+lk
+minishell
+minishell.c
+minishell.h
+minishell.o

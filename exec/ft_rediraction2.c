@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:28:00 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 17:50:31 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/25 21:54:56 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ int	redirect_in(t_vars *vars, int i, char *str)
 		ft_putstr("No such file or directory\n", 2);
 		return (1);
 	}
-	closedir(dir);
+	// closedir(dir);
 	return (0);
 }
 
@@ -80,7 +80,7 @@ int	redirect_out(t_vars *vars, int i, char *str)
 		ft_putstr("No such file or directory\n", 2);
 		return (1);
 	}
-	closedir(dir);
+	// closedir(dir);
 	return (0);
 }
 
@@ -96,7 +96,7 @@ int	redirect_app(t_vars *vars, int i, char *str)
 	{
 		ft_putstr(str, 2);
 		ft_putstr(": Is directory\n", 2);
-	closedir(dir);
+		closedir(dir);
 		return (1);
 	}
 	else if (access(str, W_OK) == -1 && !(access(str, F_OK)))
@@ -111,6 +111,6 @@ int	redirect_app(t_vars *vars, int i, char *str)
 		ft_putstr("No such file or directory\n", 2);
 		return (1);
 	}
-	closedir(dir);
+	// closedir(dir);
 	return (0);
 }

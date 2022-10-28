@@ -6,15 +6,14 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 19:58:05 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 14:21:50 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 19:54:54 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	remove_double(char **bar, t_vars *vars)
+void	remove_double(t_vars *vars)
 {
-	(void)bar;
 	char	**test;
 	int		len;
 
@@ -58,13 +57,12 @@ char	**take_variable(int len, t_vars *vars)
 
 	i = 0;
 	j = 0;
-
 	str = NULL;
-	str = ft_calloc(sizeof(char *) , (len + 1));
+	str = ft_calloc(sizeof(char *), (len + 1));
 	while (i < len)
 	{
 		j = 0;
-		str[i] = ft_calloc(sizeof(char) , (ft_strlen(vars->exp[i]) + 1));
+		str[i] = ft_calloc(sizeof(char), (ft_strlen(vars->exp[i]) + 1));
 		if (ft_strchr(vars->exp[i], '=') == 0)
 			str[i] = takevariable2(vars, str, i, j);
 		else

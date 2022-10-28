@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:14:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/22 07:52:20 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 01:56:35 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ void	add_to_parse_list(char *s, t_p_l **expand_list)
 		}
 		while (s[i] == ' ' && not_between_sd_quotes(s, i) == 0)
 			expand = ft_strjoin_one(expand, s[i++]);
+		pass_espace(s, &i);
 	}
 	free(expand);
 }

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/13 12:18:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 09:49:01 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 20:28:19 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,13 +41,10 @@ char	*find_user(t_vars *vars)
 	return (str);
 }
 
-int	ft_chdir(char *ptr, t_vars *vars)
+int	ft_chdir(char *ptr)
 {
 	if (chdir(ptr) == 0)
-	{
-		// ft_replace(vars);
 		return (0);
-	}
 	else
 	{
 		ft_putstr(ptr, 2);
@@ -56,7 +53,8 @@ int	ft_chdir(char *ptr, t_vars *vars)
 	}
 	return (0);
 }
-int	ft_cd(char **ptr, t_vars *vars)
+
+int	ft_cd(char **ptr)
 {
 	int	i;
 	DIR	*dir;
@@ -72,7 +70,7 @@ int	ft_cd(char **ptr, t_vars *vars)
 	}
 	else
 	{
-		if(ft_chdir(ptr[1], vars) == 1)
+		if (ft_chdir(ptr[1]) == 1)
 			return (1);
 	}
 	closedir(dir);

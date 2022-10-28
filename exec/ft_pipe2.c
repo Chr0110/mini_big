@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:18 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:52:52 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:47:36 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,8 +17,8 @@ void	intial_fd(t_vars *vars, int len)
 	int	i;
 
 	i = 0;
-	vars->infile = ft_calloc(sizeof(int) , (len + 1));
-	vars->outfile = ft_calloc(sizeof(int) , len);
+	vars->infile = ft_calloc(sizeof(int), (len + 1));
+	vars->outfile = ft_calloc(sizeof(int), len);
 	while (i < len)
 	{
 		vars->infile[i] = -1;
@@ -48,7 +48,6 @@ void	ft_wait(pid_t *child_pro, int len)
 
 	i = 0;
 	status = 0;
-	
 	while (i < len)
 	{
 		waitpid(child_pro[i], &status, 0);

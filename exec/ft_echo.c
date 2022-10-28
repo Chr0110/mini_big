@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 12:13:01 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:37:44 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 14:17:22 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	normal_echo(t_vars *vars, char **bar, int j)
 			ft_putchar_fd('\n', vars->outfile[vars->index]);
 		o++;
 	}
-	if(o == j)
+	if (o == j)
 		return (1);
 	return (0);
 }

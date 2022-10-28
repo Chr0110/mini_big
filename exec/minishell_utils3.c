@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:33:51 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:54:18 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:26:33 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,7 +35,7 @@ static int	ft_lenght(int n)
 char	*ft_zero(char *p)
 {
 	p = NULL;
-	p = ft_calloc(2 , sizeof(char));
+	p = ft_calloc(2, sizeof(char));
 	p[0] = '0';
 	p[1] = '\0';
 	return (p);
@@ -51,7 +51,7 @@ char	*ft_itoa(int n)
 	len = ft_lenght(n);
 	if (n == 0)
 		return (ft_zero(ptr));
-	ptr = ft_calloc ((len + 1) , sizeof(char));
+	ptr = ft_calloc ((len + 1), sizeof(char));
 	if (!ptr)
 		return (NULL);
 	ptr[len] = '\0';

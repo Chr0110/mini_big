@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/22 08:18:08 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:13:10 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -26,22 +26,22 @@
 # include <unistd.h>
 # include <readline/readline.h>
 # include <readline/history.h>
-
-#include <unistd.h>
-#include <fcntl.h>
-#include <stdio.h>
-#include <stdlib.h>
-#include <string.h>
-#include <signal.h>
-#include <readline/readline.h>
-#include <readline/history.h>
-#include <sys/types.h>
-#include <sys/wait.h>
-typedef struct s_b_l t_b_l;
-typedef struct s_vars t_vars;
+# include <unistd.h>
+# include <fcntl.h>
+# include <stdio.h>
+# include <stdlib.h>
+# include <string.h>
+# include <signal.h>
+# include <readline/readline.h>
+# include <readline/history.h>
+# include <sys/types.h>
+# include <sys/wait.h>
 # include "exec/exec.h"
 
-int	g_status;
+// typedef struct s_b_l	t_b_l;
+// typedef struct s_vars	t_vars;
+int						g_status;
+
 typedef struct s_token
 {
 	char	*value;
@@ -57,7 +57,6 @@ typedef struct s_token
 		TOKEN_COMMD,
 		TOKEN_ARG,
 	} e_type;
-	
 }	t_token;
 
 typedef struct s_lx
@@ -129,7 +128,7 @@ typedef struct s_for_exp
 	t_p_l	*current_arg_next;
 	t_p_l	*tmp_ex_ls_last;
 	t_p_l	*current_arg;
-	t_r 	*current_red;
+	t_r		*current_red;
 }	t_for_exp;
 
 typedef struct s_get_value
@@ -141,6 +140,7 @@ typedef struct s_get_value
 	char	*res;
 }	t_get_value;
 
+void	free_big(t_b_l *big_list, t_p_l *tmp, t_b_l *btmp);
 void	free2d(char **ptr);
 int		find_dollar(char *s);
 char	*ft_itoa(int n);
@@ -163,8 +163,11 @@ char	*get_value(char *s, char **env, int *cmp);
 char	*get_value2(char **res, char **env_cmp);
 void	get_param_values(int *i, int *n, int *j);
 void	retry(int *j, char **env_cmp, int *n);
+void	check_export5_2(char **bar, t_vars *vars, int i);
+void	ft_unset1(t_vars *vars, char **bar, char **take);
 char	*ft_strjoin_one(char *str, char c);
 char	*handle_dollar_double_quotes(char *s, int *i, char **env);
+char	**find_path(char **env);
 char	*handle_dollar_no_quotes(char *s, int *i, char **env);
 char	*expand_dollar_q(t_exp_list *ex_ls, char **env, int cmp1, int cmp);
 char	*expand_dollar_n_q(t_exp_list *ex_ls, char **env, int cmp1);
@@ -175,6 +178,12 @@ void	expand_dollar(t_token *cnt, char **env, int type, t_p_l **ex_ls);
 int		is_alpha(char c);
 int		panic(char *name, char *arg, char *msg, int error);
 void	ft_putstr_fd(char *s, int fd);
+int		lent(char **ptr);
+void	kill_pro(pid_t *child_pro, int len);
+void	check_lil_str(char **str);
+void	make_list(t_p_l **curr, t_p_l *prev, t_p_l *x_ls);
+int		find_dollar(char *s);
+int		there_is_a_dollar(char *s);
 int		not_between_quotes(char *s, int i);
 char	*make_s_q_res(char **res, char *s, int *i, int *type);
 char	*make_d_q_res(t_exp_list *ex_ls, char **env, int type);
@@ -206,6 +215,8 @@ void	ft_lstadd_back4(t_b_l **lst, t_b_l *new);
 char	*ft_strdup(char *s1);
 int		ft_strlen1(char *s);
 void	lexer_init(t_lx	*lexer);
+int		size_env(t_vars *vars);
+int		size_exp(t_vars *vars);
 int		not_between_s_quotes(char *s, int i);
 void	red_in_lexer(t_lx *lx, int *j, t_token *tk, t_list **s_b);
 void	red_out_lx(t_lx *lexer, int *j, t_token *token, t_list **small_branch);
@@ -245,9 +256,5 @@ t_p_l	*get_last_node(t_p_l *list);
 void	free_lexer2(t_lx **lexer);
 void	go_count_again(char *s, int *i, t_lx *lexer);
 void	how_much(char *s, t_lx *lexer);
-
-///////////////////////             EXECution        /////////////////////////////
-// void ft_execution(t_b_l *big,t_vars *vars, char *ptr);
-// void	sig_handler(int sig);
 
 #endif

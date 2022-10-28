@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_dollar.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 06:10:23 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/20 08:57:38 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/28 01:49:32 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,9 @@ void	fill_cont_value(t_token **cont, t_exp_list *list)
 void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 {
 	t_exp_list	*list;
+	int			i;
 
+	i = 0;
 	initial_param(&list, exp_list, cont);
 	while (list->s[list->i])
 	{
@@ -45,17 +47,16 @@ void	expand_dollar(t_token *cont, char **env, int type, t_p_l **exp_list)
 		else if (list->s[list->i] == 39)
 			list->res = s_q_r(list, &type);
 		else
+		{
 			list->res = n_q_r(list, env, type);
+			if (there_is_a_space(list->res) && type == 0)
+				i = 1;
+		}
 	}
-	if (there_is_a_space(list->res) && type == 0)
+	if (there_is_a_space(list->res) && type == 0 && i == 1)
 		add_to_parse_list(list->res, exp_list);
-	else if (there_is_a_space(list->res) && type != 1)
-		panic("ambiguous redirect", NULL, NULL, 1);
-	else
-	{
-		free(cont->value);
-		fill_cont_value(&cont, list);
-	}
+	free(cont->value);
+	fill_cont_value(&cont, list);
 	free(list->res);
 	free(list);
 }

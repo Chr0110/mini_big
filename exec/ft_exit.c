@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/09 16:44:09 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/22 07:42:26 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 21:43:25 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -66,15 +66,9 @@ int	ft_exit(char **bar)
 	while (bar[i])
 		++i;
 	if (i == 1)
-	{
-		ft_putstr("exit\n", 1);
-		exit(g_status);
-	}
+		print_exit();
 	else if (i == 2 && check_number(bar) == 1)
-	{
-		ft_putstr("exit\n", 1);
-		exit(ft_atoi(bar[1]) % 256);
-	}
+		print_num(bar[1]);
 	else if (next_exit(bar) == 0)
 	{
 		ft_putstr("exit\nexit: ", 2);
@@ -88,4 +82,26 @@ int	ft_exit(char **bar)
 		return (1);
 	}
 	return (0);
+}
+
+void	print_num(char *bar)
+{
+	if (ft_strlen(bar) > 20)
+	{
+		ft_putstr("exit\nexit: ", 1);
+		ft_putstr(bar, 1);
+		ft_putstr(" : numeric argument required\n", 2);
+		exit(255);
+	}
+	else
+	{
+		ft_putstr("exit\n", 1);
+		exit(ft_atoi(bar) % 256);
+	}	
+}
+
+void	print_exit(void)
+{
+	ft_putstr("exit\n", 1);
+	exit(g_status);
 }

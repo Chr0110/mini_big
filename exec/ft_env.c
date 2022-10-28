@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/14 12:17:32 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 18:53:06 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 14:30:20 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,18 +14,19 @@
 
 void	ft_remove_str(t_vars *vars)
 {
-	int i;
-	int len;
-	char **take;
-	int j;
+	int		i;
+	int		len;
+	char	**take;
+	int		j;
+
 	j = 0;
 	i = 0;
 	len = 0;
 	len = size_env(vars);
 	take = take_variable2(len, vars);
-	while(i < len - 1)
+	while (i < len - 1)
 	{
-		if(ft_strcmp(take[i],take[i + 1]) == 0)
+		if (ft_strcmp(take[i], take[i + 1]) == 0)
 		{
 			free(vars->env[i]);
 			vars->env[i] = NULL;
@@ -39,8 +40,6 @@ void	ft_remove_str(t_vars *vars)
 	vars->env[j + 1] = NULL;
 	ft_free(take);
 }
-
-
 
 void	aff_env(char **ptr, t_vars *vars)
 {
@@ -67,8 +66,7 @@ void	add_env(char **bar, t_vars *vars)
 	j = 0;
 	while (vars->env[len])
 		++len;
-	// if (bar[1] != NULL)
-		barr = take_bar(bar);
+	barr = take_bar(bar);
 	while (bar[j])
 	{	
 		test = take_variable2(len, vars);
@@ -88,7 +86,7 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 {
 	char	**test;
 	int		j;
-	char *tmp;
+	char	*tmp;
 
 	j = 0;
 	while (bar[j])
@@ -97,7 +95,6 @@ void	add_bar_to_env(int len, char **barr, char **bar, t_vars *vars)
 		if (check_isdouble(test, len, barr[j]) == 1)
 		{
 			tmp = vars->env[len];
-				// printf("vars->env[%d]->[%s]\n", len, vars->env[len]);
 			vars->env[len] = ft_strdup(bar[j]);
 			len++;
 		}
@@ -126,15 +123,12 @@ int	ft_env(char **bar, t_vars *vars)
 		i++;
 	}
 	if (k != j)
-		{
-			ft_putstr(bar[1], 2);
-			ft_putstr(": No such file or directory\n", 2);
-			return (1);
-		}
-	else
 	{
-		//add_env(bar, vars);
-		aff_env(vars->env, vars);
+		ft_putstr(bar[1], 2);
+		ft_putstr(": No such file or directory\n", 2);
+		return (1);
 	}
+	else
+		aff_env(vars->env, vars);
 	return (0);
 }

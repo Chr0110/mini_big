@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:52:58 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:40:41 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,17 +18,14 @@ char	**take_variable_exp(int len, t_vars *vars)
 	char	**var;
 
 	i = 0;
-	var = ft_calloc(sizeof(char *) , SIZE_ALL);
+	var = ft_calloc(sizeof(char *), (len + 1));
 	while (i < len)
 	{
-		
+		var[i] = ft_calloc(sizeof(char), (ft_strlen(vars->exp[i]) + 1));
 		if (ft_strchr(vars->exp[i], '=') == 0)
-		{
-			var[i] = ft_calloc(sizeof(char) , SIZE_ALL);
 			var[i] = take_variable_exp2(var, vars, i);
-		}
 		else
-			var[i] = ft_strdup(vars->exp[i]);
+			var[i] = vars->exp[i];
 		i++;
 	}
 	var[i] = NULL;
@@ -54,8 +51,8 @@ int	unset_exp(char **bar, t_vars *vars)
 	int		j;
 	char	**take;
 	char	**barr;
-	int 	len;
-	
+	int		len;
+
 	take = NULL;
 	j = 0;
 	len = size_exp(vars);
@@ -80,7 +77,7 @@ void	ft_unset_exp2(t_vars *vars, char *barr, char **take)
 	take = take_variable_exp(len, vars);
 	while (i < len)
 	{
-		if (ft_strcmp(take[i], barr) == 0)
+		if (vars->exp[i] && ft_strcmp(take[i], barr) == 0)
 		{	
 			free(vars->exp[i]);
 			vars->exp[i] = NULL;
@@ -90,6 +87,6 @@ void	ft_unset_exp2(t_vars *vars, char *barr, char **take)
 		k++;
 		i++;
 	}
-	ft_free(take);
 	vars->exp[k] = NULL;
+	ft_free(take);
 }

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 10:54:16 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 14:17:08 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 20:54:02 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,14 +14,8 @@
 
 void	ft_initial_exec(t_vars *vars, char **env)
 {	
-	// vars->pwd = ft_strdup("");
 	initial_env(vars, env);
-	initial_exp(vars);
-	ft_replace_shlvl(vars);
-	// ft_replace_oldpwd(vars);
-	// ft_replace(vars);
-	env_to_exp(vars);
-	// ft_append(vars);
+	initial_exp(vars, env);
 }
 
 int	len_env(char **ptr)
@@ -41,11 +35,9 @@ void	initial_env(t_vars *vars, char **env)
 	int	i;
 
 	i = 0;
-
 	if (!env)
 		return ;
-	vars->env = NULL;
-	vars->env = ft_calloc(sizeof(char *) , SIZE_ALL);
+	vars->env = ft_calloc(sizeof(char *), SIZE_ALL);
 	while (env[i])
 	{
 		vars->env[i] = ft_strdup(env[i]);
@@ -54,37 +46,16 @@ void	initial_env(t_vars *vars, char **env)
 	vars->env[i] = NULL;
 }
 
-void	initial_exp(t_vars *vars)
+void	initial_exp(t_vars *vars, char **env)
 {
 	int	i;
 
 	i = 0;
-	vars->exp = NULL;
-	vars->exp = ft_calloc(sizeof(char *) , SIZE_ALL);
+	vars->exp = ft_calloc(sizeof(char *), SIZE_ALL);
 	while (vars->env[i])
 	{
-		vars->exp[i] = vars->env[i];
+		vars->exp[i] = ft_strdup(env[i]);
 		i++;
 	}
 	vars->exp[i] = NULL;
-}
-
-int	size_env(t_vars *vars)
-{
-	int	len;
-
-	len = 0;
-	while (vars->env[len])
-		++len;
-	return (len);
-}
-
-int	size_exp(t_vars *vars)
-{
-	int	len;
-
-	len = 0;
-	while (vars->exp[len])
-		len++;
-	return (len);
 }

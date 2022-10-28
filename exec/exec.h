@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 09:45:18 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/28 00:50:34 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,6 +33,8 @@
 # define NOR	"\x1B[37m"
 # define MAG	"\x1B[35m"
 
+typedef struct s_b_l	t_b_l;
+typedef struct s_vars	t_vars;
 typedef struct s_data
 {
 	char	*har;
@@ -65,6 +67,15 @@ typedef struct s_vars
 	int		*hold_pid;
 }	t_vars;
 
+int		ft_fork(t_vars *vars, char **str, int i);
+void	print_num(char *bar);
+void	check_export1(char **bar, t_vars *vars, int i, int j);
+void	print_error_red(char *str);
+void	print_prompt(void);
+void	free_inside_main(t_vars *vars, t_b_l *big, char **av);
+void	ft_initial(t_vars *vars, char **env, int ac);
+void	print_exit(void);
+void	ft_free_(char **path);
 int		len_env(char **ptr);
 void	print_export_error(int l, char **bar, int i);
 int		ft_atoi(const char *str);
@@ -78,7 +89,7 @@ int		ft_pipe2(t_b_l *big, t_data *data, t_vars *vars, int len);
 int		one_built(t_b_l *big, t_vars *vars, t_data *data, int len);
 void	creat_pipe(int len, int i, t_vars *vars);
 void	intial_fd(t_vars *vars, int len);
-int		check_export2(char **bar, int i, int j, int k);
+int		check_export2(char **bar, int i);
 int		check_export3(char **bar, int i);
 void	check_export4(char **bar, t_vars *vars, int o, int i);
 void	check_export6(char **bar, t_vars *vars, int k);
@@ -86,7 +97,6 @@ int		check_export5(char **bar, t_vars *vars);
 void	remove_double2(char **test, t_vars *vars, int len);
 char	*takevariable2(t_vars *vars, char **str, int i, int j);
 void	aff_export3(t_vars *vars, int i);
-void	ft_replace_shlvl2(t_vars *vars, int i);
 void	path_error(char *cmd);
 void	ft_unset_exp2(t_vars *vars, char *barr, char **take);
 char	*take_variable_exp2(char **var, t_vars *vars, int i);
@@ -112,8 +122,8 @@ int		builtins(t_vars *vars, char **bar);
 int		is_builtins(char **bar);
 int		ft_pwd(t_vars *vars);
 int		ft_echo(char **bar, t_vars *vars);
-int		ft_cd(char **ptr, t_vars *vars);
-int		ft_chdir(char *ptr, t_vars *vars);
+int		ft_cd(char **ptr);
+int		ft_chdir(char *ptr);
 char	**sort_str_exp(char **ptr, int len);
 char	**sort_str(char **ptr);
 int		ft_exit(char **bar);
@@ -125,12 +135,12 @@ char	*ft_strcpy(char	*dst,	char	*src);
 char	*ft_strcat(char	*s1, char *s2);
 int		ft_isalnum(int c);
 int		ft_strchr(const char *s, int c);
-int		aff_export(char **bar, t_vars *vars);
+int		aff_export(t_vars *vars);
 void	aff_export2(t_vars *vars);
 int		ft_env(char **bar, t_vars *vars);
 void	aff_env(char **ptr, t_vars *vars);
 void	initial_env(t_vars *vars, char **env);
-void	initial_exp(t_vars *vars);
+void	initial_exp(t_vars *vars, char **env);
 void	add_var(char **bar, t_vars *vars);
 int		ft_unset(char **bar, t_vars *vars);
 void	add_env(char **bar, t_vars *vars);
@@ -143,15 +153,12 @@ char	**take_variable2(int len, t_vars *vars);
 int		size_env(t_vars *vars);
 void	change_valeur(char *ptr, char *str);
 void	env_to_exp(t_vars *vars);
-void	remove_double(char **bar, t_vars *vars);
+void	remove_double(t_vars *vars);
 int		unset_exp(char **bar, t_vars *vars);
 int		size_exp(t_vars *vars);
-void	ft_replace(t_vars *vars);
 void	ft_append(t_vars *vars);
 char	*ft_itoa(int n);
-char	*ft_getcwd(t_vars *vars);
-void	ft_replace_shlvl(t_vars *vars);
-void	ft_replace_oldpwd(t_vars *vars);
+char	*ft_getcwd(void);
 int		check_rediraction(t_b_l *lil);
 char	*ft_path(char *av, char **env);
 void	ft_pipe(t_b_l *big, t_data *data, t_vars *vars, int len);
@@ -164,8 +171,9 @@ void	ft_close(int len, t_vars *vars, char *ptr);
 void	psudo_close(t_vars *vars, int i);
 void	ft_execution(t_b_l *big, t_data *data, t_vars *vars);
 int		check_path(char **env);
-char	**find_path(char **env, int i, char *envp);
+// char	**find_path(char **env, int i, char *envp);
 char	*ft_copie_shlvl(char *str);
+void	free_path(char **path, char *cmdpath);
 void	ft_initial_exec(t_vars *vars, char **env);
 int		count_list(t_b_l *lst);
 char	*find_user(t_vars *vars);
@@ -180,7 +188,6 @@ void	pip_herdoc(t_vars *vars, t_b_l *lil, int len, t_data *data);
 void	ft_herdoc(t_vars *vars, char *dil, t_data *data);
 int		is_herdoc(t_b_l *lil, t_vars *vars, t_data *data);
 char	*creat_name(int i);
-void	ft_replace2(t_vars *vars);
 int		builtins2(t_vars *vars, char **bar);
 int		redirect_app(t_vars *vars, int i, char *str);
 int		redirect_out(t_vars *vars, int i, char *str);
@@ -189,7 +196,6 @@ void	is_herdoc2(t_vars *vars, t_b_l *lil, t_data *data);
 int		redirect_herd(t_data *data, t_vars *vars, t_b_l *lil2);
 char	*ft_expand(t_vars *vars, char *ptr);
 char	*ft_expand2(t_vars *vars, int i, int j);
-int		ft_replace_oldpwd2(t_vars *vars, char *oldpwd);
 void	ft_herdoc2(t_vars *vars, char *str, t_data *data);
 void	*ft_calloc(size_t count, size_t size);
 void	ft_bzero(void *s, size_t n);

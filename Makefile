@@ -6,7 +6,7 @@
 #    By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 07:58:05 by sriyani           #+#    #+#              #
-#    Updated: 2022/10/25 21:55:37 by sriyani          ###   ########.fr        #
+#    Updated: 2022/10/28 02:13:37 by sriyani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -46,15 +46,18 @@ SRC_P = \
 		./Parsing/parsing.c\
 		./Parsing/give_dollar_utils.c\
 		./Parsing/expand_utils4.c\
+		./Parsing/expand_utils5.c\
 
 SRC_E = \
 		./minishell.c\
+		./minishell2.c\
 		./exec/ft_execution.c\
 		./exec/minishell_utils.c\
 		./exec/minishell_utils1.c\
 		./exec/minishell_utils2.c\
 		./exec/minishell_utils3.c\
 		./exec/minishell_utils4.c\
+		./exec/minishell_utils5.c  \
 		./exec/ft_pwd.c\
 		./exec/ft_echo.c\
 		./exec/ft_cd.c\
@@ -69,26 +72,26 @@ SRC_E = \
 		./exec/ft_unset2.c\
 		./exec/is_builtins.c\
 		./exec/initial_env.c\
-		./exec/initial_env2.c\
-		./exec/initial_env3.c\
 		./exec/ft_pipe.c\
 		./exec/ft_pipe2.c\
 		./exec/ft_pipe3.c\
+		./exec/ft_pipe4.c\
 		./exec/ft_path.c\
 		./exec/ft_rediraction.c\
 		./exec/ft_rediraction2.c\
 		./exec/ft_herdoc.c\
 		./exec/ft_herdoc2.c\
+		./exec/size_exp_env.c\
 		# test.c\
 		# pipex_utils2.c\
 		# multiple_pipe.c\
 
 SRC = $(SRC_E) $(SRC_P)
 
-CC = cc  -g3 -g #-Wall -Wextra -Werror
+CC = cc  #-fsanitize=address #-Wall -Wextra -Werror
 
-CFLAGS =   -I /Users/sriyani/goinfre/brew/opt/readline/include  #-fsanitize=address 
-LIB_FLAG = -L /Users/sriyani/goinfre/brew/opt/readline/lib
+CFLAGS =   -I /Users/sriyani/Desktop/vlag/homebrew/opt/readline/include 
+LIB_FLAG = -L /Users/sriyani/Desktop/vlag/homebrew/opt/readline/lib
 OBJ = $(SRC:.c=.o)
 
  %.o: %.c
@@ -96,7 +99,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME) : $(OBJ) $(LIB)
+$(NAME) : $(OBJ) # $(LIB)
 		$(CC) $(CFLAGS) $(LIB_FLAG) -o $(NAME)   -lreadline  $(OBJ) 
 
 clean:

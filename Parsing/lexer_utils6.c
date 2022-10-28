@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 09:03:10 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/25 22:03:07 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:11:27 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,7 @@ void	go_count_again(char *s, int *i, t_lx *lexer)
 		&& not_between_quotes(s, (*i)))
 		lexer->red_o++;
 	else if (s[(*i)] != '<' && s[(*i)] != '>'
-		&& s[(*i)] != '|' && s[(*i)] != ' ')
+		&& s[(*i)] != '|' && s[(*i)] != ' ' && not_between_quotes(s, (*i)))
 	{
 		while (s[(*i)] != '<' && s[(*i)] != '>' && s[(*i)] != '|'
 			&& s[(*i)] != ' ' && (*i) < ft_strlen1(s))

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:23:31 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:55:43 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:29:28 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,11 +56,14 @@ int	ft_isalnum(int c)
 
 int	ft_strchr(const char *s, int c)
 {
-	while (s && *s)
+	int	i;
+
+	i = 0;
+	while (s && s[i])
 	{
-		if (*s == (char) c)
+		if (s[i] == (char) c)
 			return (0);
-		s++;
+		i++;
 	}
 	if (c == '\0')
 		return (1);
@@ -93,27 +96,4 @@ char	*ft_strnstr(const char *haystack, const char *needle, size_t len)
 		i++;
 	}
 	return (NULL);
-}
-
-void	*ft_calloc(size_t count, size_t size)
-{
-	void	*p;
-
-	p = malloc (count * size);
-	if (p == NULL)
-		return (p);
-	ft_bzero (p, count * size);
-	return (p);
-}
-
-void	ft_bzero(void *s, size_t n)
-{
-	char	*str;
-
-	str = (char *)s;
-	while (n > 0)
-	{
-		*str++ = '\0';
-		n--;
-	}
 }

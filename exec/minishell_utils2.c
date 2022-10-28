@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 11:32:10 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:54:11 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:27:23 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,8 +28,6 @@ void	ft_free(char **path)
 	free (path);
 	path = NULL;
 }
-
-
 
 void	ft_putendl_fd(char *s, int fd)
 {
@@ -63,7 +61,7 @@ char	*ft_strjoin(char *s1, char *s2)
 		return (NULL);
 	i = 0;
 	j = 0;
-	ptr =  ft_calloc((ft_strlen (s1) + ft_strlen (s2) + 1) , sizeof(char));
+	ptr = ft_calloc((ft_strlen(s1) + ft_strlen(s2) + 1), sizeof(char));
 	if (!ptr)
 		return (NULL);
 	while (s1[j])
@@ -72,8 +70,5 @@ char	*ft_strjoin(char *s1, char *s2)
 	while (s2[j])
 		ptr[i++] = s2[j++];
 	ptr[i] = '\0';
-	// else
-	// 	ft_strcpy (ptr, s1);
-	// ft_strcat (ptr, s2);
 	return (ptr);
 }

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:49 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 11:16:13 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 18:26:36 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,18 +19,18 @@ int	one_built(t_b_l *big, t_vars *vars, t_data *data, int len)
 		vars->index = 0;
 		builtins(vars, big->str);
 		ft_close(len, vars, data->name);
-		if(vars->infile)
+		if (vars->infile)
 		{
 			free(vars->infile);
 			vars->infile = NULL;
 		}
-		if(vars->outfile)
+		if (vars->outfile)
 		{
 			free(vars->outfile);
 			vars->outfile = NULL;
 		}
 		if (big->str)
-			free(big->str);
+			ft_free(big->str);
 		big->str = NULL;
 		return (1);
 	}
@@ -75,12 +75,12 @@ void	fin_pipe(t_vars *vars, pid_t *child_pro, t_data *data, int len)
 {
 	ft_close(len, vars, data->name);
 	ft_wait(child_pro, len);
-	if(vars->infile)
+	if (vars->infile)
 	{
 		free(vars->infile);
 		vars->infile = NULL;
 	}
-	if(vars->outfile)
+	if (vars->outfile)
 	{
 		free(vars->outfile);
 		vars->outfile = NULL;
@@ -88,4 +88,14 @@ void	fin_pipe(t_vars *vars, pid_t *child_pro, t_data *data, int len)
 	free(vars->child_pro);
 	vars->child_pro = NULL;
 	init_signal();
+}
+
+void	ft_dup(t_vars *vars, t_data *data, int i)
+{
+	if (data->flag == 1)
+		vars->infile[i] = data->p[0];
+	if (dup2(vars->infile[i], STDIN_FILENO) < 0)
+		exit(1);
+	if (dup2(vars->outfile[i], STDOUT_FILENO) < 0)
+		exit(1);
 }

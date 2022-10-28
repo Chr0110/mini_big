@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:51:02 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/20 08:58:32 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/28 02:12:04 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,32 +40,6 @@ t_p_l	*get_last_node(t_p_l *list)
 	return (list);
 }
 
-void	make_list(t_p_l **curr, t_p_l *prev, t_p_l *x_ls)
-{
-	t_p_l	*temp_ar;
-
-	temp_ar = *curr;
-	get_last_node(x_ls)->next = (*curr)->next;
-	if (prev != NULL)
-		prev->next = x_ls;
-	else
-		*curr = x_ls;
-}
-
-int	find_dollar(char *s)
-{
-	int	i;
-
-	i = 0;
-	while (s[i])
-	{
-		if (s[i] == '$')
-			return (1);
-		i++;
-	}
-	return (0);
-}
-
 void	exp_creat_list(t_b_l *t_big, char **env, t_p_l *ex_ls, t_b_l *tmp_big)
 {
 	t_for_exp	*exp;
@@ -77,7 +51,8 @@ void	exp_creat_list(t_b_l *t_big, char **env, t_p_l *ex_ls, t_b_l *tmp_big)
 		expand1(exp, tmp_big);
 		while (exp->current_arg)
 		{
-			expand_dollar(&exp->current_arg->content, env, 0, &ex_ls);
+			if (there_is_a_dollar(exp->current_arg->content.value))
+				expand_dollar(&exp->current_arg->content, env, 0, &ex_ls);
 			if (ft_lstsize(ex_ls) != 0)
 				expand2(exp, ex_ls, tmp_big);
 			else

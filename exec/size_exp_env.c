@@ -1,27 +1,33 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   expand.c                                           :+:      :+:    :+:   */
+/*   size_exp_env.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/02 17:00:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/27 23:04:21 by sriyani          ###   ########.fr       */
+/*   Created: 2022/10/27 20:54:25 by sriyani           #+#    #+#             */
+/*   Updated: 2022/10/27 20:54:47 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-void	expand(t_b_l **big_list, char **env)
+int	size_env(t_vars *vars)
 {
-	t_b_l	*temp_big;
-	t_p_l	*ex_list;
-	t_b_l	*tmp_big;
+	int	len;
 
-	ex_list = NULL;
-	temp_big = NULL;
-	tmp_big = NULL;
-	temp_big = *big_list;
-	exp_creat_list(temp_big, env, ex_list, tmp_big);
-	remove_f_quotes(temp_big);
+	len = 0;
+	while (vars->env[len])
+		++len;
+	return (len);
+}
+
+int	size_exp(t_vars *vars)
+{
+	int	len;
+
+	len = 0;
+	while (vars->exp[len])
+		len++;
+	return (len);
 }

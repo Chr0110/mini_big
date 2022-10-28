@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/02/27 11:29:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 08:08:43 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 17:27:41 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,19 +21,16 @@ void	path_error(char *cmd)
 
 char	*ft_path(char *av, char **env)
 {
-	char	*envp;
 	char	**path;
 	char	*cmdpath;
 	int		i;
 
-	i = -1;
 	cmdpath = NULL;
-	envp = NULL;
 	if (check_path(env) == 1)
 		path_error(av);
 	else
 	{
-		path = find_path(env, i, envp);
+		path = find_path(env);
 		i = -1;
 		while (path[++i])
 		{
@@ -45,10 +42,15 @@ char	*ft_path(char *av, char **env)
 				return (cmdpath);
 			}
 		}
-		ft_free(path);
-		free (cmdpath);
+		free_path(path, cmdpath);
 	}
 	return (NULL);
+}
+
+void	free_path(char **path, char *cmdpath)
+{
+	ft_free(path);
+	free (cmdpath);
 }
 
 int	check_path(char **env)
@@ -65,11 +67,14 @@ int	check_path(char **env)
 	return (1);
 }
 
-char	**find_path(char **env, int i, char *envp)
+char	**find_path(char **env)
 {
+	int		i;
 	char	**path;
+	char	*envp;
 
 	path = NULL;
+	i = -1;
 	while (env[++i])
 	{
 		envp = ft_strstr(env[i], "PATH");

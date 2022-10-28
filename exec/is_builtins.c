@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 14:07:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 14:28:59 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 22:08:58 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,7 +14,7 @@
 
 int	is_builtins(char **bar)
 {
-	if (bar[0] != NULL)
+	if (bar && bar[0] != NULL)
 	{
 		if (ft_strcmp(bar[0], "pwd") == 0 || ft_strcmp(bar[0], "PWD") == 0
 			|| ft_strcmp("echo", bar[0]) == 0 || ft_strcmp("ECHO", bar[0]) == 0
@@ -34,7 +34,7 @@ int	builtins(t_vars *vars, char **bar)
 	char	*str;
 
 	i = 0;
-	if (bar[0] != NULL)
+	if (bar && bar[0] != NULL)
 	{
 		if (ft_strcmp(bar[0], "pwd") == 0 || ft_strcmp(bar[0], "PWD") == 0)
 			g_status = ft_pwd(vars);
@@ -43,13 +43,13 @@ int	builtins(t_vars *vars, char **bar)
 			if (bar[1] == NULL)
 			{
 				str = find_user(vars);
-				g_status = ft_chdir(str, vars);
+				g_status = ft_chdir(str);
 				free(str);
 			}
 			else
-				g_status = ft_cd(bar, vars);
+				g_status = ft_cd(bar);
 		}
-		if (builtins2(vars, bar))
+		if (bar && builtins2(vars, bar))
 			return (1);
 	}
 	return (0);
@@ -68,23 +68,17 @@ int	builtins2(t_vars *vars, char **bar)
 		g_status = ft_env(bar, vars);
 	if (ft_strcmp(bar[0], "exit") == 0)
 		g_status = ft_exit(bar);
+	if (bar && ft_strcmp(bar[0], "export") == 0)
+	{
+		if (bar[1] != NULL)
+				g_status = check_export5(bar, vars);
+		else
+			g_status = aff_export(vars);
+	}
 	if (ft_strcmp(bar[0], "unset") == 0)
 	{
 		g_status = ft_unset(bar, vars);
 		g_status = unset_exp(bar, vars);
-	}
-	if (ft_strcmp(bar[0], "export") == 0)
-	{
-		if (bar[1] != NULL)
-			{
-				g_status = check_export5(&bar[1], vars);
-			}
-		
-		else
-			{
-				g_status = aff_export(bar, vars);
-			}
-			
 	}
 	return (g_status);
 }

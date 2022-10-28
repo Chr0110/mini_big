@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:03:17 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 18:40:31 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 14:18:23 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,11 +37,11 @@ char	**take_variable2(int len, t_vars *vars)
 	i = 0;
 	j = 0;
 	var = NULL;
-	var = ft_calloc(sizeof(char *) , SIZE_ALL);
+	var = ft_calloc(sizeof(char *), (len + 1));
 	while (i < len)
 	{
 		j = 0;
-		var[i] = ft_calloc(sizeof(char) , SIZE_ALL);
+		var[i] = ft_calloc(sizeof(char), (ft_strlen(vars->env[i]) + 1));
 		while (vars->env[i][j] != '=')
 		{
 			var[i][j] = vars->env[i][j];
@@ -59,7 +59,7 @@ void	remove_str(char **test, char *str, t_vars *vars)
 	int	i;
 	int	j;
 	int	len;
-	// char	*tmp;
+
 	i = 0;
 	j = 0;
 	len = 0;
@@ -86,10 +86,10 @@ char	**take_bar(char **bar)
 
 	i = 0;
 	barr = NULL;
-	barr = ft_calloc(sizeof(char *) , SIZE_ALL);
+	barr = ft_calloc(sizeof(char *), SIZE_ALL);
 	while (bar[i])
 	{
-		barr[i] = ft_calloc(sizeof(char *) , SIZE_ALL);
+		barr[i] = ft_calloc(sizeof(char *), SIZE_ALL);
 		if (ft_strchr(bar[i], '=') == 0)
 			take_bar2(barr, bar, i);
 		else

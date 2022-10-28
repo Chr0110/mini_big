@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:28:00 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 21:54:56 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 18:20:59 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,7 @@ int	redirect_in(t_vars *vars, int i, char *str)
 	if (vars->infile[i] != -1 && vars->infile[i] != 0)
 		close(vars->infile[i]);
 	vars->infile[i] = open(str, O_RDONLY, 0644);
-	if (opendir(str))
+	if (dir)
 	{
 		ft_putstr(str, 2);
 		ft_putstr(": Is directory\n", 2);
@@ -49,14 +49,13 @@ int	redirect_in(t_vars *vars, int i, char *str)
 		ft_putstr("No such file or directory\n", 2);
 		return (1);
 	}
-	// closedir(dir);
 	return (0);
 }
 
 int	redirect_out(t_vars *vars, int i, char *str)
 {
 	DIR	*dir;
-	
+
 	dir = opendir(str);
 	if (vars->outfile[i] != -1 && vars->outfile[i] != 1)
 		close(vars->outfile[i]);
@@ -70,8 +69,7 @@ int	redirect_out(t_vars *vars, int i, char *str)
 	}
 	else if (access(str, W_OK) == -1 && !(access(str, F_OK)))
 	{
-		ft_putstr(str, 2);
-		ft_putstr(": Permission denied\n", 2);
+		print_error_red(str);
 		return (1);
 	}
 	else if (vars->outfile[i] < 0)
@@ -80,14 +78,13 @@ int	redirect_out(t_vars *vars, int i, char *str)
 		ft_putstr("No such file or directory\n", 2);
 		return (1);
 	}
-	// closedir(dir);
 	return (0);
 }
 
 int	redirect_app(t_vars *vars, int i, char *str)
 {
 	DIR	*dir;
-	
+
 	dir = opendir(str);
 	if (vars->outfile[i] != -1 && vars->outfile[i] != 1)
 		close (vars->outfile[i]);
@@ -101,8 +98,7 @@ int	redirect_app(t_vars *vars, int i, char *str)
 	}
 	else if (access(str, W_OK) == -1 && !(access(str, F_OK)))
 	{
-		ft_putstr(str, 2);
-		ft_putstr(": Permission denied\n", 2);
+		print_error_red(str);
 		return (1);
 	}
 	else if (vars->outfile[i] < 0)
@@ -111,6 +107,11 @@ int	redirect_app(t_vars *vars, int i, char *str)
 		ft_putstr("No such file or directory\n", 2);
 		return (1);
 	}
-	// closedir(dir);
 	return (0);
+}
+
+void	print_error_red(char *str)
+{
+	ft_putstr(str, 2);
+	ft_putstr(": Permission denied\n", 2);
 }

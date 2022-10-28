@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/22 08:06:27 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/28 02:11:08 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,9 +52,32 @@ void	get_token(char **env, t_lx *lx, t_list *small_branch, t_b_l **big_list)
 	free(token);
 }
 
+char	*skip_white_spaces2(char *s)
+{
+	char	*str;
+	int		i;
+	int		j;
+
+	j = 0;
+	i = ft_strlen1(s) - 1;
+	while (s[i] == ' ')
+		i--;
+	i++;
+	str = NULL;
+	str = malloc((i + 1) * sizeof(char));
+	str[i] = '\0';
+	while (j < i)
+	{
+		str[j] = s[j];
+		j++;
+	}
+	return (str);
+}
+
 void	init_lexer(char *src, char **env, t_b_l **big_branch)
 {
 	char	*str;
+	char	*str2;
 	t_list	*small_branch;
 	t_lx	*lexer;
 
@@ -66,7 +89,9 @@ void	init_lexer(char *src, char **env, t_b_l **big_branch)
 	lexer->her = 0;
 	lexer->app = 0;
 	small_branch = NULL;
-	str = skip_white_spaces(src);
+	str2 = skip_white_spaces(src);
+	str = skip_white_spaces2(str2);
+	free(str2);
 	lexer->str = str;
 	lexer->j = 0;
 	lexer->c = lexer->str[lexer->j];

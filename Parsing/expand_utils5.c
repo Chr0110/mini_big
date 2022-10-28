@@ -1,33 +1,53 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   ft_pwd.c                                           :+:      :+:    :+:   */
+/*   expand_utils5.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/09/09 18:21:00 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/27 15:55:04 by sriyani          ###   ########.fr       */
+/*   Created: 2022/10/28 02:12:26 by sriyani           #+#    #+#             */
+/*   Updated: 2022/10/28 02:12:44 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-char	*ft_getcwd(void)
+void	make_list(t_p_l **curr, t_p_l *prev, t_p_l *x_ls)
 {
-	char	*ptr;
+	t_p_l	*temp_ar;
 
-	ptr = getcwd(NULL, 0);
-	return (ptr);
+	temp_ar = *curr;
+	get_last_node(x_ls)->next = (*curr)->next;
+	if (prev != NULL)
+		prev->next = x_ls;
+	else
+		*curr = x_ls;
 }
 
-int	ft_pwd(t_vars *vars)
+int	find_dollar(char *s)
 {
-	char	*ptr;
+	int	i;
 
-	ptr = ft_getcwd();
-	ft_putstr(ptr, vars->outfile[vars->index]);
-	if (ptr)
-		free(ptr);
-	write(vars->outfile[vars->index], "\n", 1);
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '$')
+			return (1);
+		i++;
+	}
+	return (0);
+}
+
+int	there_is_a_dollar(char *s)
+{
+	int	i;
+
+	i = 0;
+	while (s[i])
+	{
+		if (s[i] == '$')
+			return (1);
+		i++;
+	}
 	return (0);
 }

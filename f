@@ -1,14 +1,13 @@
+1
 Makefile
 Parsing
-a.out
 exec
 f
-halwa.c
 hamid.sh
-l
 leaks.sh
-ls
 minishell
 minishell.c
 minishell.h
 minishell.o
+minishell2.c
+minishell2.o

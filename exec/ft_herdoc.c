@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/13 11:25:41 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/24 19:52:33 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 15:04:17 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ char	*creat_name(int i)
 	i = 0;
 	j = 0;
 	ptr = NULL;
-	ptr = ft_calloc(sizeof(char) , 6);
+	ptr = ft_calloc(sizeof(char), 6);
 	str = "abcdefghijklmnopqrstuvwxyz0123456789";
 	while (j < 5)
 	{
@@ -45,9 +45,9 @@ char	*ft_expand(t_vars *vars, char *ptr)
 	int		j;
 	char	*str;
 
-	str = NULL;
 	i = 0;
 	j = 0;
+	str = NULL;
 	while (vars->env[i])
 	{
 		if (ft_strncmp(vars->env[i], ptr + 1, ft_strlen(ptr + 1)) == 0)
@@ -69,6 +69,7 @@ char	*ft_expand2(t_vars *vars, int i, int j)
 
 	str = NULL;
 	k = 0;
+	str = ft_calloc(sizeof(char), ft_strlen(vars->env[i]));
 	while (vars->env[i][++j])
 	{
 		str[k] = vars->env[i][j];

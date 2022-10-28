@@ -1,6 +1,5 @@
 while :
 do
-	leaks minishell
+	leaks minishell | grep bytes
 	sleep 1
-	clear
 done

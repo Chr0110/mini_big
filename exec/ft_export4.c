@@ -6,62 +6,97 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 20:37:47 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/25 15:31:50 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/27 19:53:40 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int count_eq(char **bar)
-{
-
-	int i = 0;
-	int k= 0;
-	while(bar[i])
-	{
-		if(ft_strchr(bar[i], '=') == 0)
-			k++;
-		i++;
-	}
-	return k;
-}
-
-int	check_export5(char **bar, t_vars *vars)
+int	count_eq(char **bar)
 {
 	int	i;
 	int	k;
 
 	i = 0;
+	k = 0;
+	while (bar && bar[i])
+	{
+		if (ft_strchr(bar[i], '=') == 0)
+			k++;
+		i++;
+	}
+	return (k);
+}
+
+void	ft_free_(char **path)
+{
+	int	i;
+
+	i = 0;
+	if (!path)
+		return ;
+	while (path[i])
+	{
+		free(path[i]);
+		path[i] = NULL;
+		i++;
+	}
+}
+
+int	check_export5(char **bar, t_vars *vars)
+{
+	int	i;
+
+	i = 0;
 	vars->n_sar = 0;
 	vars->n_mar = 0;
-	k = count_eq(bar);
 	vars->sar = NULL;
 	vars->mar = NULL;
 	check_export(bar, vars);
-	while (bar[i])
-		i++;
+	if (!vars->bar)
+		return (1);
+	if (vars->bar)
+	{
+		ft_free_(bar);
+		while (vars->bar[i])
+		{
+			bar[i] = ft_strdup(vars->bar[i]);
+				i++;
+		}
+	}
+	ft_free(vars->bar);
+	vars->bar = NULL;
+	check_export5_2(bar, vars, i);
+	return (g_status);
+}
+
+void	check_export5_2(char **bar, t_vars *vars, int i)
+{
+	int	k;
+
+	k = count_eq(bar);
 	if (i)
 	{
 		if (k)
-			vars->sar = ft_calloc(sizeof(char *) , (k + 1));
+			vars->sar = ft_calloc(sizeof(char *), (k + 1));
 		if (i - k)
-			vars->mar = ft_calloc(sizeof(char *) , (i - k + 1));
+			vars->mar = ft_calloc(sizeof(char *), (i - k + 1));
 	}
 	k = 0;
 	check_export6(bar, vars, k);
 	if (vars->n_sar > 0)
 	{
 		add_env(vars->sar, vars);
-		remove_double(vars->sar, vars);
+		remove_double(vars);
 		add_export(vars->sar, vars);
 	}
 	else if (vars->n_mar > 0)
 	{
-		remove_double(vars->mar, vars);
+		remove_double(vars);
 		add_export(vars->mar, vars);
 	}
-	return (g_status);
 }
+
 void	check_export6(char **bar, t_vars *vars, int k)
 {
 	int	i;
@@ -69,9 +104,7 @@ void	check_export6(char **bar, t_vars *vars, int k)
 
 	i = 0;
 	j = 0;
-	// vars->sar[0] = ft_strdup(bar[0]);
-	j = 0;
-	while (bar[i])
+	while (bar && bar[i])
 	{
 		if (ft_strchr(bar[i], '=') == 0)
 		{

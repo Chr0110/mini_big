@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/28 02:11:08 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 08:19:21 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	choose_a_path(t_b_l **big, t_lx *lx, char **env, t_list *s_b)
 		check_errors(s_b, env, big, lx);
 	else
 	{
-		free_lexer2(&lx);
+		free_lexer(&lx); //hadi kant 2d
 		*big = NULL;
 	}
 }

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:47:53 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/27 15:44:50 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 07:56:15 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,7 +23,7 @@ int	check_herdoc(t_b_l *lil)
 	return (0);
 }
 
-int	is_herdoc(t_b_l *lil, t_vars *vars, t_data *data)
+int	is_herdoc(char *lil, t_vars *vars, t_data *data)
 {
 	pid_t	child;
 	int		*status;
@@ -48,45 +48,31 @@ int	is_herdoc(t_b_l *lil, t_vars *vars, t_data *data)
 	return (1);
 }
 
-void	is_herdoc2(t_vars *vars, t_b_l *lil, t_data *data)
+void	is_herdoc2(t_vars *vars,char *lil, t_data *data)
 {
-	int		i;
-	t_b_l	*lil2;
 	char	*str;
 
-	i = 0;
-	lil2 = lil;
 	str = NULL;
-	while (lil2)
-	{
-		while (lil2->red)
-		{	
-			if (lil2->red->content.e_type == 4)
-			{
-				str = lil2->red->content.value;
-				ft_herdoc(vars, str, data);
-			}
-			lil2->red = lil2->red->next;
-		}			
-		lil2 = lil2->next;
-	}
+	ft_herdoc(vars, lil, data);
 }
 
 int	check_rediraction(t_b_l *lil)
 {
+	t_r * tmp;
 	while (lil)
 	{
-		while (lil->red)
+		tmp = lil->red;
+		while (tmp )
 		{
-			if (lil->red && lil->red->content.e_type == 2)
+			if (tmp && tmp->content.e_type == 2)
 				return (2);
-			if (lil->red && lil->red->content.e_type == 3)
+			if (tmp && tmp->content.e_type == 3)
 				return (3);
-			if (lil->red && lil->red->content.e_type == 5)
+			if (tmp && tmp->content.e_type == 5)
 				return (5);
-			if (lil->red && lil->red->content.e_type == 4)
+			if (tmp && tmp->content.e_type == 4)
 				return (4);
-			lil->red = lil->red->next;
+			tmp = tmp->next;
 		}	
 		lil = lil->next;
 	}
@@ -106,13 +92,13 @@ int	ft_rediraction(t_b_l *lil, t_vars *vars, t_data *data)
 		ril = lil->red;
 		while (ril)
 		{
-			if (lil->red->content.e_type == 4)
-				g_status = redirect_herd(data, vars, lil2);
-			if (lil->red->content.e_type == 2)
+			if (ril->content.e_type == 4)
+				g_status = redirect_herd(data, vars, ril->content.value);
+			if (ril->content.e_type == 2)
 				g_status = redirect_in(vars, i, ril->content.value);
-			if (lil->red->content.e_type == 3)
+			if (ril->content.e_type == 3)
 				g_status = redirect_out(vars, i, ril->content.value);
-			if (lil->red->content.e_type == 5)
+			if (ril->content.e_type == 5)
 				g_status = redirect_app(vars, i, ril->content.value);
 			ril = ril->next;
 		}

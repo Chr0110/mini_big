@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 15:25:30 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/27 23:20:33 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 08:08:41 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,6 +32,7 @@ void	free_for_error(t_lx *lx, t_list *small_branch)
 	t_list	*t;
 	t_list	*tmp1;
 
+	free(lx->text[lx->tx]);
 	free_lexer(&lx);
 	tmp1 = small_branch;
 	while (tmp1)

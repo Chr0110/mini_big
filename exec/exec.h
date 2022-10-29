@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/28 00:50:34 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/28 18:17:47 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -186,14 +186,14 @@ int		check_herdoc(t_b_l *lil);
 void	sig_han(int signum);
 void	pip_herdoc(t_vars *vars, t_b_l *lil, int len, t_data *data);
 void	ft_herdoc(t_vars *vars, char *dil, t_data *data);
-int		is_herdoc(t_b_l *lil, t_vars *vars, t_data *data);
+int		is_herdoc(char *lil2, t_vars *vars, t_data *data);
 char	*creat_name(int i);
 int		builtins2(t_vars *vars, char **bar);
 int		redirect_app(t_vars *vars, int i, char *str);
 int		redirect_out(t_vars *vars, int i, char *str);
 int		redirect_in(t_vars *vars, int i, char *str);
-void	is_herdoc2(t_vars *vars, t_b_l *lil, t_data *data);
-int		redirect_herd(t_data *data, t_vars *vars, t_b_l *lil2);
+void	is_herdoc2(t_vars *vars, char *lil2, t_data *data);
+int		redirect_herd(t_data *data, t_vars *vars, char *lil2);
 char	*ft_expand(t_vars *vars, char *ptr);
 char	*ft_expand2(t_vars *vars, int i, int j);
 void	ft_herdoc2(t_vars *vars, char *str, t_data *data);

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 06:35:49 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/27 18:26:36 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/28 20:27:36 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,8 +58,8 @@ void	ft_execute(char **cmd, t_vars *vars)
 	{
 		ft_putstr(cmd[0], 2);
 		ft_putstr(": command not found\n", 2);
-		closedir(dir);
 		exit(127);
+		closedir(dir);
 	}
 	closedir(dir);
 }

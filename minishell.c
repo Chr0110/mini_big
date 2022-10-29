@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.c                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
+/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/07 16:03:54 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/29 07:42:37 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/28 18:32:03 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -63,7 +63,7 @@ int	main(int ac, char **av, char **env)
 {
 	char	*ptr;
 	t_vars	*vars;
-	t_b_l	*big;
+	t_b_l	*big = NULL;
 	t_data	*data;
 
 	vars = ft_calloc(sizeof(t_vars), 1);
@@ -81,6 +81,16 @@ int	main(int ac, char **av, char **env)
 		{
 			add_history(ptr);
 			big = ft_parsing(ptr, vars->env, big);
+			// while(big)
+			// {
+			// 	while(big->red)
+			// 	{
+			// 		printf("%s   %d\n", big->red->content.value, big->red->content.e_type);
+			// 		big->red = big->red->next;
+			// 	}
+			// 	big = big->next;
+			// }
+			// exit (0);
 			ptr = NULL;
 			ft_execution(big, data, vars);
 			free_inside_main(vars, big, av);

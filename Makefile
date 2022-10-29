@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+         #
+#    By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 07:58:05 by sriyani           #+#    #+#              #
-#    Updated: 2022/10/29 07:24:41 by eradi-           ###   ########.fr        #
+#    Updated: 2022/10/29 07:57:21 by sriyani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -82,16 +82,13 @@ SRC_E = \
 		./exec/ft_herdoc.c\
 		./exec/ft_herdoc2.c\
 		./exec/size_exp_env.c\
-		# test.c\
-		# pipex_utils2.c\
-		# multiple_pipe.c\
 
 SRC = $(SRC_E) $(SRC_P)
 
-CC = cc #-fsanitize=address #-Wall -Wextra -Werror
+CC = cc  -Wall -Wextra -Werror 
 
-#CFLAGS =   -I /Users/sriyani/Desktop/vlag/homebrew/opt/readline/include 
-#LIB_FLAG = -L /Users/sriyani/Desktop/vlag/homebrew/opt/readline/lib
+CFLAGS =   -I /Users/sriyani/Desktop/vlag/homebrew/opt/readline/include 
+LIB_FLAG = -L /Users/sriyani/Desktop/vlag/homebrew/opt/readline/lib
 OBJ = $(SRC:.c=.o)
 
  %.o: %.c
@@ -99,7 +96,7 @@ OBJ = $(SRC:.c=.o)
 
 all: $(NAME)
 
-$(NAME) : $(OBJ) # $(LIB)
+$(NAME) : $(OBJ)
 		$(CC) $(CFLAGS) $(LIB_FLAG) -o $(NAME)   -lreadline  $(OBJ) 
 
 clean:

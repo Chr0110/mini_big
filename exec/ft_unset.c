@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/20 18:42:29 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/29 18:11:21 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 19:43:31 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,10 +22,10 @@ char	**take_variable_exp(int len, t_vars *vars)
 	while (i < len)
 	{
 		if (ft_strchr(vars->exp[i], '=') == 0)
-			{
-				var[i] = ft_calloc(sizeof(char), (ft_strlen(vars->exp[i]) + 1));
-				var[i] = take_variable_exp2(var, vars, i);
-			}
+		{
+			var[i] = ft_calloc(sizeof(char), (ft_strlen(vars->exp[i]) + 1));
+			var[i] = take_variable_exp2(var, vars, i);
+		}
 		else
 			var[i] = ft_strdup(vars->exp[i]);
 		i++;

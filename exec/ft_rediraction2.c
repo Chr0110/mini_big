@@ -6,13 +6,13 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/19 13:28:00 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/28 18:15:56 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 19:44:06 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../minishell.h"
 
-int	redirect_herd(t_data *data, t_vars *vars, char  *lil2)
+int	redirect_herd(t_data *data, t_vars *vars, char *lil2)
 {
 	vars->sig_on = -1;
 	if (is_herdoc(lil2, vars, data) == 1)

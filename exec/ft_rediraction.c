@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/30 10:47:53 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/29 07:56:15 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 19:46:48 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	is_herdoc(char *lil, t_vars *vars, t_data *data)
 	{	
 		signal(SIGQUIT, SIG_IGN);
 		signal(SIGINT, sig_han);
-		is_herdoc2(vars, lil, data);
+		ft_herdoc(vars, lil, data);
 	}
 	else
 	{
@@ -48,21 +48,14 @@ int	is_herdoc(char *lil, t_vars *vars, t_data *data)
 	return (1);
 }
 
-void	is_herdoc2(t_vars *vars,char *lil, t_data *data)
-{
-	char	*str;
-
-	str = NULL;
-	ft_herdoc(vars, lil, data);
-}
-
 int	check_rediraction(t_b_l *lil)
 {
-	t_r * tmp;
+	t_r	*tmp;
+
 	while (lil)
 	{
 		tmp = lil->red;
-		while (tmp )
+		while (tmp)
 		{
 			if (tmp && tmp->content.e_type == 2)
 				return (2);

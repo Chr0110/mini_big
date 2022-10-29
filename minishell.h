@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/29 11:20:19 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 18:09:35 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -162,7 +162,6 @@ char	*get_value2(char **res, char **env_cmp);
 void	get_param_values(int *i, int *n, int *j);
 void	retry(int *j, char **env_cmp, int *n);
 void	check_export5_2(char **bar, t_vars *vars, int i);
-void	ft_unset1(t_vars *vars, char **bar);
 char	*ft_strjoin_one(char *str, char c);
 char	*handle_dollar_double_quotes(char *s, int *i, char **env);
 char	**find_path(char **env);

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 14:07:45 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/29 13:38:17 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 18:12:08 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -77,10 +77,8 @@ int	builtins2(t_vars *vars, char **bar)
 	}
 	if (ft_strcmp(bar[0], "unset") == 0)
 	{
-		if(vars->n_sar)
-			g_status = ft_unset(bar, vars);
-		if(vars->n_mar)
-			g_status = unset_exp(bar, vars);
+		g_status = ft_unset(bar, vars);
+		g_status = unset_exp(bar, vars);
 	}
 	return (g_status);
 }

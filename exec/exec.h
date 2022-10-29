@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/29 13:39:22 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 18:09:22 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,7 +67,9 @@ typedef struct s_vars
 	int		*hold_pid;
 }	t_vars;
 
-void	ft_unset_exp2(t_vars *vars, char *barr);
+void	ft_unset1(t_vars *vars, char **bar, char **take);
+int		unset_exp(char **bar, t_vars *vars);
+void	ft_unset_exp2(t_vars *vars, char *barr, char **take);
 int		ft_fork(t_vars *vars, char **str, int i);
 void	print_num(char *bar);
 void	check_export1(char **bar, t_vars *vars, int i, int j);
@@ -100,7 +102,7 @@ char	*takevariable2(t_vars *vars, char **str, int i, int j);
 void	aff_export3(t_vars *vars, int i);
 void	path_error(char *cmd);
 char	*take_variable_exp2(char **var, t_vars *vars, int i);
-void	ft_unset2(t_vars *vars, char *barr);
+void	ft_unset2(t_vars *vars, char *barr, char **take);
 int		check_isdouble(char **test, int len, char *str);
 void	remove_str(char **test, char *str, t_vars *vars);
 void	take_bar2(char **barr, char **bar, int i);

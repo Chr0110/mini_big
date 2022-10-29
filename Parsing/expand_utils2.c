@@ -6,7 +6,7 @@
 /*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:57:39 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/20 08:58:19 by eradi-           ###   ########.fr       */
+/*   Updated: 2022/10/28 18:57:43 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,25 +37,21 @@ int	not_between_sd_quotes(char *s, int i)
 {
 	int	j;
 	int	n;
+	int	m;
 
-	j = 0;
-	n = 1;
-	while (s[j])
+	m = 0;
+	n = 0;
+	while (s[i])
 	{
-		if (s[j] == '\'')
-		{
-			n = not_between_s_quotes(s, i);
-			return (n);
-		}
-		else if (s[j] == '\"')
-		{
-			n = not_between_quotes(s, i);
-			return (n);
-		}
-		else
-			j++;
+		if (s[i] == '\'')
+			n++;
+		else if (s[i] == '\"')
+			m++;
+		i++;
 	}
-	return (n);
+	if ((m % 2 == 0) && (n % 2) == 0)
+		return (1);
+	return (0);
 }
 
 int	not_between_s_quotes(char *s, int i)

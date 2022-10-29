@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils3.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 16:51:02 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/28 02:12:04 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 07:40:20 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -51,8 +51,7 @@ void	exp_creat_list(t_b_l *t_big, char **env, t_p_l *ex_ls, t_b_l *tmp_big)
 		expand1(exp, tmp_big);
 		while (exp->current_arg)
 		{
-			if (there_is_a_dollar(exp->current_arg->content.value))
-				expand_dollar(&exp->current_arg->content, env, 0, &ex_ls);
+			expand_dollar(&exp->current_arg->content, env, 0, &ex_ls);
 			if (ft_lstsize(ex_ls) != 0)
 				expand2(exp, ex_ls, tmp_big);
 			else

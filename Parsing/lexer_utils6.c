@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils6.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 09:03:10 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/28 02:11:27 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 00:37:24 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,7 +32,6 @@ void	free_lexer(t_lx **lexer)
 {
 	if ((*lexer) == NULL)
 		return ;
-	//free((*lexer)->text[(*lexer)->t]);
 	free((*lexer)->str);
 	free((*lexer)->text);
 	free2d((*lexer)->pip);
@@ -84,7 +83,7 @@ void	how_much(char *s, t_lx *lexer)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '|')
+		if (s[i] == '|' && not_between_quotes(s, i))
 			lexer->pi++;
 		else if (s[i] == '<' && s[i + 1] == '<' && not_between_quotes(s, i))
 		{

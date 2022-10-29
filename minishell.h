@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/28 02:13:10 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 11:20:19 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,7 @@
 # include <sys/wait.h>
 # include "exec/exec.h"
 
-// typedef struct s_b_l	t_b_l;
-// typedef struct s_vars	t_vars;
-int						g_status;
+int	g_status;
 
 typedef struct s_token
 {
@@ -164,7 +162,7 @@ char	*get_value2(char **res, char **env_cmp);
 void	get_param_values(int *i, int *n, int *j);
 void	retry(int *j, char **env_cmp, int *n);
 void	check_export5_2(char **bar, t_vars *vars, int i);
-void	ft_unset1(t_vars *vars, char **bar, char **take);
+void	ft_unset1(t_vars *vars, char **bar);
 char	*ft_strjoin_one(char *str, char c);
 char	*handle_dollar_double_quotes(char *s, int *i, char **env);
 char	**find_path(char **env);
@@ -192,7 +190,6 @@ char	*dollar_cases2(char **res, char *s, int *i, int j);
 char	*dollar_cases(char **res, char *s, int *i, int j);
 char	*skip_white_spaces(char *src);
 int		still_a_quote(t_lx *lexer, int i);
-// char	*ft_strjoin(char *s, char c);
 int		number_of_s_quotes(t_lx *lexer);
 int		number_of_quotes(t_lx *lexer);
 void	make_list(t_p_l **curr, t_p_l *t_a_prev, t_p_l *x_ls);

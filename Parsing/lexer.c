@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/29 08:19:21 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 09:16:27 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,22 @@ void	choose_a_path(t_b_l **big, t_lx *lx, char **env, t_list *s_b)
 		check_errors(s_b, env, big, lx);
 	else
 	{
-		free_lexer(&lx); //hadi kant 2d
+		if (s_b && (s_b->content.value && (s_b->content.e_type == 0 || s_b->content.e_type == 2
+			|| s_b->content.e_type == 3 || s_b->content.e_type == 4
+			|| s_b->content.e_type == 5)))
+		{
+			t_list	*t;
+			t_list	*tmp1;
+			tmp1 = s_b;
+			while (tmp1)
+			{
+				t = tmp1->next;
+				free(tmp1->content.value);
+				free(tmp1);
+				tmp1 = t;
+			}
+		}
+		free_lexer(&lx);
 		*big = NULL;
 	}
 }

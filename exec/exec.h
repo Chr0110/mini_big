@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/14 15:49:34 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/28 18:17:47 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 13:39:22 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -67,6 +67,7 @@ typedef struct s_vars
 	int		*hold_pid;
 }	t_vars;
 
+void	ft_unset_exp2(t_vars *vars, char *barr);
 int		ft_fork(t_vars *vars, char **str, int i);
 void	print_num(char *bar);
 void	check_export1(char **bar, t_vars *vars, int i, int j);
@@ -98,9 +99,8 @@ void	remove_double2(char **test, t_vars *vars, int len);
 char	*takevariable2(t_vars *vars, char **str, int i, int j);
 void	aff_export3(t_vars *vars, int i);
 void	path_error(char *cmd);
-void	ft_unset_exp2(t_vars *vars, char *barr, char **take);
 char	*take_variable_exp2(char **var, t_vars *vars, int i);
-void	ft_unset2(t_vars *vars, char *barr, char **take);
+void	ft_unset2(t_vars *vars, char *barr);
 int		check_isdouble(char **test, int len, char *str);
 void	remove_str(char **test, char *str, t_vars *vars);
 void	take_bar2(char **barr, char **bar, int i);
@@ -154,6 +154,7 @@ int		size_env(t_vars *vars);
 void	change_valeur(char *ptr, char *str);
 void	env_to_exp(t_vars *vars);
 void	remove_double(t_vars *vars);
+int		unset_exp1(char **bar, t_vars *vars);
 int		unset_exp(char **bar, t_vars *vars);
 int		size_exp(t_vars *vars);
 void	ft_append(t_vars *vars);
@@ -171,7 +172,6 @@ void	ft_close(int len, t_vars *vars, char *ptr);
 void	psudo_close(t_vars *vars, int i);
 void	ft_execution(t_b_l *big, t_data *data, t_vars *vars);
 int		check_path(char **env);
-// char	**find_path(char **env, int i, char *envp);
 char	*ft_copie_shlvl(char *str);
 void	free_path(char **path, char *cmdpath);
 void	ft_initial_exec(t_vars *vars, char **env);

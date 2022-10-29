@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/18 17:03:17 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/27 14:18:23 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/29 13:31:11 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,6 @@ char	**take_variable2(int len, t_vars *vars)
 
 	i = 0;
 	j = 0;
-	var = NULL;
 	var = ft_calloc(sizeof(char *), (len + 1));
 	while (i < len)
 	{

@@ -6,7 +6,7 @@
 /*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 11:38:40 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/29 19:43:09 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/30 03:15:10 by sriyani          ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,5 +113,11 @@ void	init_lexer(char *src, char **env, t_b_l **big_branch)
 	lexer->j = 0;
 	lexer->c = lexer->str[lexer->j];
 	how_much(lexer->str, lexer);
+	printf("%d\n", lexer->pi);
+	printf("%d\n", lexer->red_i);
+	printf("%d\n", lexer->red_o);
+	printf("%d\n", lexer->her);
+	printf("%d\n", lexer->app);
+	// exit(0);
 	get_token(env, lexer, small_branch, big_branch);
 }

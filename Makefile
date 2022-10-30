@@ -6,7 +6,7 @@
 #    By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 07:58:05 by sriyani           #+#    #+#              #
-#    Updated: 2022/10/29 11:13:43 by sriyani          ###   ########.fr        #
+#    Updated: 2022/10/30 00:31:23 by sriyani          ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,7 +85,7 @@ SRC_E = \
 
 SRC = $(SRC_E) $(SRC_P)
 
-CC = cc  #-fsanitize=address #-Wall -Wextra -Werror 
+CC = cc  -Wall -Wextra -Werror  #-fsanitize=address
 
 CFLAGS =   -I /Users/sriyani/Desktop/vlag/homebrew/opt/readline/include 
 LIB_FLAG = -L /Users/sriyani/Desktop/vlag/homebrew/opt/readline/lib

@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell.h                                        :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/02 17:03:11 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/29 18:09:35 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/30 04:40:23 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -181,7 +181,7 @@ void	check_lil_str(char **str);
 void	make_list(t_p_l **curr, t_p_l *prev, t_p_l *x_ls);
 int		find_dollar(char *s);
 int		there_is_a_dollar(char *s);
-int		not_between_quotes(char *s, int i);
+int		not_b_q(char *s, int i);
 char	*make_s_q_res(char **res, char *s, int *i, int *type);
 char	*make_d_q_res(t_exp_list *ex_ls, char **env, int type);
 char	*make_n_q_res(t_exp_list *ex_ls, char **env, int type);
@@ -213,14 +213,14 @@ int		ft_strlen1(char *s);
 void	lexer_init(t_lx	*lexer);
 int		size_env(t_vars *vars);
 int		size_exp(t_vars *vars);
-int		not_between_s_quotes(char *s, int i);
+int		not_b_s_q(char *s, int i);
 void	red_in_lexer(t_lx *lx, int *j, t_token *tk, t_list **s_b);
 void	red_out_lx(t_lx *lexer, int *j, t_token *token, t_list **small_branch);
 void	heredoc_lexer(t_lx *lexer, int *j, t_token *token, t_list **s_b);
 int		d_q_with_error(t_lx *lexer, int *j, t_token *token);
 int		d_q_lexer(t_lx *lexer, int *j, t_token *token);
 int		s_q_lexer(t_lx *lexer, int *j, t_token *token);
-int		lexer_q_cases(t_lx *lx, int *j, t_token *token, t_list **small_branch);
+void	lexer_q_cases(t_lx *lx, int *j, t_token *token, t_list **small_branch);
 void	ft_ft_creat_list(t_lx *lexer, int *j, t_token *token, t_list **s_b);
 void	ft_creat_normal_text(t_lx *lx, int *j, t_token *tk);
 void	pip_lexer(t_lx *lexer, int *j, t_token *token, t_list **s_b);
@@ -252,5 +252,6 @@ t_p_l	*get_last_node(t_p_l *list);
 void	free_lexer2(t_lx **lexer);
 void	go_count_again(char *s, int *i, t_lx *lexer);
 void	how_much(char *s, t_lx *lexer);
+void	quotes_error(t_lx *lx);
 
 #endif

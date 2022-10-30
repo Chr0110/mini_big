@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   expand_utils2.c                                    :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/01 10:57:39 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/29 07:59:23 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/30 04:40:23 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,7 @@ int	not_between_sd_quotes(char *s, int i)
 	return (0);
 }
 
-int	not_between_s_quotes(char *s, int i)
+int	not_b_s_q(char *s, int i)
 {
 	int	j;
 	int	n;
@@ -75,7 +75,7 @@ int	not_between_s_quotes(char *s, int i)
 	return (0);
 }
 
-int	not_between_quotes(char *s, int i)
+int	not_b_q(char *s, int i)
 {
 	int	j;
 	int	n;
@@ -104,7 +104,7 @@ int	there_is_a_space(char *str)
 	i = 0;
 	while (str[i])
 	{
-		if (str[i] == ' ' && not_between_quotes(str, i))
+		if (str[i] == ' ' && not_b_q(str, i))
 			return (1);
 		else
 			i++;

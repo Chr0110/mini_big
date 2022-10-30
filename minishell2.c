@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   minishell2.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/27 17:45:46 by sriyani           #+#    #+#             */
-/*   Updated: 2022/10/27 18:23:40 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/30 03:21:11 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	sig_handler(int signum)
 	{
 		ft_putchar_fd('\n', 1);
 		rl_on_new_line();
-		rl_replace_line("", 1);
+		// rl_replace_line("", 1);
 		rl_redisplay();
 	}
 	if (signum == SIGQUIT)

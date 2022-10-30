@@ -3,10 +3,10 @@
 #                                                         :::      ::::::::    #
 #    Makefile                                           :+:      :+:    :+:    #
 #                                                     +:+ +:+         +:+      #
-#    By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+         #
+#    By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/10/24 07:58:05 by sriyani           #+#    #+#              #
-#    Updated: 2022/10/30 00:31:23 by sriyani          ###   ########.fr        #
+#    Updated: 2022/10/30 04:41:35 by eradi-           ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -85,10 +85,10 @@ SRC_E = \
 
 SRC = $(SRC_E) $(SRC_P)
 
-CC = cc  -Wall -Wextra -Werror  #-fsanitize=address
+CC = cc   -Wall -Wextra -Werror#-fsanitize=address
 
-CFLAGS =   -I /Users/sriyani/Desktop/vlag/homebrew/opt/readline/include 
-LIB_FLAG = -L /Users/sriyani/Desktop/vlag/homebrew/opt/readline/lib
+# CFLAGS =   -I /Users/sriyani/Desktop/vlag/homebrew/opt/readline/include 
+# LIB_FLAG = -L /Users/sriyani/Desktop/vlag/homebrew/opt/readline/lib
 OBJ = $(SRC:.c=.o)
 
  %.o: %.c

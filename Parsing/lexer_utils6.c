@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   lexer_utils6.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: sriyani <sriyani@student.42.fr>            +#+  +:+       +#+        */
+/*   By: eradi- <eradi-@student.42.fr>              +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/20 09:03:10 by eradi-            #+#    #+#             */
-/*   Updated: 2022/10/30 02:56:54 by sriyani          ###   ########.fr       */
+/*   Updated: 2022/10/30 04:41:04 by eradi-           ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,13 +60,15 @@ void	free_lexer2(t_lx **lexer)
 
 void	go_count_again(char *s, int *i, t_lx *lexer)
 {
-	if (s[(*i)] == '<' && s[(*i) + 1] != '<' && not_between_quotes(s, (*i)) && not_between_s_quotes(s, (*i)))
+	if (s[(*i)] == '<' && s[(*i) + 1] != '<' && not_b_q(s, (*i))
+		&& not_b_s_q(s, (*i)))
 		lexer->red_i++;
-	else if (s[(*i)] == '>' && s[(*i) + 1] != '>'
-		&& not_between_quotes(s, (*i)) && not_between_s_quotes(s, (*i)))
+	else if (s[(*i)] == '>' && s[(*i) + 1] != '>' && not_b_q(s, (*i))
+		&& not_b_s_q(s, (*i)))
 		lexer->red_o++;
 	else if (s[(*i)] != '<' && s[(*i)] != '>'
-		&& s[(*i)] != '|' && s[(*i)] != ' ' && not_between_quotes(s, (*i)) && not_between_s_quotes(s, (*i)))
+		&& s[(*i)] != '|' && s[(*i)] != ' ' && not_b_q(s, (*i))
+		&& not_b_s_q(s, (*i)))
 	{
 		while (s[(*i)] != '<' && s[(*i)] != '>' && s[(*i)] != '|'
 			&& s[(*i)] != ' ' && (*i) < ft_strlen1(s))
@@ -83,14 +85,16 @@ void	how_much(char *s, t_lx *lexer)
 	i = 0;
 	while (s[i])
 	{
-		if (s[i] == '|' && (not_between_quotes(s, i) && not_between_s_quotes(s, i)))
+		if (s[i] == '|' && (not_b_q(s, i) && not_b_s_q(s, i)))
 			lexer->pi++;
-		else if (s[i] == '<' && s[i + 1] == '<' && not_between_quotes(s, i) && not_between_s_quotes(s, i))
+		else if (s[i] == '<' && s[i + 1] == '<' && not_b_q(s, i)
+			&& not_b_s_q(s, i))
 		{
 			lexer->her++;
 			i++;
 		}
-		else if (s[i] == '>' && s[i + 1] == '>' && not_between_quotes(s, i) && not_between_s_quotes(s, i))
+		else if (s[i] == '>' && s[i + 1] == '>' && not_b_q(s, i)
+			&& not_b_s_q(s, i))
 		{
 			lexer->app++;
 			i++;
